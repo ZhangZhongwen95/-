@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>总统接力——穿越美国历史</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #timeline {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-auto-rows: 100px;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .president-card {
+            width: 100px;
+            height: 50px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            margin: 5px;
+            padding: 5px;
+            text-align: center;
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            touch-action: none;
+        }
+        #president-container {
+            text-align: center;
+        }
+        .slot {
+            width: 150px;
+            height: 100px;
+            border: 2px dashed #aaa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .correct {
+            border-color: green !important;
+            background-color: #d4edda;
+        }
+        .incorrect {
+            border-color: red !important;
+            background-color: #f8d7da;
+        }
+        #result {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        #check-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #info {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e8e8ff;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<h1>总统接力——穿越美国历史</h1>
+
+<div id="timeline">
+    <!-- 大的二维网格的卡槽 -->
+</div>
+
+<button id="check-button">检查顺序</button>
+
+<div id="result"></div>
+
+<div id="president-container">
+    <!-- 总统卡片，将在这里展示 -->
+</div>
+
+<div id="info"></div>
+
+<script>
+    // 美国总统信息
+    const presidents = [
+        { name: '乔治·华盛顿', start: 1789, end: 1797, info: '美国首任总统，被誉为“国父”。' },
+        { name: '约翰·亚当斯', start: 1797, end: 1801, info: '美国第二任总统，首位居住白宫的总统。' },
+        { name: '托马斯·杰斐逊', start: 1801, end: 1809, info: '美国第三任总统，《独立宣言》主要起草人。' },
+        { name: '詹姆斯·麦迪逊', start: 1809, end: 1817, info: '美国第四任总统，被称为“宪法之父”。' },
+        { name: '詹姆斯·门罗', start: 1817, end: 1825, info: '美国第五任总统，提出了“门罗主义”。' },
+        { name: '约翰·昆西·亚当斯', start: 1825, end: 1829, info: '美国第六任总统，约翰·亚当斯之子。' },
+        { name: '安德鲁·杰克逊', start: 1829, end: 1837, info: '美国第七任总统，平民总统。' },
+        { name: '马丁·范布伦', start: 1837, end: 1841, info: '美国第八任总统，首位出生于美国的总统。' },
+        { name: '威廉·亨利·哈里森', start: 1841, end: 1841, info: '美国第九任总统，任期最短，仅31天。' },
+        { name: '约翰·泰勒', start: 1841, end: 1845, info: '美国第十任总统，首位继任总统。' },
+        { name: '詹姆斯·诺克斯·波尔克', start: 1845, end: 1849, info: '美国第十一任总统，推动西进运动。' },
+        { name: '扎卡里·泰勒', start: 1849, end: 1850, info: '美国第十二任总统，著名将军。' },
+        { name: '米勒德·菲尔莫尔', start: 1850, end: 1853, info: '美国第十三任总统，支持《逃奴法》。' },
+        { name: '富兰克林·皮尔斯', start: 1853, end: 1857, info: '美国第十四任总统，任内加剧了南北矛盾。' },
+        { name: '詹姆斯·布坎南', start: 1857, end: 1861, info: '美国第十五任总统，被认为未能阻止南北战争。' },
+        { name: '亚伯拉罕·林肯', start: 1861, end: 1865, info: '美国第十六任总统，领导美国度过南北战争。' },
+        { name: '安德鲁·约翰逊', start: 1865, end: 1869, info: '美国第十七任总统，林肯遇刺后继任。' },
+        { name: '尤利西斯·S·格兰特', start: 1869, end: 1877, info: '美国第十八任总统，南北战争联邦军总司令。' },
+        { name: '拉瑟福德·伯查德·海斯', start: 1877, end: 1881, info: '美国第十九任总统，结束重建时代。' },
+        { name: '詹姆斯·艾布拉姆·加菲尔德', start: 1881, end: 1881, info: '美国第二十任总统，任内遭暗杀。' },
+        { name: '切斯特·艾伦·阿瑟', start: 1881, end: 1885, info: '美国第二十一任总统，推进公务员制度改革。' },
+        { name: '格罗弗·克利夫兰', start: 1885, end: 1889, info: '美国第二十二任和第二十四任总统，唯一一位非连续任期总统。' },
+        { name: '本杰明·哈里森', start: 1889, end: 1893, info: '美国第二十三任总统，签署《麦金莱关税法》。' },
+        { name: '威廉·麦金莱', start: 1897, end: 1901, info: '美国第二十五任总统，领导美西战争。' },
+        { name: '西奥多·罗斯福', start: 1901, end: 1909, info: '美国第二十六任总统，进步主义领袖。' },
+        { name: '威廉·霍华德·塔夫脱', start: 1909, end: 1913, info: '美国第二十七任总统，后任最高法院首席大法官。' },
+        { name: '伍德罗·威尔逊', start: 1913, end: 1921, info: '美国第二十八任总统，领导美国参加一战。' },
+        { name: '沃伦·盖玛利尔·哈定', start: 1921, end: 1923, info: '美国第二十九任总统，任内爆发茶壶山丑闻。' },
+        { name: '卡尔文·柯立芝', start: 1923, end: 1929, info: '美国第三十任总统，主张“小政府”。' },
+        { name: '赫伯特·胡佛', start: 1929, end: 1933, info: '美国第三十一任总统，任内爆发大萧条。' },
+        { name: '富兰克林·德拉诺·罗斯福', start: 1933, end: 1945, info: '美国第三十二任总统，实施新政，连任四届。' },
+        { name: '哈里·S·杜鲁门', start: 1945, end: 1953, info: '美国第三十三任总统，二战结束者。' },
+        { name: '德怀特·大卫·艾森豪威尔', start: 1953, end: 1961, info: '美国第三十四任总统，二战盟军最高司令。' },
+        { name: '约翰·菲茨杰拉德·肯尼迪', start: 1961, end: 1963, info: '美国第三十五任总统，任内遭暗杀。' },
+        { name: '林登·贝恩斯·约翰逊', start: 1963, end: 1969, info: '美国第三十六任总统，推进民权立法。' },
+        { name: '理查德·米尔豪斯·尼克松', start: 1969, end: 1974, info: '美国第三十七任总统，因水门事件辞职。' },
+        { name: '杰拉尔德·鲁道夫·福特', start: 1974, end: 1977, info: '美国第三十八任总统，唯一未经过选举的总统。' },
+        { name: '吉米·卡特', start: 1977, end: 1981, info: '美国第三十九任总统，致力于人权外交。' },
+        { name: '罗纳德·威尔逊·里根', start: 1981, end: 1989, info: '美国第四十任总统，推行“里根经济学”。' },
+        { name: '乔治·赫伯特·沃克·布什', start: 1989, end: 1993, info: '美国第四十一任总统，发动海湾战争。' },
+        { name: '比尔·克林顿', start: 1993, end: 2001, info: '美国第四十二任总统，推动经济繁荣。' },
+        { name: '乔治·沃克·布什', start: 2001, end: 2009, info: '美国第四十三任总统，领导反恐战争。' },
+        { name: '巴拉克·奥巴马', start: 2009, end: 2017, info: '美国第四十四任总统，首位非裔总统。' },
+        { name: '唐纳德·特朗普', start: 2017, end: 2021, info: '美国第四十五任总统，商人出身。' },
+        { name: '乔·拜登', start: 2021, end: '至今', info: '美国第四十六任总统，前副总统。' },
+    ];
+
+    let slots = [];
+    let draggedCard = null;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    // 初始化时间轴为大格子
+    function initTimeline() {
+        const timeline = document.getElementById('timeline');
+        for (let i = 0; i < presidents.length; i++) {
+            const slot = document.createElement('div');
+            slot.className = 'slot';
+            slot.addEventListener('dragover', allowDrop);
+            slot.addEventListener('drop', drop);
+            timeline.appendChild(slot);
+            slots.push(slot);
+        }
+    }
+
+    // 初始化总统卡片
+    function initPresidentCards() {
+        const presidentContainer = document.getElementById('president-container');
+        const shuffledPresidents = presidents.slice().sort(() => Math.random() - 0.5);
+        shuffledPresidents.forEach(president => {
+            const card = document.createElement('div');
+            card.className = 'president-card';
+            card.draggable = true;
+            card.innerText = president.name;
+            card.addEventListener('dragstart', drag);
+            card.addEventListener('click', () => showInfo(president));
+            // 添加触摸事件监听器
+            card.addEventListener('touchstart', touchStart, { passive: false });
+            card.addEventListener('touchmove', touchMove, { passive: false });
+            card.addEventListener('touchend', touchEnd, { passive: false });
+            presidentContainer.appendChild(card);
+        });
+    }
+
+    function drag(event) {
+        draggedCard = event.target;
+    }
+
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+
+    function drop(event) {
+        event.preventDefault();
+        if (event.target.className.includes('slot')) {
+            if (event.target.firstChild && draggedCard) {
+                const existingCard = event.target.firstChild;
+                existingCard.parentElement.appendChild(draggedCard);
+                event.target.appendChild(existingCard);
+            } else if (draggedCard) {
+                event.target.appendChild(draggedCard);
+            }
+            draggedCard = null;
+        }
+    }
+
+    // Touch event handlers for mobile drag-and-drop functionality
+    function touchStart(event) {
+        if (event.touches.length === 1) {
+            draggedCard = event.target;
+            const touch = event.touches[0];
+            const rect = draggedCard.getBoundingClientRect();
+            offsetX = touch.clientX - rect.left;
+            offsetY = touch.clientY - rect.top;
+            draggedCard.style.position = 'absolute';
+            draggedCard.style.zIndex = 1000;
+        }
+        event.preventDefault();
+    }
+
+    function touchMove(event) {
+        if (draggedCard && event.touches.length === 1) {
+            const touch = event.touches[0];
+            draggedCard.style.left = (touch.clientX - offsetX) + 'px';
+            draggedCard.style.top = (touch.clientY - offsetY) + 'px';
+        }
+        event.preventDefault();
+    }
+
+    function touchEnd(event) {
+        if (draggedCard) {
+            const touch = event.changedTouches[0];
+            draggedCard.style.position = 'relative';
+            draggedCard.style.left = '';
+            draggedCard.style.top = '';
+            draggedCard.style.zIndex = '';
+            const elementAtTouch = document.elementFromPoint(touch.clientX, touch.clientY);
+            if (elementAtTouch) {
+                const slot = elementAtTouch.closest('.slot');
+                if (slot) {
+                    if (slot.firstChild) {
+                        // 如果槽位已有卡片，交换位置
+                        const existingCard = slot.firstChild;
+                        existingCard.parentElement.appendChild(draggedCard);
+                        slot.appendChild(existingCard);
+                    } else {
+                        slot.appendChild(draggedCard);
+                    }
+                } else {
+                    // 放回原来的容器
+                    document.getElementById('president-container').appendChild(draggedCard);
+                }
+            }
+            draggedCard = null;
+        }
+        event.preventDefault();
+    }
+
+    function checkOrder() {
+        let correct = true;
+        for (let i = 0; i < slots.length; i++) {
+            const slot = slots[i];
+            const card = slot.firstChild;
+            if (card) {
+                const presidentName = card.innerText;
+                const president = presidents[i];
+                if (presidentName === president.name) {
+                    slot.classList.add('correct');
+                    slot.classList.remove('incorrect');
+                } else {
+                    slot.classList.add('incorrect');
+                    slot.classList.remove('correct');
+                    correct = false;
+                }
+            } else {
+                slot.classList.add('incorrect');
+                slot.classList.remove('correct');
+                correct = false;
+            }
+        }
+        const result = document.getElementById('result');
+        if (correct) {
+            result.innerHTML = '<img src="https://raw.githubusercontent.com/ZhangZhongwen95/-/main/success.gif" alt="Success" style="max-width:100%;"><br>恭喜你，全部正确！';
+        } else {
+            result.innerHTML = '<img src="https://raw.githubusercontent.com/ZhangZhongwen95/-/main/failure.gif" alt="Failure" style="max-width:100%;"><br>有错误，请调整。';
+        }
+    }
+
+    function showInfo(president) {
+        const infoDiv = document.getElementById('info');
+        infoDiv.innerHTML = `<strong>${president.name} (${president.start}年 - ${president.end}年)</strong><br>${president.info}`;
+    }
+
+    document.getElementById('check-button').addEventListener('click', checkOrder);
+
+    initTimeline();
+    initPresidentCards();
+</script>
+
+</body>
+</html>
