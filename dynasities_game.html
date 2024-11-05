@@ -19,6 +19,8 @@
             border: 2px dashed #ccc;
             margin: 20px 0;
             position: relative;
+            overflow-x: auto;
+            white-space: nowrap;
         }
         .dynasty-card {
             width: 100px;
@@ -38,8 +40,9 @@
             width: 100px;
             height: 50px;
             border: 1px dashed #aaa;
-            position: absolute;
+            position: relative;
             top: 25px;
+            display: inline-block;
         }
         .correct {
             border-color: green !important;
@@ -118,6 +121,8 @@
             slot.style.left = (i * (100 + 10)) + 'px';
             slot.addEventListener('dragover', allowDrop);
             slot.addEventListener('drop', drop);
+            slot.addEventListener('touchmove', allowDrop);
+            slot.addEventListener('touchend', drop);
             timeline.appendChild(slot);
             slots.push(slot);
         }
@@ -126,7 +131,6 @@
     // 初始化朝代卡片
     function initDynastyCards() {
         const dynastyContainer = document.getElementById('dynasty-container');
-        // 打乱朝代顺序
         const shuffledDynasties = dynasties.slice().sort(() => Math.random() - 0.5);
         shuffledDynasties.forEach(dynasty => {
             const card = document.createElement('div');
@@ -135,6 +139,10 @@
             card.innerText = dynasty.name;
             card.addEventListener('dragstart', drag);
             card.addEventListener('click', () => showInfo(dynasty));
+            // Add touch event listeners for mobile drag functionality
+            card.addEventListener('touchstart', touchStart);
+            card.addEventListener('touchmove', touchMove);
+            card.addEventListener('touchend', touchEnd);
             dynastyContainer.appendChild(card);
         });
     }
@@ -151,16 +159,37 @@
         event.preventDefault();
         if (event.target.className.includes('slot')) {
             if (event.target.firstChild && draggedCard) {
-                // 如果槽位已有卡片，交换位置
                 const existingCard = event.target.firstChild;
                 existingCard.parentElement.appendChild(draggedCard);
                 event.target.appendChild(existingCard);
             } else if (draggedCard) {
-                // 如果槽位为空，直接放入
                 event.target.appendChild(draggedCard);
             }
             draggedCard = null;
         }
+    }
+
+    // Touch event handlers for mobile drag-and-drop functionality
+    function touchStart(event) {
+        draggedCard = event.target;
+    }
+
+    function touchMove(event) {
+        event.preventDefault();
+        const touchLocation = event.touches[0];
+        draggedCard.style.position = 'absolute';
+        draggedCard.style.left = touchLocation.pageX - 50 + 'px';
+        draggedCard.style.top = touchLocation.pageY - 25 + 'px';
+    }
+
+    function touchEnd(event) {
+        const touch = event.changedTouches[0];
+        const elementAtTouch = document.elementFromPoint(touch.clientX, touch.clientY);
+        if (elementAtTouch && elementAtTouch.className.includes('slot')) {
+            elementAtTouch.appendChild(draggedCard);
+        }
+        draggedCard.style.position = 'static';
+        draggedCard = null;
     }
 
     function checkOrder() {
@@ -186,11 +215,7 @@
             }
         }
         const result = document.getElementById('result');
-        if (correct) {
-            result.innerText = '恭喜你，全部正确！';
-        } else {
-            result.innerText = '有错误，请调整。';
-        }
+        result.innerText = correct ? '恭喜你，全部正确！' : '有错误，请调整。';
     }
 
     function showInfo(dynasty) {
