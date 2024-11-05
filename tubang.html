@@ -31,7 +31,7 @@
     .map-container {
       position: relative;
       flex: 1;
-      background-image: url('https://a.tile.openstreetmap.org/5/23/11.png'); /* 替换为实际的印度地图URL */
+      background-image: url('YOUR_CHINESE_DOMAIN_MAP_URL'); /* 请替换为中国域名的在线地图URL */
       background-size: cover;
       background-position: center;
       overflow: hidden;
@@ -63,7 +63,8 @@
       border-radius: 50%;
       cursor: grab;
       user-select: none;
-      touch-action: none;
+      touch-action: manipulation;
+      -webkit-user-drag: none;
     }
     #info-box {
       padding: 5px;
@@ -207,6 +208,7 @@
       let offsetY = 0;
 
       function touchStart(event) {
+        event.preventDefault();
         draggedCard = event.target;
         const touch = event.targetTouches[0];
         offsetX = touch.clientX - draggedCard.getBoundingClientRect().left;
@@ -224,6 +226,7 @@
       }
 
       function touchEnd(event) {
+        event.preventDefault();
         const touch = event.changedTouches[0];
         let dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
 
