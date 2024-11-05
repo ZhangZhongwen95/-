@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>朝代接力——穿越中国历史</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #timeline {
+            width: 100%;
+            height: 100px;
+            border: 2px dashed #ccc;
+            margin: 20px 0;
+            position: relative;
+        }
+        .dynasty-card {
+            width: 100px;
+            height: 50px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            margin: 5px;
+            padding: 5px;
+            text-align: center;
+            cursor: move;
+            display: inline-block;
+        }
+        #dynasty-container {
+            text-align: center;
+        }
+        .slot {
+            width: 100px;
+            height: 50px;
+            border: 1px dashed #aaa;
+            position: absolute;
+            top: 25px;
+        }
+        .correct {
+            border-color: green !important;
+            background-color: #d4edda;
+        }
+        .incorrect {
+            border-color: red !important;
+            background-color: #f8d7da;
+        }
+        #result {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        #check-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #info {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e8e8ff;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<h1>朝代接力——穿越中国历史</h1>
+
+<div id="timeline">
+    <!-- 时间轴上的空位，将根据朝代数量动态生成 -->
+</div>
+
+<button id="check-button">检查顺序</button>
+
+<div id="result"></div>
+
+<div id="dynasty-container">
+    <!-- 朝代卡片，将在这里展示 -->
+</div>
+
+<div id="info"></div>
+
+<script>
+    // 朝代信息
+    const dynasties = [
+        { name: '夏朝', start: -2070, end: -1600, info: '中国史书记载的第一个朝代。' },
+        { name: '商朝', start: -1600, end: -1046, info: '青铜器文明的鼎盛时期。' },
+        { name: '周朝', start: -1046, end: -256, info: '分为西周和东周，包括春秋战国时期。' },
+        { name: '秦朝', start: -221, end: -206, info: '中国第一个统一的中央集权国家。' },
+        { name: '汉朝', start: -202, end: 220, info: '分为西汉和东汉，丝绸之路开通。' },
+        { name: '三国', start: 220, end: 280, info: '魏、蜀、吴三国鼎立的时期。' },
+        { name: '晋朝', start: 265, end: 420, info: '西晋短暂统一，东晋偏安江南。' },
+        { name: '南北朝', start: 420, end: 589, info: '南朝和北朝对峙的时期。' },
+        { name: '隋朝', start: 581, end: 618, info: '短暂统一全国，开凿大运河。' },
+        { name: '唐朝', start: 618, end: 907, info: '中国古代最辉煌的时期之一。' },
+        { name: '五代十国', start: 907, end: 960, info: '政权更迭频繁的时期。' },
+        { name: '宋朝', start: 960, end: 1279, info: '分为北宋和南宋，经济文化高度发展。' },
+        { name: '元朝', start: 1271, end: 1368, info: '蒙古族建立的统一王朝。' },
+        { name: '明朝', start: 1368, end: 1644, info: '郑和下西洋，商品经济发展。' },
+        { name: '清朝', start: 1644, end: 1912, info: '中国最后一个封建王朝。' },
+    ];
+
+    let slots = [];
+    let draggedCard = null;
+
+    // 初始化时间轴
+    function initTimeline() {
+        const timeline = document.getElementById('timeline');
+        for (let i = 0; i < dynasties.length; i++) {
+            const slot = document.createElement('div');
+            slot.className = 'slot';
+            slot.style.left = (i * (100 + 10)) + 'px';
+            slot.addEventListener('dragover', allowDrop);
+            slot.addEventListener('drop', drop);
+            timeline.appendChild(slot);
+            slots.push(slot);
+        }
+    }
+
+    // 初始化朝代卡片
+    function initDynastyCards() {
+        const dynastyContainer = document.getElementById('dynasty-container');
+        // 打乱朝代顺序
+        const shuffledDynasties = dynasties.slice().sort(() => Math.random() - 0.5);
+        shuffledDynasties.forEach(dynasty => {
+            const card = document.createElement('div');
+            card.className = 'dynasty-card';
+            card.draggable = true;
+            card.innerText = dynasty.name;
+            card.addEventListener('dragstart', drag);
+            card.addEventListener('click', () => showInfo(dynasty));
+            dynastyContainer.appendChild(card);
+        });
+    }
+
+    function drag(event) {
+        draggedCard = event.target;
+    }
+
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+
+    function drop(event) {
+        event.preventDefault();
+        if (event.target.className.includes('slot')) {
+            if (event.target.firstChild && draggedCard) {
+                // 如果槽位已有卡片，交换位置
+                const existingCard = event.target.firstChild;
+                existingCard.parentElement.appendChild(draggedCard);
+                event.target.appendChild(existingCard);
+            } else if (draggedCard) {
+                // 如果槽位为空，直接放入
+                event.target.appendChild(draggedCard);
+            }
+            draggedCard = null;
+        }
+    }
+
+    function checkOrder() {
+        let correct = true;
+        for (let i = 0; i < slots.length; i++) {
+            const slot = slots[i];
+            const card = slot.firstChild;
+            if (card) {
+                const dynastyName = card.innerText;
+                const dynasty = dynasties[i];
+                if (dynastyName === dynasty.name) {
+                    slot.classList.add('correct');
+                    slot.classList.remove('incorrect');
+                } else {
+                    slot.classList.add('incorrect');
+                    slot.classList.remove('correct');
+                    correct = false;
+                }
+            } else {
+                slot.classList.add('incorrect');
+                slot.classList.remove('correct');
+                correct = false;
+            }
+        }
+        const result = document.getElementById('result');
+        if (correct) {
+            result.innerText = '恭喜你，全部正确！';
+        } else {
+            result.innerText = '有错误，请调整。';
+        }
+    }
+
+    function showInfo(dynasty) {
+        const infoDiv = document.getElementById('info');
+        infoDiv.innerHTML = `<strong>${dynasty.name} (${dynasty.start}年 - ${dynasty.end}年)</strong><br>${dynasty.info}`;
+    }
+
+    document.getElementById('check-button').addEventListener('click', checkOrder);
+
+    initTimeline();
+    initDynastyCards();
+</script>
+
+</body>
+</html>
