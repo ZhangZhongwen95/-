@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>英属印度土邦接龙游戏</title>
+  <style>
+    /* CSS 样式 */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      margin: 20px 0;
+    }
+    .map {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding-bottom: 100%; /* 使地图容器为正方形 */
+      background-color: #e0e0e0;
+      border: 1px solid #ccc;
+    }
+    .grid {
+      position: absolute;
+      width: 8%;
+      height: 8%;
+      border: 2px dashed #666;
+      border-radius: 50%;
+      box-sizing: border-box;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px;
+    }
+    .card {
+      width: 100px;
+      height: 50px;
+      background-color: #f1c40f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: grab;
+      font-weight: bold;
+      color: #333;
+      border-radius: 5px;
+      user-select: none;
+      touch-action: none;
+    }
+    #info-box {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #e0e0e0;
+      border-radius: 5px;
+      width: 90%;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>英属印度土邦接龙游戏</h1>
+  <p>将土邦或省的卡片拖动到正确的位置，查看历史信息。</p>
+
+  <!-- 地图区域 -->
+  <div class="map" id="map">
+    <!-- 30个格子，没有名字 -->
+    <div class="grid" data-id="bengal" style="left: 70%; top: 40%;"></div>
+    <div class="grid" data-id="bombay" style="left: 40%; top: 60%;"></div>
+    <div class="grid" data-id="madras" style="left: 60%; top: 80%;"></div>
+    <div class="grid" data-id="hyderabad" style="left: 55%; top: 65%;"></div>
+    <div class="grid" data-id="mysore" style="left: 50%; top: 80%;"></div>
+    <div class="grid" data-id="punjab" style="left: 35%; top: 20%;"></div>
+    <div class="grid" data-id="kashmir" style="left: 35%; top: 10%;"></div>
+    <div class="grid" data-id="rajputana" style="left: 40%; top: 40%;"></div>
+    <div class="grid" data-id="awadh" style="left: 55%; top: 35%;"></div>
+    <div class="grid" data-id="gujarat" style="left: 35%; top: 50%;"></div>
+    <div class="grid" data-id="jaipur" style="left: 45%; top: 35%;"></div>
+    <div class="grid" data-id="bhopal" style="left: 50%; top: 50%;"></div>
+    <div class="grid" data-id="baroda" style="left: 40%; top: 55%;"></div>
+    <div class="grid" data-id="kolhapur" style="left: 45%; top: 70%;"></div>
+    <div class="grid" data-id="sikkim" style="left: 70%; top: 20%;"></div>
+    <div class="grid" data-id="nepal" style="left: 60%; top: 20%;"></div>
+    <div class="grid" data-id="sindh" style="left: 20%; top: 50%;"></div>
+    <div class="grid" data-id="baluchistan" style="left: 15%; top: 35%;"></div>
+    <div class="grid" data-id="coorg" style="left: 50%; top: 75%;"></div>
+    <div class="grid" data-id="nagpur" style="left: 60%; top: 50%;"></div>
+    <div class="grid" data-id="travancore" style="left: 50%; top: 90%;"></div>
+    <div class="grid" data-id="bikaner" style="left: 35%; top: 30%;"></div>
+    <div class="grid" data-id="jodhpur" style="left: 35%; top: 40%;"></div>
+    <div class="grid" data-id="udaipur" style="left: 40%; top: 45%;"></div>
+    <div class="grid" data-id="gwailor" style="left: 50%; top: 40%;"></div>
+    <div class="grid" data-id="patiala" style="left: 40%; top: 25%;"></div>
+    <div class="grid" data-id="kolkata" style="left: 75%; top: 40%;"></div>
+    <div class="grid" data-id="agra" style="left: 55%; top: 40%;"></div>
+    <div class="grid" data-id="lahore" style="left: 35%; top: 15%;"></div>
+    <div class="grid" data-id="lucknow" style="left: 60%; top: 35%;"></div>
+  </div>
+
+  <!-- 卡片区域 -->
+  <div class="cards" id="card-container">
+    <!-- 卡片将在JavaScript中随机生成 -->
+  </div>
+
+  <!-- 信息展示区域 -->
+  <div id="info-box">请拖动卡片到正确的位置并点击查看信息。</div>
+
+  <script>
+    // JavaScript功能
+    document.addEventListener("DOMContentLoaded", () => {
+      const regions = [
+        { id: "bengal", name: "孟加拉省" },
+        { id: "bombay", name: "孟买省" },
+        { id: "madras", name: "马德拉斯省" },
+        { id: "hyderabad", name: "海德拉巴土邦" },
+        { id: "mysore", name: "迈索尔土邦" },
+        { id: "punjab", name: "旁遮普省" },
+        { id: "kashmir", name: "克什米尔土邦" },
+        { id: "rajputana", name: "拉杰普塔纳" },
+        { id: "awadh", name: "阿瓦德" },
+        { id: "gujarat", name: "古吉拉特" },
+        { id: "jaipur", name: "斋普尔" },
+        { id: "bhopal", name: "博帕尔" },
+        { id: "baroda", name: "巴罗达" },
+        { id: "kolhapur", name: "科尔哈普尔" },
+        { id: "sikkim", name: "锡金" },
+        { id: "nepal", name: "尼泊尔" },
+        { id: "sindh", name: "信德省" },
+        { id: "baluchistan", name: "俾路支斯坦" },
+        { id: "coorg", name: "库格" },
+        { id: "nagpur", name: "那格浦尔" },
+        { id: "travancore", name: "特拉凡哥尔" },
+        { id: "bikaner", name: "比卡内尔" },
+        { id: "jodhpur", name: "焦特布尔" },
+        { id: "udaipur", name: "乌代浦尔" },
+        { id: "gwailor", name: "瓜利尔" },
+        { id: "patiala", name: "巴提亚拉" },
+        { id: "kolkata", name: "加尔各答" },
+        { id: "agra", name: "阿格拉" },
+        { id: "lahore", name: "拉合尔" },
+        { id: "lucknow", name: "勒克瑙" },
+      ];
+
+      const cardContainer = document.getElementById("card-container");
+      const infoBox = document.getElementById("info-box");
+      const map = document.getElementById("map");
+
+      // 随机打乱卡片顺序
+      const shuffledRegions = regions.sort(() => 0.5 - Math.random());
+
+      // 创建卡片
+      shuffledRegions.forEach(region => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.setAttribute("draggable", "true");
+        card.dataset.id = region.id;
+        card.textContent = region.name;
+        cardContainer.appendChild(card);
+
+        // 触摸事件处理
+        card.addEventListener("touchstart", touchStart, { passive: false });
+        card.addEventListener("touchmove", touchMove, { passive: false });
+        card.addEventListener("touchend", touchEnd);
+        card.addEventListener("touchcancel", touchEnd);
+
+        // 拖拽事件处理
+        card.addEventListener("dragstart", dragStart);
+      });
+
+      const grids = document.querySelectorAll(".grid");
+      grids.forEach(grid => {
+        grid.addEventListener("dragover", dragOver);
+        grid.addEventListener("drop", dropCard);
+        grid.addEventListener("click", showInfo);
+        grid.addEventListener("touchmove", (e) => { e.preventDefault(); }, { passive: false });
+      });
+
+      let draggedCard = null;
+      let offsetX = 0;
+      let offsetY = 0;
+
+      function touchStart(event) {
+        draggedCard = event.target;
+        const touch = event.targetTouches[0];
+        offsetX = touch.clientX - draggedCard.getBoundingClientRect().left;
+        offsetY = touch.clientY - draggedCard.getBoundingClientRect().top;
+        draggedCard.style.position = "absolute";
+        draggedCard.style.zIndex = 1000;
+      }
+
+      function touchMove(event) {
+        event.preventDefault();
+        const touch = event.targetTouches[0];
+        draggedCard.style.left = touch.clientX - offsetX + "px";
+        draggedCard.style.top = touch.clientY - offsetY + "px";
+
+        const grid = document.elementFromPoint(touch.clientX, touch.clientY);
+        if (grid && grid.classList.contains("grid")) {
+          grid.style.backgroundColor = "#ccc";
+        }
+      }
+
+      function touchEnd(event) {
+        const touch = event.changedTouches[0];
+        const grid = document.elementFromPoint(touch.clientX, touch.clientY);
+        if (grid && grid.classList.contains("grid")) {
+          if (grid.dataset.id === draggedCard.dataset.id) {
+            grid.appendChild(draggedCard);
+            draggedCard.style.position = "initial";
+            grid.style.border = "2px solid #27ae60";
+            infoBox.textContent = `成功放置 ${draggedCard.textContent}！`;
+          } else {
+            infoBox.textContent = "放置错误，请重试。";
+            draggedCard.style.position = "initial";
+            draggedCard.style.left = "";
+            draggedCard.style.top = "";
+            cardContainer.appendChild(draggedCard);
+          }
+        } else {
+          draggedCard.style.position = "initial";
+          draggedCard.style.left = "";
+          draggedCard.style.top = "";
+          cardContainer.appendChild(draggedCard);
+        }
+        draggedCard.style.zIndex = "";
+        draggedCard = null;
+      }
+
+      function dragStart(event) {
+        draggedCard = event.target;
+        event.dataTransfer.setData("text/plain", event.target.dataset.id);
+      }
+
+      function dragOver(event) {
+        event.preventDefault();
+      }
+
+      function dropCard(event) {
+        event.preventDefault();
+        const cardId = event.dataTransfer ? event.dataTransfer.getData("text") : draggedCard.dataset.id;
+        const card = document.querySelector(`.card[data-id="${cardId}"]`);
+        const gridId = event.target.dataset.id;
+
+        if (cardId === gridId) {
+          event.target.appendChild(card);
+          card.setAttribute("draggable", false);
+          card.removeEventListener("touchstart", touchStart);
+          card.removeEventListener("touchmove", touchMove);
+          card.removeEventListener("touchend", touchEnd);
+          event.target.style.border = "2px solid #27ae60";
+          infoBox.textContent = `成功放置 ${card.textContent}！`;
+        } else {
+          infoBox.textContent = "放置错误，请重试。";
+        }
+      }
+
+      function showInfo(event) {
+        const regionId = event.currentTarget.dataset.id;
+        const region = regions.find(r => r.id === regionId);
+        if (region) {
+          const info = getRegionInfo(regionId);
+          infoBox.textContent = info;
+        }
+      }
+
+      function getRegionInfo(regionId) {
+        const infoData = {
+          bengal: "孟加拉省：英国在19世纪的一个重要行政区，以加尔各答为中心。",
+          bombay: "孟买省：英属印度的重要港口，经济和贸易的核心。",
+          madras: "马德拉斯省：位于印度南部，殖民时期的战略基地。",
+          hyderabad: "海德拉巴土邦：强大的土邦之一，有着丰富的历史文化。",
+          mysore: "迈索尔土邦：以其建筑和文化遗产而闻名的南印度土邦。",
+          // 添加其他土邦和省的信息
+        };
+        return infoData[regionId] || "没有相关信息。";
+      }
+    });
+  </script>
+</body>
+</html>
