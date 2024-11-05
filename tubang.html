@@ -35,8 +35,8 @@
     }
     .grid {
       position: absolute;
-      width: 6%;
-      height: 6%;
+      width: 10%;
+      height: 10%;
       border: 2px dashed rgba(102, 102, 102, 0.7);
       box-sizing: border-box;
       display: flex;
@@ -52,9 +52,9 @@
       background-color: #fff;
     }
     .card {
-      width: 25px;
-      height: 25px;
-      margin: 4px;
+      width: 20px;
+      height: 20px;
+      margin: 3px;
       background-color: #f1c40f;
       border-radius: 3px;
       cursor: grab;
@@ -81,39 +81,38 @@
   <div class="game-container">
     <!-- 地图区域 -->
     <div class="map-container" id="map">
-      <!-- 30个格子，位置根据印度地图坐标调整 -->
-      <!-- 调整后的格子位置，避免重叠 -->
-      <div class="grid" data-id="kashmir" style="left: 40%; top: 5%;"></div>
-      <div class="grid" data-id="lahore" style="left: 45%; top: 10%;"></div>
-      <div class="grid" data-id="punjab" style="left: 45%; top: 15%;"></div>
-      <div class="grid" data-id="patiala" style="left: 50%; top: 18%;"></div>
-      <div class="grid" data-id="bikaner" style="left: 40%; top: 25%;"></div>
-      <div class="grid" data-id="jaipur" style="left: 45%; top: 28%;"></div>
-      <div class="grid" data-id="jodhpur" style="left: 40%; top: 35%;"></div>
-      <div class="grid" data-id="rajputana" style="left: 35%; top: 30%;"></div>
-      <div class="grid" data-id="awadh" style="left: 55%; top: 28%;"></div>
-      <div class="grid" data-id="lucknow" style="left: 60%; top: 25%;"></div>
-      <div class="grid" data-id="agra" style="left: 55%; top: 32%;"></div>
-      <div class="grid" data-id="delhi" style="left: 50%; top: 25%;"></div>
-      <div class="grid" data-id="gwailor" style="left: 50%; top: 35%;"></div>
-      <div class="grid" data-id="udaipur" style="left: 40%; top: 40%;"></div>
-      <div class="grid" data-id="bhopal" style="left: 50%; top: 40%;"></div>
-      <div class="grid" data-id="gujarat" style="left: 35%; top: 45%;"></div>
-      <div class="grid" data-id="baroda" style="left: 40%; top: 50%;"></div>
-      <div class="grid" data-id="sindh" style="left: 25%; top: 50%;"></div>
-      <div class="grid" data-id="baluchistan" style="left: 15%; top: 40%;"></div>
-      <div class="grid" data-id="nagpur" style="left: 55%; top: 45%;"></div>
-      <div class="grid" data-id="bengal" style="left: 70%; top: 35%;"></div>
-      <div class="grid" data-id="kolkata" style="left: 75%; top: 40%;"></div>
-      <div class="grid" data-id="sikkim" style="left: 70%; top: 20%;"></div>
-      <div class="grid" data-id="nepal" style="left: 65%; top: 20%;"></div>
-      <div class="grid" data-id="coorg" style="left: 50%; top: 65%;"></div>
-      <div class="grid" data-id="mysore" style="left: 50%; top: 70%;"></div>
-      <div class="grid" data-id="hyderabad" style="left: 55%; top: 60%;"></div>
-      <div class="grid" data-id="bombay" style="left: 40%; top: 55%;"></div>
-      <div class="grid" data-id="kolhapur" style="left: 45%; top: 60%;"></div>
-      <div class="grid" data-id="madras" style="left: 60%; top: 75%;"></div>
-      <div class="grid" data-id="travancore" style="left: 50%; top: 85%;"></div>
+      <!-- 优化后的格子位置，避免重叠 -->
+      <div class="grid" data-id="kashmir" style="left: 20%; top: 5%;"></div>
+      <div class="grid" data-id="lahore" style="left: 25%; top: 10%;"></div>
+      <div class="grid" data-id="punjab" style="left: 30%; top: 15%;"></div>
+      <div class="grid" data-id="patiala" style="left: 35%; top: 20%;"></div>
+      <div class="grid" data-id="bikaner" style="left: 25%; top: 25%;"></div>
+      <div class="grid" data-id="jaipur" style="left: 30%; top: 30%;"></div>
+      <div class="grid" data-id="jodhpur" style="left: 20%; top: 35%;"></div>
+      <div class="grid" data-id="rajputana" style="left: 15%; top: 30%;"></div>
+      <div class="grid" data-id="awadh" style="left: 45%; top: 25%;"></div>
+      <div class="grid" data-id="lucknow" style="left: 50%; top: 20%;"></div>
+      <div class="grid" data-id="agra" style="left: 45%; top: 30%;"></div>
+      <div class="grid" data-id="delhi" style="left: 40%; top: 25%;"></div>
+      <div class="grid" data-id="gwailor" style="left: 40%; top: 35%;"></div>
+      <div class="grid" data-id="udaipur" style="left: 30%; top: 40%;"></div>
+      <div class="grid" data-id="bhopal" style="left: 40%; top: 45%;"></div>
+      <div class="grid" data-id="gujarat" style="left: 20%; top: 50%;"></div>
+      <div class="grid" data-id="baroda" style="left: 25%; top: 55%;"></div>
+      <div class="grid" data-id="sindh" style="left: 10%; top: 50%;"></div>
+      <div class="grid" data-id="baluchistan" style="left: 5%; top: 40%;"></div>
+      <div class="grid" data-id="nagpur" style="left: 45%; top: 50%;"></div>
+      <div class="grid" data-id="bengal" style="left: 65%; top: 35%;"></div>
+      <div class="grid" data-id="kolkata" style="left: 70%; top: 40%;"></div>
+      <div class="grid" data-id="sikkim" style="left: 65%; top: 20%;"></div>
+      <div class="grid" data-id="nepal" style="left: 60%; top: 15%;"></div>
+      <div class="grid" data-id="coorg" style="left: 40%; top: 65%;"></div>
+      <div class="grid" data-id="mysore" style="left: 40%; top: 70%;"></div>
+      <div class="grid" data-id="hyderabad" style="left: 45%; top: 60%;"></div>
+      <div class="grid" data-id="bombay" style="left: 30%; top: 55%;"></div>
+      <div class="grid" data-id="kolhapur" style="left: 35%; top: 60%;"></div>
+      <div class="grid" data-id="madras" style="left: 50%; top: 75%;"></div>
+      <div class="grid" data-id="travancore" style="left: 40%; top: 85%;"></div>
     </div>
 
     <!-- 卡片区域 -->
@@ -233,14 +232,17 @@
 
       function touchEnd(event) {
         const touch = event.changedTouches[0];
-        const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+        let dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+
+        // 增加容错率，找到最近的格子
+        if (!dropTarget || !dropTarget.classList.contains("grid")) {
+          dropTarget = findNearestGrid(touch.clientX, touch.clientY);
+        }
+
         if (dropTarget && dropTarget.classList.contains("grid")) {
           dropCard({ target: dropTarget });
         } else {
-          draggedCard.style.position = "static";
-          draggedCard.style.left = "";
-          draggedCard.style.top = "";
-          cardContainer.appendChild(draggedCard);
+          resetCardPosition();
         }
         draggedCard.style.zIndex = "";
         draggedCard = null;
@@ -261,11 +263,7 @@
         const card = document.querySelector(`.card[data-id="${cardId}"]`);
         if (event.target.classList.contains("grid")) {
           if (event.target.firstChild) {
-            // 如果格子已被占用，返回卡片区域
-            card.style.position = "static";
-            card.style.left = "";
-            card.style.top = "";
-            cardContainer.appendChild(card);
+            resetCardPosition();
             infoBox.textContent = "此位置已被占用。";
           } else {
             event.target.appendChild(card);
@@ -274,12 +272,34 @@
             card.style.top = "";
           }
         } else {
-          // 如果未放在格子上，返回卡片区域
-          card.style.position = "static";
-          card.style.left = "";
-          card.style.top = "";
-          cardContainer.appendChild(card);
+          resetCardPosition();
         }
+      }
+
+      function resetCardPosition() {
+        if (draggedCard) {
+          draggedCard.style.position = "static";
+          draggedCard.style.left = "";
+          draggedCard.style.top = "";
+          cardContainer.appendChild(draggedCard);
+        }
+      }
+
+      // 查找最近的格子
+      function findNearestGrid(x, y) {
+        let minDistance = Infinity;
+        let nearestGrid = null;
+        grids.forEach(grid => {
+          const rect = grid.getBoundingClientRect();
+          const gridX = rect.left + rect.width / 2;
+          const gridY = rect.top + rect.height / 2;
+          const distance = Math.hypot(gridX - x, gridY - y);
+          if (distance < minDistance && distance < rect.width * 1.5) { // 设置距离阈值
+            minDistance = distance;
+            nearestGrid = grid;
+          }
+        });
+        return nearestGrid;
       }
 
       checkButton.addEventListener("click", () => {
