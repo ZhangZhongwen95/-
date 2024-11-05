@@ -17,21 +17,24 @@
       margin: 20px 0;
     }
     .map {
-      position: relative;
-      width: 100%;
-      max-width: 600px;
+      display: grid;
+      grid-template-columns: repeat(10, 60px);
+      grid-template-rows: repeat(10, 60px);
+      gap: 2px;
+      justify-content: center;
       margin: 0 auto;
-      padding-bottom: 100%; /* 使地图容器为正方形 */
       background-color: #e0e0e0;
-      border: 1px solid #ccc;
+      padding: 10px;
     }
     .grid {
-      position: absolute;
-      width: 8%;
-      height: 8%;
+      width: 60px;
+      height: 60px;
       border: 2px dashed #666;
-      border-radius: 50%;
       box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
     }
     .cards {
       display: flex;
@@ -41,7 +44,7 @@
       margin: 20px;
     }
     .card {
-      width: 100px;
+      width: 50px;
       height: 50px;
       background-color: #f1c40f;
       display: flex;
@@ -65,45 +68,51 @@
       margin-right: auto;
       text-align: center;
     }
+    #check-button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <h1>英属印度土邦接龙游戏</h1>
-  <p>将土邦或省的卡片拖动到正确的位置，查看历史信息。</p>
+  <p>将土邦或省的卡片拖动到正确的位置，然后点击“检查”按钮。</p>
 
   <!-- 地图区域 -->
   <div class="map" id="map">
-    <!-- 30个格子，没有名字 -->
-    <div class="grid" data-id="bengal" style="left: 70%; top: 40%;"></div>
-    <div class="grid" data-id="bombay" style="left: 40%; top: 60%;"></div>
-    <div class="grid" data-id="madras" style="left: 60%; top: 80%;"></div>
-    <div class="grid" data-id="hyderabad" style="left: 55%; top: 65%;"></div>
-    <div class="grid" data-id="mysore" style="left: 50%; top: 80%;"></div>
-    <div class="grid" data-id="punjab" style="left: 35%; top: 20%;"></div>
-    <div class="grid" data-id="kashmir" style="left: 35%; top: 10%;"></div>
-    <div class="grid" data-id="rajputana" style="left: 40%; top: 40%;"></div>
-    <div class="grid" data-id="awadh" style="left: 55%; top: 35%;"></div>
-    <div class="grid" data-id="gujarat" style="left: 35%; top: 50%;"></div>
-    <div class="grid" data-id="jaipur" style="left: 45%; top: 35%;"></div>
-    <div class="grid" data-id="bhopal" style="left: 50%; top: 50%;"></div>
-    <div class="grid" data-id="baroda" style="left: 40%; top: 55%;"></div>
-    <div class="grid" data-id="kolhapur" style="left: 45%; top: 70%;"></div>
-    <div class="grid" data-id="sikkim" style="left: 70%; top: 20%;"></div>
-    <div class="grid" data-id="nepal" style="left: 60%; top: 20%;"></div>
-    <div class="grid" data-id="sindh" style="left: 20%; top: 50%;"></div>
-    <div class="grid" data-id="baluchistan" style="left: 15%; top: 35%;"></div>
-    <div class="grid" data-id="coorg" style="left: 50%; top: 75%;"></div>
-    <div class="grid" data-id="nagpur" style="left: 60%; top: 50%;"></div>
-    <div class="grid" data-id="travancore" style="left: 50%; top: 90%;"></div>
-    <div class="grid" data-id="bikaner" style="left: 35%; top: 30%;"></div>
-    <div class="grid" data-id="jodhpur" style="left: 35%; top: 40%;"></div>
-    <div class="grid" data-id="udaipur" style="left: 40%; top: 45%;"></div>
-    <div class="grid" data-id="gwailor" style="left: 50%; top: 40%;"></div>
-    <div class="grid" data-id="patiala" style="left: 40%; top: 25%;"></div>
-    <div class="grid" data-id="kolkata" style="left: 75%; top: 40%;"></div>
-    <div class="grid" data-id="agra" style="left: 55%; top: 40%;"></div>
-    <div class="grid" data-id="lahore" style="left: 35%; top: 15%;"></div>
-    <div class="grid" data-id="lucknow" style="left: 60%; top: 35%;"></div>
+    <!-- 根据需要调整格子的位置 -->
+    <div class="grid" data-id="bengal" style="grid-column: 7; grid-row: 4;"></div>
+    <div class="grid" data-id="bombay" style="grid-column: 4; grid-row: 6;"></div>
+    <div class="grid" data-id="madras" style="grid-column: 6; grid-row: 9;"></div>
+    <div class="grid" data-id="hyderabad" style="grid-column: 5; grid-row: 7;"></div>
+    <div class="grid" data-id="mysore" style="grid-column: 5; grid-row: 9;"></div>
+    <div class="grid" data-id="punjab" style="grid-column: 3; grid-row: 2;"></div>
+    <div class="grid" data-id="kashmir" style="grid-column: 3; grid-row: 1;"></div>
+    <div class="grid" data-id="rajputana" style="grid-column: 4; grid-row: 4;"></div>
+    <div class="grid" data-id="awadh" style="grid-column: 6; grid-row: 3;"></div>
+    <div class="grid" data-id="gujarat" style="grid-column: 3; grid-row: 5;"></div>
+    <div class="grid" data-id="jaipur" style="grid-column: 5; grid-row: 4;"></div>
+    <div class="grid" data-id="bhopal" style="grid-column: 5; grid-row: 5;"></div>
+    <div class="grid" data-id="baroda" style="grid-column: 4; grid-row: 5;"></div>
+    <div class="grid" data-id="kolhapur" style="grid-column: 4; grid-row: 7;"></div>
+    <div class="grid" data-id="sikkim" style="grid-column: 8; grid-row: 2;"></div>
+    <div class="grid" data-id="nepal" style="grid-column: 7; grid-row: 2;"></div>
+    <div class="grid" data-id="sindh" style="grid-column: 1; grid-row: 5;"></div>
+    <div class="grid" data-id="baluchistan" style="grid-column: 1; grid-row: 3;"></div>
+    <div class="grid" data-id="coorg" style="grid-column: 5; grid-row: 8;"></div>
+    <div class="grid" data-id="nagpur" style="grid-column: 6; grid-row: 5;"></div>
+    <div class="grid" data-id="travancore" style="grid-column: 5; grid-row: 10;"></div>
+    <div class="grid" data-id="bikaner" style="grid-column: 3; grid-row: 3;"></div>
+    <div class="grid" data-id="jodhpur" style="grid-column: 3; grid-row: 4;"></div>
+    <div class="grid" data-id="udaipur" style="grid-column: 4; grid-row: 5;"></div>
+    <div class="grid" data-id="gwailor" style="grid-column: 5; grid-row: 4;"></div>
+    <div class="grid" data-id="patiala" style="grid-column: 4; grid-row: 2;"></div>
+    <div class="grid" data-id="kolkata" style="grid-column: 9; grid-row: 4;"></div>
+    <div class="grid" data-id="agra" style="grid-column: 6; grid-row: 4;"></div>
+    <div class="grid" data-id="lahore" style="grid-column: 3; grid-row: 1;"></div>
+    <div class="grid" data-id="lucknow" style="grid-column: 7; grid-row: 3;"></div>
   </div>
 
   <!-- 卡片区域 -->
@@ -112,7 +121,10 @@
   </div>
 
   <!-- 信息展示区域 -->
-  <div id="info-box">请拖动卡片到正确的位置并点击查看信息。</div>
+  <div id="info-box">请拖动卡片到正确的位置，然后点击“检查”按钮。</div>
+
+  <!-- 检查按钮 -->
+  <button id="check-button">检查</button>
 
   <script>
     // JavaScript功能
@@ -152,7 +164,7 @@
 
       const cardContainer = document.getElementById("card-container");
       const infoBox = document.getElementById("info-box");
-      const map = document.getElementById("map");
+      const checkButton = document.getElementById("check-button");
 
       // 随机打乱卡片顺序
       const shuffledRegions = regions.sort(() => 0.5 - Math.random());
@@ -195,6 +207,7 @@
         offsetY = touch.clientY - draggedCard.getBoundingClientRect().top;
         draggedCard.style.position = "absolute";
         draggedCard.style.zIndex = 1000;
+        document.body.appendChild(draggedCard);
       }
 
       function touchMove(event) {
@@ -202,31 +215,15 @@
         const touch = event.targetTouches[0];
         draggedCard.style.left = touch.clientX - offsetX + "px";
         draggedCard.style.top = touch.clientY - offsetY + "px";
-
-        const grid = document.elementFromPoint(touch.clientX, touch.clientY);
-        if (grid && grid.classList.contains("grid")) {
-          grid.style.backgroundColor = "#ccc";
-        }
       }
 
       function touchEnd(event) {
         const touch = event.changedTouches[0];
-        const grid = document.elementFromPoint(touch.clientX, touch.clientY);
-        if (grid && grid.classList.contains("grid")) {
-          if (grid.dataset.id === draggedCard.dataset.id) {
-            grid.appendChild(draggedCard);
-            draggedCard.style.position = "initial";
-            grid.style.border = "2px solid #27ae60";
-            infoBox.textContent = `成功放置 ${draggedCard.textContent}！`;
-          } else {
-            infoBox.textContent = "放置错误，请重试。";
-            draggedCard.style.position = "initial";
-            draggedCard.style.left = "";
-            draggedCard.style.top = "";
-            cardContainer.appendChild(draggedCard);
-          }
+        const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+        if (dropTarget && dropTarget.classList.contains("grid")) {
+          dropCard({ target: dropTarget });
         } else {
-          draggedCard.style.position = "initial";
+          draggedCard.style.position = "static";
           draggedCard.style.left = "";
           draggedCard.style.top = "";
           cardContainer.appendChild(draggedCard);
@@ -246,20 +243,20 @@
 
       function dropCard(event) {
         event.preventDefault();
-        const cardId = event.dataTransfer ? event.dataTransfer.getData("text") : draggedCard.dataset.id;
+        const cardId = draggedCard ? draggedCard.dataset.id : event.dataTransfer.getData("text");
         const card = document.querySelector(`.card[data-id="${cardId}"]`);
-        const gridId = event.target.dataset.id;
-
-        if (cardId === gridId) {
+        if (event.target.classList.contains("grid") && !event.target.firstChild) {
           event.target.appendChild(card);
+          card.style.position = "static";
+          card.style.left = "";
+          card.style.top = "";
           card.setAttribute("draggable", false);
           card.removeEventListener("touchstart", touchStart);
           card.removeEventListener("touchmove", touchMove);
           card.removeEventListener("touchend", touchEnd);
-          event.target.style.border = "2px solid #27ae60";
-          infoBox.textContent = `成功放置 ${card.textContent}！`;
         } else {
-          infoBox.textContent = "放置错误，请重试。";
+          infoBox.textContent = "此位置已被占用或无效。";
+          cardContainer.appendChild(card);
         }
       }
 
@@ -283,6 +280,23 @@
         };
         return infoData[regionId] || "没有相关信息。";
       }
+
+      checkButton.addEventListener("click", () => {
+        grids.forEach(grid => {
+          if (grid.firstChild) {
+            if (grid.dataset.id === grid.firstChild.dataset.id) {
+              grid.style.border = "2px solid #006400"; // 深绿色边框
+              grid.style.backgroundColor = "#90ee90"; // 浅绿色填充
+            } else {
+              grid.style.border = "2px solid red"; // 红色边框
+              grid.style.backgroundColor = "#fff";
+            }
+          } else {
+            grid.style.border = "2px dashed #666";
+            grid.style.backgroundColor = "#fff";
+          }
+        });
+      });
     });
   </script>
 </body>
