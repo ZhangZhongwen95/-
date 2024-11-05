@@ -2,18 +2,21 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>英属印度土邦接龙游戏</title>
   <style>
     /* CSS 样式 */
-    body {
-      font-family: Arial, sans-serif;
+    html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    body {
+      font-family: Arial, sans-serif;
       background-color: #f9f9f9;
       display: flex;
       flex-direction: column;
-      height: 100vh;
     }
     h1 {
       margin: 10px 0;
@@ -24,12 +27,11 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
     }
     .map-container {
       position: relative;
       flex: 1;
-      background-image: url('india-map.jpg'); /* 请替换为实际的印度地图背景图片URL */
+      background-image: url('https://a.tile.openstreetmap.org/5/23/11.png'); /* 替换为实际的印度地图URL */
       background-size: cover;
       background-position: center;
       overflow: hidden;
@@ -84,45 +86,7 @@
   <div class="game-container">
     <!-- 地图区域 -->
     <div class="map-container" id="map">
-      <!-- 根据实际地理位置调整格子的位置 -->
-      <!-- 北部地区 -->
-      <div class="grid" data-id="kashmir" style="left: 40%; top: 10%;"></div>
-      <div class="grid" data-id="lahore" style="left: 45%; top: 20%;"></div>
-      <div class="grid" data-id="punjab" style="left: 50%; top: 25%;"></div>
-      <div class="grid" data-id="patiala" style="left: 52%; top: 28%;"></div>
-      <div class="grid" data-id="sikkim" style="left: 70%; top: 20%;"></div>
-      <div class="grid" data-id="nepal" style="left: 65%; top: 25%;"></div>
-
-      <!-- 中部地区 -->
-      <div class="grid" data-id="bikaner" style="left: 40%; top: 35%;"></div>
-      <div class="grid" data-id="jaipur" style="left: 45%; top: 38%;"></div>
-      <div class="grid" data-id="jodhpur" style="left: 42%; top: 42%;"></div>
-      <div class="grid" data-id="rajputana" style="left: 40%; top: 40%;"></div>
-      <div class="grid" data-id="awadh" style="left: 55%; top: 35%;"></div>
-      <div class="grid" data-id="lucknow" style="left: 58%; top: 38%;"></div>
-      <div class="grid" data-id="agra" style="left: 53%; top: 40%;"></div>
-      <div class="grid" data-id="delhi" style="left: 50%; top: 37%;"></div>
-      <div class="grid" data-id="gwailor" style="left: 50%; top: 43%;"></div>
-      <div class="grid" data-id="udaipur" style="left: 45%; top: 45%;"></div>
-      <div class="grid" data-id="bhopal" style="left: 52%; top: 48%;"></div>
-      <div class="grid" data-id="sindh" style="left: 30%; top: 50%;"></div>
-      <div class="grid" data-id="baluchistan" style="left: 25%; top: 40%;"></div>
-      <div class="grid" data-id="gujarat" style="left: 40%; top: 50%;"></div>
-      <div class="grid" data-id="baroda" style="left: 45%; top: 52%;"></div>
-      <div class="grid" data-id="nagpur" style="left: 55%; top: 55%;"></div>
-
-      <!-- 东部地区 -->
-      <div class="grid" data-id="bengal" style="left: 70%; top: 45%;"></div>
-      <div class="grid" data-id="kolkata" style="left: 72%; top: 48%;"></div>
-
-      <!-- 南部地区 -->
-      <div class="grid" data-id="coorg" style="left: 50%; top: 65%;"></div>
-      <div class="grid" data-id="mysore" style="left: 50%; top: 68%;"></div>
-      <div class="grid" data-id="hyderabad" style="left: 55%; top: 60%;"></div>
-      <div class="grid" data-id="bombay" style="left: 45%; top: 55%;"></div>
-      <div class="grid" data-id="kolhapur" style="left: 48%; top: 58%;"></div>
-      <div class="grid" data-id="madras" style="left: 60%; top: 70%;"></div>
-      <div class="grid" data-id="travancore" style="left: 50%; top: 75%;"></div>
+      <!-- 格子将在JavaScript中根据经纬度计算位置 -->
     </div>
 
     <!-- 卡片区域 -->
@@ -141,80 +105,99 @@
     // JavaScript功能
     document.addEventListener("DOMContentLoaded", () => {
       const regions = [
-        { id: "kashmir", name: "克什米尔", info: "克什米尔土邦：风景秀丽，有“世界屋脊”之称。", color: "#f44336" },
-        { id: "lahore", name: "拉合尔", info: "拉合尔：历史名城，现位于巴基斯坦。", color: "#e91e63" },
-        { id: "punjab", name: "旁遮普省", info: "旁遮普省：位于印度西北部，农业发达。", color: "#9c27b0" },
-        { id: "patiala", name: "巴提亚拉", info: "巴提亚拉：旁遮普地区的重要土邦。", color: "#673ab7" },
-        { id: "bikaner", name: "比卡内尔", info: "比卡内尔：沙漠中的绿洲，以骆驼节闻名。", color: "#3f51b5" },
-        { id: "jaipur", name: "斋普尔", info: "斋普尔：著名的“粉红之城”，建筑独特。", color: "#2196f3" },
-        { id: "jodhpur", name: "焦特布尔", info: "焦特布尔：又称“蓝色之城”，堡垒雄伟。", color: "#03a9f4" },
-        { id: "rajputana", name: "拉杰普塔纳", info: "拉杰普塔纳：众多土邦的集合地，历史悠久。", color: "#00bcd4" },
-        { id: "awadh", name: "阿瓦德", info: "阿瓦德：曾是印度文化和艺术的中心。", color: "#009688" },
-        { id: "lucknow", name: "勒克瑙", info: "勒克瑙：乌尔都文化的中心。", color: "#4caf50" },
-        { id: "agra", name: "阿格拉", info: "阿格拉：泰姬陵所在地，旅游胜地。", color: "#8bc34a" },
-        { id: "delhi", name: "德里", info: "德里：印度的首都，历史悠久。", color: "#cddc39" },
-        { id: "gwailor", name: "瓜利尔", info: "瓜利尔：以其古老的堡垒和音乐学院闻名。", color: "#ffeb3b" },
-        { id: "udaipur", name: "乌代浦尔", info: "乌代浦尔：湖泊之城，风景如画。", color: "#ffc107" },
-        { id: "bhopal", name: "博帕尔", info: "博帕尔：以湖泊和清真寺闻名。", color: "#ff9800" },
-        { id: "gujarat", name: "古吉拉特", info: "古吉拉特：印度西部的重要地区，贸易发达。", color: "#ff5722" },
-        { id: "baroda", name: "巴罗达", info: "巴罗达：古吉拉特地区的文化中心。", color: "#795548" },
-        { id: "sindh", name: "信德省", info: "信德省：印度河流域的重要地区。", color: "#9e9e9e" },
-        { id: "baluchistan", name: "俾路支斯坦", info: "俾路支斯坦：地广人稀，资源丰富。", color: "#607d8b" },
-        { id: "nagpur", name: "那格浦尔", info: "那格浦尔：印度的地理中心，有“橘子之城”之称。", color: "#ff8a80" },
-        { id: "bengal", name: "孟加拉省", info: "孟加拉省：英国在19世纪的一个重要行政区，以加尔各答为中心。", color: "#ff80ab" },
-        { id: "kolkata", name: "加尔各答", info: "加尔各答：印度的文化和教育中心，曾是首都。", color: "#ea80fc" },
-        { id: "sikkim", name: "锡金", info: "锡金：喜马拉雅山脉中的小土邦，风景秀丽。", color: "#b388ff" },
-        { id: "nepal", name: "尼泊尔", info: "尼泊尔：喜马拉雅山下的内陆国家，佛教圣地。", color: "#8c9eff" },
-        { id: "coorg", name: "库格", info: "库格：以咖啡种植和自然风光著名。", color: "#82b1ff" },
-        { id: "mysore", name: "迈索尔土邦", info: "迈索尔土邦：以其建筑和文化遗产而闻名的南印度土邦。", color: "#80d8ff" },
-        { id: "hyderabad", name: "海德拉巴土邦", info: "海德拉巴土邦：强大的土邦之一，有着丰富的历史文化。", color: "#84ffff" },
-        { id: "bombay", name: "孟买省", info: "孟买省：英属印度的重要港口，经济和贸易的核心。", color: "#a7ffeb" },
-        { id: "kolhapur", name: "科尔哈普尔", info: "科尔哈普尔：以其寺庙和历史遗迹著称。", color: "#b9f6ca" },
-        { id: "madras", name: "马德拉斯省", info: "马德拉斯省：位于印度南部，殖民时期的战略基地。", color: "#ccff90" },
-        { id: "travancore", name: "特拉凡哥尔", info: "特拉凡哥尔：印度南部的富饶地区。", color: "#f4ff81" },
+        { id: "kashmir", name: "克什米尔", lat: 34.1495, lon: 74.123996, info: "克什米尔土邦：风景秀丽，有“世界屋脊”之称。", color: "#f44336" },
+        { id: "lahore", name: "拉合尔", lat: 31.5204, lon: 74.3587, info: "拉合尔：历史名城，现位于巴基斯坦。", color: "#e91e63" },
+        { id: "punjab", name: "旁遮普省", lat: 30.900965, lon: 75.857277, info: "旁遮普省：位于印度西北部，农业发达。", color: "#9c27b0" },
+        { id: "patiala", name: "巴提亚拉", lat: 30.3398, lon: 76.3869, info: "巴提亚拉：旁遮普地区的重要土邦。", color: "#673ab7" },
+        { id: "bikaner", name: "比卡内尔", lat: 28.0229, lon: 73.3119, info: "比卡内尔：沙漠中的绿洲，以骆驼节闻名。", color: "#3f51b5" },
+        { id: "jaipur", name: "斋普尔", lat: 26.9124, lon: 75.7873, info: "斋普尔：著名的“粉红之城”，建筑独特。", color: "#2196f3" },
+        { id: "jodhpur", name: "焦特布尔", lat: 26.2389, lon: 73.0243, info: "焦特布尔：又称“蓝色之城”，堡垒雄伟。", color: "#03a9f4" },
+        { id: "rajputana", name: "拉杰普塔纳", lat: 26.0, lon: 74.0, info: "拉杰普塔纳：众多土邦的集合地，历史悠久。", color: "#00bcd4" },
+        { id: "awadh", name: "阿瓦德", lat: 26.8500, lon: 80.949997, info: "阿瓦德：曾是印度文化和艺术的中心。", color: "#009688" },
+        { id: "lucknow", name: "勒克瑙", lat: 26.8467, lon: 80.9462, info: "勒克瑙：乌尔都文化的中心。", color: "#4caf50" },
+        { id: "agra", name: "阿格拉", lat: 27.1767, lon: 78.0081, info: "阿格拉：泰姬陵所在地，旅游胜地。", color: "#8bc34a" },
+        { id: "delhi", name: "德里", lat: 28.6139, lon: 77.2090, info: "德里：印度的首都，历史悠久。", color: "#cddc39" },
+        { id: "gwailor", name: "瓜利尔", lat: 26.2183, lon: 78.1828, info: "瓜利尔：以其古老的堡垒和音乐学院闻名。", color: "#ffeb3b" },
+        { id: "udaipur", name: "乌代浦尔", lat: 24.5854, lon: 73.7125, info: "乌代浦尔：湖泊之城，风景如画。", color: "#ffc107" },
+        { id: "bhopal", name: "博帕尔", lat: 23.2599, lon: 77.4126, info: "博帕尔：以湖泊和清真寺闻名。", color: "#ff9800" },
+        { id: "gujarat", name: "古吉拉特", lat: 22.2587, lon: 71.1924, info: "古吉拉特：印度西部的重要地区，贸易发达。", color: "#ff5722" },
+        { id: "baroda", name: "巴罗达", lat: 22.3072, lon: 73.1812, info: "巴罗达：古吉拉特地区的文化中心。", color: "#795548" },
+        { id: "sindh", name: "信德省", lat: 25.8943, lon: 68.5247, info: "信德省：印度河流域的重要地区。", color: "#9e9e9e" },
+        { id: "baluchistan", name: "俾路支斯坦", lat: 29.0, lon: 65.0, info: "俾路支斯坦：地广人稀，资源丰富。", color: "#607d8b" },
+        { id: "nagpur", name: "那格浦尔", lat: 21.1458, lon: 79.0882, info: "那格浦尔：印度的地理中心，有“橘子之城”之称。", color: "#ff8a80" },
+        { id: "bengal", name: "孟加拉省", lat: 23.6850, lon: 90.3563, info: "孟加拉省：英国在19世纪的一个重要行政区，以加尔各答为中心。", color: "#ff80ab" },
+        { id: "kolkata", name: "加尔各答", lat: 22.5726, lon: 88.3639, info: "加尔各答：印度的文化和教育中心，曾是首都。", color: "#ea80fc" },
+        { id: "sikkim", name: "锡金", lat: 27.5330, lon: 88.5122, info: "锡金：喜马拉雅山脉中的小土邦，风景秀丽。", color: "#b388ff" },
+        { id: "nepal", name: "尼泊尔", lat: 28.3949, lon: 84.1240, info: "尼泊尔：喜马拉雅山下的内陆国家，佛教圣地。", color: "#8c9eff" },
+        { id: "coorg", name: "库格", lat: 12.3375, lon: 75.8069, info: "库格：以咖啡种植和自然风光著名。", color: "#82b1ff" },
+        { id: "mysore", name: "迈索尔土邦", lat: 12.2958, lon: 76.6394, info: "迈索尔土邦：以其建筑和文化遗产而闻名的南印度土邦。", color: "#80d8ff" },
+        { id: "hyderabad", name: "海德拉巴土邦", lat: 17.3850, lon: 78.4867, info: "海德拉巴土邦：强大的土邦之一，有着丰富的历史文化。", color: "#84ffff" },
+        { id: "bombay", name: "孟买省", lat: 19.0760, lon: 72.8777, info: "孟买省：英属印度的重要港口，经济和贸易的核心。", color: "#a7ffeb" },
+        { id: "kolhapur", name: "科尔哈普尔", lat: 16.7050, lon: 74.2433, info: "科尔哈普尔：以其寺庙和历史遗迹著称。", color: "#b9f6ca" },
+        { id: "madras", name: "马德拉斯省", lat: 13.0827, lon: 80.2707, info: "马德拉斯省：位于印度南部，殖民时期的战略基地。", color: "#ccff90" },
+        { id: "travancore", name: "特拉凡哥尔", lat: 8.5074, lon: 76.9720, info: "特拉凡哥尔：印度南部的富饶地区。", color: "#f4ff81" },
       ];
 
-      const cardContainer = document.getElementById("card-container");
-      const infoBox = document.getElementById("info-box");
-      const checkButton = document.getElementById("check-button");
+      const minLat = 6.0;
+      const maxLat = 36.0;
+      const minLon = 68.0;
+      const maxLon = 98.0;
+
+      const mapContainer = document.getElementById('map');
+      const cardContainer = document.getElementById('card-container');
+      const infoBox = document.getElementById('info-box');
+      const checkButton = document.getElementById('check-button');
+
+      // 创建格子并计算位置
+      regions.forEach(region => {
+        const latPercent = ((maxLat - region.lat) / (maxLat - minLat)) * 100;
+        const lonPercent = ((region.lon - minLon) / (maxLon - minLon)) * 100;
+
+        const grid = document.createElement('div');
+        grid.classList.add('grid');
+        grid.dataset.id = region.id;
+        grid.style.left = `${lonPercent}%`;
+        grid.style.top = `${latPercent}%`;
+        mapContainer.appendChild(grid);
+      });
 
       // 随机打乱卡片顺序
       const shuffledRegions = regions.sort(() => 0.5 - Math.random());
 
       // 创建卡片
       shuffledRegions.forEach(region => {
-        const card = document.createElement("div");
-        card.classList.add("card");
-        card.setAttribute("draggable", "true");
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.setAttribute('draggable', 'true');
         card.dataset.id = region.id;
         card.style.backgroundColor = region.color;
         cardContainer.appendChild(card);
 
         // 点击卡片显示信息
-        card.addEventListener("click", () => {
-          infoBox.textContent = region.name + ": " + region.info;
+        card.addEventListener('click', () => {
+          infoBox.textContent = region.name + ': ' + region.info;
         });
 
         // 触摸事件处理
-        card.addEventListener("touchstart", touchStart, { passive: false });
-        card.addEventListener("touchmove", touchMove, { passive: false });
-        card.addEventListener("touchend", touchEnd);
-        card.addEventListener("touchcancel", touchEnd);
+        card.addEventListener('touchstart', touchStart, { passive: false });
+        card.addEventListener('touchmove', touchMove, { passive: false });
+        card.addEventListener('touchend', touchEnd);
+        card.addEventListener('touchcancel', touchEnd);
 
         // 拖拽事件处理
-        card.addEventListener("dragstart", dragStart);
+        card.addEventListener('dragstart', dragStart);
       });
 
-      const grids = document.querySelectorAll(".grid");
+      const grids = document.querySelectorAll('.grid');
       grids.forEach(grid => {
-        grid.addEventListener("dragover", dragOver);
-        grid.addEventListener("drop", dropCard);
-        grid.addEventListener("click", () => {
+        grid.addEventListener('dragover', dragOver);
+        grid.addEventListener('drop', dropCard);
+        grid.addEventListener('click', () => {
           const region = regions.find(r => r.id === grid.dataset.id);
           if (grid.firstChild && grid.firstChild.dataset.id === grid.dataset.id) {
-            infoBox.textContent = region.name + ": " + region.info;
+            infoBox.textContent = region.name + ': ' + region.info;
           } else {
-            infoBox.textContent = region.name + ": " + region.info + "（尚未正确放置）";
+            infoBox.textContent = region.name + ': ' + region.info + '（尚未正确放置）';
           }
         });
       });
@@ -228,7 +211,7 @@
         const touch = event.targetTouches[0];
         offsetX = touch.clientX - draggedCard.getBoundingClientRect().left;
         offsetY = touch.clientY - draggedCard.getBoundingClientRect().top;
-        draggedCard.style.position = "absolute";
+        draggedCard.style.position = 'absolute';
         draggedCard.style.zIndex = 1000;
         document.body.appendChild(draggedCard);
       }
@@ -236,8 +219,8 @@
       function touchMove(event) {
         event.preventDefault();
         const touch = event.targetTouches[0];
-        draggedCard.style.left = touch.clientX - offsetX + "px";
-        draggedCard.style.top = touch.clientY - offsetY + "px";
+        draggedCard.style.left = touch.clientX - offsetX + 'px';
+        draggedCard.style.top = touch.clientY - offsetY + 'px';
       }
 
       function touchEnd(event) {
@@ -245,22 +228,22 @@
         let dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
 
         // 增加容错率，找到最近的格子
-        if (!dropTarget || !dropTarget.classList.contains("grid")) {
+        if (!dropTarget || !dropTarget.classList.contains('grid')) {
           dropTarget = findNearestGrid(touch.clientX, touch.clientY);
         }
 
-        if (dropTarget && dropTarget.classList.contains("grid")) {
+        if (dropTarget && dropTarget.classList.contains('grid')) {
           dropCard({ target: dropTarget });
         } else {
           resetCardPosition();
         }
-        draggedCard.style.zIndex = "";
+        draggedCard.style.zIndex = '';
         draggedCard = null;
       }
 
       function dragStart(event) {
         draggedCard = event.target;
-        event.dataTransfer.setData("text/plain", event.target.dataset.id);
+        event.dataTransfer.setData('text/plain', event.target.dataset.id);
       }
 
       function dragOver(event) {
@@ -269,17 +252,17 @@
 
       function dropCard(event) {
         event.preventDefault();
-        const cardId = draggedCard ? draggedCard.dataset.id : event.dataTransfer.getData("text");
+        const cardId = draggedCard ? draggedCard.dataset.id : event.dataTransfer.getData('text');
         const card = document.querySelector(`.card[data-id="${cardId}"]`);
-        if (event.target.classList.contains("grid")) {
+        if (event.target.classList.contains('grid')) {
           if (event.target.firstChild) {
             resetCardPosition();
-            infoBox.textContent = "此位置已被占用。";
+            infoBox.textContent = '此位置已被占用。';
           } else {
             event.target.appendChild(card);
-            card.style.position = "static";
-            card.style.left = "";
-            card.style.top = "";
+            card.style.position = 'static';
+            card.style.left = '';
+            card.style.top = '';
           }
         } else {
           resetCardPosition();
@@ -288,9 +271,9 @@
 
       function resetCardPosition() {
         if (draggedCard) {
-          draggedCard.style.position = "static";
-          draggedCard.style.left = "";
-          draggedCard.style.top = "";
+          draggedCard.style.position = 'static';
+          draggedCard.style.left = '';
+          draggedCard.style.top = '';
           cardContainer.appendChild(draggedCard);
         }
       }
@@ -312,16 +295,16 @@
         return nearestGrid;
       }
 
-      checkButton.addEventListener("click", () => {
+      checkButton.addEventListener('click', () => {
         grids.forEach(grid => {
           if (grid.firstChild) {
             if (grid.dataset.id === grid.firstChild.dataset.id) {
-              grid.style.border = "2px solid green"; // 绿色边框
+              grid.style.border = '2px solid green'; // 绿色边框
             } else {
-              grid.style.border = "2px solid red"; // 红色边框
+              grid.style.border = '2px solid red'; // 红色边框
             }
           } else {
-            grid.style.border = "2px dashed rgba(102, 102, 102, 0.7)";
+            grid.style.border = '2px dashed rgba(102, 102, 102, 0.7)';
           }
         });
       });
