@@ -31,11 +31,12 @@
       background-image: url('india-map-placeholder.jpg'); /* 请替换为实际的印度地图背景图片URL */
       background-size: cover;
       background-position: center;
+      overflow: hidden;
     }
     .grid {
       position: absolute;
-      width: 8%;
-      height: 8%;
+      width: 6%;
+      height: 6%;
       border: 2px dashed rgba(102, 102, 102, 0.7);
       box-sizing: border-box;
       display: flex;
@@ -51,9 +52,9 @@
       background-color: #fff;
     }
     .card {
-      width: 30px;
-      height: 30px;
-      margin: 5px;
+      width: 25px;
+      height: 25px;
+      margin: 4px;
       background-color: #f1c40f;
       border-radius: 3px;
       cursor: grab;
@@ -81,36 +82,38 @@
     <!-- 地图区域 -->
     <div class="map-container" id="map">
       <!-- 30个格子，位置根据印度地图坐标调整 -->
-      <div class="grid" data-id="bengal" style="left: 70%; top: 40%;"></div>
-      <div class="grid" data-id="bombay" style="left: 40%; top: 60%;"></div>
-      <div class="grid" data-id="madras" style="left: 60%; top: 80%;"></div>
-      <div class="grid" data-id="hyderabad" style="left: 55%; top: 65%;"></div>
-      <div class="grid" data-id="mysore" style="left: 50%; top: 80%;"></div>
-      <div class="grid" data-id="punjab" style="left: 35%; top: 20%;"></div>
-      <div class="grid" data-id="kashmir" style="left: 35%; top: 10%;"></div>
-      <div class="grid" data-id="rajputana" style="left: 40%; top: 40%;"></div>
-      <div class="grid" data-id="awadh" style="left: 55%; top: 35%;"></div>
-      <div class="grid" data-id="gujarat" style="left: 35%; top: 50%;"></div>
-      <div class="grid" data-id="jaipur" style="left: 45%; top: 35%;"></div>
-      <div class="grid" data-id="bhopal" style="left: 50%; top: 50%;"></div>
-      <div class="grid" data-id="baroda" style="left: 40%; top: 55%;"></div>
-      <div class="grid" data-id="kolhapur" style="left: 45%; top: 70%;"></div>
-      <div class="grid" data-id="sikkim" style="left: 70%; top: 20%;"></div>
-      <div class="grid" data-id="nepal" style="left: 60%; top: 20%;"></div>
-      <div class="grid" data-id="sindh" style="left: 20%; top: 50%;"></div>
-      <div class="grid" data-id="baluchistan" style="left: 15%; top: 35%;"></div>
-      <div class="grid" data-id="coorg" style="left: 50%; top: 75%;"></div>
-      <div class="grid" data-id="nagpur" style="left: 60%; top: 50%;"></div>
-      <div class="grid" data-id="travancore" style="left: 50%; top: 90%;"></div>
-      <div class="grid" data-id="bikaner" style="left: 35%; top: 30%;"></div>
-      <div class="grid" data-id="jodhpur" style="left: 35%; top: 40%;"></div>
-      <div class="grid" data-id="udaipur" style="left: 40%; top: 45%;"></div>
-      <div class="grid" data-id="gwailor" style="left: 50%; top: 40%;"></div>
-      <div class="grid" data-id="patiala" style="left: 40%; top: 25%;"></div>
+      <!-- 调整后的格子位置，避免重叠 -->
+      <div class="grid" data-id="kashmir" style="left: 40%; top: 5%;"></div>
+      <div class="grid" data-id="lahore" style="left: 45%; top: 10%;"></div>
+      <div class="grid" data-id="punjab" style="left: 45%; top: 15%;"></div>
+      <div class="grid" data-id="patiala" style="left: 50%; top: 18%;"></div>
+      <div class="grid" data-id="bikaner" style="left: 40%; top: 25%;"></div>
+      <div class="grid" data-id="jaipur" style="left: 45%; top: 28%;"></div>
+      <div class="grid" data-id="jodhpur" style="left: 40%; top: 35%;"></div>
+      <div class="grid" data-id="rajputana" style="left: 35%; top: 30%;"></div>
+      <div class="grid" data-id="awadh" style="left: 55%; top: 28%;"></div>
+      <div class="grid" data-id="lucknow" style="left: 60%; top: 25%;"></div>
+      <div class="grid" data-id="agra" style="left: 55%; top: 32%;"></div>
+      <div class="grid" data-id="delhi" style="left: 50%; top: 25%;"></div>
+      <div class="grid" data-id="gwailor" style="left: 50%; top: 35%;"></div>
+      <div class="grid" data-id="udaipur" style="left: 40%; top: 40%;"></div>
+      <div class="grid" data-id="bhopal" style="left: 50%; top: 40%;"></div>
+      <div class="grid" data-id="gujarat" style="left: 35%; top: 45%;"></div>
+      <div class="grid" data-id="baroda" style="left: 40%; top: 50%;"></div>
+      <div class="grid" data-id="sindh" style="left: 25%; top: 50%;"></div>
+      <div class="grid" data-id="baluchistan" style="left: 15%; top: 40%;"></div>
+      <div class="grid" data-id="nagpur" style="left: 55%; top: 45%;"></div>
+      <div class="grid" data-id="bengal" style="left: 70%; top: 35%;"></div>
       <div class="grid" data-id="kolkata" style="left: 75%; top: 40%;"></div>
-      <div class="grid" data-id="agra" style="left: 55%; top: 40%;"></div>
-      <div class="grid" data-id="lahore" style="left: 35%; top: 15%;"></div>
-      <div class="grid" data-id="lucknow" style="left: 60%; top: 35%;"></div>
+      <div class="grid" data-id="sikkim" style="left: 70%; top: 20%;"></div>
+      <div class="grid" data-id="nepal" style="left: 65%; top: 20%;"></div>
+      <div class="grid" data-id="coorg" style="left: 50%; top: 65%;"></div>
+      <div class="grid" data-id="mysore" style="left: 50%; top: 70%;"></div>
+      <div class="grid" data-id="hyderabad" style="left: 55%; top: 60%;"></div>
+      <div class="grid" data-id="bombay" style="left: 40%; top: 55%;"></div>
+      <div class="grid" data-id="kolhapur" style="left: 45%; top: 60%;"></div>
+      <div class="grid" data-id="madras" style="left: 60%; top: 75%;"></div>
+      <div class="grid" data-id="travancore" style="left: 50%; top: 85%;"></div>
     </div>
 
     <!-- 卡片区域 -->
@@ -129,36 +132,37 @@
     // JavaScript功能
     document.addEventListener("DOMContentLoaded", () => {
       const regions = [
-        { id: "bengal", name: "孟加拉省", info: "孟加拉省：英国在19世纪的一个重要行政区，以加尔各答为中心。", color: "#f44336" },
-        { id: "bombay", name: "孟买省", info: "孟买省：英属印度的重要港口，经济和贸易的核心。", color: "#e91e63" },
-        { id: "madras", name: "马德拉斯省", info: "马德拉斯省：位于印度南部，殖民时期的战略基地。", color: "#9c27b0" },
-        { id: "hyderabad", name: "海德拉巴土邦", info: "海德拉巴土邦：强大的土邦之一，有着丰富的历史文化。", color: "#673ab7" },
-        { id: "mysore", name: "迈索尔土邦", info: "迈索尔土邦：以其建筑和文化遗产而闻名的南印度土邦。", color: "#3f51b5" },
-        { id: "punjab", name: "旁遮普省", info: "旁遮普省：位于印度西北部，农业发达。", color: "#2196f3" },
-        { id: "kashmir", name: "克什米尔土邦", info: "克什米尔土邦：风景秀丽，有“世界屋脊”之称。", color: "#03a9f4" },
+        { id: "kashmir", name: "克什米尔", info: "克什米尔土邦：风景秀丽，有“世界屋脊”之称。", color: "#f44336" },
+        { id: "lahore", name: "拉合尔", info: "拉合尔：历史名城，现位于巴基斯坦。", color: "#e91e63" },
+        { id: "punjab", name: "旁遮普省", info: "旁遮普省：位于印度西北部，农业发达。", color: "#9c27b0" },
+        { id: "patiala", name: "巴提亚拉", info: "巴提亚拉：旁遮普地区的重要土邦。", color: "#673ab7" },
+        { id: "bikaner", name: "比卡内尔", info: "比卡内尔：沙漠中的绿洲，以骆驼节闻名。", color: "#3f51b5" },
+        { id: "jaipur", name: "斋普尔", info: "斋普尔：著名的“粉红之城”，建筑独特。", color: "#2196f3" },
+        { id: "jodhpur", name: "焦特布尔", info: "焦特布尔：又称“蓝色之城”，堡垒雄伟。", color: "#03a9f4" },
         { id: "rajputana", name: "拉杰普塔纳", info: "拉杰普塔纳：众多土邦的集合地，历史悠久。", color: "#00bcd4" },
         { id: "awadh", name: "阿瓦德", info: "阿瓦德：曾是印度文化和艺术的中心。", color: "#009688" },
-        { id: "gujarat", name: "古吉拉特", info: "古吉拉特：印度西部的重要地区，贸易发达。", color: "#4caf50" },
-        { id: "jaipur", name: "斋普尔", info: "斋普尔：著名的“粉红之城”，建筑独特。", color: "#8bc34a" },
-        { id: "bhopal", name: "博帕尔", info: "博帕尔：以湖泊和清真寺闻名。", color: "#cddc39" },
-        { id: "baroda", name: "巴罗达", info: "巴罗达：古吉拉特地区的文化中心。", color: "#ffeb3b" },
-        { id: "kolhapur", name: "科尔哈普尔", info: "科尔哈普尔：以其寺庙和历史遗迹著称。", color: "#ffc107" },
-        { id: "sikkim", name: "锡金", info: "锡金：喜马拉雅山脉中的小土邦，风景秀丽。", color: "#ff9800" },
-        { id: "nepal", name: "尼泊尔", info: "尼泊尔：喜马拉雅山下的内陆国家，佛教圣地。", color: "#ff5722" },
-        { id: "sindh", name: "信德省", info: "信德省：印度河流域的重要地区。", color: "#795548" },
-        { id: "baluchistan", name: "俾路支斯坦", info: "俾路支斯坦：地广人稀，资源丰富。", color: "#9e9e9e" },
-        { id: "coorg", name: "库格", info: "库格：以咖啡种植和自然风光著名。", color: "#607d8b" },
+        { id: "lucknow", name: "勒克瑙", info: "勒克瑙：乌尔都文化的中心。", color: "#4caf50" },
+        { id: "agra", name: "阿格拉", info: "阿格拉：泰姬陵所在地，旅游胜地。", color: "#8bc34a" },
+        { id: "delhi", name: "德里", info: "德里：印度的首都，历史悠久。", color: "#cddc39" },
+        { id: "gwailor", name: "瓜利尔", info: "瓜利尔：以其古老的堡垒和音乐学院闻名。", color: "#ffeb3b" },
+        { id: "udaipur", name: "乌代浦尔", info: "乌代浦尔：湖泊之城，风景如画。", color: "#ffc107" },
+        { id: "bhopal", name: "博帕尔", info: "博帕尔：以湖泊和清真寺闻名。", color: "#ff9800" },
+        { id: "gujarat", name: "古吉拉特", info: "古吉拉特：印度西部的重要地区，贸易发达。", color: "#ff5722" },
+        { id: "baroda", name: "巴罗达", info: "巴罗达：古吉拉特地区的文化中心。", color: "#795548" },
+        { id: "sindh", name: "信德省", info: "信德省：印度河流域的重要地区。", color: "#9e9e9e" },
+        { id: "baluchistan", name: "俾路支斯坦", info: "俾路支斯坦：地广人稀，资源丰富。", color: "#607d8b" },
         { id: "nagpur", name: "那格浦尔", info: "那格浦尔：印度的地理中心，有“橘子之城”之称。", color: "#ff8a80" },
-        { id: "travancore", name: "特拉凡哥尔", info: "特拉凡哥尔：印度南部的富饶地区。", color: "#ff80ab" },
-        { id: "bikaner", name: "比卡内尔", info: "比卡内尔：沙漠中的绿洲，以骆驼节闻名。", color: "#ea80fc" },
-        { id: "jodhpur", name: "焦特布尔", info: "焦特布尔：又称“蓝色之城”，堡垒雄伟。", color: "#b388ff" },
-        { id: "udaipur", name: "乌代浦尔", info: "乌代浦尔：湖泊之城，风景如画。", color: "#8c9eff" },
-        { id: "gwailor", name: "瓜利尔", info: "瓜利尔：以其古老的堡垒和音乐学院闻名。", color: "#82b1ff" },
-        { id: "patiala", name: "巴提亚拉", info: "巴提亚拉：旁遮普地区的重要土邦。", color: "#80d8ff" },
-        { id: "kolkata", name: "加尔各答", info: "加尔各答：印度的文化和教育中心，曾是首都。", color: "#84ffff" },
-        { id: "agra", name: "阿格拉", info: "阿格拉：泰姬陵所在地，旅游胜地。", color: "#a7ffeb" },
-        { id: "lahore", name: "拉合尔", info: "拉合尔：历史名城，现位于巴基斯坦。", color: "#b9f6ca" },
-        { id: "lucknow", name: "勒克瑙", info: "勒克瑙：乌尔都文化的中心。", color: "#ccff90" },
+        { id: "bengal", name: "孟加拉省", info: "孟加拉省：英国在19世纪的一个重要行政区，以加尔各答为中心。", color: "#ff80ab" },
+        { id: "kolkata", name: "加尔各答", info: "加尔各答：印度的文化和教育中心，曾是首都。", color: "#ea80fc" },
+        { id: "sikkim", name: "锡金", info: "锡金：喜马拉雅山脉中的小土邦，风景秀丽。", color: "#b388ff" },
+        { id: "nepal", name: "尼泊尔", info: "尼泊尔：喜马拉雅山下的内陆国家，佛教圣地。", color: "#8c9eff" },
+        { id: "coorg", name: "库格", info: "库格：以咖啡种植和自然风光著名。", color: "#82b1ff" },
+        { id: "mysore", name: "迈索尔土邦", info: "迈索尔土邦：以其建筑和文化遗产而闻名的南印度土邦。", color: "#80d8ff" },
+        { id: "hyderabad", name: "海德拉巴土邦", info: "海德拉巴土邦：强大的土邦之一，有着丰富的历史文化。", color: "#84ffff" },
+        { id: "bombay", name: "孟买省", info: "孟买省：英属印度的重要港口，经济和贸易的核心。", color: "#a7ffeb" },
+        { id: "kolhapur", name: "科尔哈普尔", info: "科尔哈普尔：以其寺庙和历史遗迹著称。", color: "#b9f6ca" },
+        { id: "madras", name: "马德拉斯省", info: "马德拉斯省：位于印度南部，殖民时期的战略基地。", color: "#ccff90" },
+        { id: "travancore", name: "特拉凡哥尔", info: "特拉凡哥尔：印度南部的富饶地区。", color: "#f4ff81" },
       ];
 
       const cardContainer = document.getElementById("card-container");
