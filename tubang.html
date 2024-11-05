@@ -18,6 +18,7 @@
     h1 {
       margin: 10px 0;
       text-align: center;
+      font-size: 18px;
     }
     .game-container {
       flex: 1;
@@ -35,8 +36,8 @@
     }
     .grid {
       position: absolute;
-      width: 10%;
-      height: 10%;
+      width: 15%;
+      height: 15%;
       border: 2px dashed rgba(102, 102, 102, 0.7);
       box-sizing: border-box;
       display: flex;
@@ -48,13 +49,13 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      padding: 10px;
+      padding: 5px;
       background-color: #fff;
     }
     .card {
-      width: 20px;
-      height: 20px;
-      margin: 3px;
+      width: 18px;
+      height: 18px;
+      margin: 2px;
       background-color: #f1c40f;
       border-radius: 3px;
       cursor: grab;
@@ -62,15 +63,16 @@
       touch-action: none;
     }
     #info-box {
-      padding: 10px;
+      padding: 5px;
       background-color: #e0e0e0;
       text-align: center;
+      font-size: 14px;
     }
     #check-button {
-      padding: 10px 20px;
-      font-size: 16px;
+      padding: 8px 16px;
+      font-size: 14px;
       cursor: pointer;
-      margin: 10px auto;
+      margin: 5px auto;
       display: block;
     }
   </style>
@@ -81,38 +83,45 @@
   <div class="game-container">
     <!-- 地图区域 -->
     <div class="map-container" id="map">
-      <!-- 优化后的格子位置，避免重叠 -->
-      <div class="grid" data-id="kashmir" style="left: 20%; top: 5%;"></div>
-      <div class="grid" data-id="lahore" style="left: 25%; top: 10%;"></div>
-      <div class="grid" data-id="punjab" style="left: 30%; top: 15%;"></div>
-      <div class="grid" data-id="patiala" style="left: 35%; top: 20%;"></div>
-      <div class="grid" data-id="bikaner" style="left: 25%; top: 25%;"></div>
-      <div class="grid" data-id="jaipur" style="left: 30%; top: 30%;"></div>
-      <div class="grid" data-id="jodhpur" style="left: 20%; top: 35%;"></div>
-      <div class="grid" data-id="rajputana" style="left: 15%; top: 30%;"></div>
-      <div class="grid" data-id="awadh" style="left: 45%; top: 25%;"></div>
-      <div class="grid" data-id="lucknow" style="left: 50%; top: 20%;"></div>
-      <div class="grid" data-id="agra" style="left: 45%; top: 30%;"></div>
-      <div class="grid" data-id="delhi" style="left: 40%; top: 25%;"></div>
-      <div class="grid" data-id="gwailor" style="left: 40%; top: 35%;"></div>
-      <div class="grid" data-id="udaipur" style="left: 30%; top: 40%;"></div>
-      <div class="grid" data-id="bhopal" style="left: 40%; top: 45%;"></div>
-      <div class="grid" data-id="gujarat" style="left: 20%; top: 50%;"></div>
-      <div class="grid" data-id="baroda" style="left: 25%; top: 55%;"></div>
-      <div class="grid" data-id="sindh" style="left: 10%; top: 50%;"></div>
-      <div class="grid" data-id="baluchistan" style="left: 5%; top: 40%;"></div>
-      <div class="grid" data-id="nagpur" style="left: 45%; top: 50%;"></div>
-      <div class="grid" data-id="bengal" style="left: 65%; top: 35%;"></div>
-      <div class="grid" data-id="kolkata" style="left: 70%; top: 40%;"></div>
-      <div class="grid" data-id="sikkim" style="left: 65%; top: 20%;"></div>
-      <div class="grid" data-id="nepal" style="left: 60%; top: 15%;"></div>
-      <div class="grid" data-id="coorg" style="left: 40%; top: 65%;"></div>
-      <div class="grid" data-id="mysore" style="left: 40%; top: 70%;"></div>
-      <div class="grid" data-id="hyderabad" style="left: 45%; top: 60%;"></div>
-      <div class="grid" data-id="bombay" style="left: 30%; top: 55%;"></div>
-      <div class="grid" data-id="kolhapur" style="left: 35%; top: 60%;"></div>
-      <div class="grid" data-id="madras" style="left: 50%; top: 75%;"></div>
-      <div class="grid" data-id="travancore" style="left: 40%; top: 85%;"></div>
+      <!-- 优化后的格子位置，拼接但不重叠 -->
+      <!-- 格子布局，按照棋盘式排列，紧密拼接 -->
+      <!-- 总共30个格子，按照5x6的网格排列 -->
+      <div class="grid" data-id="kashmir" style="left: 0%; top: 0%;"></div>
+      <div class="grid" data-id="lahore" style="left: 16%; top: 0%;"></div>
+      <div class="grid" data-id="punjab" style="left: 32%; top: 0%;"></div>
+      <div class="grid" data-id="patiala" style="left: 48%; top: 0%;"></div>
+      <div class="grid" data-id="bikaner" style="left: 64%; top: 0%;"></div>
+      <div class="grid" data-id="jaipur" style="left: 80%; top: 0%;"></div>
+
+      <div class="grid" data-id="jodhpur" style="left: 0%; top: 17%;"></div>
+      <div class="grid" data-id="rajputana" style="left: 16%; top: 17%;"></div>
+      <div class="grid" data-id="awadh" style="left: 32%; top: 17%;"></div>
+      <div class="grid" data-id="lucknow" style="left: 48%; top: 17%;"></div>
+      <div class="grid" data-id="agra" style="left: 64%; top: 17%;"></div>
+      <div class="grid" data-id="delhi" style="left: 80%; top: 17%;"></div>
+
+      <div class="grid" data-id="gwailor" style="left: 0%; top: 34%;"></div>
+      <div class="grid" data-id="udaipur" style="left: 16%; top: 34%;"></div>
+      <div class="grid" data-id="bhopal" style="left: 32%; top: 34%;"></div>
+      <div class="grid" data-id="gujarat" style="left: 48%; top: 34%;"></div>
+      <div class="grid" data-id="baroda" style="left: 64%; top: 34%;"></div>
+      <div class="grid" data-id="sindh" style="left: 80%; top: 34%;"></div>
+
+      <div class="grid" data-id="baluchistan" style="left: 0%; top: 51%;"></div>
+      <div class="grid" data-id="nagpur" style="left: 16%; top: 51%;"></div>
+      <div class="grid" data-id="bengal" style="left: 32%; top: 51%;"></div>
+      <div class="grid" data-id="kolkata" style="left: 48%; top: 51%;"></div>
+      <div class="grid" data-id="sikkim" style="left: 64%; top: 51%;"></div>
+      <div class="grid" data-id="nepal" style="left: 80%; top: 51%;"></div>
+
+      <div class="grid" data-id="coorg" style="left: 0%; top: 68%;"></div>
+      <div class="grid" data-id="mysore" style="left: 16%; top: 68%;"></div>
+      <div class="grid" data-id="hyderabad" style="left: 32%; top: 68%;"></div>
+      <div class="grid" data-id="bombay" style="left: 48%; top: 68%;"></div>
+      <div class="grid" data-id="kolhapur" style="left: 64%; top: 68%;"></div>
+      <div class="grid" data-id="madras" style="left: 80%; top: 68%;"></div>
+
+      <div class="grid" data-id="travancore" style="left: 0%; top: 85%;"></div>
     </div>
 
     <!-- 卡片区域 -->
@@ -306,7 +315,7 @@
         grids.forEach(grid => {
           if (grid.firstChild) {
             if (grid.dataset.id === grid.firstChild.dataset.id) {
-              grid.style.border = "2px solid #006400"; // 深绿色边框
+              grid.style.border = "2px solid green"; // 绿色边框
             } else {
               grid.style.border = "2px solid red"; // 红色边框
             }
