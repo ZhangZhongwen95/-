@@ -138,10 +138,6 @@
             card.innerText = dynasty.name;
             card.addEventListener('dragstart', drag);
             card.addEventListener('click', () => showInfo(dynasty));
-            // Add touch event listeners for mobile drag functionality
-            card.addEventListener('touchstart', touchStart);
-            card.addEventListener('touchmove', touchMove);
-            card.addEventListener('touchend', touchEnd);
             dynastyContainer.appendChild(card);
         });
     }
@@ -168,29 +164,6 @@
         }
     }
 
-    // Touch event handlers for mobile drag-and-drop functionality
-    function touchStart(event) {
-        draggedCard = event.target;
-    }
-
-    function touchMove(event) {
-        event.preventDefault();
-        const touchLocation = event.touches[0];
-        draggedCard.style.position = 'absolute';
-        draggedCard.style.left = touchLocation.pageX - 50 + 'px';
-        draggedCard.style.top = touchLocation.pageY - 25 + 'px';
-    }
-
-    function touchEnd(event) {
-        const touch = event.changedTouches[0];
-        const elementAtTouch = document.elementFromPoint(touch.clientX, touch.clientY);
-        if (elementAtTouch && elementAtTouch.className.includes('slot')) {
-            elementAtTouch.appendChild(draggedCard);
-        }
-        draggedCard.style.position = 'static';
-        draggedCard = null;
-    }
-
     function checkOrder() {
         let correct = true;
         for (let i = 0; i < slots.length; i++) {
@@ -214,7 +187,11 @@
             }
         }
         const result = document.getElementById('result');
-        result.innerText = correct ? '恭喜你，全部正确！' : '有错误，请调整。';
+        if (correct) {
+            result.innerHTML = '<img src="https://github.com/your-username/-/blob/main/success.gif?raw=true" alt="Success"> 恭喜你，全部正确！';
+        } else {
+            result.innerHTML = '<img src="https://github.com/your-username/-/blob/main/failure.gif?raw=true" alt="Failure"> 有错误，请调整。';
+        }
     }
 
     function showInfo(dynasty) {
