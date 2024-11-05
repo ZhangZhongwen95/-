@@ -16,8 +16,8 @@
         #timeline {
             width: 100%;
             display: grid;
-            grid-template-columns: repeat(5, 150px); /* 5列，每列150px宽 */
-            grid-template-rows: repeat(3, 100px); /* 3行，每行100px高 */
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-auto-rows: 100px;
             gap: 20px;
             justify-content: center;
             margin: 20px 0;
@@ -30,9 +30,10 @@
             margin: 5px;
             padding: 5px;
             text-align: center;
-            cursor: move;
+            cursor: pointer;
             display: inline-block;
             position: relative;
+            touch-action: none; /* 禁用默认的触摸行为 */
         }
         #dynasty-container {
             text-align: center;
@@ -45,6 +46,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
+            overflow: hidden;
         }
         .correct {
             border-color: green !important;
@@ -113,6 +115,8 @@
 
     let slots = [];
     let draggedCard = null;
+    let offsetX = 0;
+    let offsetY = 0;
 
     // 初始化时间轴为大格子
     function initTimeline() {
@@ -138,10 +142,10 @@
             card.innerText = dynasty.name;
             card.addEventListener('dragstart', drag);
             card.addEventListener('click', () => showInfo(dynasty));
-            // Add touch event listeners for mobile drag functionality
-            card.addEventListener('touchstart', touchStart);
-            card.addEventListener('touchmove', touchMove);
-            card.addEventListener('touchend', touchEnd);
+            // 添加触摸事件监听器
+            card.addEventListener('touchstart', touchStart, { passive: false });
+            card.addEventListener('touchmove', touchMove, { passive: false });
+            card.addEventListener('touchend', touchEnd, { passive: false });
             dynastyContainer.appendChild(card);
         });
     }
@@ -170,25 +174,54 @@
 
     // Touch event handlers for mobile drag-and-drop functionality
     function touchStart(event) {
-        draggedCard = event.target;
+        if (event.touches.length === 1) {
+            draggedCard = event.target;
+            const touch = event.touches[0];
+            const rect = draggedCard.getBoundingClientRect();
+            offsetX = touch.clientX - rect.left;
+            offsetY = touch.clientY - rect.top;
+            draggedCard.style.position = 'absolute';
+            draggedCard.style.zIndex = 1000;
+        }
+        event.preventDefault();
     }
 
     function touchMove(event) {
+        if (draggedCard && event.touches.length === 1) {
+            const touch = event.touches[0];
+            draggedCard.style.left = (touch.clientX - offsetX) + 'px';
+            draggedCard.style.top = (touch.clientY - offsetY) + 'px';
+        }
         event.preventDefault();
-        const touchLocation = event.touches[0];
-        draggedCard.style.position = 'absolute';
-        draggedCard.style.left = touchLocation.pageX - 50 + 'px';
-        draggedCard.style.top = touchLocation.pageY - 25 + 'px';
     }
 
     function touchEnd(event) {
-        const touch = event.changedTouches[0];
-        const elementAtTouch = document.elementFromPoint(touch.clientX, touch.clientY);
-        if (elementAtTouch && elementAtTouch.className.includes('slot')) {
-            elementAtTouch.appendChild(draggedCard);
+        if (draggedCard) {
+            const touch = event.changedTouches[0];
+            draggedCard.style.position = 'relative';
+            draggedCard.style.left = '';
+            draggedCard.style.top = '';
+            draggedCard.style.zIndex = '';
+            const elementAtTouch = document.elementFromPoint(touch.clientX, touch.clientY);
+            if (elementAtTouch) {
+                const slot = elementAtTouch.closest('.slot');
+                if (slot) {
+                    if (slot.firstChild) {
+                        // 如果槽位已有卡片，交换位置
+                        const existingCard = slot.firstChild;
+                        existingCard.parentElement.appendChild(draggedCard);
+                        slot.appendChild(existingCard);
+                    } else {
+                        slot.appendChild(draggedCard);
+                    }
+                } else {
+                    // 放回原来的容器
+                    document.getElementById('dynasty-container').appendChild(draggedCard);
+                }
+            }
+            draggedCard = null;
         }
-        draggedCard.style.position = 'static';
-        draggedCard = null;
+        event.preventDefault();
     }
 
     function checkOrder() {
@@ -215,9 +248,9 @@
         }
         const result = document.getElementById('result');
         if (correct) {
-            result.innerHTML = '<img src="https://github.com/ZhangZhongwen95/-/blob/main/success.gif?raw=true" alt="Success"> 恭喜你，全部正确！';
+            result.innerHTML = '<img src="https://raw.githubusercontent.com/ZhangZhongwen95/-/main/success.gif" alt="Success" style="max-width:100%;"><br>恭喜你，全部正确！';
         } else {
-            result.innerHTML = '<img src="https://github.com/ZhangZhongwen95/-/blob/main/failure.gif?raw=true" alt="Failure"> 有错误，请调整。';
+            result.innerHTML = '<img src="https://raw.githubusercontent.com/ZhangZhongwen95/-/main/failure.gif" alt="Failure" style="max-width:100%;"><br>有错误，请调整。';
         }
     }
 
