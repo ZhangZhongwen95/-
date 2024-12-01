@@ -1,190 +1,168 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的个人博客</title>
+    <title>Zhongwen Zhang - CV</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: #f4f4f9;
             color: #333;
         }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #444;
-        }
-        nav a {
-            color: white;
-            padding: 15px 20px;
-            text-decoration: none;
-            font-size: 1.2em;
-        }
-        nav a:hover {
-            background-color: #555;
-        }
         .container {
-            max-width: 1200px;
-            margin: 20px auto;
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
             padding: 20px;
-            background: white;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        section {
-            margin-bottom: 40px;
+        header {
+            text-align: center;
+            position: relative;
         }
-        section h2 {
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+        header img {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            max-width: 150px;
+            border-radius: 50%;
+        }
+        h1, h2, h3 {
             color: #444;
         }
-        .article-list, .project-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
+        .section {
+            margin-bottom: 20px;
         }
-        .card {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: calc(33.333% - 20px);
-            box-sizing: border-box;
-            text-align: center;
+        .section h2 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
         }
-        .card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
+        ul {
+            list-style: none;
+            padding: 0;
         }
-        .card h3 {
-            margin: 10px 0;
-            font-size: 1.5em;
-        }
-        .card p {
-            color: #555;
-            font-size: 0.9em;
+        ul li {
+            margin-bottom: 10px;
         }
         footer {
-            background: #333;
-            color: #fff;
             text-align: center;
-            padding: 10px 0;
-            margin-top: 20px;
+            margin-top: 30px;
         }
-        @media (max-width: 768px) {
-            .card {
-                width: calc(50% - 20px);
-            }
+        footer p {
+            font-size: 14px;
         }
-        @media (max-width: 480px) {
-            .card {
-                width: 100%;
-            }
+        .social-links a {
+            margin: 0 10px;
+            color: #0066cc;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-
-<header>
-    <h1>张钟文的博客</h1>
-    <p>探索、记录和分享</p>
-</header>
-
-<nav>
-    <a href="#home">首页</a>
-    <a href="#articles">文章</a>
-    <a href="#projects">项目</a>
-    <a href="#about">关于我</a>
-    <a href="#contact">联系</a>
-</nav>
-
-<div class="container" id="home">
-    <section>
-        <h2>欢迎来到我的博客</h2>
-        <p>这里是我的个人空间，我将分享我的研究、游戏开发和日常思考。随时更新，欢迎浏览！</p>
-    </section>
-</div>
-
-<div class="container" id="articles">
-    <section>
-        <h2>文章</h2>
-        <div class="article-list">
-            <div class="card">
-                <img src="article1.jpg" alt="文章封面">
-                <h3>研究南亚水利历史</h3>
-                <p>关于19世纪印度水利系统的研究文章。</p>
-            </div>
-            <div class="card">
-                <img src="article2.jpg" alt="文章封面">
-                <h3>历史学数字化的未来</h3>
-                <p>探索历史研究与人工智能的结合。</p>
-            </div>
-            <div class="card">
-                <img src="article3.jpg" alt="文章封面">
-                <h3>我的研究旅程</h3>
-                <p>记录在北京师范大学的研究经历。</p>
-            </div>
+    <div class="container">
+        <header>
+            <img src="https://github.com/ZhangZhongwen95/-/blob/main/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240914113832.jpg?raw=true" alt="Portrait of Zhongwen Zhang">
+            <h1>Zhongwen Zhang</h1>
+            <p>Email: 283226054@qq.com | Phone: +86 15001397013</p>
+            <p>Date of Birth: 29 August 1995 | Nationality: Chinese</p>
+            <p>Location: Lanzhou, Gansu, China</p>
+        </header>
+        
+        <div class="section">
+            <h2>Career Objective</h2>
+            <p>A dedicated historian with a strong foundation in 19th-century global history, particularly British India, 
+            seeking to contribute to academic discourse on colonial studies and transnational history. Aspiring to join UCLA’s 
+            PhD program in History to explore themes of imperial governance, indigenous agency, and global historical 
+            interconnections under the mentorship of Professor Vinay Lal.</p>
         </div>
-    </section>
-</div>
-
-<div class="container" id="projects">
-    <section>
-        <h2>项目</h2>
-        <div class="project-list">
-            <div class="card">
-                <img src="game1.jpg" alt="项目封面">
-                <h3>长征开放世界游戏</h3>
-                <p>基于长征历史的开放世界生存与探索游戏。</p>
-            </div>
-            <div class="card">
-                <img src="game2.jpg" alt="项目封面">
-                <h3>南亚历史模拟器</h3>
-                <p>模拟南亚19世纪的经济与社会发展。</p>
-            </div>
-            <div class="card">
-                <img src="game3.jpg" alt="项目封面">
-                <h3>文化与水的交融</h3>
-                <p>一个探索中国与印度水利文化的交互式应用。</p>
-            </div>
+        
+        <div class="section">
+            <h2>Education</h2>
+            <ul>
+                <li><strong>Beijing Normal University</strong> - Master of Arts in History (World History) (Sep 2020 - Jul 2023)
+                    <ul>
+                        <li>Thesis: Water Engineering and Colonial Governance: A Study of 19th-Century British India (1850-1900)</li>
+                        <li>Awarded the Master's Third-Class Scholarship (2022).</li>
+                    </ul>
+                </li>
+                <li><strong>Henan University of Science and Technology</strong> - Bachelor of Arts in History (Sep 2014 - Jul 2018)</li>
+            </ul>
         </div>
-    </section>
-</div>
-
-<div class="container" id="about">
-    <section>
-        <h2>关于我</h2>
-        <p>我是张钟文，历史学硕士，专注于世界史研究，特别是现代南亚和水利历史研究。同时，我对数字化历史研究和游戏开发充满热情。</p>
-    </section>
-</div>
-
-<div class="container" id="contact">
-    <section>
-        <h2>联系我</h2>
-        <p>邮箱：<a href="mailto:your-email@example.com">your-email@example.com</a></p>
-        <p>电话：+86 15001397013</p>
-    </section>
-</div>
-
-<footer>
-    <p>&copy; 2024 张钟文的博客 | All Rights Reserved</p>
-</footer>
-
+        
+        <div class="section">
+            <h2>Research Interests</h2>
+            <ul>
+                <li>Colonial governance and indigenous agency in British India.</li>
+                <li>Transnational history and the movement of ideas and people across imperial boundaries.</li>
+                <li>Digital humanities applications in historical research.</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Work Experience</h2>
+            <ul>
+                <li><strong>China Machine Press</strong> - Editorial Assistant (Quality Control Department) (Sep 2023 - Present)
+                    <ul>
+                        <li>Proofreading and editing academic publications in history and related fields.</li>
+                    </ul>
+                </li>
+                <li><strong>Beijing Normal University Library</strong> - Interlibrary Loan System Operator (Internship) (Sep 2022 - Dec 2022)
+                    <ul>
+                        <li>Managed resource sharing through the CALIS Interlibrary Loan System.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Academic Achievements</h2>
+            <ul>
+                <li>Third Prize, Graduate Winter Forum, School of History, Beijing Normal University (2021).</li>
+                <li>Excellence Award, Bai Shouyi History Award (Graduate Level) (2021).</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Skills</h2>
+            <ul>
+                <li>Languages: Proficient in English (IELTS 5.5); Chinese (native).</li>
+                <li>Research Tools: Experience with digital archives, statistical analysis of historical data, and bibliographic management software.</li>
+                <li>Computational Skills: Familiar with Python and SQL for historical data processing.</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Selected Projects</h2>
+            <ul>
+                <li><strong>Digital Humanities in Historical Research:</strong> Conducted a quantitative analysis of colonial governance policies using computational methods.</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Personal Statement</h2>
+            <p>My academic journey has been driven by a deep curiosity about the dynamics of power and resistance within
+            imperial contexts. At UCLA, I hope to further explore the complexities of colonial governance and its impact on local
+            societies.</p>
+        </div>
+        
+        <footer>
+            <p>References available upon request.</p>
+            <p class="social-links">
+                <a href="https://twitter.com/ZhangZhongwen95" target="_blank">Twitter: @ZhangZhongwen95</a>
+                <a href="https://github.com/ZhangZhongwen95" target="_blank">GitHub: ZhangZhongwen95</a>
+                <a href="https://www.linkedin.com/in/%E9%92%9F%E6%96%87-%E5%BC%A0-58902226a/" target="_blank">LinkedIn: Zhang Zhongwen</a>
+            </p>
+            <a href="CV.pdf" download>Download CV (PDF)</a>
+            <img src="https://github.com/ZhangZhongwen95/-/blob/main/%E8%AF%81%E4%BB%B6%E7%85%A7.jpg?raw=true" alt="Certificate" style="max-width: 250px; display: block; margin: 30px auto;">
+        </footer>
+    </div>
 </body>
 </html>
