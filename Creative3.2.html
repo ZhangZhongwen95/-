@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13班创造力训练营：历史重构周计划</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;700&display=swap');
+        
+        body { 
+            font-family: 'Noto Sans SC', sans-serif; 
+            background-color: #0f172a; 
+            color: #e2e8f0;
+            background-image: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.1) 0%, transparent 20%),
+                              radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 20%);
+        }
+        
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
+        
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .glass-panel:hover {
+            border-color: rgba(99, 102, 241, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .role-badge {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* 新角色配色方案 */
+        .role-narrative { background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.4); } /* 叙事官 - 创造力 */
+        .role-architect { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); } /* 架构师 - 逻辑 */
+        .role-ux { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); } /* 交互 - 沟通 */
+        .role-evangelist { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); } /* 布道师 - 说服 */
+
+        .neon-text {
+            text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- 导航栏 -->
+    <nav class="border-b border-slate-700 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-cube text-indigo-500 text-xl"></i>
+                <span class="font-display font-bold text-xl tracking-wide">CREATIVE<span class="text-indigo-500">LAB</span>.13</span>
+            </div>
+            <div class="flex gap-6 text-sm font-medium text-slate-400">
+                <a href="#roles" class="hover:text-white transition">角色定义</a>
+                <a href="#timeline" class="hover:text-white transition">6天冲刺</a>
+                <a href="#squads" class="hover:text-white transition">12小队</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="py-20 text-center px-4 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[100px] -z-10"></div>
+        <h1 class="font-display text-5xl md:text-7xl font-bold mb-6 neon-text">重构历史叙事</h1>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-8">
+            放弃死记硬背。本周，我们将把 NoteBookLM 的洞察力转化为 Google AI Studio 的创造力。<br>
+            <span class="text-indigo-400 font-bold">48位 创造者 · 12个 交互网页 · 1场 极客发布会</span>
+        </p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 pb-20 space-y-20">
+
+        <!-- 1. 新角色定义 (The New Roles) -->
+        <section id="roles">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-1 h-8 bg-indigo-500 rounded-full"></div>
+                <h2 class="text-3xl font-bold font-display">能力模型重塑</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- A: 叙事官 -->
+                <div class="glass-panel p-6 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
+                        <i class="fa-solid fa-feather text-6xl text-pink-500"></i>
+                    </div>
+                    <div class="role-badge role-narrative w-fit mb-4">Role A: 叙事官</div>
+                    <h3 class="text-xl font-bold mb-2">The Storyteller</h3>
+                    <p class="text-slate-400 text-sm mb-4">"历史不是枯燥的年代，而是人类的戏剧。"</p>
+                    <div class="text-xs text-slate-500 space-y-2">
+                        <p>🚫 <span class="line-through">查找知识点</span></p>
+                        <p>✅ <b>利用 NotebookLM 挖掘故事线</b></p>
+                        <p>✅ 设定网页的世界观与情感基调</p>
+                    </div>
+                </div>
+
+                <!-- B: 架构师 -->
+                <div class="glass-panel p-6 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
+                        <i class="fa-solid fa-code text-6xl text-blue-500"></i>
+                    </div>
+                    <div class="role-badge role-architect w-fit mb-4">Role B: 架构师</div>
+                    <h3 class="text-xl font-bold mb-2">The Architect</h3>
+                    <p class="text-slate-400 text-sm mb-4">"将创意转化为代码逻辑。"</p>
+                    <div class="text-xs text-slate-500 space-y-2">
+                        <p>🚫 <span class="line-through">听写单词</span></p>
+                        <p>✅ <b>编写 AI Studio 系统指令 (System Prompt)</b></p>
+                        <p>✅ 规划 HTML 结构与功能模块</p>
+                    </div>
+                </div>
+
+                <!-- C: 交互师 -->
+                <div class="glass-panel p-6 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
+                        <i class="fa-solid fa-gamepad text-6xl text-green-500"></i>
+                    </div>
+                    <div class="role-badge role-ux w-fit mb-4">Role C: 交互师</div>
+                    <h3 class="text-xl font-bold mb-2">The UX Designer</h3>
+                    <p class="text-slate-400 text-sm mb-4">"设计观众与历史的互动方式。"</p>
+                    <div class="text-xs text-slate-500 space-y-2">
+                        <p>🚫 <span class="line-through">检查对错</span></p>
+                        <p>✅ <b>设计课堂互动环节与游戏化机制</b></p>
+                        <p>✅ 确保网页操作流畅，体验惊艳</p>
+                    </div>
+                </div>
+
+                <!-- D: 布道师 -->
+                <div class="glass-panel p-6 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
+                        <i class="fa-solid fa-microphone-lines text-6xl text-yellow-500"></i>
+                    </div>
+                    <div class="role-badge role-evangelist w-fit mb-4">Role D: 布道师</div>
+                    <h3 class="text-xl font-bold mb-2">The Evangelist</h3>
+                    <p class="text-slate-400 text-sm mb-4">"让所有人爱上你们的产品。"</p>
+                    <div class="text-xs text-slate-500 space-y-2">
+                        <p>🚫 <span class="line-through">背诵课文</span></p>
+                        <p>✅ <b>进行 TED 风格的产品发布演讲</b></p>
+                        <p>✅ 说服同学接受你们的历史观点</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 6天冲刺计划 (Timeline) -->
+        <section id="timeline">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-1 h-8 bg-indigo-500 rounded-full"></div>
+                <h2 class="text-3xl font-bold font-display">6天冲刺日程</h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Day 1 -->
+                <div class="glass-panel p-6 flex flex-col md:flex-row gap-6 items-center">
+                    <div class="w-full md:w-32 text-center md:text-left">
+                        <div class="text-3xl font-bold text-indigo-400 font-display">DAY 1</div>
+                        <div class="text-sm text-slate-500">创意风暴</div>
+                    </div>
+                    <div class="flex-1 border-l border-slate-700 pl-6">
+                        <h3 class="text-xl font-bold mb-2">NotebookLM 剧本工坊</h3>
+                        <p class="text-slate-400 text-sm">
+                            <i class="fa-solid fa-wand-magic-sparkles text-pink-500 mr-2"></i><b>A 叙事官</b> 将课本投喂给 NotebookLM，询问："如果这段历史是一部Netflix剧集，它的预告片文案是什么？"<br>
+                            <i class="fa-solid fa-comments text-green-500 mr-2"></i><b>C 交互师</b> 记录灵感，构思："我们要做一个文字冒险游戏网页，还是一个虚拟博物馆？"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="glass-panel p-6 flex flex-col md:flex-row gap-6 items-center">
+                    <div class="w-full md:w-32 text-center md:text-left">
+                        <div class="text-3xl font-bold text-indigo-400 font-display">DAY 2</div>
+                        <div class="text-sm text-slate-500">代码编程</div>
+                    </div>
+                    <div class="flex-1 border-l border-slate-700 pl-6">
+                        <h3 class="text-xl font-bold mb-2">AI Studio 架构搭建</h3>
+                        <p class="text-slate-400 text-sm">
+                            <i class="fa-solid fa-code text-blue-500 mr-2"></i><b>B 架构师</b> 将昨天的剧本转化为 System Prompt："你是一个前端专家，请生成一个暗黑风格的HTML..."<br>
+                            <i class="fa-solid fa-laptop-code text-yellow-500 mr-2"></i><b>D 布道师</b> 协助测试生成结果，思考发布会的演讲词："这个网页最震撼的点在哪里？"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 3 -->
+                <div class="glass-panel p-6 flex flex-col md:flex-row gap-6 items-center border-l-4 border-green-500">
+                    <div class="w-full md:w-32 text-center md:text-left">
+                        <div class="text-3xl font-bold text-green-400 font-display">DAY 3</div>
+                        <div class="text-sm text-slate-500">古代发布会</div>
+                    </div>
+                    <div class="flex-1 pl-6">
+                        <h3 class="text-xl font-bold mb-2">定居与连接 (第10 & 12课)</h3>
+                        <p class="text-slate-400 text-sm mb-2">第1-3组 & 第7-9组 上台发布。</p>
+                        <div class="bg-slate-800/50 p-3 rounded text-xs text-slate-300">
+                            <b>互动亮点：</b> 第1组展示《半坡生存模拟器》网页；第7组展示《秦直道VR全景》描述词演说。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 4 -->
+                <div class="glass-panel p-6 flex flex-col md:flex-row gap-6 items-center border-l-4 border-orange-500">
+                    <div class="w-full md:w-32 text-center md:text-left">
+                        <div class="text-3xl font-bold text-orange-400 font-display">DAY 4</div>
+                        <div class="text-sm text-slate-500">近代发布会</div>
+                    </div>
+                    <div class="flex-1 pl-6">
+                        <h3 class="text-xl font-bold mb-2">工业与扩张 (第11 & 13课)</h3>
+                        <p class="text-slate-400 text-sm mb-2">第4-6组 & 第10-12组 上台发布。</p>
+                        <div class="bg-slate-800/50 p-3 rounded text-xs text-slate-300">
+                            <b>互动亮点：</b> 第4组利用网页JS代码演示人口爆炸曲线；第6组设计“谁是伦敦霍乱元凶”的交互解谜页面。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 5 -->
+                <div class="glass-panel p-6 flex flex-col md:flex-row gap-6 items-center">
+                    <div class="w-full md:w-32 text-center md:text-left">
+                        <div class="text-3xl font-bold text-indigo-400 font-display">DAY 5</div>
+                        <div class="text-sm text-slate-500">元宇宙峰会</div>
+                    </div>
+                    <div class="flex-1 border-l border-slate-700 pl-6">
+                        <h3 class="text-xl font-bold mb-2">时空互联 (Cross-Link)</h3>
+                        <p class="text-slate-400 text-sm">
+                            全班打通12个网页。<b>C 交互师</b> 负责设计“传送门”：点击第10组的飞机，可以穿越回第1组的村落。<br>
+                            全员体验一个由48人共同构建的“人类居住交通史数字博物馆”。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 6 -->
+                <div class="glass-panel p-6 flex flex-col md:flex-row gap-6 items-center">
+                    <div class="w-full md:w-32 text-center md:text-left">
+                        <div class="text-3xl font-bold text-indigo-400 font-display">DAY 6</div>
+                        <div class="text-sm text-slate-500">复盘</div>
+                    </div>
+                    <div class="flex-1 border-l border-slate-700 pl-6">
+                        <h3 class="text-xl font-bold mb-2">极客颁奖典礼</h3>
+                        <p class="text-slate-400 text-sm">
+                            颁发 "Best Storytelling" (最佳叙事), "Best Code Structure" (最佳架构), "Most Immersive UX" (最佳交互)。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 12小队名单 (Squads) -->
+        <section id="squads">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-1 h-8 bg-indigo-500 rounded-full"></div>
+                <h2 class="text-3xl font-bold font-display">12 创业小队</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                
+                <!-- 模板：Group 1 -->
+                <div class="glass-panel p-4 hover:bg-slate-800 transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-indigo-400 font-bold">第1组：村落起源</span>
+                        <i class="fa-solid fa-campground text-slate-500"></i>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center justify-between"><span class="text-slate-400">叙事</span> <span class="role-badge role-narrative">白志亮</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">架构</span> <span class="role-badge role-architect">党怡娜</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">交互</span> <span class="role-badge role-ux">韩旻旻</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">布道</span> <span class="role-badge role-evangelist">何晰月</span></div>
+                    </div>
+                </div>
+
+                <!-- Group 2 -->
+                <div class="glass-panel p-4 hover:bg-slate-800 transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-indigo-400 font-bold">第2组：集镇商业</span>
+                        <i class="fa-solid fa-shop text-slate-500"></i>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center justify-between"><span class="text-slate-400">叙事</span> <span class="role-badge role-narrative">金秀</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">架构</span> <span class="role-badge role-architect">李佳蓉</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">交互</span> <span class="role-badge role-ux">李佳怡</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">布道</span> <span class="role-badge role-evangelist">李家美</span></div>
+                    </div>
+                </div>
+
+                <!-- Group 3 -->
+                <div class="glass-panel p-4 hover:bg-slate-800 transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-indigo-400 font-bold">第3组：全球民居</span>
+                        <i class="fa-solid fa-house-chimney text-slate-500"></i>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center justify-between"><span class="text-slate-400">叙事</span> <span class="role-badge role-narrative">李秀珍</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">架构</span> <span class="role-badge role-architect">李依纯</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">交互</span> <span class="role-badge role-ux">李玉萍</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">布道</span> <span class="role-badge role-evangelist">梁琪</span></div>
+                    </div>
+                </div>
+
+                <!-- Group 4 -->
+                <div class="glass-panel p-4 hover:bg-slate-800 transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-orange-400 font-bold">第4组：工业剧变</span>
+                        <i class="fa-solid fa-industry text-slate-500"></i>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center justify-between"><span class="text-slate-400">叙事</span> <span class="role-badge role-narrative">刘思彤</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">架构</span> <span class="role-badge role-architect">刘怡彤</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">交互</span> <span class="role-badge role-ux">马莉</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">布道</span> <span class="role-badge role-evangelist">马青琳</span></div>
+                    </div>
+                </div>
+
+                <!-- Group 5 -->
+                <div class="glass-panel p-4 hover:bg-slate-800 transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-orange-400 font-bold">第5组：城市生活</span>
+                        <i class="fa-solid fa-building-user text-slate-500"></i>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center justify-between"><span class="text-slate-400">叙事</span> <span class="role-badge role-narrative">马忠</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">架构</span> <span class="role-badge role-architect">苗钰翎</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">交互</span> <span class="role-badge role-ux">闹曼草</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">布道</span> <span class="role-badge role-evangelist">牛妍妍</span></div>
+                    </div>
+                </div>
+
+                <!-- Group 6 -->
+                <div class="glass-panel p-4 hover:bg-slate-800 transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-orange-400 font-bold">第6组：城市病</span>
+                        <i class="fa-solid fa-virus text-slate-500"></i>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center justify-between"><span class="text-slate-400">叙事</span> <span class="role-badge role-narrative">裴艺童</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">架构</span> <span class="role-badge role-architect">祁春霞</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">交互</span> <span class="role-badge role-ux">仁青拉毛</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">布道</span> <span class="role-badge role-evangelist">桑杰东智</span></div>
+                    </div>
+                </div>
+
+                <!-- Group 7 -->
+                <div class="glass-panel p-4 hover:bg-slate-800 transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-green-400 font-bold">第7组：帝国古道</span>
+                        <i class="fa-solid fa-road text-slate-500"></i>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center justify-between"><span class="text-slate-400">叙事</span> <span class="role-badge role-narrative">孙悦</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">架构</span> <span class="role-badge role-architect">索楠旺姆</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">交互</span> <span class="role-badge role-ux">陶博渊</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">布道</span> <span class="role-badge role-evangelist">汪浩然</span></div>
+                    </div>
+                </div>
+
+                <!-- Group 8 -->
+                <div class="glass-panel p-4 hover:bg-slate-800 transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-green-400 font-bold">第8组：大航海</span>
+                        <i class="fa-solid fa-anchor text-slate-500"></i>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center justify-between"><span class="text-slate-400">叙事</span> <span class="role-badge role-narrative">王晶雅</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">架构</span> <span class="role-badge role-architect">王可心</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">交互</span> <span class="role-badge role-ux">王振宇</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">布道</span> <span class="role-badge role-evangelist">王政博</span></div>
+                    </div>
+                </div>
+
+                <!-- Group 9 -->
+                <div class="glass-panel p-4 hover:bg-slate-800 transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-green-400 font-bold">第9组：铁路先锋</span>
+                        <i class="fa-solid fa-train-subway text-slate-500"></i>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center justify-between"><span class="text-slate-400">叙事</span> <span class="role-badge role-narrative">温梅蕙</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">架构</span> <span class="role-badge role-architect">温若琪</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">交互</span> <span class="role-badge role-ux">吴嘉琳</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">布道</span> <span class="role-badge role-evangelist">许嘉容</span></div>
+                    </div>
+                </div>
+
+                <!-- Group 10 -->
+                <div class="glass-panel p-4 hover:bg-slate-800 transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-pink-400 font-bold">第10组：立体交通</span>
+                        <i class="fa-solid fa-plane-departure text-slate-500"></i>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center justify-between"><span class="text-slate-400">叙事</span> <span class="role-badge role-narrative">杨春燕</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">架构</span> <span class="role-badge role-architect">殷彭程</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">交互</span> <span class="role-badge role-ux">俞昊彤</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">布道</span> <span class="role-badge role-evangelist">袁杨</span></div>
+                    </div>
+                </div>
+
+                <!-- Group 11 -->
+                <div class="glass-panel p-4 hover:bg-slate-800 transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-pink-400 font-bold">第11组：社会时空</span>
+                        <i class="fa-solid fa-clock-rotate-left text-slate-500"></i>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center justify-between"><span class="text-slate-400">叙事</span> <span class="role-badge role-narrative">张恒博</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">架构</span> <span class="role-badge role-architect">张鹦</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">交互</span> <span class="role-badge role-ux">张钰彤</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">布道</span> <span class="role-badge role-evangelist">周欣</span></div>
+                    </div>
+                </div>
+
+                <!-- Group 12 -->
+                <div class="glass-panel p-4 hover:bg-slate-800 transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-pink-400 font-bold">第12组：未来出行</span>
+                        <i class="fa-solid fa-shuttle-space text-slate-500"></i>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center justify-between"><span class="text-slate-400">叙事</span> <span class="role-badge role-narrative">周悦</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">架构</span> <span class="role-badge role-architect">朱文瑾</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">交互</span> <span class="role-badge role-ux">卓玛草</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-400">布道</span> <span class="role-badge role-evangelist">马艳</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-8 text-slate-600 text-xs border-t border-slate-800">
+        <p>13班历史大单元创造力训练营 | Powered by NotebookLM & Google AI Studio</p>
+    </footer>
+
+</body>
+</html>
