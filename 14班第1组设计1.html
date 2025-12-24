@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>村落的产生 - 第10课第一子目</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* 全局复古农耕风格定义 */
+        :root {
+            --primary-brown: #5D4037; /* 深棕色，模拟泥土 */
+            --secondary-clay: #8D6E63; /* 陶土色 */
+            --bg-paper: #F5F5DC; /* 米色/羊皮纸色 */
+            --accent-gold: #D7CCC8; /* 浅石色 */
+            --text-main: #3E2723;
+        }
+
+        body {
+            font-family: "KaiTi", "楷体", "STKaiti", serif; /* 使用楷体增加历史感 */
+            background-color: var(--bg-paper);
+            color: var(--text-main);
+            background-image: url('https://www.transparenttextures.com/patterns/cardboard.png'); /* 增加纸张纹理 */
+        }
+
+        /* 标题样式 */
+        h1, h2, h3, h4 {
+            font-weight: bold;
+            color: var(--primary-brown);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* 模块卡片样式 */
+        .ancient-card {
+            background-color: #fff;
+            border: 2px solid var(--secondary-clay);
+            border-radius: 8px;
+            box-shadow: 4px 4px 0px var(--primary-brown);
+            padding: 20px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        /* 装饰性分割线 */
+        .divider {
+            height: 3px;
+            background: repeating-linear-gradient(
+                to right,
+                var(--primary-brown),
+                var(--primary-brown) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            margin: 30px 0;
+        }
+
+        /* 导航栏 */
+        .navbar-custom {
+            background-color: var(--primary-brown);
+            border-bottom: 4px solid var(--secondary-clay);
+        }
+    </style>
+</head>
+<body>
+<!-- 顶部导航 -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span style="border: 2px solid #fff; padding: 2px 5px;">🛖</span> 古代村落
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#header">首页</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#background">时代背景</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#factors">核心因素</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">形态特征</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#meaning">历史意义</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reflection">思考总结</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<!-- 第一部分：封面页 -->
+    <header id="header" class="container-fluid py-5 text-center text-white" style="background-color: var(--primary-brown); position: relative; overflow: hidden;">
+        <!-- 背景装饰：模拟穴居和陶罐的抽象符号 -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.1; background: radial-gradient(circle, #fff 10%, transparent 10%) 0 0/50px 50px;"></div>
+        
+        <div class="container position-relative z-index-1">
+            <h5 class="text-uppercase" style="letter-spacing: 3px; color: var(--accent-gold);">高二历史选择性必修2 第四单元 第10课</h5>
+            <h1 class="display-1 fw-bold my-4">村落的产生</h1>
+            <div style="width: 100px; height: 5px; background: var(--secondary-clay); margin: 20px auto;"></div>
+            
+            <p class="lead mt-4">第四小组设计：马苏夫拉 · 高岚吉 · 孟卓玛兰草</p>
+            
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-8">
+                    <div class="p-4" style="border: 1px dashed rgba(255,255,255,0.5); background: rgba(0,0,0,0.2);">
+                        <h4 class="mb-3">🎯 本课学习目标</h4>
+                        <ul class="list-unstyled text-start d-inline-block">
+                            <li><strong>1.1 认知：</strong> 了解村落产生的时代背景，掌握早期形态与特征。</li>
+                            <li><strong>1.2 核心：</strong> 掌握村落形成的核心驱动因素，理解其历史意义。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+<!-- 第二部分：设计目录页 -->
+    <section class="container my-5">
+        <h2 class="text-center mb-5">📜 课程目录</h2>
+        <div class="row text-center">
+            <div class="col-md-2 offset-md-1">
+                <a href="#background" class="text-decoration-none text-reset">
+                    <div class="ancient-card h-100 hover-effect">
+                        <div class="fs-1">🕰️</div>
+                        <h5>2.1 时代背景</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="#factors" class="text-decoration-none text-reset">
+                    <div class="ancient-card h-100 hover-effect">
+                        <div class="fs-1">🌾</div>
+                        <h5>2.2 核心因素</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="#features" class="text-decoration-none text-reset">
+                    <div class="ancient-card h-100 hover-effect">
+                        <div class="fs-1">🏘️</div>
+                        <h5>2.3 形态特征</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="#meaning" class="text-decoration-none text-reset">
+                    <div class="ancient-card h-100 hover-effect">
+                        <div class="fs-1">📜</div>
+                        <h5>2.4 历史意义</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="#reflection" class="text-decoration-none text-reset">
+                    <div class="ancient-card h-100 hover-effect">
+                        <div class="fs-1">🤔</div>
+                        <h5>2.5 总结思考</h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="divider"></div>
+    </section>
+<!-- 第三部分：核心模块 -->
+    
+    <!-- 2.1 时代背景 -->
+    <section id="background" class="container mb-5">
+        <h3 class="mb-4 border-start border-5 border-brown ps-3" style="border-color: var(--primary-brown);">2.1 村落产生的时代背景</h3>
+        
+        <div class="row align-items-center">
+            <div class="col-md-7">
+                <div class="ancient-card">
+                    <h5>从游动到定居的演变</h5>
+                    <p>在人类漫长的发展过程中，居住形式经历了一个漫长的演变过程：</p>
+                    <div class="d-flex justify-content-between text-center my-3 fw-bold" style="color: var(--secondary-clay);">
+                        <div>⛰️ 穴居/巢居<br><small>(旧石器)</small></div>
+                        <div class="align-self-center">➜</div>
+                        <div>⛺ 半穴居/地面筑屋<br><small>(新石器)</small></div>
+                        <div class="align-self-center">➜</div>
+                        <div>🏡 村落<br><small>(定居农业)</small></div>
+                    </div>
+                    <p><strong>学习聚焦：</strong> 村落是具有相当数量和规模的聚居点，为人类提供了比较稳定、安全的生活环境。</p>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="card bg-light border-0 shadow-sm p-3">
+                    <h6 class="text-muted fw-bold">📜 史料阅读</h6>
+                    <blockquote class="blockquote fs-6">
+                        <p>“上古穴居而野处。后世圣人，易之以宫室。上栋下宇，以待风雨…”</p>
+                        <footer class="blockquote-footer">《周易·系辞下》</footer>
+                    </blockquote>
+                    <blockquote class="blockquote fs-6">
+                        <p>“古之民，未知为宫室时，就陵阜而居，穴而处。下润湿伤民，故圣王作为宫室…”</p>
+                        <footer class="blockquote-footer">《墨子·辞过》</footer>
+                    </blockquote>
+                    <small class="text-muted">解读：史料反映了人类从依赖天然洞穴到主动建造房屋的进步，目的是为了避风雨、避潮湿。</small>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 2.2 核心因素 -->
+    <section id="factors" class="container mb-5">
+        <h3 class="mb-4 border-start border-5 border-brown ps-3" style="border-color: var(--primary-brown);">2.2 村落形成的核心因素</h3>
+        
+        <div class="ancient-card bg-white">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3">
+                    <span class="badge rounded-pill bg-success fs-5 p-3">核心驱动力：农业的出现</span>
+                </div>
+                <div class="col-md-6">
+                    <h5>🌾 农业发展与定居</h5>
+                    <p>随着冰川撤退，气候变暖，人类开始种植作物、驯养动物。</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>食物来源改变：</strong> 从不稳定的狩猎采集转向稳定的农业生产。</li>
+                        <li class="list-group-item"><strong>定居需求：</strong> 农业生产需要人长期守在土地旁，照顾作物生长。</li>
+                        <li class="list-group-item"><strong>人口增长：</strong> 稳定的食物供给促进了人口繁衍，形成了聚居点。</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 border-start">
+                    <h5>🌍 早期村落的分布（世界与中国）</h5>
+                    <p>村落最早出现在<strong>两河流域</strong>。世界其他地区也存在大量遗址：</p>
+                    <ul>
+                        <li><strong>西亚：</strong> 两河流域（如耶莫遗址）</li>
+                        <li><strong>北非：</strong> 尼罗河流域</li>
+                        <li><strong>中国：</strong> 黄河、长江、辽河流域（如兴隆洼遗址）</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert alert-warning mt-3">
+                <strong>教师用书材料补充：</strong> 农业生产要求定居生活，定居保证了文明的积累。农业的出现是人类告别动物状态的重大事件。
+            </div>
+        </div>
+    </section>
+<!-- 2.3 形态特征 -->
+    <section id="features" class="container mb-5">
+        <h3 class="mb-4 border-start border-5 border-brown ps-3" style="border-color: var(--primary-brown);">2.3 村落的早期形态与特征</h3>
+
+        <div class="row">
+            <!-- 中国案例 -->
+            <div class="col-md-6">
+                <div class="ancient-card h-100">
+                    <div class="text-center mb-3">
+                        <span class="badge bg-secondary">中国</span>
+                        <h4>兴隆洼遗址</h4>
+                        <small>“华夏第一村”</small>
+                    </div>
+                    <p><strong>位置：</strong> 内蒙古赤峰敖汉旗。</p>
+                    <p><strong>年代：</strong> 距今8000多年前。</p>
+                    <p><strong>特征：</strong></p>
+                    <ul>
+                        <li>发掘出170余座<strong>半穴居</strong>房址。</li>
+                        <li>最大的房址面积达140平方米。</li>
+                        <li>主要分布在山坡上（考虑水源与防御）。</li>
+                    </ul>
+                    <hr>
+                    <p class="text-muted small"><strong>布局逻辑：</strong> 壕沟环绕，房址排列有序，反映了原始村落的防御功能和氏族社会结构。</p>
+                </div>
+            </div>
+
+            <!-- 西亚案例 -->
+            <div class="col-md-6">
+                <div class="ancient-card h-100">
+                    <div class="text-center mb-3">
+                        <span class="badge bg-secondary">西亚</span>
+                        <h4>耶莫遗址 (Jarmo)</h4>
+                        <small>两河流域早期代表</small>
+                    </div>
+                    <p><strong>位置：</strong> 伊拉克北部。</p>
+                    <p><strong>年代：</strong> 约公元前7000-前5800年。</p>
+                    <p><strong>特征：</strong></p>
+                    <ul>
+                        <li>有21座房屋，每座有好几个房间。</li>
+                        <li>房间内有<strong>炉灶和地窖</strong>。</li>
+                        <li>发现石制、骨制工具及装饰品。</li>
+                    </ul>
+                    <hr>
+                    <p class="text-muted small"><strong>生活图景：</strong> 居民种植小麦、大麦，驯养山羊，反映了从狩猎到农耕定居的过渡。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 2.4 历史意义 -->
+    <section id="meaning" class="container mb-5">
+        <h3 class="mb-4 border-start border-5 border-brown ps-3" style="border-color: var(--primary-brown);">2.4 村落产生的历史意义</h3>
+        
+        <div class="ancient-card text-center" style="background-color: #EFEBE9;">
+            <p class="lead mb-4">村落不仅仅是居住地，更是人类文明演进的孵化器。</p>
+            
+            <div class="row justify-content-center g-4">
+                <div class="col-md-3">
+                    <div class="p-3 bg-white rounded shadow-sm">
+                        <div class="fs-2">🏠</div>
+                        <h6 class="mt-2">定居繁衍</h6>
+                        <small class="text-muted">提供稳定、安全的居住环境</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="p-3 bg-white rounded shadow-sm">
+                        <div class="fs-2">🛡️</div>
+                        <h6 class="mt-2">防卫安全</h6>
+                        <small class="text-muted">壕沟与围栏提供防御保障</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="p-3 bg-white rounded shadow-sm">
+                        <div class="fs-2">📦</div>
+                        <h6 class="mt-2">物资储备</h6>
+                        <small class="text-muted">仓廪、地窖用于储存剩余粮食</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="p-3 bg-white rounded shadow-sm">
+                        <div class="fs-2">🤝</div>
+                        <h6 class="mt-2">集体活动</h6>
+                        <small class="text-muted">公共场所促进社会关系发展</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-4 text-start bg-white p-3 rounded border">
+                <strong>📝 总结：</strong> 村落的出现，为人们进行集体活动提供了便利，促进了农业和手工业的发展，并为后来集镇和城市的出现奠定了基础。
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+    </section>
+<!-- 第四部分：总结与思考 -->
+    <section id="reflection" class="container mb-5">
+        <h2 class="text-center mb-4">🧠 思考与探究</h2>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="ancient-card bg-primary text-white" style="--bs-bg-opacity: .8; background-color: var(--secondary-clay) !important; color: white !important;">
+                    <h4>📜 问题探究：古代村落的选址特点</h4>
+                    <p>结合课本关于“兴隆洼遗址”和课后“艾希比尔村落”的材料，思考古代村落选址有哪些共同点？</p>
+                    <div class="bg-white text-dark p-3 rounded mt-3">
+                        <strong>💡 参考思路：</strong>
+                        <ul>
+                            <li><strong>近水源：</strong> 临近河流或湖泊，便于取水和灌溉（如耶莫、艾希比尔）。</li>
+                            <li><strong>高地或向阳：</strong> 位于山坡或高地，既能防洪又能御寒（如兴隆洼）。</li>
+                            <li><strong>防御性：</strong> 利用地形或挖掘壕沟（如姜寨、兴隆洼）。</li>
+                            <li><strong>农业便利：</strong> 靠近适宜耕种的土壤。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-12 mt-3">
+                <div class="p-4 border rounded bg-white">
+                    <h5>🚀 现实连接</h5>
+                    <p>思考：早期村落的形态对现代乡村建设有什么启示？（如：人与自然的和谐、社区公共空间的营造等）</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 页脚 -->
+    <footer class="text-center py-4 mt-5" style="background-color: var(--text-main); color: var(--bg-paper);">
+        <div class="container">
+            <p class="mb-1">© 2025 高二14班 第四小组</p>
+            <p class="small mb-0">设计成员：马苏夫拉 · 高岚吉 · 孟卓玛兰草</p>
+            <p class="small text-muted mt-2">教材内容来源：历史选择性必修2《经济与社会生活》</p>
+        </div>
+    </footer>
+
+    <!-- 引入Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

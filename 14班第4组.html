@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界的民居 - 第10课 - 授课人：兰俊杰</title>
+    <!-- 引入Bootstrap框架用于快速布局 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: "Songti SC", "SimSun", serif; /* 宋体/衬线体体现历史厚重感 */
+            background-color: #f0f2f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* 颜色定义 */
+        .bg-white-grey { background-color: #e6e6e6; }
+        .bg-cyan-light { background-color: #e0f7fa; } /* 青色底 */
+        .text-bronze { color: #cd7f32; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); } /* 青铜色 */
+        
+        /* 烟雾特效动画 */
+        .smoke-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .smoke {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+            animation: smokeMove 8s infinite linear;
+            pointer-events: none;
+            z-index: 1;
+        }
+        @keyframes smokeMove {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+        }
+
+        /* 章节通用样式 */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px dashed #ccc;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 40px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #cd7f32;
+            display: inline-block;
+        }
+
+        .img-placeholder {
+            width: 100%;
+            height: 300px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 2px solid #fff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .card-custom {
+            transition: transform 0.3s;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .card-custom:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+
+<!-- 封面区域 -->
+    <header class="position-relative w-100 vh-100 d-flex flex-column justify-content-center align-items-center bg-white-grey text-center">
+        <!-- 背景图占位：建议替换为《中国民居演变图》 -->
+        <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: url('https://via.placeholder.com/1920x1080?text=Background:+Evolution+of+Chinese+Dwellings') no-repeat center center/cover; opacity: 0.3; z-index: 0;"></div>
+        
+        <div class="z-3 position-relative p-5" style="background: rgba(255,255,255,0.85); box-shadow: 0 0 20px rgba(0,0,0,0.1); border-radius: 10px;">
+            <h5 class="text-uppercase letter-spacing-2 mb-3">高二历史选择性必修2 第四单元 第10课</h5>
+            <h1 class="display-1 fw-bold text-dark mb-4" style="font-family: 'LiSu', cursive;">世界的民居</h1>
+            <hr class="w-50 mx-auto border-dark">
+            <h4 class="mt-4">第一课时 · 第三子目</h4>
+        </div>
+
+        <div class="z-3 position-absolute bottom-0 mb-5 text-center">
+            <h3 class="fw-bold" style="font-family: 'KaiTi', serif;">授课人：兰俊杰</h3>
+            <p class="text-muted">设计：第四小组 王心如 兰俊杰</p>
+        </div>
+    </header>
+
+<!-- 目录页 -->
+    <section id="toc" class="bg-white position-relative text-center" style="min-height: 80vh; display: flex; flex-direction: column; justify-content: center;">
+        <div class="smoke-container h-100 w-100 position-absolute top-0 start-0">
+            <div class="smoke" style="left: 10%;"></div>
+            <div class="smoke" style="left: 50%; animation-delay: 2s;"></div>
+            <div class="smoke" style="left: 80%; animation-delay: 4s;"></div>
+        </div>
+
+        <div class="container position-relative z-2">
+            <h2 class="text-bronze display-4 mb-5" style="font-family: 'LiSu', cursive;">【 课程目录 】</h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-start">
+                    <div class="list-group list-group-flush">
+                        <a href="#part1" class="list-group-item list-group-item-action border-0 py-3">
+                            <h4 class="text-bronze fw-bold">一、 溯源 · 栖息之变</h4>
+                            <p class="mb-0 text-muted">从古至今民居的时间线演变、影响因素及核心特征。</p>
+                        </a>
+                        <a href="#part2" class="list-group-item list-group-item-action border-0 py-3">
+                            <h4 class="text-bronze fw-bold">二、 殊途 · 东西互鉴</h4>
+                            <p class="mb-0 text-muted">中西方古代建筑类别区分、鲜明案例对比、优缺点分析与改进。</p>
+                        </a>
+                        <a href="#part3" class="list-group-item list-group-item-action border-0 py-3">
+                            <h4 class="text-bronze fw-bold">三、 匠心 · 中国智慧</h4>
+                            <p class="mb-0 text-muted">中国民居的独特设计理念、等级观念与风水布局。</p>
+                        </a>
+                        <a href="#part4" class="list-group-item list-group-item-action border-0 py-3">
+                            <h4 class="text-bronze fw-bold">四、 探究 · 知行合一</h4>
+                            <p class="mb-0 text-muted">村落选址探究与知识大比拼（男女生分组对抗）。</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- 第一部分：时间线与自然环境 -->
+    <section id="part1" class="container">
+        <h2 class="section-title">一、 从自然中来：人类居住形式的演变</h2>
+        
+        <div class="row align-items-center mb-5">
+            <div class="col-md-5">
+                <div class="card p-3 bg-light border-0">
+                    <h5>Thinking: 古代人类住在哪里？</h5>
+                    <p>“上古穴居而野处，后世圣人，易之以宫室。” ——《周易》</p>
+                    <p>从<b>穴居</b>（Cave）与<b>巢居</b>（Nest）到地面筑屋，这是一场漫长的革命。</p>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <!-- 时间轴示意图 -->
+                <div class="d-flex justify-content-between text-center align-items-center">
+                    <div class="px-2">
+                        <span class="badge bg-secondary">旧石器</span><br>天然洞穴
+                    </div>
+                    <div class="flex-grow-1 border-top border-3 border-dark mx-2"></div>
+                    <div class="px-2">
+                        <span class="badge bg-secondary">新石器</span><br>半穴居/干栏式
+                    </div>
+                    <div class="flex-grow-1 border-top border-3 border-dark mx-2"></div>
+                    <div class="px-2">
+                        <span class="badge bg-primary">农业定居</span><br>地面房屋/村落
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center mt-4">
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <strong>核心影响因素：</strong> 自然环境（气候/材料） + 经济水平（农业/工具） + 文化习俗
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- 第二部分：古代早期民居（两河、埃及、中国） -->
+    <section id="part2" class="container-fluid bg-white-grey py-5">
+        <div class="container">
+            <h2 class="section-title">二、 文明的摇篮：泥土与木材的艺术</h2>
+            
+            <div class="row">
+                <!-- 两河流域 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 card-custom">
+                        <div class="card-header bg-warning text-dark fw-bold">两河流域 (Mesopotamia)</div>
+                        <div class="card-body">
+                            <div class="img-placeholder" style="background: url('https://via.placeholder.com/400x300?text=Mud+Brick+Houses') center/cover;">两河流域民居复原图</div>
+                            <h6 class="text-primary">自然环境 & 痛点：</h6>
+                            <p class="small">雨水稀少，缺乏木材/石料。缺点：材料单一。</p>
+                            <h6 class="text-success">智慧改动：</h6>
+                            <ul class="small">
+                                <li><strong>黏土+芦苇=土坯砖</strong>（混合制成）。</li>
+                                <li>墙壁共用（几户连在一起）以节省材料。</li>
+                                <li>结构：前庭、前室、主室。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 古埃及 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 card-custom">
+                        <div class="card-header bg-warning text-dark fw-bold">古埃及 (Ancient Egypt)</div>
+                        <div class="card-body">
+                            <div class="img-placeholder" style="background: url('https://via.placeholder.com/400x300?text=Egypt+House+Plan') center/cover;">古埃及民居平面图</div>
+                            <h6 class="text-primary">自然环境 & 痛点：</h6>
+                            <p class="small">炎热、干燥、尼罗河泛滥。缺点：暴晒。</p>
+                            <h6 class="text-success">智慧改动：</h6>
+                            <ul class="small">
+                                <li><strong>泥+麻纤维</strong>筑墙，椰子叶铺顶。</li>
+                                <li><strong>防晒保温</strong>：厚墙小窗。</li>
+                                <li>庭院作为生活中心，四周有柱廊。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 古代中国早期 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 card-custom">
+                        <div class="card-header bg-danger text-white fw-bold">古代中国 (Early China)</div>
+                        <div class="card-body">
+                            <div class="img-placeholder" style="background: url('https://via.placeholder.com/400x300?text=Nest+vs+Cave') center/cover;">巢居与穴居示意图</div>
+                            <h6 class="text-primary">环境差异 & 痛点：</h6>
+                            <p class="small">南湿热（虫兽），北干冷（风雪）。</p>
+                            <h6 class="text-success">智慧改动：</h6>
+                            <ul class="small">
+                                <li><strong>南方：巢居 → 干栏式</strong>（河姆渡），通风防潮。</li>
+                                <li><strong>北方：穴居 → 半地穴</strong>（半坡），保暖避风。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- 过渡与西方民居 -->
+    <section class="container py-5">
+        <!-- 趣味故事桥段 -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <div class="card bg-info bg-opacity-10 border-info">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">📖 穿越时空的房产中介</h4>
+                        <p class="card-text fst-italic">
+                            “嘿，朋友！如果你生活在公元2世纪，想在罗马城租房可不容易！看这则古罗马墙上的广告：‘从7月1日起，店铺及二楼公寓出租！’ 
+                            别以为只有现代才有高层公寓，古罗马人早就住进了‘水泥森林’。但小心哦，那些木头阁楼容易着火，而且...没有电梯！”
+                        </p>
+                        <button class="btn btn-sm btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#storyDetail">查看历史真相</button>
+                        <div class="collapse mt-2 text-start small" id="storyDetail">
+                            史料来源：《拉丁铭文集》。古罗马为了缓解人口剧增，出现了由多层楼板叠加的“复合式公寓”（Insula），用混凝土、拱券建造。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">三、 石头与混凝土的史诗：西方古代民居</h2>
+        
+        <div class="row">
+            <!-- 希腊罗马 -->
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <div class="img-placeholder h-100" style="background: url('https://via.placeholder.com/200x300?text=Roman+Atrium') center/cover; margin:0;"></div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">古希腊 & 古罗马</h5>
+                                <p class="card-text">
+                                    <strong>核心布局：</strong> 带有列柱围廊的中庭（Atrium）是核心。<br>
+                                    <strong>材料革命：</strong> 古罗马发明了混凝土（Concrete），结合拱券（Arch）和希腊柱式。<br>
+                                    <strong>功能：</strong> 居住、供水排水系统完善（如庞贝古城）。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 北美印第安 -->
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <div class="img-placeholder h-100" style="background: url('https://via.placeholder.com/200x300?text=Teepee') center/cover; margin:0;"></div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">北美大平原</h5>
+                                <p class="card-text">
+                                    <strong>民居：</strong> 圆锥形帐篷（Teepee）。<br>
+                                    <strong>痛点与适应：</strong> 游猎生活，需要频繁迁徙。<br>
+                                    <strong>设计：</strong> 木杆搭建框架，覆盖野牛皮，易拆卸、易运输，防风保暖。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- 第三部分：中国民居的发展与理念 -->
+    <section id="part3" class="bg-cyan-light py-5" style="border-top: 5px solid #004d40;">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-center mb-4">
+                <span style="font-size: 2rem;">🏮</span>
+                <h2 class="section-title mx-3 mb-0 text-success">四、 礼序乾坤：中国民居的演变与特色</h2>
+                <span style="font-size: 2rem;">🏮</span>
+            </div>
+            
+            <p class="lead text-center mb-5">
+                设计理念：遵循严格的等级观念、长幼有序（礼仪制度）。<br>
+                核心布局：<strong>对称、主次分明、院落有序</strong>。
+            </p>
+
+            <div class="row g-4">
+                <!-- 北方四合院 -->
+                <div class="col-lg-6">
+                    <div class="card border-success h-100">
+                        <div class="card-header bg-success text-white">代表一：北京四合院 (Siheyuan)</div>
+                        <div class="card-body text-center">
+                            <div class="img-placeholder" style="background: url('https://via.placeholder.com/500x300?text=Siheyuan+Layout') center/cover;">四合院平面布局图</div>
+                            <p class="card-text text-start">
+                                <strong>特点：</strong> 坐北朝南，大门在东南角（巽位）。<br>
+                                <strong>文化：</strong> “天棚鱼缸石榴树”，内向封闭，体现家庭伦理与私密性。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 地方特色民居集锦 -->
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <div class="card border-secondary">
+                                <div class="card-body d-flex">
+                                    <div class="me-3 fw-bold text-nowrap">福建土楼</div>
+                                    <div>聚族而居，防御性强（圆形/方形），内部平等，外部如堡垒。</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <div class="card border-secondary">
+                                <div class="card-body d-flex">
+                                    <div class="me-3 fw-bold text-nowrap">徽派建筑</div>
+                                    <div>粉墙黛瓦，马头墙（防火），注重装饰（三雕），“四水归堂”。</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card border-secondary">
+                                <div class="card-body d-flex">
+                                    <div class="me-3 fw-bold text-nowrap">窑洞</div>
+                                    <div>黄土高原，利用自然地势，冬暖夏凉，节省建材，分为靠崖窑、地坑院。</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <span class="badge bg-success p-2">知识点</span>
+                <span class="ms-2">唐朝《营缮令》规定：庶人所造堂舍，不得过三间四架。</span>
+            </div>
+        </div>
+    </section>
+
+<!-- 问题探究 -->
+    <section id="part4" class="container py-5">
+        <h2 class="section-title">🔍 问题探究：古代村落选址之谜</h2>
+        
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <!-- 艾希比尔村落复原图示意 -->
+                <div class="img-placeholder" style="background: url('https://via.placeholder.com/600x400?text=Eichbuhl+Village+Site') center/cover; height: 350px;">
+                    德国费德尔湖畔 艾希比尔村落复原图
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card bg-warning bg-opacity-25 border-warning">
+                    <div class="card-body">
+                        <h4 class="card-title">思考任务</h4>
+                        <p>观察左图（新石器时代艾希比尔村落），并结合中国姜寨遗址，探究古代村落选址有什么共同特点？</p>
+                        <hr>
+                        <div class="accordion" id="accordionAnswer">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                        💡 点击查看参考思路
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <ol>
+                                            <li><strong>临近水源：</strong> 便于生活取水和农业灌溉（湖畔、河岸）。</li>
+                                            <li><strong>防御性：</strong> 壕沟、栅栏、或位于高地。</li>
+                                            <li><strong>向阳避风：</strong> 适应气候，利于生存。</li>
+                                            <li><strong>集体活动：</strong> 往往有中心广场或大型公共建筑（如姜寨的大房子）。</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- 结尾游戏：男女大比拼 -->
+    <section class="bg-dark text-white py-5 text-center">
+        <div class="container">
+            <h2 class="text-warning mb-4">🎮 课堂大PK：谁是民居知识王？</h2>
+            <p>规则：全班分为两组（男生组 VS 女生组），回答屏幕上的问题，计分！</p>
+            
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-4">
+                    <div class="card bg-primary text-white mb-3">
+                        <div class="card-body">
+                            <h3>男生组 (Boys)</h3>
+                            <h1 id="scoreBoy" class="display-1 fw-bold">0</h1>
+                            <button class="btn btn-light btn-sm" onclick="addScore('Boy')">+1 分</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                    <div class="d-grid gap-2 col-12 mx-auto">
+                        <button class="btn btn-outline-warning btn-lg mb-2" onclick="showQuestion()">出题</button>
+                        <div id="questionArea" class="alert alert-secondary d-none">
+                            <strong>问题：</strong> <span id="qText">准备开始...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card bg-danger text-white mb-3">
+                        <div class="card-body">
+                            <h3>女生组 (Girls)</h3>
+                            <h1 id="scoreGirl" class="display-1 fw-bold">0</h1>
+                            <button class="btn btn-light btn-sm" onclick="addScore('Girl')">+1 分</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-white-grey text-center py-4 mt-auto">
+        <p class="mb-0 text-muted">© 2025 高二14班 第四小组 | 设计者：王心如、兰俊杰</p>
+        <p class="small text-muted">教材版本：历史选择性必修2 《经济与社会生活》</p>
+    </footer>
+
+<!-- JavaScript 交互脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 简单的计分逻辑
+        let scoreB = 0;
+        let scoreG = 0;
+        
+        const questions = [
+            "两河流域民居的主要建筑材料是什么？（答：土坯/黏土）",
+            "中国古代南方巢居发展成了什么建筑形式？（答：干栏式）",
+            "古罗马建筑最主要的特征结合了哪三种元素？（答：混凝土、拱券、柱式）",
+            "北京四合院的大门通常开在哪个角落？（答：东南角/巽位）",
+            "被称为'中国古祠堂建筑博物馆'的是哪个村？（答：安徽南屏村）"
+        ];
+
+        function addScore(team) {
+            if (team === 'Boy') {
+                scoreB++;
+                document.getElementById('scoreBoy').innerText = scoreB;
+            } else {
+                scoreG++;
+                document.getElementById('scoreGirl').innerText = scoreG;
+            }
+        }
+
+        function showQuestion() {
+            const qArea = document.getElementById('questionArea');
+            const qText = document.getElementById('qText');
+            qArea.classList.remove('d-none');
+            // 随机抽取一个问题
+            const randomQ = questions[Math.floor(Math.random() * questions.length)];
+            qText.innerText = randomQ;
+        }
+
+        // 简单的平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
