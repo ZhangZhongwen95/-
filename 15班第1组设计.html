@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第10课 古代的村落、集镇和城市 - 主讲：吕博文</title>
+    <!-- 引入 Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* 全局风格定义 */
+        :root {
+            --bg-color: #fdfcf0; /* 米白纸张色 */
+            --primary-blue: #2c3e50; /* 深蓝 */
+            --accent-gold: #c0392b; /* 古典红 */
+            --text-dark: #333;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "STKaiti", serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        h1, h2, h3 {
+            font-family: "KaiTi", serif;
+            font-weight: bold;
+        }
+
+        /* 导航栏 */
+        .navbar-custom {
+            background-color: var(--primary-blue);
+            border-bottom: 4px solid var(--accent-gold);
+        }
+        .navbar-brand { font-size: 1.5rem; font-weight: bold; color: #fff !important; }
+        .nav-link { color: #ecf0f1 !important; }
+        .nav-link:hover { color: var(--accent-gold) !important; }
+
+        /* 章节容器 */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        /* 标题修饰 */
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-header h2 {
+            display: inline-block;
+            border-bottom: 3px solid var(--accent-gold);
+            padding-bottom: 10px;
+        }
+
+        /* 图片容器 */
+        .img-card {
+            background: #fff;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            transition: transform 0.3s;
+        }
+        .img-card:hover { transform: translateY(-5px); }
+        .img-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .img-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* 重点强调 */
+        .highlight-box {
+            background-color: #e8f6f3;
+            border-left: 5px solid #1abc9c;
+            padding: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+<!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">📖 历史讲堂</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#intro">首页</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#village">一、村落</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#town">二、集镇</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#city">三、城市</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 封面区域 -->
+    <header id="intro" class="text-center text-white d-flex align-items-center justify-content-center" 
+            style="height: 80vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Hemudu_house.jpg/1280px-Hemudu_house.jpg'); background-size: cover; background-position: center;">
+        <div>
+            <h5 class="letter-spacing-2 mb-3">高二历史选择性必修2 · 第四单元</h5>
+            <h1 class="display-3 mb-4">第10课 古代的村落、集镇和城市</h1>
+            <div style="width: 100px; height: 4px; background-color: #c0392b; margin: 20px auto;"></div>
+            <h3 class="mt-4">主讲人：高二十五班 吕博文</h3>
+            <p class="mt-3 lead">探寻人类居住形式的演变与文明的足迹</p>
+        </div>
+    </header>
+<!-- 第一部分：村落的产生 -->
+    <section id="village">
+        <div class="container">
+            <div class="section-header">
+                <h2>第一子目：村落的产生</h2>
+                <p class="text-muted">人类漫长的发展过程中，居住形式是如何演变的？</p>
+            </div>
+
+            <!-- 1. 居住形式演变 -->
+            <div class="row align-items-center mb-5">
+                <div class="col-md-6">
+                    <h3 class="text-primary">1. 从游动到定居</h3>
+                    <ul class="list-group list-group-flush bg-transparent">
+                        <li class="list-group-item bg-transparent">
+                            <strong>旧石器时代：</strong> 
+                            <span class="badge bg-secondary">穴居</span> 
+                            <span class="badge bg-secondary">巢居</span><br>
+                            <small class="text-muted">原因：依赖自然，采集渔猎，无固定居所。</small>
+                        </li>
+                        <li class="list-group-item bg-transparent">
+                            <strong>新石器时代：</strong> 
+                            <span class="badge bg-success">地面筑屋</span><br>
+                            <small class="text-muted">原因：<strong>农业</strong>的出现，人们需要照看作物，开始定居。</small>
+                        </li>
+                        <li class="list-group-item bg-transparent">
+                            <strong>结果：</strong> 形成具有相当数量和规模的聚居点 —— <strong>村落</strong>。
+                        </li>
+                    </ul>
+                    <div class="highlight-box mt-3">
+                        <strong>📜 史料印证：</strong><br>
+                        “上古穴居而野处，后世圣人，易之以宫室。上栋下宇，以待风雨。” ——《周易·系辞下》
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="img-card">
+                        <!-- 使用半坡遗址复原图作为示例 -->
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Banpo_reconstruction.jpg/640px-Banpo_reconstruction.jpg" alt="半坡遗址房屋复原">
+                        <div class="img-caption">图：半坡遗址半地穴式房屋复原（中国北方早期居住形式）</div>
+                    </div>
+                </div>
+            </div>
+<!-- 2. 村落的主要功能 -->
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="text-primary mb-4">2. 村落的主要功能</h3>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-primary mb-3">
+                        <div class="card-header bg-primary text-white">居住与生活</div>
+                        <div class="card-body">
+                            <p class="card-text">村落建有<strong>住宅</strong>，为人类提供了比较稳定、安全的生活环境。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-success mb-3">
+                        <div class="card-header bg-success text-white">生产与储存</div>
+                        <div class="card-body">
+                            <p class="card-text">设有<strong>仓廪、地窖</strong>，用于储存剩余粮食和物资，保障农业生产延续。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-warning mb-3">
+                        <div class="card-header bg-warning text-dark">社会与防卫</div>
+                        <div class="card-body">
+                            <p class="card-text">具有<strong>公共活动场所</strong>和防御设施（如壕沟），为繁衍、防卫和集体活动提供便利。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 第二部分：集镇的出现 -->
+    <section id="town" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="section-header">
+                <h2>第二子目：集镇的出现</h2>
+                <p class="text-muted">从定期集市到永久性集镇的演变。</p>
+            </div>
+
+            <!-- 3. 集镇产生的条件 -->
+            <div class="row mb-5">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h3 class="card-title text-center text-danger mb-4">3. 集镇产生的条件</h3>
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="fs-2 me-3">🌾</div>
+                                <div>
+                                    <h5>生产力发展</h5>
+                                    <p class="mb-0 text-muted">农业与手工业分离，出现剩余产品。</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="fs-2 me-3">🔄</div>
+                                <div>
+                                    <h5>交换需求</h5>
+                                    <p class="mb-0 text-muted">村落居民定期交换物品，形成<strong>集市</strong>。</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="fs-2 me-3">🏘️</div>
+                                <div>
+                                    <h5>定居与繁荣</h5>
+                                    <p class="mb-0 text-muted">商人和手工业者为了便于交换和保护财富，在聚居地<strong>筑垒设防</strong>，形成集镇。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- 4. 特点和作用 -->
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="img-card">
+                        <!-- 使用清明上河图局部代表集镇繁荣 -->
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Along_the_River_During_the_Qingming_Festival_%28Qing_Court_Version%29.jpg/800px-Along_the_River_During_the_Qingming_Festival_%28Qing_Court_Version%29.jpg" alt="古代集镇繁荣景象">
+                        <div class="img-caption">古代集镇商业繁荣景象（示意）</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h3 class="text-danger">4. 集镇的特点和作用</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" style="background:transparent;">
+                            <strong>早期特点（如北魏）：</strong> 主要是为<strong>军事目的</strong>而设（军镇），设于要冲，用于防守。
+                        </li>
+                        <li class="list-group-item" style="background:transparent;">
+                            <strong>中后期特点（宋元明清）：</strong> 
+                            <ul>
+                                <li><strong>经济中心：</strong> 工商业者聚集，促进市场繁荣。</li>
+                                <li><strong>行政职能：</strong> 部分集镇成为一级行政机构所在地。</li>
+                                <li><strong>专业分工：</strong> 明清时期出现专业市镇（如盛泽镇的丝织业）。</li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item" style="background:transparent;">
+                            <strong>作用：</strong> 连接乡村与城市，便利了农村居民的物品交换，促进了农业和手工业生产的发展。
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 第三部分：城市的产生 -->
+    <section id="city">
+        <div class="container">
+            <div class="section-header">
+                <h2>第三子目：城市的产生</h2>
+                <p class="text-muted">一定区域内政治权力、军事防御、经济活动、宗教祭祀的中心。</p>
+            </div>
+
+            <!-- 5. 城市兴起的条件 -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h3 class="text-primary mb-3">5. 城市兴起的条件</h3>
+                    <p class="lead">约公元前3500-前3100年，两河流域苏美尔人地区最早出现了城市。</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="alert alert-info">
+                        <h4>💰 经济条件</h4>
+                        <hr>
+                        <ul>
+                            <li>农业生产力提高，出现剩余产品。</li>
+                            <li>社会分工深化，手工业和商业独立。</li>
+                            <li>人口聚集，居民中心逐渐扩大。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="alert alert-warning">
+                        <h4>👑 政治/军事条件</h4>
+                        <hr>
+                        <ul>
+                            <li>阶级分化，早期国家出现。</li>
+                            <li>统治者需要建立政治中心（宫殿）。</li>
+                            <li>出于防卫需要，修筑城墙和防御设施（军事防御）。</li>
+                            <li>宗教祭祀的需求（神庙）。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+<!-- 6. 东西方古代城市的特征 -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h3 class="text-primary mb-4">6. 东西方古代城市的特征对比</h3>
+                </div>
+                
+                <!-- 中国古代 -->
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header fw-bold text-center bg-danger text-white">中国古代城市</div>
+                        <div class="card-body">
+                            <h5 class="card-title text-danger">政治导向 · 礼制规范</h5>
+                            <p class="card-text">
+                                <strong>布局：</strong> 主要分为宫殿/官府区、手工业/商业区、居民区。
+                            </p>
+                            <p class="card-text">
+                                <strong>特征：</strong>
+                                <ul>
+                                    <li>体现礼制（如《周礼·考工记》规定）。</li>
+                                    <li>宫殿和宗庙位于中心，地位至高无上。</li>
+                                    <li>严格的坊市制度（唐代以前），后逐渐打破（宋代）。</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 西方古代 -->
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header fw-bold text-center bg-primary text-white">西方古代城市（希腊罗马）</div>
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">自治传统 · 公共空间</h5>
+                            <p class="card-text">
+                                <strong>典型代表：</strong> 古希腊雅典、古罗马城。
+                            </p>
+                            <p class="card-text">
+                                <strong>特征：</strong>
+                                <ul>
+                                    <li><strong>古希腊：</strong> 城市布局反映行政、防御、宗教和商业功能（卫城与下城）。市民公共活动场所（广场）重要。</li>
+                                    <li><strong>古罗马：</strong> 城市规划严整，注重基础设施。</li>
+                                    <li>中古时期出现自治城市。</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- 7. 基础设施和公共服务 -->
+            <div class="row align-items-center">
+                <div class="col-md-5">
+                    <div class="img-card">
+                        <!-- 古罗马水道桥图片 -->
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Pont_du_Gard_BLS.jpg/800px-Pont_du_Gard_BLS.jpg" alt="古罗马高架引水桥">
+                        <div class="img-caption">古罗马的高架引水桥（城市供水系统典范）</div>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <h3 class="text-primary">7. 城市的基础设施和公共服务</h3>
+                    <p>古代城市的发展伴随着基础设施的完善，尤其是古罗马，成为后世的典范。</p>
+                    
+                    <div class="accordion" id="infraAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                    🚰 供水与排水系统
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show">
+                                <div class="accordion-body">
+                                    <strong>古罗马：</strong> 通过渡槽（Aqueduct）引水，供给公共浴池和私人用水；排水系统（如罗马大下水道）复杂，将污水排入河流。
+                                    <br><strong>中国：</strong> 也有成熟的排水设施（如陶制水管）。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                    🛣️ 道路与交通
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <strong>古罗马：</strong> “条条大路通罗马”，道路系统发达，路面铺设石块，利于军事和商业运输。
+                                    <br><strong>中国：</strong> 城市道路宽阔，如长安城的朱雀大街。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                    🏟️ 公共设施
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    包括城墙（防御）、市场（贸易）、公共浴场、剧场（希腊罗马社交）、宗庙神庙（宗教）等。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 页脚 -->
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <p class="mb-1">© 2025 高二历史教学网页设计</p>
+            <p class="small text-white-50">主讲人：高二十五班 吕博文 | 设计：AI 辅助教学助手</p>
+            <p class="small text-white-50">资料来源：人教版历史选择性必修2《经济与社会生活》教材及教师用书</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 简单的平滑滚动脚本 -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
