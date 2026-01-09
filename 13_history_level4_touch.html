@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>第2课：四级结构物种交换图谱 (触控版)</title>
+    <style>
+        /* --- 基础设置 --- */
+        body { 
+            margin: 0; overflow: hidden; 
+            background-color: #080a10; /* 深空 */
+            font-family: "Microsoft YaHei", sans-serif; 
+            user-select: none; /* 禁止选中文本 */
+            touch-action: none; /* 禁止浏览器默认滚动 */
+        }
+        
+        canvas { display: block; cursor: grab; }
+        canvas:active { cursor: grabbing; }
+
+        /* --- UI 覆盖层 --- */
+        .ui-layer {
+            position: absolute; top: 30px; left: 30px;
+            color: #fff; pointer-events: none; z-index: 10;
+        }
+        h1 { 
+            margin: 0; text-shadow: 0 0 20px #00d2ff; 
+            font-size: 36px; font-weight: 900;
+        }
+        .subtitle { font-size: 20px; color: #aaa; margin-top: 10px; }
+        
+        /* 图例 */
+        .legend { margin-top: 20px; font-size: 18px; display: flex; gap: 20px; }
+        .dot { width: 16px; height: 16px; border-radius: 50%; display: inline-block; margin-right: 8px; vertical-align: middle; }
+
+        /* --- 侧边详情栏 (触控优化版) --- */
+        .sidebar {
+            position: absolute; top: 0; right: 0; bottom: 0;
+            width: 500px; /* 加宽，适应触摸 */
+            max-width: 90%;
+            background: rgba(20, 28, 40, 0.96);
+            backdrop-filter: blur(20px);
+            border-left: 2px solid rgba(255,255,255,0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 40px; 
+            box-sizing: border-box;
+            color: #eee; z-index: 100;
+            box-shadow: -20px 0 50px rgba(0,0,0,0.8);
+            display: flex; flex-direction: column;
+        }
+        .sidebar.active { transform: translateX(0); }
+
+        /* 巨型关闭按钮 */
+        .close-btn {
+            position: absolute; top: 20px; right: 30px;
+            width: 60px; height: 60px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 40px; cursor: pointer; color: #fff;
+            transition: 0.2s;
+        }
+        .close-btn:active { background: #c0392b; transform: scale(0.9); }
+
+        /* 内容样式 (大字体) */
+        .card-header {
+            margin-top: 40px;
+            font-size: 36px; font-weight: 900; 
+            border-bottom: 4px solid; padding-bottom: 20px; margin-bottom: 30px;
+            line-height: 1.2;
+        }
+        
+        .tag-row { margin-bottom: 20px; }
+        .tag {
+            display: inline-block; padding: 8px 16px; border-radius: 8px;
+            font-size: 18px; margin-right: 10px; color: #000; font-weight: bold;
+        }
+
+        .card-content {
+            font-size: 24px; /* 正文大字 */
+            line-height: 1.8; color: #b0b8c4; text-align: justify;
+            flex: 1; overflow-y: auto;
+        }
+
+        /* 史料卡片样式 */
+        .source-box {
+            background: #fff8e1; color: #5d4037;
+            padding: 20px; border-radius: 10px;
+            border-left: 8px solid #ffb300;
+            margin-top: 30px;
+        }
+        .source-text { font-family: "KaiTi", serif; font-size: 26px; font-weight: bold; }
+        .source-ref { margin-top: 10px; text-align: right; font-size: 20px; opacity: 0.8; }
+
+    </style>
+</head>
+<body>
+
+    <div class="ui-layer">
+        <h1>🌌 哥伦布大交换</h1>
+        <div class="subtitle">四级结构知识图谱 (触控版)</div>
+        <div class="legend">
+            <div><span class="dot" style="background:#e67e22"></span>美洲外传</div>
+            <div><span class="dot" style="background:#3498db"></span>传入美洲</div>
+            <div><span class="dot" style="background:#27ae60"></span>全球影响</div>
+        </div>
+    </div>
+
+    <canvas id="world"></canvas>
+
+    <div class="sidebar" id="sidebar">
+        <div class="close-btn" onclick="closeSidebar()">×</div>
+        <div id="sidebar-content">
+            <div class="card-header" id="d-title">标题</div>
+            <div class="tag-row" id="d-tags"></div>
+            <div class="card-content" id="d-desc">内容</div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // 1. 四级知识数据结构 (L1->L2->L3->L4)
+        // ==========================================
+        
+        const nodes = [
+            // --- Level 1: 核心 (Root) ---
+            { id: 0, text: "全球物种\n大交换", group: "root", level: 1, size: 50, x: 0, y: 0, z: 0, desc: "新航路开辟后，建立在欧洲、亚洲、非洲和美洲之间的全球性生物联系。" },
+
+            // ==========================================
+            // 分支一：美洲外传 (Orange)
+            // ==========================================
+            // Level 2: 方向
+            { id: 100, text: "美洲外传", group: "out", level: 2, size: 35, x: -150, y: 0, z: 0, desc: "美洲特有的高产作物向世界传播。" },
+            
+            // Level 3: 类别
+            { id: 110, text: "粮食作物", group: "out", level: 3, size: 25, x: -250, y: 100, z: 50, desc: "玉米、马铃薯、甘薯是美洲三大高产支柱。" },
+            { id: 120, text: "经济/蔬果", group: "out", level: 3, size: 25, x: -250, y: -100, z: -50, desc: "改变了世界的饮食口味和经济结构。" },
+
+            // Level 4: 具体物种与事件 (触控重点)
+            { id: 111, text: "玉米", group: "out", level: 4, size: 18, x: -350, y: 150, z: 80, 
+              desc: "产量极高，耐寒耐旱。在清朝大规模种植于深山。", 
+              quote: "种出西土，种者亦罕。其苗叶俱似蜀黍而肥矮。", source: "李时珍《本草纲目》" },
+            
+            { id: 112, text: "番薯", group: "out", level: 4, size: 18, x: -380, y: 80, z: 20, 
+              desc: "救荒第一功臣。万历年间传入中国。", 
+              quote: "大有收获，可充谷食之半。", source: "《闽书》" },
+            
+            { id: 113, text: "陈振龙", group: "out", level: 4, size: 22, x: -420, y: 40, z: 40, 
+              desc: "<b>【关键人物】</b>福建商人。在菲律宾冒死将番薯藤编入缆绳带回中国，被誉为“甘薯之父”。" },
+
+            { id: 121, text: "辣椒", group: "out", level: 4, size: 18, x: -350, y: -150, z: -80, 
+              desc: "明代传入时称“番椒”，初为观赏。后彻底改变了西南地区的饮食。", 
+              quote: "味辣，色红，甚可观。", source: "高濂《遵生八笺》" },
+
+            // ==========================================
+            // 分支二：传入美洲 (Blue)
+            // ==========================================
+            // Level 2: 方向
+            { id: 200, text: "传入美洲", group: "in", level: 2, size: 35, x: 150, y: 0, z: 0, desc: "欧亚物种重塑了美洲的生态与经济。" },
+
+            // Level 3: 类别
+            { id: 210, text: "大型动物", group: "in", level: 3, size: 25, x: 250, y: 80, z: -40, desc: "美洲原本缺乏大型家畜，引入后极大提升了生产力。" },
+            { id: 220, text: "种植园作物", group: "in", level: 3, size: 25, x: 250, y: -80, z: 60, desc: "服务于欧洲市场的经济作物。" },
+
+            // Level 4: 具体物种与事件
+            { id: 211, text: "马", group: "in", level: 4, size: 20, x: 350, y: 120, z: -60, 
+              desc: "<b>“大征服者”</b>。彻底改变了印第安人的战争和狩猎方式，但也带来了军事征服的不对等。" },
+            
+            { id: 221, text: "小麦", group: "in", level: 4, size: 18, x: 350, y: -50, z: 80, 
+              desc: "欧洲殖民者为了吃白面包和宗教圣餐，强行在美洲推广。" },
+            
+            { id: 222, text: "甘蔗", group: "in", level: 4, size: 20, x: 380, y: -120, z: 100, 
+              desc: "哥伦布带入。甘蔗种植园经济不仅掠夺了土地，还直接催生了奴隶贸易。",
+              quote: "如果哥伦布带来的玉米是赐福，那甘蔗便是个诅咒。", source: "《舌尖上的历史》" },
+
+            { id: 231, text: "天花/病菌", group: "in", level: 4, size: 18, x: 320, y: 0, z: 0, 
+              desc: "看不见的杀手。原住民缺乏免疫力，人口锐减90%以上。" },
+
+            // ==========================================
+            // 分支三：全球影响 (Green)
+            // ==========================================
+            // Level 2: 方向
+            { id: 300, text: "深远影响", group: "impact", level: 2, size: 35, x: 0, y: 200, z: 0, desc: "辩证分析：机遇与挑战并存。" },
+
+            // Level 3: 类别
+            { id: 310, text: "社会后果", group: "impact", level: 3, size: 25, x: -80, y: 300, z: 50, desc: "人口与社会结构的变迁。" },
+            { id: 320, text: "生态后果", group: "impact", level: 3, size: 25, x: 80, y: 300, z: -50, desc: "环境与自然界的变化。" },
+
+            // Level 4: 具体事件
+            { id: 311, text: "人口激增", group: "impact", level: 4, size: 20, x: -120, y: 380, z: 80, 
+              desc: "高产作物养活了更多人。支撑了清朝“康乾盛世”人口突破3亿。",
+              quote: "极大地增加了粮食产量，并养活了越来越多的人。", source: "张箭《新大陆农作物》" },
+
+            { id: 312, text: "奴隶贸易", group: "impact", level: 4, size: 20, x: -60, y: 350, z: 120, 
+              desc: "三角贸易。为了种植甘蔗和棉花，千万非洲黑奴被贩卖至美洲。" },
+
+            { id: 321, text: "水土流失", group: "impact", level: 4, size: 20, x: 100, y: 380, z: -80, 
+              desc: "清朝后期，为了养活人口过度开垦山林，导致生态灾难。",
+              quote: "深林剪伐殆尽，巨阜危峰，一望皆包谷也。", source: "《建始县志》" }
+        ];
+
+        // 连线关系 (包含子目间关系)
+        const links = [
+            // L1 -> L2
+            [0, 100], [0, 200], [0, 300],
+            
+            // L2 -> L3
+            [100, 110], [100, 120],
+            [200, 210], [200, 220],
+            [300, 310], [300, 320],
+
+            // L3 -> L4 (具体)
+            [110, 111], [110, 112], 
+            [112, 113], // 番薯 -> 陈振龙
+            [120, 121], 
+            [210, 211], 
+            [220, 221], [220, 222], 
+            [200, 231], // 传入美洲 -> 病菌
+            [310, 311], [310, 312], 
+            [320, 321],
+
+            // *** 子目间关系 (Cross Links) ***
+            [222, 312], // 甘蔗(L4) -> 奴隶贸易(L4) (因果)
+            [111, 311], // 玉米(L4) -> 人口激增(L4) (因果)
+            [111, 321]  // 玉米(L4) -> 水土流失(L4) (因果)
+        ];
+
+        // 颜色配置
+        const colors = {
+            "root": "#ffffff",
+            "out": "#e67e22",   // 橙色
+            "in": "#3498db",    // 蓝色
+            "impact": "#27ae60" // 绿色
+        };
+
+        // ==========================================
+        // 2. 原生 3D 引擎 (触控增强版)
+        // ==========================================
+        const canvas = document.getElementById('world');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let rotation = { x: 0, y: 0 };
+        let targetRotation = { x: 0, y: 0 };
+        let zoom = 0.6; // 初始视角拉远，看清全貌
+        
+        // 触控变量
+        let isDragging = false;
+        let lastX = 0, lastY = 0;
+        let initialPinchDistance = null;
+        let initialZoom = zoom;
+
+        const fov = 1000;
+
+        // 初始化
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // --- 触控/鼠标 事件处理 ---
+        
+        // 1. 开始交互
+        function onStart(x, y) {
+            isDragging = true;
+            lastX = x;
+            lastY = y;
+        }
+
+        canvas.addEventListener('mousedown', e => onStart(e.clientX, e.clientY));
+        canvas.addEventListener('touchstart', e => {
+            if (e.touches.length === 1) {
+                onStart(e.touches[0].clientX, e.touches[0].clientY);
+            } else if (e.touches.length === 2) {
+                // 双指缩放逻辑
+                isDragging = false;
+                initialPinchDistance = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+                initialZoom = zoom;
+            }
+        });
+
+        // 2. 移动交互
+        function onMove(x, y) {
+            if (!isDragging) return;
+            const dx = x - lastX;
+            const dy = y - lastY;
+            targetRotation.y += dx * 0.004; // 灵敏度调整
+            targetRotation.x += dy * 0.004;
+            lastX = x;
+            lastY = y;
+        }
+
+        window.addEventListener('mousemove', e => onMove(e.clientX, e.clientY));
+        window.addEventListener('touchmove', e => {
+            if (e.touches.length === 1) {
+                onMove(e.touches[0].clientX, e.touches[0].clientY);
+            } else if (e.touches.length === 2 && initialPinchDistance) {
+                // 双指缩放
+                const currentDist = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+                zoom = initialZoom * (currentDist / initialPinchDistance);
+                zoom = Math.min(Math.max(0.2, zoom), 3);
+            }
+        });
+
+        // 3. 结束交互
+        window.addEventListener('mouseup', () => isDragging = false);
+        window.addEventListener('touchend', () => {
+            isDragging = false;
+            initialPinchDistance = null;
+        });
+        
+        // 鼠标滚轮
+        canvas.addEventListener('wheel', e => {
+            e.preventDefault();
+            zoom += e.deltaY * -0.001;
+            zoom = Math.min(Math.max(0.2, zoom), 3);
+        });
+
+        // 点击检测 (增加触摸容错范围)
+        canvas.addEventListener('click', handleClick);
+        // 为了兼容触摸点击，简单的touchend模拟click略复杂，这里依赖系统自动触发的click
+
+        function handleClick(e) {
+            if (isDragging) return;
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            let clickedNode = null;
+            projectedNodes.sort((a, b) => b.scale - a.scale).forEach(p => {
+                if (clickedNode) return;
+                // 触摸屏增加点击半径 (+20px)
+                const dist = Math.hypot(p.x2d - mouseX, p.y2d - mouseY);
+                if (dist < p.radius + 20) { 
+                    clickedNode = p.node;
+                }
+            });
+
+            if (clickedNode) showSidebar(clickedNode);
+            else closeSidebar();
+        }
+
+        // 节点缓存
+        let projectedNodes = [];
+
+        // 渲染循环
+        function loop() {
+            rotation.x += (targetRotation.x - rotation.x) * 0.1;
+            rotation.y += (targetRotation.y - rotation.y) * 0.1;
+            
+            // 自动微旋转 (展示效果)
+            if (!isDragging && !initialPinchDistance) {
+                targetRotation.y += 0.0005;
+            }
+
+            ctx.fillStyle = '#080a10';
+            ctx.fillRect(0, 0, width, height);
+
+            // 1. 投影
+            projectedNodes = nodes.map(node => {
+                let x = node.x, y = node.y, z = node.z;
+                let tx = x * Math.cos(rotation.y) - z * Math.sin(rotation.y);
+                let tz = x * Math.sin(rotation.y) + z * Math.cos(rotation.y);
+                x = tx; z = tz;
+                let ty = y * Math.cos(rotation.x) - z * Math.sin(rotation.x);
+                tz = y * Math.sin(rotation.x) + z * Math.cos(rotation.x);
+                y = ty; z = tz;
+
+                const scale = fov / (fov + z) * zoom;
+                const x2d = x * scale + width / 2;
+                const y2d = y * scale + height / 2;
+
+                return { node, x2d, y2d, scale, zIndex: z, radius: node.size * scale * 0.5 };
+            });
+
+            // 2. 绘制连线
+            ctx.lineWidth = 2; // 线条加粗，适合大屏
+            links.forEach(link => {
+                const start = projectedNodes.find(p => p.node.id === link[0]);
+                const end = projectedNodes.find(p => p.node.id === link[1]);
+                if (start && end) {
+                    ctx.beginPath();
+                    ctx.moveTo(start.x2d, start.y2d);
+                    ctx.lineTo(end.x2d, end.y2d);
+                    
+                    // 逻辑关联线用虚线 (ID > 100 的节点间)
+                    if (link[0] > 100 && link[1] > 100 && Math.abs(link[0]-link[1]) > 50) {
+                        ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+                        ctx.setLineDash([10, 10]); // 虚线
+                    } else {
+                        // 常规层级线
+                        ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+                        ctx.setLineDash([]);
+                    }
+                    ctx.stroke();
+                }
+            });
+            ctx.setLineDash([]);
+
+            // 3. 绘制节点
+            projectedNodes.sort((a, b) => b.zIndex - a.zIndex);
+
+            projectedNodes.forEach(p => {
+                const color = colors[p.node.group];
+                
+                // 光晕
+                const gradient = ctx.createRadialGradient(p.x2d, p.y2d, p.radius * 0.2, p.x2d, p.y2d, p.radius * 2.5);
+                gradient.addColorStop(0, color);
+                gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(p.x2d, p.y2d, p.radius * 2.5, 0, Math.PI * 2);
+                ctx.fill();
+
+                // 实体球
+                ctx.fillStyle = "#fff";
+                ctx.beginPath();
+                ctx.arc(p.x2d, p.y2d, p.radius * 0.4, 0, Math.PI * 2);
+                ctx.fill();
+
+                // 文字 (加大字号)
+                // Level 4 的字体稍微小一点点
+                const fontSize = p.node.level === 4 ? 10 : 14;
+                ctx.font = `bold ${fontSize * p.scale}px "Microsoft YaHei"`;
+                ctx.fillStyle = "#fff";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.shadowColor = "black";
+                ctx.shadowBlur = 5;
+                
+                // 自动换行
+                const lines = p.node.text.split('\n');
+                lines.forEach((line, i) => {
+                    const yOffset = (i - (lines.length-1)/2) * (fontSize + 4) * p.scale;
+                    ctx.fillText(line, p.x2d, p.y2d + p.radius + 15 * p.scale + yOffset);
+                });
+                ctx.shadowBlur = 0;
+            });
+
+            requestAnimationFrame(loop);
+        }
+
+        // --- 侧边栏逻辑 ---
+        const sidebar = document.getElementById('sidebar');
+        const dTitle = document.getElementById('d-title');
+        const dTags = document.getElementById('d-tags');
+        const dDesc = document.getElementById('d-desc');
+
+        function showSidebar(node) {
+            sidebar.classList.add('active');
+            
+            // 标题颜色
+            dTitle.innerHTML = node.text.replace('\n', ' ');
+            const c = colors[node.group];
+            dTitle.style.borderColor = c;
+            dTitle.style.color = c;
+
+            // 标签生成
+            let tagsHtml = "";
+            if(node.group === "out") tagsHtml += `<span class="tag" style="background:#e67e22">美洲外传</span>`;
+            if(node.group === "in") tagsHtml += `<span class="tag" style="background:#3498db">传入美洲</span>`;
+            if(node.group === "impact") tagsHtml += `<span class="tag" style="background:#27ae60">全球影响</span>`;
+            if(node.level === 4) tagsHtml += `<span class="tag" style="background:#fff">具体史实</span>`;
+            
+            dTags.innerHTML = tagsHtml;
+
+            // 内容 + 史料
+            let contentHtml = node.desc;
+            if(node.quote) {
+                contentHtml += `
+                    <div class="source-box">
+                        <div class="source-text">“${node.quote}”</div>
+                        <div class="source-ref">—— ${node.source}</div>
+                    </div>
+                `;
+            }
+            dDesc.innerHTML = contentHtml;
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('active');
+        }
+
+        loop();
+
+    </script>
+</body>
+</html>

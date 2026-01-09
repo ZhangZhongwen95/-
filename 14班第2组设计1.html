@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>集镇的出现 - 第10课子目二</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* 全局古风配色与字体 */
+        :root {
+            --ancient-brown: #5D4037; /* 深褐 */
+            --ancient-gold: #8D6E63;  /* 浅褐 */
+            --paper-bg: #FDF5E6;      /* 米色宣纸底 */
+            --ink-black: #3E2723;     /* 墨色 */
+            --border-color: #A1887F;
+        }
+
+        body {
+            font-family: "KaiTi", "STKaiti", "楷体", serif; /* 楷体增强古韵 */
+            background-color: var(--paper-bg);
+            color: var(--ink-black);
+            background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png'); /* 纸张纹理 */
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: bold;
+            color: var(--ancient-brown);
+            border-bottom: 2px solid var(--ancient-gold);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        /* 卷轴风格容器 */
+        .scroll-card {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-top: 5px solid var(--ancient-brown);
+            border-bottom: 5px solid var(--ancient-brown);
+            box-shadow: 0 4px 8px rgba(93, 64, 55, 0.2);
+            padding: 30px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        /* 导航栏样式 */
+        .navbar-ancient {
+            background-color: var(--ancient-brown);
+            border-bottom: 3px solid var(--ancient-gold);
+        }
+        
+        .timeline-step {
+            border-left: 3px solid var(--ancient-gold);
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<!-- 第一部分：封面页 -->
+    <header style="position: relative; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center;">
+        <!-- 背景图：清明上河图局部（网络开源链接） -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
+             background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Along_the_River_During_the_Qingming_Festival_%28Qing_Court_Version%29.jpg/1280px-Along_the_River_During_the_Qingming_Festival_%28Qing_Court_Version%29.jpg'); 
+             background-size: cover; background-position: center; filter: sepia(0.3) brightness(0.9);">
+        </div>
+        
+        <!-- 遮罩层，保证文字清晰 -->
+        <div style="background: rgba(253, 245, 230, 0.85); padding: 50px; border-radius: 10px; border: 2px solid var(--ancient-brown); max-width: 800px;">
+            <h5 class="text-uppercase" style="letter-spacing: 5px; color: var(--ancient-brown);">第四单元 第10课 子目二</h5>
+            <h1 class="display-2 fw-bold my-4" style="border-bottom: none; font-family: 'LiSu', '隶书', serif;">集镇的出现</h1>
+            <div style="width: 150px; height: 3px; background-color: var(--ancient-brown); margin: 10px auto;"></div>
+            <p class="lead mt-4 fs-4">探寻古代商业与居住空间的演变</p>
+            <p class="mt-5 text-muted fw-bold">第十四班 第二组<br>吴梓菲 · 余素梅 · 王子豪</p>
+        </div>
+        
+        <!-- 向下滚动提示 -->
+        <div style="position: absolute; bottom: 20px; animation: bounce 2s infinite; font-size: 2rem; color: var(--ancient-brown);">
+            ⬇
+        </div>
+    </header>
+<!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-ancient sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">⛩️ 古代集镇</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#origin">起源背景</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#process">发展历程</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">主要特征</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#case">汉口兴起</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#homework">拓展作业</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 第二部分：目录页 -->
+    <section class="container my-5">
+        <div class="text-center mb-5">
+            <h2>📜 学习目录</h2>
+        </div>
+        <div class="row text-center g-4">
+            <div class="col-md-4">
+                <a href="#origin" class="text-decoration-none text-reset">
+                    <div class="card h-100 border-0 shadow-sm" style="background-color: #fff8e1;">
+                        <div class="card-body py-5">
+                            <div class="display-4 mb-3">🏺</div>
+                            <h4 style="border:none;">集镇起源</h4>
+                            <p class="text-muted">卷轴风格 · 追溯雏形</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="#process" class="text-decoration-none text-reset">
+                    <div class="card h-100 border-0 shadow-sm" style="background-color: #fff8e1;">
+                        <div class="card-body py-5">
+                            <div class="display-4 mb-3">⏳</div>
+                            <h4 style="border:none;">发展历程</h4>
+                            <p class="text-muted">时间轴风格 · 军事到商业</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="#features" class="text-decoration-none text-reset">
+                    <div class="card h-100 border-0 shadow-sm" style="background-color: #fff8e1;">
+                        <div class="card-body py-5">
+                            <div class="display-4 mb-3">🏮</div>
+                            <h4 style="border:none;">主要特征</h4>
+                            <p class="text-muted">市集图标 · 繁荣景象</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+<!-- 核心板块一：起源 -->
+    <section id="origin" class="container mb-5">
+        <div class="scroll-card">
+            <h3>🏺 1. 集镇的起源与雏形</h3>
+            <p class="mt-4 lead">集镇随社会生产力的发展而兴起。</p>
+            
+            <div class="row mt-4 align-items-center">
+                <div class="col-md-6">
+                    <ul class="list-group list-group-flush" style="background: transparent;">
+                        <li class="list-group-item" style="background: transparent; border-color: var(--border-color);">
+                            <strong>原始社会末期：</strong> 手工业与农业分离，手工业者开始在便于交换的地方集聚，形成了古代集镇的雏形。
+                        </li>
+                        <li class="list-group-item" style="background: transparent; border-color: var(--border-color);">
+                            <strong>商人的出现：</strong> 使手工业者聚居的地方迅速繁荣，逐渐成为一定地域内的经济中心。
+                        </li>
+                        <li class="list-group-item" style="background: transparent; border-color: var(--border-color);">
+                            <strong>筑垒设防：</strong> 商人和手工业者为了保护其财富和人身安全，在聚居的地方筑垒设防，形成集镇。
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-center">
+                    <div class="p-3 border border-2 border-secondary rounded" style="background-color: #fff;">
+                        <span class="fs-1">🌾 ➔ 🔨 ➔ 💰 ➔ 🏰</span>
+                        <p class="mt-2 small text-muted">农业分离 ➔ 手工业聚集 ➔ 商业繁荣 ➔ 筑垒设镇</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 核心板块二：发展历程 -->
+    <section id="process" class="container mb-5">
+        <div class="scroll-card">
+            <h3>⏳ 2. 中国古代集镇的发展</h3>
+            <p class="text-muted mb-4">从军事防御到商业贸易的华丽转身</p>
+
+            <div class="ms-4">
+                <!-- 时间节点 1 -->
+                <div class="timeline-step">
+                    <h5 class="text-danger">⚔️ 早期（如北魏）</h5>
+                    <p>中国古代的镇主要是为<strong>军事目的</strong>而设的。在要冲之区设险防守，用以防御。</p>
+                    <small class="text-muted">史料补充：北魏在北部边陲建立了沃野等镇，防御北方民族南下。</small>
+                </div>
+
+                <!-- 时间节点 2 -->
+                <div class="timeline-step">
+                    <h5 class="text-primary">🏮 两宋时期</h5>
+                    <p>工商业者经营及定居的集镇发展起来。有些镇因地理位置重要及人口增长，成为<strong>一级行政机构</strong>所在地。</p>
+                    <p><strong>草市与墟市：</strong> 直接与广大乡村联系，宋代镇市大量增加，完全是商品经济发展的结果。</p>
+                </div>
+
+                <!-- 时间节点 3 -->
+                <div class="timeline-step">
+                    <h5 class="text-success">🚢 元朝时期</h5>
+                    <p>漕运和海运发达，<strong>运河沿岸</strong>兴起了很多工商业集镇。</p>
+                </div>
+
+                <!-- 时间节点 4 -->
+                <div class="timeline-step">
+                    <h5 class="text-warning">🧶 明清时期</h5>
+                    <p>集镇进一步发展并出现<strong>专业分工</strong>。集镇吸引了越来越多的手工业者和商人，促进了市场繁荣。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 核心板块三：主要特征 -->
+    <section id="features" class="container mb-5">
+        <div class="scroll-card">
+            <h3>🏮 3. 明清集镇的专业化特征</h3>
+            <p class="mt-3">明清时期，江南市镇发展迅速，出现了明显的专业分工，这是商品经济高度发展的体现。</p>
+            
+            <div class="row g-3 mt-2">
+                <div class="col-md-4">
+                    <div class="card h-100 text-center border-secondary" style="background-color: #fafafa;">
+                        <div class="card-body">
+                            <h5 class="card-title text-success">🛢️ 浙江崇德石门镇</h5>
+                            <p class="card-text fw-bold">榨油业发达</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 text-center border-secondary" style="background-color: #fafafa;">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger">🏺 嘉善干家窑镇</h5>
+                            <p class="card-text fw-bold">“民多业陶”</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 text-center border-secondary" style="background-color: #fafafa;">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">🧵 江苏吴江盛泽镇</h5>
+                            <p class="card-text fw-bold">丝织业兴盛</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="alert alert-warning mt-4 text-center">
+                <strong>学习聚焦：</strong> 随着商品交换的发展，集镇逐渐形成，促进了市场的繁荣。
+            </div>
+        </div>
+    </section>
+<!-- 核心板块四：案例分析 -->
+    <section id="case" class="container mb-5">
+        <div class="scroll-card" style="background-image: linear-gradient(to bottom, #fff, #fdfbf7);">
+            <h3>🏙️ 历史纵横：汉口镇的兴起</h3>
+            
+            <div class="row mt-4">
+                <div class="col-lg-8">
+                    <p><strong>明朝初年：</strong> 汉口只是一片与汉阳城相连的荒滩，人迹罕至。</p>
+                    <p><strong>成化年间：</strong> 汉水改道，这里成为天然的避风良港。商民建房，商船停泊，市场开始出现。</p>
+                    <p><strong>明朝末年：</strong> 已成为“甲于全楚”的商业巨镇。</p>
+                    <p><strong>清朝嘉庆、道光年间：</strong> 商业分工日趋繁细，形成了白布街、棉花街等专业街肆，涌现出“叶开泰药店”、“汪玉霞茶食店”等名店。</p>
+                </div>
+                <div class="col-lg-4 d-flex align-items-center justify-content-center">
+                    <div class="p-3 border border-dark bg-white shadow">
+                        <small class="d-block text-center text-muted mb-2">清朝《武昌汉口鸟瞰图》概念示意</small>
+                        <div style="width: 100%; height: 150px; background-color: #ddd; display: flex; align-items: center; justify-content: center; color: #666;">
+                            [此处插入教材图片：武昌汉口鸟瞰图]
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-4 p-3 bg-light border-start border-4 border-success">
+                <strong>思考：</strong> 汉口镇从荒滩到商业巨镇的过程，体现了<strong>地理环境（水路交通）</strong>和<strong>商品经济</strong>对集镇形成的决定性作用。
+            </div>
+        </div>
+    </section>
+<!-- 教师视角补充 -->
+    <section class="container mb-5">
+        <div class="card border-0 shadow-sm" style="background-color: var(--ancient-gold); color: white;">
+            <div class="card-body">
+                <h4 style="color: #fff; border-color: #fff;">👩‍🏫 深度解析：乡村都市化</h4>
+                <p>市镇的兴起与发展，反映了乡村逐步都市化的进程。</p>
+                <ul>
+                    <li>一方面，原有的县级以上城市由政治/军事中心向经济中心转化。</li>
+                    <li>另一方面，大量市镇兴起，成为不同于乡村的“都市”，是明清时期社会发展新因素的表现。</li>
+                    <li>市镇连接了四乡农村的产业与广阔的市场。</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+<!-- 第三部分：作业——拓展页 -->
+    <section id="homework" class="container mb-5">
+        <div class="scroll-card text-center">
+            <h3>🖊️ 课后拓展与探究</h3>
+            <p class="lead mt-3">读万卷书，行万里路。请同学们完成以下任务：</p>
+            
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-5">
+                    <div class="card mb-3 h-100 border-primary">
+                        <div class="card-header bg-primary text-white">任务一：家乡寻根</div>
+                        <div class="card-body">
+                            <p class="card-text">查阅资料或询问长辈，了解你家乡所在集镇（或社区）的历史渊源。</p>
+                            <ul class="text-start small text-muted">
+                                <li>它是什么时候形成的？</li>
+                                <li>最初是因为军事、交通还是贸易？</li>
+                                <li>有什么传统特色产业？</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="card mb-3 h-100 border-success">
+                        <div class="card-header bg-success text-white">任务二：古今对比</div>
+                        <div class="card-body">
+                            <p class="card-text">分析古代集镇与现代小城镇在功能上的异同。</p>
+                            <ul class="text-start small text-muted">
+                                <li>古代集镇主要功能是什么？</li>
+                                <li>现代小城镇增加了哪些新功能（如服务、科技等）？</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 页脚 -->
+    <footer class="text-center py-4 mt-auto" style="background-color: var(--ancient-brown); color: #fff;">
+        <div class="container">
+            <p class="mb-1">© 2025 高二历史选必2 第10课教学网页</p>
+            <p class="small text-white-50">设计团队：第十四班第二组（吴梓菲、余素梅、王子豪）</p>
+            <p class="small text-white-50">素材来源：历史教材《经济与社会生活》及教师用书</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

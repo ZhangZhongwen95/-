@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第10课《古代的村落、集镇和城市》复习测验与笔记</title>
+    <style>
+        /* 全局样式 */
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5f7fa;
+            --text-color: #333;
+            --border-color: #ddd;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            margin-top: 40px;
+            color: #2c3e50;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 0.9em;
+        }
+
+        /* 测验题目卡片 */
+        .quiz-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .question-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        /* 按钮样式 */
+        .btn {
+            display: inline-block;
+            padding: 8px 15px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+
+        .btn-source {
+            background-color: #6c757d;
+            color: white;
+        }
+        .btn-source:hover { background-color: #5a6268; }
+
+        .btn-answer {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .btn-answer:hover { background-color: #357abd; }
+
+        .btn-note {
+            background-color: var(--warning-color);
+            color: #333;
+        }
+        .btn-note:hover { background-color: #e0a800; }
+
+        /* 折叠内容区域 */
+        .collapse-content {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .source-content {
+            background-color: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            font-style: italic;
+            color: #555;
+        }
+
+        .answer-content {
+            background-color: #e8f4fd;
+            border-left: 4px solid var(--primary-color);
+            color: #2c3e50;
+        }
+
+        /* 笔记区域 */
+        .note-area {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .note-textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 80px;
+            box-sizing: border-box; /* 关键：防止padding撑大宽度 */
+        }
+
+        .note-status {
+            font-size: 0.8em;
+            color: var(--success-color);
+            margin-top: 5px;
+            text-align: right;
+            display: none;
+        }
+
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* 底部导航 */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            color: #888;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>第10课《古代的村落、集镇和城市》学习指南</h1>
+    <p class="subtitle">单元复习测验 · 回溯思考 · 笔记整理</p>
+
+    <!-- 测验部分 -->
+    <section>
+        <h2>单元复习测验</h2>
+        <p style="margin-bottom: 30px; color: #666;">说明：请先尝试用2-3句话简要回答问题，如需提示可查看史料，最后比对参考解析并记录笔记。</p>
+
+        <!-- 问题 1 -->
+        <div class="quiz-card" id="q1">
+            <div class="question-title">1. 促使早期人类结束迁徙生活、形成定居村落的核心驱动因素是什么？</div>
+            <div>
+                <button class="btn btn-source" onclick="toggleDisplay('s1')">📜 查看相关史料</button>
+                <button class="btn btn-answer" onclick="toggleDisplay('a1')">💡 查看答案解析</button>
+                <button class="btn btn-note" onclick="toggleDisplay('n1')">✏️ 我的笔记</button>
+            </div>
+            
+            <div id="s1" class="collapse-content source-content">
+                <strong>史料提示：</strong><br>
+                “古之民，未知为宫室时，就陵阜而居，穴而处。下润湿伤民，故圣王作为宫室。”——《墨子·辞过》<br>
+                （提示：思考从采集渔猎到什么产业的转变需要定居？）
+            </div>
+
+            <div id="a1" class="collapse-content answer-content">
+                <strong>解析：</strong><br>
+                <strong>农业的出现</strong>是核心驱动因素。农业生产要求人们定居生活，以耕种和管理农作物，这为人类提供了相对稳定的食物供给。定居生活保证了经济与文化的稳定性和连续性，从而形成了具有一定规模的聚居点——村落。
+            </div>
+
+            <div id="n1" class="note-area">
+                <textarea class="note-textarea" placeholder="在这里输入你的思考或补充..." oninput="saveNote('note1', this.value)"></textarea>
+                <div class="note-status" id="status-note1">已保存</div>
+            </div>
+        </div>
+
+        <!-- 问题 2 -->
+        <div class="quiz-card" id="q2">
+            <div class="question-title">2. 根据考古发现，如耶莫遗址，早期村落具备了哪些基本功能和设施？</div>
+            <div>
+                <button class="btn btn-source" onclick="toggleDisplay('s2')">📜 查看相关史料</button>
+                <button class="btn btn-answer" onclick="toggleDisplay('a2')">💡 查看答案解析</button>
+                <button class="btn btn-note" onclick="toggleDisplay('n2')">✏️ 我的笔记</button>
+            </div>
+            
+            <div id="s2" class="collapse-content source-content">
+                <strong>相关材料：</strong><br>
+                耶莫遗址（公元前7000-前5800年）发现有21座房屋，每座房屋有好几个房间，房间里有炉灶和地窖。遗址中发现大量石制、骨制工具。
+            </div>
+
+            <div id="a2" class="collapse-content answer-content">
+                <strong>解析：</strong><br>
+                早期村落为人提供了定居、繁衍和防卫的基本保障。根据耶莫遗址的发现，村落中建有<strong>住宅、仓廪、地窖和公共活动场所</strong>，房屋内有炉灶等生活设施。这些设施不仅满足了居民的日常生活需求，也为集体活动提供了便利。
+            </div>
+
+            <div id="n2" class="note-area">
+                <textarea class="note-textarea" placeholder="在这里输入你的思考或补充..." oninput="saveNote('note2', this.value)"></textarea>
+                <div class="note-status" id="status-note2">已保存</div>
+            </div>
+        </div>
+
+        <!-- 问题 3 -->
+        <div class="quiz-card" id="q3">
+            <div class="question-title">3. 简述中国古代“镇”的功能从早期到唐宋以后发生了怎样的演变。</div>
+            <div>
+                <button class="btn btn-source" onclick="toggleDisplay('s3')">📜 查看相关史料</button>
+                <button class="btn btn-answer" onclick="toggleDisplay('a3')">💡 查看答案解析</button>
+                <button class="btn btn-note" onclick="toggleDisplay('n3')">✏️ 我的笔记</button>
+            </div>
+            
+            <div id="s3" class="collapse-content source-content">
+                <strong>史料提示：</strong><br>
+                早期：北魏在北部边陲建立沃野等镇。<br>
+                宋代以后：浙江崇德石门镇榨油业发达，江苏吴江盛泽镇丝织业兴盛。
+            </div>
+
+            <div id="a3" class="collapse-content answer-content">
+                <strong>解析：</strong><br>
+                中国古代的“镇”起初主要是为<strong>军事目的</strong>而设立的，是设在要冲之区的防御据点。到了唐宋时期，随着商品经济的发展，大量工商业者经营和定居的集镇兴起，其<strong>经济功能</strong>日益凸显。明清时期，集镇进一步发展，甚至出现了具有专业分工的工商业市镇。
+            </div>
+
+            <div id="n3" class="note-area">
+                <textarea class="note-textarea" placeholder="在这里输入你的思考或补充..." oninput="saveNote('note3', this.value)"></textarea>
+                <div class="note-status" id="status-note3">已保存</div>
+            </div>
+        </div>
+
+        <!-- 问题 4 -->
+        <div class="quiz-card" id="q4">
+            <div class="question-title">4. 根据课文内容，古代城市通常扮演着哪些核心功能角色？</div>
+            <div>
+                <button class="btn btn-answer" onclick="toggleDisplay('a4')">💡 查看答案解析</button>
+                <button class="btn btn-note" onclick="toggleDisplay('n4')">✏️ 我的笔记</button>
+            </div>
+            
+            <div id="a4" class="collapse-content answer-content">
+                <strong>解析：</strong><br>
+                古代城市是一个区域内的多功能中心。它通常是<strong>政治权力</strong>的中心、<strong>军事防御</strong>的要塞、<strong>经济活动</strong>的枢纽以及<strong>宗教祭祀</strong>的场所。此外，城市还是文化中心，集中了知识、技术与文化发展，推动了人类文明的演进。
+            </div>
+
+            <div id="n4" class="note-area">
+                <textarea class="note-textarea" placeholder="在这里输入你的思考或补充..." oninput="saveNote('note4', this.value)"></textarea>
+                <div class="note-status" id="status-note4">已保存</div>
+            </div>
+        </div>
+
+        <!-- 问题 5 -->
+        <div class="quiz-card" id="q5">
+            <div class="question-title">5. 《周礼·考工记》中“匠人营国”的描述体现了中国古代都城规划的哪些重要原则？</div>
+            <div>
+                <button class="btn btn-source" onclick="toggleDisplay('s5')">📜 查看相关史料</button>
+                <button class="btn btn-answer" onclick="toggleDisplay('a5')">💡 查看答案解析</button>
+                <button class="btn btn-note" onclick="toggleDisplay('n5')">✏️ 我的笔记</button>
+            </div>
+            
+            <div id="s5" class="collapse-content source-content">
+                <strong>史料提示：</strong><br>
+                “匠人营国，方九里，旁三门。国中九经九纬，经涂九轨。左祖右社，面朝后市，市朝一夫。”——《周礼·考工记》
+            </div>
+
+            <div id="a5" class="collapse-content answer-content">
+                <strong>解析：</strong><br>
+                “匠人营国”体现了中国古代都城规划的<strong>礼制思想和等级秩序</strong>。其原则包括：城市形态方正，布局对称，道路经纬分明；功能分区明确，如“左祖右社，面朝后市”；以及严格的等级规定，宫城位于中心，突出王权的至高无上。
+            </div>
+
+            <div id="n5" class="note-area">
+                <textarea class="note-textarea" placeholder="在这里输入你的思考或补充..." oninput="saveNote('note5', this.value)"></textarea>
+                <div class="note-status" id="status-note5">已保存</div>
+            </div>
+        </div>
+
+        <!-- 问题 6 -->
+        <div class="quiz-card" id="q6">
+            <div class="question-title">6. 古罗马的城市建设在哪些方面对后世西方城市产生了深远影响？</div>
+            <div>
+                <button class="btn btn-source" onclick="toggleDisplay('s6')">📜 查看相关史料</button>
+                <button class="btn btn-answer" onclick="toggleDisplay('a6')">💡 查看答案解析</button>
+                <button class="btn btn-note" onclick="toggleDisplay('n6')">✏️ 我的笔记</button>
+            </div>
+            
+            <div id="s6" class="collapse-content source-content">
+                <strong>相关材料：</strong><br>
+                古罗马城镇有渡槽引水，排水系统用石头建造，建在街道下方。4世纪时，罗马城中有近4.6万栋民居，大部分是复合式公寓（Insula）。
+            </div>
+
+            <div id="a6" class="collapse-content answer-content">
+                <strong>解析：</strong><br>
+                古罗马的城市建设在<strong>公共基础设施</strong>方面成就卓著，深刻影响了后世。其系统化的道路网络和先进的供水排水系统（如下水道和渡槽）成为后来西方城市建设的标准。此外，古罗马后期出现的由多层楼板叠加组合而成的复合式公寓，也对后世的集体住宅建筑形态产生了深远影响。
+            </div>
+
+            <div id="n6" class="note-area">
+                <textarea class="note-textarea" placeholder="在这里输入你的思考或补充..." oninput="saveNote('note6', this.value)"></textarea>
+                <div class="note-status" id="status-note6">已保存</div>
+            </div>
+        </div>
+
+        <!-- 问题 7 -->
+        <div class="quiz-card" id="q7">
+            <div class="question-title">7. 两河流域的自然环境（如气候和资源）如何影响了当地民居的建筑材料和结构？</div>
+            <div>
+                <button class="btn btn-answer" onclick="toggleDisplay('a7')">💡 查看答案解析</button>
+                <button class="btn btn-note" onclick="toggleDisplay('n7')">✏️ 我的笔记</button>
+            </div>
+            
+            <div id="a7" class="collapse-content answer-content">
+                <strong>解析：</strong><br>
+                两河流域雨水稀少，缺乏森林和木材，这一自然环境决定了其民居的特色。当地人们就地取材，主要使用<strong>黏土和芦苇混合制成的土坯</strong>来建造房屋，仅用少量木材作屋顶栋梁。为节约建材并抵御外来侵扰，几户人家的房屋常常墙贴墙建在一起。
+            </div>
+
+            <div id="n7" class="note-area">
+                <textarea class="note-textarea" placeholder="在这里输入你的思考或补充..." oninput="saveNote('note7', this.value)"></textarea>
+                <div class="note-status" id="status-note7">已保存</div>
+            </div>
+        </div>
+
+        <!-- 问题 8 -->
+        <div class="quiz-card" id="q8">
+            <div class="question-title">8. 中国古代民居最早的两种基本类型是什么？它们分别适应了怎样的自然环境并对后世建筑产生了何种影响？</div>
+            <div>
+                <button class="btn btn-source" onclick="toggleDisplay('s8')">📜 查看相关史料</button>
+                <button class="btn btn-answer" onclick="toggleDisplay('a8')">💡 查看答案解析</button>
+                <button class="btn btn-note" onclick="toggleDisplay('n8')">✏️ 我的笔记</button>
+            </div>
+            
+            <div id="s8" class="collapse-content source-content">
+                <strong>史料提示：</strong><br>
+                “下者为巢，上者为营窟。”——《孟子·滕文公下》
+            </div>
+
+            <div id="a8" class="collapse-content answer-content">
+                <strong>解析：</strong><br>
+                中国民居最早的两大类型是<strong>巢居</strong>和<strong>穴居</strong>。<br>
+                <strong>巢居：</strong>适应南方地势低洼潮湿的环境，在树上营建住所，后世发展为<strong>干栏式民居</strong>。<br>
+                <strong>穴居：</strong>适应北方地势高亢干燥的环境，挖穴而居，后来逐渐发展为地上的建筑形式，如<strong>窑洞</strong>。
+            </div>
+
+            <div id="n8" class="note-area">
+                <textarea class="note-textarea" placeholder="在这里输入你的思考或补充..." oninput="saveNote('note8', this.value)"></textarea>
+                <div class="note-status" id="status-note8">已保存</div>
+            </div>
+        </div>
+
+        <!-- 问题 9 -->
+        <div class="quiz-card" id="q9">
+            <div class="question-title">9. 唐朝的《准营缮令》如何体现了社会制度对民居建筑的深刻影响？</div>
+            <div>
+                <button class="btn btn-source" onclick="toggleDisplay('s9')">📜 查看相关史料</button>
+                <button class="btn btn-answer" onclick="toggleDisplay('a9')">💡 查看答案解析</button>
+                <button class="btn btn-note" onclick="toggleDisplay('n9')">✏️ 我的笔记</button>
+            </div>
+            
+            <div id="s9" class="collapse-content source-content">
+                <strong>史料提示：</strong><br>
+                “王公已下，舍屋不得施重栱藻井……庶人所造堂舍，不得过三间四架……”——《唐会要·舆服上》
+            </div>
+
+            <div id="a9" class="collapse-content answer-content">
+                <strong>解析：</strong><br>
+                唐朝的《准营缮令》通过法律形式对不同社会等级的房屋建筑规格作出了明确规定，体现了森严的<strong>等级制度</strong>。法令严格限制了官员和庶民住宅的规模（如间、架数量）、结构（如不得造楼阁）、装饰（如不得施重栱藻井、彩绘等），将社会秩序和等级观念固化在居住建筑之中。
+            </div>
+
+            <div id="n9" class="note-area">
+                <textarea class="note-textarea" placeholder="在这里输入你的思考或补充..." oninput="saveNote('note9', this.value)"></textarea>
+                <div class="note-status" id="status-note9">已保存</div>
+            </div>
+        </div>
+
+        <!-- 问题 10 -->
+        <div class="quiz-card" id="q10">
+            <div class="question-title">10. 北美大平原印第安人的居住方式（圆锥形帐篷）如何反映了他们的生产生活方式？</div>
+            <div>
+                <button class="btn btn-answer" onclick="toggleDisplay('a10')">💡 查看答案解析</button>
+                <button class="btn btn-note" onclick="toggleDisplay('n10')">✏️ 我的笔记</button>
+            </div>
+            
+            <div id="a10" class="collapse-content answer-content">
+                <strong>解析：</strong><br>
+                北美大平原印第安人过着追随野牛群迁徙的<strong>游猎生活</strong>。他们居住的圆锥形帐篷由原木和动物皮制成，结构简单，易于搭建和搬迁。这种居住方式完全适应了其不固定的游猎生活方式，是其生产生活方式在居住形态上的直接反映。
+            </div>
+
+            <div id="n10" class="note-area">
+                <textarea class="note-textarea" placeholder="在这里输入你的思考或补充..." oninput="saveNote('note10', this.value)"></textarea>
+                <div class="note-status" id="status-note10">已保存</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 拓展思考题 -->
+    <section>
+        <h2>拓展思考题 (论述题)</h2>
+        <div style="background: #fff; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
+            <ol>
+                <li>比较分析中国古代城市（以周朝王城、唐宋城市为例）与古希腊、古罗马城市在城市布局、核心功能和社会角色上的异同。</li>
+                <li>论述生产方式的变革（从原始农耕到手工业、商业发展）是如何推动人类聚落形态从村落、集镇到城市演进的。</li>
+                <li>结合两河流域、古代中国、古埃及和北美大平原的案例，探讨自然环境、经济水平和文化习俗三者如何共同塑造了世界各地民居的多样性特征。</li>
+                <li>以明清时期江南市镇为例，分析集镇的兴起与繁荣对中国古代社会经济结构和乡村社会变迁产生了怎样的影响。</li>
+                <li>“等级制度”是中国古代城市规划与民居建筑的一个核心理念。请结合《周礼·考工记》和唐朝《准营缮令》等材料，论述该理念的具体表现及其历史作用。</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- 术语表 -->
+    <section>
+        <h2>🔑 关键术语词汇表</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">术语</th>
+                    <th>定义</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>村落 (Village)</td>
+                    <td>农业出现以后，人们为进行农业生产而定居，形成的具有相当数量和规模的聚居点。村落为人类提供了比较稳定、安全的生活环境，内部通常设有住宅、仓廪和公共活动场所。</td>
+                </tr>
+                <tr>
+                    <td>穴居 (Cave dwelling)</td>
+                    <td>人类早期的一种居住形式，指在地势高亢干燥的地方挖掘洞穴而居住。穴居主要分布在中国北方，后来逐渐演变为地上的建筑，如窑洞。</td>
+                </tr>
+                <tr>
+                    <td>巢居 (Nest dwelling)</td>
+                    <td>人类早期的一种居住形式，指在地势低洼潮湿的地方用树木营建巢穴而居住。巢居主要分布在中国南方，后世发展为干栏式民居。</td>
+                </tr>
+                <tr>
+                    <td>集镇 (Market Town)</td>
+                    <td>随着社会生产力的发展，特别是手工业与农业分离后，手工业者和商人为便于交换而集聚形成的聚居点。集镇是商品交换发展的产物，促进了市场的繁荣，是介于村落和城市之间的聚落形态。</td>
+                </tr>
+                <tr>
+                    <td>城市 (City)</td>
+                    <td>在村落和集镇基础上发展而来，是特定区域内的政治权力、军事防御、经济活动和宗教祭祀的中心场所。城市是文明演变的推进器，集中了知识、技术、经济与文化发展。</td>
+                </tr>
+                <tr>
+                    <td>《周礼·考工记》</td>
+                    <td>记载了周代关于都城规划思想的文献。其中“匠人营国”的描述规定了王城的规模、城门数量、道路网络、功能分区（如“左祖右社，面朝后市”）等，体现了严格的礼制和等级思想。</td>
+                </tr>
+                <tr>
+                    <td>干栏式建筑</td>
+                    <td>由巢居发展而来的一种建筑形式，常见于中国南方及西南地区。其特点是建筑分上下两层，上层铺木板作居住用，下层架空，以适应潮湿多雨的环境，并可用于圈养牲畜。</td>
+                </tr>
+                <tr>
+                    <td>四合院 (Siheyuan)</td>
+                    <td>中国北方明清民居的代表类型之一，是一种庭院式住宅。其布局讲求对称，主次分明，院落有序，体现了严格的等级观念和长幼有序的礼仪制度。</td>
+                </tr>
+                <tr>
+                    <td>福建土楼</td>
+                    <td>中国南方福建客家民居的典范，是一种大型的夯土高层建筑。土楼的建造是为了适应聚族而居的生活方式和防御需求，具有节约、坚固、防御性强等特点。</td>
+                </tr>
+                <tr>
+                    <td>等级制度</td>
+                    <td>在古代社会中，基于身份、地位、官阶等划分社会成员等级的制度。这一制度在建筑和城市规划中表现为对不同等级的人所居住的房屋规格、装饰以及城市布局中的位置等做出严格的法律规定。</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div class="footer">
+        第10课《古代的村落、集镇和城市》复习指南 | 教学辅助网页
+    </div>
+</div>
+
+<script>
+    // 切换显示函数
+    function toggleDisplay(id) {
+        var element = document.getElementById(id);
+        if (element.style.display === "block") {
+            element.style.display = "none";
+        } else {
+            element.style.display = "block";
+        }
+    }
+
+    // 保存笔记到 LocalStorage
+    function saveNote(key, value) {
+        localStorage.setItem(key, value);
+        var statusId = 'status-' + key;
+        var statusEl = document.getElementById(statusId);
+        statusEl.style.display = 'block';
+        statusEl.innerText = '已自动保存';
+        setTimeout(function() {
+            statusEl.style.display = 'none';
+        }, 2000);
+    }
+
+    // 页面加载时恢复笔记
+    window.onload = function() {
+        var noteAreas = document.querySelectorAll('.note-textarea');
+        noteAreas.forEach(function(textarea) {
+            var key = textarea.getAttribute('oninput').match(/'([^']+)'/)[1];
+            var savedNote = localStorage.getItem(key);
+            if (savedNote) {
+                textarea.value = savedNote;
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

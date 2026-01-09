@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第9课 20世纪以来人类的经济与生活 - 深度教学设计</title>
+    <style>
+        /* --- 1. 全局变量与重置 --- */
+        :root {
+            /* 配色方案：稳重的学术蓝搭配活泼的辅助色 */
+            --primary-color: #2c3e50;      /* 深蓝：导航与框架 */
+            --secondary-color: #3498db;    /* 亮蓝：强调文字 */
+            --accent-color: #e67e22;       /* 橙色：史料与重点 */
+            --success-color: #27ae60;      /* 绿色：答案与结论 */
+            --bg-light: #f4f6f9;           /* 浅灰：背景 */
+            --text-main: #2c3e50;
+            --text-light: #7f8c8d;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: "Microsoft YaHei", "Segoe UI", sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* 防止整个页面滚动，内容区域独立滚动 */
+        }
+
+        /* --- 2. 顶部导航栏 (Tabs) --- */
+        header {
+            background-color: #fff;
+            height: 60px;
+            border-bottom: 2px solid #e1e4e8;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            justify-content: space-between;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .course-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 5px;
+            height: 100%;
+        }
+
+        .nav-item {
+            padding: 0 20px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-light);
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-item:hover { background-color: #f8f9fa; color: var(--secondary-color); }
+        .nav-item.active { 
+            color: var(--primary-color); 
+            border-bottom-color: var(--primary-color); 
+            background-color: #ecf0f1;
+        }
+
+        /* --- 3. 主体布局容器 --- */
+        .main-container {
+            display: flex;
+            flex: 1; /* 占据剩余高度 */
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* --- 4. 左侧大事年表 (两级时间轴) --- */
+        .timeline-sidebar {
+            width: 260px;
+            background-color: var(--primary-color);
+            color: #ecf0f1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #1a252f;
+        }
+
+        .timeline-header {
+            padding: 15px;
+            background: rgba(0,0,0,0.2);
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* 一级时间轴 */
+        .era-block {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .era-title {
+            padding: 12px 15px;
+            background-color: #34495e;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+        .era-title:hover { background-color: #3d566e; }
+        .era-title::after { content: '▼'; font-size: 0.8em; }
+        .era-title.collapsed::after { content: '▶'; }
+
+        /* 二级时间轴事件 */
+        .event-list {
+            list-style: none;
+            display: block;
+            background-color: #2c3e50;
+        }
+        .event-list.hidden { display: none; }
+
+        .event-item {
+            padding: 10px 10px 10px 30px;
+            font-size: 0.9em;
+            color: #bdc3c7;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        .event-item:hover {
+            color: #fff;
+            background-color: rgba(255,255,255,0.05);
+        }
+        .event-item.active {
+            border-left-color: var(--accent-color);
+            background-color: rgba(230, 126, 34, 0.1);
+            color: #fff;
+        }
+
+        /* --- 5. 中间内容显示区 --- */
+        .content-area {
+            flex: 1;
+            padding: 30px 40px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            background-color: #fff;
+            max-width: 900px; /* 限制最大宽度以提升阅读体验 */
+            margin: 0 auto;
+        }
+
+        /* 课本原文样式 */
+        .textbook-segment {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #2c3e50;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            background-color: #fff;
+            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            border-radius: 0 4px 4px 0;
+            position: relative;
+        }
+        .textbook-segment:hover { border-left-color: var(--secondary-color); }
+
+        /* 教学材料容器 */
+        .material-container {
+            margin-left: 20px;
+            margin-bottom: 30px;
+            border-left: 2px dashed #bdc3c7;
+            padding-left: 20px;
+        }
+
+        /* 按钮通用样式 */
+        .btn-toggle {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: transform 0.1s, box-shadow 0.2s;
+            text-align: left;
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+        }
+        .btn-toggle:active { transform: scale(0.99); }
+        .btn-toggle::after { content: '+'; position: absolute; right: 10px; font-weight: bold; }
+        .btn-toggle.open::after { content: '-'; }
+
+        /* 不同类型的按钮颜色 */
+        .btn-question { background-color: #e8f6f3; color: #16a085; border: 1px solid #a2d9ce; }
+        .btn-source { background-color: #fef5e7; color: #d35400; border: 1px solid #fad7a0; margin-left: 10px; width: 95%;}
+        .btn-answer { background-color: #e9f7ef; color: #27ae60; border: 1px solid #a9dfbf; margin-left: 20px; width: 90%;}
+
+        /* 折叠内容区域 */
+        .collapse-content {
+            display: none;
+            padding: 15px;
+            margin-top: 5px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .collapse-content.show { display: block; animation: fadeIn 0.3s; }
+
+        /* 内容特定样式 */
+        .source-text {
+            font-family: "KaiTi", serif; /* 史料用楷体 */
+            background-color: #fdf2e9;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #fae5d3;
+            color: #5d4037;
+        }
+        .answer-text {
+            background-color: #eafaf1;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #d5f5e3;
+            color: #145a32;
+        }
+
+        /* 表格样式 */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .data-table th { background-color: #f2f2f2; }
+
+        /* --- 6. 右侧思维导图工具栏 --- */
+        .map-sidebar {
+            width: 60px;
+            background-color: #fff;
+            border-left: 1px solid #e1e4e8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            gap: 15px;
+            z-index: 90;
+        }
+
+        .map-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+            position: relative;
+        }
+        
+        .map-btn:hover { transform: scale(1.1); }
+        .map-btn-unit { background-color: var(--secondary-color); }
+        .map-btn-course { background-color: var(--accent-color); }
+        .map-btn-detail { background-color: var(--success-color); }
+
+        /* Tooltip */
+        .map-btn::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            right: 50px;
+            background: rgba(0,0,0,0.8);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+        .map-btn:hover::before { opacity: 1; }
+
+        /* 思维导图弹窗层 */
+        .mindmap-overlay {
+            position: absolute;
+            top: 0; right: 60px; bottom: 0;
+            width: 0;
+            background: rgba(255,255,255,0.98);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+            transition: width 0.3s ease;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            z-index: 95;
+            border-left: 1px solid #ddd;
+        }
+        .mindmap-overlay.open { width: 650px; }
+
+        .mindmap-header {
+            padding: 15px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .mindmap-canvas {
+            flex: 1;
+            padding: 20px;
+            overflow: auto;
+            position: relative;
+        }
+
+        /* 动画关键帧 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 填空题样式 */
+        .cloze {
+            display: inline-block;
+            min-width: 80px;
+            border-bottom: 1px solid #333;
+            cursor: pointer;
+            text-align: center;
+            color: transparent;
+            user-select: none;
+            padding: 0 5px;
+            background-color: #eee;
+            transition: all 0.3s;
+        }
+        .cloze.revealed {
+            color: var(--accent-color);
+            background-color: transparent;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<!-- 顶部导航栏 -->
+    <header>
+        <div class="course-title">
+            <span>📖</span> 第9课 20世纪以来人类的经济与生活
+        </div>
+        <nav class="nav-tabs">
+            <div class="nav-item" onclick="scrollToSection('section-review')">知识回顾</div>
+            <div class="nav-item" onclick="scrollToSection('section-perception')">整体感知</div>
+            <div class="nav-item active" onclick="scrollToSection('section-framework')">框架解读</div>
+            <div class="nav-item" onclick="scrollToSection('section-output')">知识输出</div>
+            <div class="nav-item" onclick="scrollToSection('section-literacy')">核心素养</div>
+            <div class="nav-item" onclick="scrollToSection('section-summary')">课堂小结</div>
+        </nav>
+    </header>
+
+    <!-- 主体布局容器 -->
+    <div class="main-container">
+        
+        <!-- 左侧大事年表 (两级时间轴) -->
+        <aside class="timeline-sidebar">
+            <div class="timeline-header">大事年表 (20世纪以来)</div>
+
+            <!-- 第一阶段：一战前后 -->
+            <div class="era-block">
+                <div class="era-title" onclick="toggleEra(this)">
+                    <span>20世纪初 - 1918</span>
+                </div>
+                <ul class="event-list">
+                    <li class="event-item" onclick="jumpTo('s1')">20世纪初：垄断资本主义</li>
+                    <li class="event-item" onclick="jumpTo('s1')">1914：一战爆发</li>
+                    <li class="event-item" onclick="jumpTo('s3')">1917：十月革命</li>
+                </ul>
+            </div>
+
+            <!-- 第二阶段：两次大战之间 -->
+            <div class="era-block">
+                <div class="era-title" onclick="toggleEra(this)">
+                    <span>1919 - 1945</span>
+                </div>
+                <ul class="event-list">
+                    <li class="event-item" onclick="jumpTo('s4')">1921：新经济政策</li>
+                    <li class="event-item" onclick="jumpTo('s4')">1922：苏联成立</li>
+                    <li class="event-item" onclick="jumpTo('s5')">1928起：斯大林模式</li>
+                    <li class="event-item" onclick="jumpTo('s7')">1929：经济大危机</li>
+                    <li class="event-item" onclick="jumpTo('s8')">1933：罗斯福新政</li>
+                    <li class="event-item" onclick="jumpTo('s9')">1939：二战爆发</li>
+                </ul>
+            </div>
+
+            <!-- 第三阶段：战后调整与改革 -->
+            <div class="era-block">
+                <div class="era-title" onclick="toggleEra(this)">
+                    <span>1945 - 1990s</span>
+                </div>
+                <ul class="event-list">
+                    <li class="event-item" onclick="jumpTo('s10')">1945后：国家宏观调控</li>
+                    <li class="event-item" onclick="jumpTo('s-imf')">1945：IMF/世行成立</li>
+                    <li class="event-item" onclick="jumpTo('s-gatt')">1947：关贸总协定</li>
+                    <li class="event-item" onclick="jumpTo('s13')">1960s：发展中国家起步</li>
+                    <li class="event-item" onclick="jumpTo('s12')">1978：中国改革开放</li>
+                    <li class="event-item" onclick="jumpTo('s11')">1991：苏联解体</li>
+                </ul>
+            </div>
+
+            <!-- 第四阶段：全球化深入 -->
+            <div class="era-block">
+                <div class="era-title" onclick="toggleEra(this)">
+                    <span>1990s - 至今</span>
+                </div>
+                <ul class="event-list">
+                    <li class="event-item" onclick="jumpTo('s14')">1990s：互联网普及</li>
+                    <li class="event-item" onclick="jumpTo('s-wto')">1995：WTO成立</li>
+                    <li class="event-item" onclick="jumpTo('s10')">1997：亚洲金融危机</li>
+                    <li class="event-item" onclick="jumpTo('s-china-wto')">2001：中国入世</li>
+                    <li class="event-item" onclick="jumpTo('s10')">2008：全球金融危机</li>
+                    <li class="event-item" onclick="jumpTo('s14')">2013："一带一路"倡议</li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- 中间内容显示区开始 -->
+        <main class="content-area" id="mainContent">
+<!-- ================= 模块一：知识回顾 ================= -->
+            <div id="section-review">
+                <h2 style="border-bottom: 3px solid var(--secondary-color); padding-bottom: 10px; margin-bottom: 20px; color: var(--primary-color);">
+                    模块一：知识回顾
+                </h2>
+                
+                <div class="textbook-segment">
+                    <span style="font-weight:bold; color:var(--text-light);">[教师导入]</span> 
+                    商业发展的历史就是人类联系日益密切的历史。回顾18世纪中叶至20世纪初，人类经历了两次工业革命，世界市场最终形成。
+                </div>
+
+                <div class="material-container">
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 问题：结合材料，梳理世界市场形成的三个阶段。
+                    </button>
+                    <div class="collapse-content">
+                        <button class="btn-toggle btn-source" onclick="toggleCollapse(this)">
+                            📜 史料：世界市场的三个阶段
+                        </button>
+                        <div class="collapse-content">
+                            <div class="source-text">
+                                <strong>材料一：</strong>世界市场的形成、发展分为古代世界市场、近代世界市场、现代市场。古代世界市场是一个地理概念，是世界商品交换的场所……近代世界市场是指工业革命形成的世界范围内工业产品的交换场所……第二次世界大战期间，美国为了在战后扩大世界市场份额，试图从金融、投资、贸易三方面重建世界经济新秩序，现代市场形成。<br>
+                                ——王海英：《对现代世界市场发展趋势的探讨》
+                            </div>
+                        </div>
+
+                        <button class="btn-toggle btn-answer" onclick="toggleCollapse(this)">
+                            💡 答案与解析
+                        </button>
+                        <div class="collapse-content">
+                            <div class="answer-text">
+                                <strong>解析：</strong><br>
+                                1. <strong>古代世界市场：</strong>地理概念，交换场所（如地中海沿岸）。<br>
+                                2. <strong>近代世界市场：</strong>工业革命推动，工业产品交换场所，新航路开辟和殖民扩张奠定基础。<br>
+                                3. <strong>现代世界市场：</strong>二战后，通过制度化、体系化（如关贸总协定、布雷顿森林体系）形成。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= 模块二：整体感知 ================= -->
+            <div id="section-perception" style="margin-top: 50px;">
+                <h2 style="border-bottom: 3px solid var(--secondary-color); padding-bottom: 10px; margin-bottom: 20px; color: var(--primary-color);">
+                    模块二：整体感知
+                </h2>
+
+                <!-- 课本导言 -->
+                <div class="textbook-segment">
+                    20世纪60年代，商业贸易领域就已经开始使用计算机处理商务文件。90年代以后，随着互联网的普及，电子商务规模不断扩大，个人、企业和政府都可以通过网络进行采购。电子商务极大便利了人们的生活，成为促进经济发展的重要力量。
+                </div>
+
+                <div class="material-container">
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 问题：互联网金融如何降低交易成本并改变生活？
+                    </button>
+                    <div class="collapse-content">
+                        <button class="btn-toggle btn-source" onclick="toggleCollapse(this)">
+                            📜 史料：互联网金融的特征
+                        </button>
+                        <div class="collapse-content">
+                            <div class="source-text">
+                                <strong>材料十：</strong>互联网金融不仅弱化了专业要求，也简化了交易和分工，结果是降低了金融交易成本……互联网金融能够降低信息不对称程度……通过互联网平台完成的交易节约了交易双方的信息成本、搜寻成本和合约成本。<br>
+                                ——孙国茂：《互联网金融：本质、现状与趋势》
+                            </div>
+                        </div>
+
+                        <button class="btn-toggle btn-answer" onclick="toggleCollapse(this)">
+                            💡 答案与解析
+                        </button>
+                        <div class="collapse-content">
+                            <div class="answer-text">
+                                <strong>分析：</strong><br>
+                                1. <strong>去中介化：</strong>简化交易环节，降低中介成本。<br>
+                                2. <strong>信息有效性：</strong>大数据降低信息不对称，节约搜寻和合约成本。<br>
+                                3. <strong>生活影响：</strong>打破时空限制（如网上采购、电子支付），便利生活，但也带来安全风险。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 学习聚焦 -->
+                <div class="textbook-segment" style="border-left-color: var(--accent-color); background-color: #fffaf0;">
+                    <strong>【学习聚焦】</strong><br>
+                    20世纪以来，世界经济在曲折中发展。政府宏观调控与市场调节相结合，成为实现经济快速增长的主要手段之一。
+                </div>
+                
+                <div class="material-container">
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 问题：为何“政府调控与市场调节相结合”成为普遍趋势？
+                    </button>
+                    <div class="collapse-content">
+                        <div class="answer-text">
+                            <strong>核心逻辑：</strong><br>
+                            1. <strong>市场失灵：</strong>1929年大萧条证明，单纯的自由放任无法解决资本主义的基本矛盾，需要政府干预（如罗斯福新政）。<br>
+                            2. <strong>政府失灵：</strong>苏联模式后期的僵化证明，单纯的指令性计划效率低下，需要引入市场机制。<br>
+                            3. <strong>结论：</strong>二战后，无论是资本主义国家还是社会主义国家，都在寻求二者的有机结合（混合经济、社会主义市场经济）。
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- ================= 模块三：框架解读 ================= -->
+            <div id="section-framework" style="margin-top: 50px;">
+                <h2 style="border-bottom: 3px solid var(--secondary-color); padding-bottom: 10px; margin-bottom: 20px; color: var(--primary-color);">
+                    模块三：框架解读
+                </h2>
+
+                <h3 style="color: var(--primary-color); margin: 30px 0 15px 0;">一、世界经济的发展</h3>
+
+                <!-- 1. 一战背景 -->
+                <div class="textbook-segment" id="s1">
+                    20世纪初，垄断资本主义继续发展。资本主义国家间政治经济发展的不平衡与重新瓜分世界的斗争，最终引发了第一次世界大战。
+                </div>
+
+                <div class="material-container">
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 问题：从经济角度分析，为什么说一战是“资本主义与世界市场的矛盾”引发的？
+                    </button>
+                    <div class="collapse-content">
+                        <button class="btn-toggle btn-source" onclick="toggleCollapse(this)">
+                            📜 史料：世界市场与民族国家的矛盾
+                        </button>
+                        <div class="collapse-content">
+                            <div class="source-text">
+                                <strong>学术观点：</strong>在资本主义市场经济发展过程中，生产领域是以民族国家为主体的，而当时世界市场的运行则主要在贸易领域。资本主义民族国家对世界市场的分割日益加剧，以致最终“导演”出第一次世界大战……<br>
+                                ——叶江：《全球化市场与当代国际政治走势》
+                            </div>
+                        </div>
+                        <button class="btn-toggle btn-answer" onclick="toggleCollapse(this)">
+                            💡 答案与解析
+                        </button>
+                        <div class="collapse-content">
+                            <div class="answer-text">
+                                <strong>解析：</strong><br>
+                                1. <strong>根本矛盾：</strong>生产社会化、国际化（需要统一的世界市场）与生产资料私有制、民族国家疆界（分割市场）之间的矛盾。<br>
+                                2. <strong>直接动因：</strong>垄断资本主义阶段，列强为了争夺商品市场、原料产地和投资场所（瓜分世界），导致政治经济发展不平衡加剧（如德国崛起挑战英国霸权），最终通过战争解决争端。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. 十月革命 -->
+                <div class="textbook-segment" id="s3">
+                    第一次世界大战后期，俄国爆发十月革命，建立世界上第一个社会主义国家。
+                </div>
+
+                <!-- 3. 新经济政策 -->
+                <div class="textbook-segment" id="s4">
+                    1922年苏联成立，并继续实施新经济政策，使社会经济得到恢复。
+                </div>
+
+                <div class="material-container">
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 问题：新经济政策“新”在哪里？它与中国改革开放有何异同？
+                    </button>
+                    <div class="collapse-content">
+                        <button class="btn-toggle btn-source" onclick="toggleCollapse(this)">
+                            📜 史料：新经济政策的内容
+                        </button>
+                        <div class="collapse-content">
+                            <div class="source-text">
+                                <strong>材料一：</strong>1921年3月……通过了《关于以实物税代替余粮收集制的决议》……农民按国家规定缴纳粮食税，税后的余粮归个人所有，并可自由到市场交换物品。工业方面，恢复私人小企业……转变为典型的国家资本主义企业……在商业方面，废除国家配给制和国家贸易垄断制，实行自由贸易制和商品交换。<br>
+                                ——武寅主编：《简明世界历史读本》
+                            </div>
+                        </div>
+                        <button class="btn-toggle btn-answer" onclick="toggleCollapse(this)">
+                            💡 答案与解析
+                        </button>
+                        <div class="collapse-content">
+                            <div class="answer-text">
+                                <strong>1. “新”的含义：</strong><br>
+                                利用市场和商品货币关系来发展生产，在公有制为主体的前提下允许多种所有制并存。<br>
+                                <strong>2. 与中国改革开放的比较：</strong><br>
+                                - <strong>同：</strong>都承认市场调节作用；都允许多种所有制；都促进了经济恢复和发展。<br>
+                                - <strong>异：</strong>新经济政策后来被斯大林模式取代，中断了探索；中国改革开放建立了社会主义市场经济体制，并持续至今。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. 斯大林模式 -->
+                <div class="textbook-segment" id="s5">
+                    此后，斯大林逐渐建立起高度集中的计划经济体制，集中力量发展重工业。
+                </div>
+
+                <div class="material-container">
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 问题：依据材料，概括“苏联模式”的特点及其双重影响。
+                    </button>
+                    <div class="collapse-content">
+                        <button class="btn-toggle btn-source" onclick="toggleCollapse(this)">
+                            📜 史料：苏联计划管理体制
+                        </button>
+                        <div class="collapse-content">
+                            <div class="source-text">
+                                <strong>材料一：</strong>具体说，苏联的计划管理体制主要包括……国家通过各经济部“垂直”管理全国企业……计划权限高度集中在中央计划机构手中……实行高度集中的价格管理体制……<br>
+                                一方面，这种计划体制对于动员人力物力、财力，加快国家工业化，具有重要作用和意义。另一方面……忽视商品货币关系，忽视市场作用。<br>
+                                ——高德步、王珏著：《世界经济史》
+                            </div>
+                        </div>
+                        <button class="btn-toggle btn-answer" onclick="toggleCollapse(this)">
+                            💡 答案与解析
+                        </button>
+                        <div class="collapse-content">
+                            <div class="answer-text">
+                                <strong>特点：</strong>高度集中；指令性计划；排斥市场和价值规律；单一公有制；优先发展重工业。<br>
+                                <strong>积极：</strong>集中力量办大事，迅速实现工业化，为二战胜利奠定物质基础。<br>
+                                <strong>消极：</strong>忽视轻工业和农业（民生）；企业缺乏活力；长期僵化导致经济停滞。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. 苏联成就 -->
+                <div class="textbook-segment" id="s6">
+                    这使得苏联工业总产值于1937年跃居欧洲第一，世界第二。
+                </div>
+
+                <div class="material-container">
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 问题：数据反映了苏联工业化怎样的速度？
+                    </button>
+                    <div class="collapse-content">
+                        <button class="btn-toggle btn-source" onclick="toggleCollapse(this)">
+                            📊 数据：1910-1990年部分国家经济数据表
+                        </button>
+                        <div class="collapse-content">
+                            <div class="source-text">
+                                <table class="data-table">
+                                    <tr><th>年份</th><th>项目</th><th>俄国(苏联)</th><th>德国</th><th>美国</th><th>英国</th></tr>
+                                    <tr><td rowspan="2">1910</td><td>原油</td><td>11.3</td><td>0.1</td><td>27.9</td><td>-</td></tr>
+                                    <tr><td>钢产量</td><td>3.3</td><td>13.1</td><td>26.5</td><td>6.5</td></tr>
+                                    <tr><td rowspan="2">1937</td><td>原油</td><td>28.5</td><td>0.5</td><td>172.9</td><td>0.4</td></tr>
+                                    <tr><td>钢产量</td><td><strong>17.7</strong></td><td>19.8</td><td>51.4</td><td>13.2</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        <button class="btn-toggle btn-answer" onclick="toggleCollapse(this)">
+                            💡 答案与解析
+                        </button>
+                        <div class="collapse-content">
+                            <div class="answer-text">
+                                <strong>分析：</strong><br>
+                                1937年苏联钢产量达到17.7百万吨，相比1910年增长了5倍多，超过了老牌工业强国英国（13.2），逼近德国（19.8）。这证明了计划经济体制在特定时期（工业化初期）动员资源的强大能力。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!-- 6. 经济大危机 -->
+                <div class="textbook-segment" id="s7">
+                    第一次世界大战后，资本主义经济虽然有所发展，但是资本主义制度的基本矛盾最终导致了1929-1933年资本主义世界空前严重的经济危机，在资本主义国家，银行倒闭，企业破产，市场萧条，生产锐减，失业人数激增，人民生活水平大幅度下降，社会矛盾尖锐。
+                </div>
+
+                <div class="material-container">
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 问题：为什么这场危机如此严重？其根本原因是什么？
+                    </button>
+                    <div class="collapse-content">
+                        <button class="btn-toggle btn-source" onclick="toggleCollapse(this)">
+                            📜 史料：危机的根源
+                        </button>
+                        <div class="collapse-content">
+                            <div class="source-text">
+                                <strong>教师用书分析：</strong>1929-1933年的经济危机是美国乃至整个资本主义发展史上影响最大的一次经济危机。危机产生的<strong>根本原因</strong>是资本主义基本矛盾，即社会化大生产同资本主义私有制之间的矛盾。第二次工业革命的兴起加速了生产和资本的集中……导致社会生产的无限扩张同劳动人民的有效需求相对缩小之间的矛盾……
+                            </div>
+                        </div>
+                        <button class="btn-toggle btn-answer" onclick="toggleCollapse(this)">
+                            💡 答案与解析
+                        </button>
+                        <div class="collapse-content">
+                            <div class="answer-text">
+                                <strong>逻辑链条：</strong><br>
+                                工业革命 -> 生产力极大发展 -> 生产社会化程度提高<br>
+                                ↓<br>
+                                生产资料私有制 -> 财富集中在少数人手中 -> 贫富差距扩大<br>
+                                ↓<br>
+                                <strong>矛盾爆发：</strong>生产无限扩张 VS 消费能力不足（有效需求不足） -> 生产过剩 -> 经济危机
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. 罗斯福新政 -->
+                <div class="textbook-segment" id="s8">
+                    美国通过罗斯福新政扭转危机。
+                </div>
+
+                <div class="material-container">
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 问题：罗斯福新政的措施如何体现了凯恩斯主义？
+                    </button>
+                    <div class="collapse-content">
+                        <button class="btn-toggle btn-source" onclick="toggleCollapse(this)">
+                            📜 史料：新政与凯恩斯理论
+                        </button>
+                        <div class="collapse-content">
+                            <div class="source-text">
+                                <strong>材料二：</strong>凯恩斯……认为大萧条基本原因不是供过于求，而是需求不足。因此，他主张政府要起积极的作用，通过增加货币供应来刺激经济……建议政府通过公共投资和建设公共工程来提供就业机会……罗斯福采取一系列措施和他的理论不谋而合……罗斯福新政标志着混合经济时代的开端。<br>
+                                ——高德步、王珏著：《世界经济史》
+                            </div>
+                        </div>
+                        <button class="btn-toggle btn-answer" onclick="toggleCollapse(this)">
+                            💡 答案与解析
+                        </button>
+                        <div class="collapse-content">
+                            <div class="answer-text">
+                                <strong>措施与理论对应：</strong><br>
+                                1. <strong>举办公共工程</strong>（如田纳西工程）：体现“创造就业，增加有效需求”。<br>
+                                2. <strong>建立社会保障：</strong>体现“政府干预分配，保障低收入者消费能力”。<br>
+                                3. <strong>整顿金融：</strong>体现“政府监管市场”。<br>
+                                <strong>实质：</strong>开创了国家干预经济（国家垄断资本主义）的新模式。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. 法西斯道路 -->
+                <div class="textbook-segment" id="s9">
+                    德国、意大利、日本走上法西斯道路，发动了第二次世界大战。
+                </div>
+
+                <div class="material-container">
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 问题：同样面对危机，为何德日走上了法西斯道路？
+                    </button>
+                    <div class="collapse-content">
+                        <div class="answer-text">
+                            <strong>对比分析：</strong><br>
+                            - <strong>美国：</strong>民主传统较强，经济实力雄厚，有改革空间 -> 罗斯福新政（内部调整）。<br>
+                            - <strong>德日：</strong>封建残余严重，民主基础薄弱，国内市场狭小，军国主义传统浓厚 -> 法西斯专政（对外扩张，转嫁危机）。
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin: 30px 0 15px 0;">二、第二次世界大战后世界经济的发展</h3>
+
+                <!-- 9. 学习聚焦与思考点 -->
+                <div class="textbook-segment" style="background-color: #f4ecf7; border-left-color: #9b59b6;">
+                    <strong>【学习聚焦】</strong><br>
+                    20世纪以来，世界经济在曲折中发展。政府宏观调控与市场调节相结合，成为实现经济快速增长的主要手段之一。<br><br>
+                    <strong>【思考点】</strong><br>
+                    第二次世界大战后，世界经济的发展有何特点？
+                </div>
+
+                <div class="material-container">
+                    <button class="btn-toggle btn-answer" onclick="toggleCollapse(this)">
+                        💡 点击查看【思考点】答案
+                    </button>
+                    <div class="collapse-content">
+                        <div class="answer-text">
+                            <strong>特点归纳：</strong><br>
+                            1. <strong>调控手段：</strong>国家宏观调控与市场调节相结合。<br>
+                            2. <strong>科技动力：</strong>现代科技进步（第三次科技革命）推动产业升级。<br>
+                            3. <strong>全球化：</strong>经济全球化深入发展，各国联系紧密。<br>
+                            4. <strong>新问题：</strong>贫富分化加剧，经济危机时有发生。<br>
+                            5. <strong>格局演变：</strong>中国等新兴市场国家崛起，多极化趋势增强。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. 战后调控 -->
+                <div class="textbook-segment" id="s10">
+                    第二次世界大战后，各主要资本主义国家通过经济计划、财政政策、货币政策、收入政策以及福利政策等，政府宏观调控与市场调节结合起来，实现了经济的快速增长。
+                </div>
+
+                <div class="textbook-segment">
+                    现代科技进步促进了新兴产业的发展与传统产业的升级，极大提高了工业、农业、能源、交通、通信等部门的生产效率。
+                </div>
+<!-- 11. 新矛盾与金融危机 -->
+                <div class="textbook-segment">
+                    但是，这些变化并没有解决生产社会化和生产资料资本主义私人占有之间的矛盾。随着全球化的发展，世界范围内贫富分化加剧，经济危机时有发生，并且波及范围更大。1997年的亚洲金融危机、2008年的国际金融危机对世界经济的发展产生了严重影响。
+                </div>
+
+                <div class="material-container">
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 问题：如何理解1997年亚洲金融危机的成因与教训？
+                    </button>
+                    <div class="collapse-content">
+                        <button class="btn-toggle btn-source" onclick="toggleCollapse(this)">
+                            📜 史料：历史纵横与背景分析
+                        </button>
+                        <div class="collapse-content">
+                            <div class="source-text">
+                                <strong>【历史纵横】</strong>1997年，一些国际投机者通过各种渠道对东南亚金融市场进行疯狂投机……造成泰国、印度尼西亚、韩国等国货币严重贬值，亚洲股市大幅下跌……<br>
+                                <strong>背景补充：</strong>20世纪80年代……东南亚各国推行扩张性的财政政策……过多的银行贷款流向房地产和股市，经济过分金融化和虚拟化现象严重。
+                            </div>
+                        </div>
+                        <button class="btn-toggle btn-answer" onclick="toggleCollapse(this)">
+                            💡 答案与解析
+                        </button>
+                        <div class="collapse-content">
+                            <div class="answer-text">
+                                <strong>成因：</strong><br>
+                                1. <strong>内因：</strong>经济结构单一，过度依赖外资；金融监管体系不完善；房地产和股市泡沫严重。<br>
+                                2. <strong>外因：</strong>国际游资（如索罗斯）的投机攻击。<br>
+                                <strong>教训：</strong>发展中国家在融入全球化时，必须维护国家经济安全，完善金融监管，防范系统性风险。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12. 苏联解体 -->
+                <div class="textbook-segment" id="s11">
+                    苏联与东欧社会主义国家在20世纪五六十年代经济发展进程中，指令性计划和官僚化管理效率低下、运转不灵等问题越来越突出，随后的改革也陷入困境。1989年，东欧发生剧变；1991年，苏联解体。社会主义经济面临挑战。
+                </div>
+
+                <!-- 13. 中国改革开放 -->
+                <div class="textbook-segment" id="s12">
+                    中华人民共和国成立后，中国人民进行了社会主义革命和建设的曲折探索，奠定了中国现代化的工业基础。1978年中共十一届三中全会召开，实现了伟大的历史转折。此后，中国通过改革开放建立社会主义市场经济体制，成功开辟出中国特色社会主义道路，经济飞速发展。
+                </div>
+
+                <div class="material-container">
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 问题：什么是“社会主义市场经济体制”？其核心特征是什么？
+                    </button>
+                    <div class="collapse-content">
+                        <button class="btn-toggle btn-source" onclick="toggleCollapse(this)">
+                            📜 史料：十四届三中全会决议
+                        </button>
+                        <div class="collapse-content">
+                            <div class="source-text">
+                                <strong>史料阅读：</strong>建立社会主义市场经济体制，就是要使市场在国家宏观调控下对资源配置起基础性作用。为实现这个目标，必须坚持以公有制为主体、多种经济成分共同发展的方针……转变政府管理经济的职能，建立以间接手段为主的完善的宏观调控体系……<br>
+                                ——《中共中央关于建立社会主义市场经济体制若干问题的决定》（1993年）
+                            </div>
+                        </div>
+                        <button class="btn-toggle btn-answer" onclick="toggleCollapse(this)">
+                            💡 答案与解析
+                        </button>
+                        <div class="collapse-content">
+                            <div class="answer-text">
+                                <strong>核心特征：</strong><br>
+                                1. <strong>制度结合：</strong>同社会主义基本制度结合在一起。<br>
+                                2. <strong>调节机制：</strong>市场起基础性（后改为决定性）作用 + 国家宏观调控。<br>
+                                3. <strong>所有制：</strong>公有制为主体、多种经济成分共同发展。<br>
+                                <strong>意义：</strong>解放和发展了生产力，使中国经济实现了持续高速增长。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 14. 中国成就 -->
+                <div class="textbook-segment">
+                    2010年，中国经济总量超越日本，中国成为仅次于美国的世界第二大经济体。
+                </div>
+
+                <div class="material-container">
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 问题：数据反映了中国改革开放以来怎样的变化？
+                    </button>
+                    <div class="collapse-content">
+                        <button class="btn-toggle btn-source" onclick="toggleCollapse(this)">
+                            📊 数据：1978-2018年中国经济数据表
+                        </button>
+                        <div class="collapse-content">
+                            <div class="source-text">
+                                <table class="data-table">
+                                    <tr><th>年份</th><th>GDP(亿元)</th><th>进出口总额(亿元)</th><th>人均GDP(元)</th></tr>
+                                    <tr><td>1978</td><td>3,678.7</td><td>355.0</td><td>385</td></tr>
+                                    <tr><td>1998</td><td>85,195.5</td><td>26,849.7</td><td>6,860</td></tr>
+                                    <tr><td>2008</td><td>319,244.6</td><td>179,921.5</td><td>24,100</td></tr>
+                                    <tr><td>2018</td><td>919,281.1</td><td>305,050.0</td><td>66,006</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        <button class="btn-toggle btn-answer" onclick="toggleCollapse(this)">
+                            💡 答案与解析
+                        </button>
+                        <div class="collapse-content">
+                            <div class="answer-text">
+                                <strong>分析：</strong><br>
+                                1978年至2018年，中国GDP增长了约250倍，人均GDP增长了约170倍，进出口总额大幅增加。这充分说明了改革开放和社会主义市场经济体制的正确性，中国已深度融入世界经济并成为重要引擎。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!-- 15. 发展中国家的挑战 -->
+                <div class="textbook-segment" id="s13">
+                    第二次世界大战后，原先的殖民地与半殖民地国家纷纷独立。这些国家将经济独立作为首要目标，并通过发展国有经济与制定经济计划加速自身的工业化进程。20世纪60年代至70年代前期，一些国家的经济实现了高速发展。但此后由于自身经济结构存在问题，加上西方发达国家贸易保护主义抬头，发展中国家经济发展道路仍然充满挑战。
+                </div>
+
+                <div class="material-container">
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 问题：如何看待“东亚模式”的成功与局限？
+                    </button>
+                    <div class="collapse-content">
+                        <button class="btn-toggle btn-source" onclick="toggleCollapse(this)">
+                            📜 史料：东亚模式的特点
+                        </button>
+                        <div class="collapse-content">
+                            <div class="source-text">
+                                <strong>材料三：</strong>“东亚模式”的特点是……政府与市场进行有机协调，形成政府适当干预下的市场经济体制……亚洲“四小龙”中的韩国、中国台湾地区、新加坡走的就是这样的发展道路。它们通过强有力的经济干预、引进外资、出口导向……跻身于新兴工业化国家和地区的行列。<br>
+                                ——萧国亮、隋福民编著：《世界经济史》
+                            </div>
+                        </div>
+                        <button class="btn-toggle btn-answer" onclick="toggleCollapse(this)">
+                            💡 答案与解析
+                        </button>
+                        <div class="collapse-content">
+                            <div class="answer-text">
+                                <strong>成功原因：</strong><br>
+                                突破新古典经济学局限，将政府强有力的宏观调控（制定战略、干预经济）与市场机制有机结合；利用后发优势引进外资和技术；推行出口导向型战略。<br>
+                                <strong>面临挑战：</strong><br>
+                                内部经济结构存在问题（如过度依赖外部市场）；外部面临西方贸易保护主义压力。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 16. 全球化与新挑战 -->
+                <div class="textbook-segment" id="s14">
+                    21世纪以来，经济全球化深入发展，各国相互联系依存日益加深。同时，世界经济的不稳定性、不确定性突出，增长动能不足，贫富分化日益严重。
+                </div>
+
+                <div class="material-container">
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 问题：经济全球化对发展中国家来说，究竟是机遇还是陷阱？
+                    </button>
+                    <div class="collapse-content">
+                        <button class="btn-toggle btn-source" onclick="toggleCollapse(this)">
+                            📜 史料：全球化的正负效应
+                        </button>
+                        <div class="collapse-content">
+                            <div class="source-text">
+                                <strong>材料六（机遇）：</strong>提供了更多吸引外资的条件和机会……带动了自由经济区的发展……促进了产业结构调整……<br>
+                                <strong>材料七（挑战）：</strong>民族经济面临压力……依附性增大……金融风险和稳定金融秩序的任务被忽略……环境污染转移……贫富差距拉大……国家主权受到冲击。<br>
+                                ——郭连成：《经济全球化正负效应论》
+                            </div>
+                        </div>
+                        <button class="btn-toggle btn-answer" onclick="toggleCollapse(this)">
+                            💡 答案与解析
+                        </button>
+                        <div class="collapse-content">
+                            <div class="answer-text">
+                                <strong>辩证看待（双刃剑）：</strong><br>
+                                1. <strong>机遇：</strong>有利于吸收外资、技术和管理经验，承接产业转移，加速工业化。<br>
+                                2. <strong>挑战：</strong>经济安全和国家主权面临威胁（如金融风险、生态危机），贫富差距可能扩大。<br>
+                                <strong>对策：</strong>顺应全球化趋势，同时保持清醒头脑，制定适合本国的防御与发展策略（如中国的一带一路）。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 17. 中国方案：一带一路 -->
+                <div class="textbook-segment">
+                    面对挑战，中国坚持对外开放的基本国策，倡议推动“一带一路”国际合作，努力实现政策沟通、设施联通、贸易畅通、资金融通、民心相通，打造国际合作新平台，增添共同发展新动力。
+                </div>
+
+                <div class="material-container">
+                    <div style="background-color: #fcf3cf; padding: 10px; border-left: 4px solid #f1c40f; margin-bottom: 10px; font-size: 0.9em;">
+                        <strong>[图片说明]</strong> 2018年11月5日，首届中国国际进口博览会在上海国家会展中心拉开帷幕。这是世界上第一个以进口为主题的国家级展会。
+                    </div>
+                    
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 问题：为什么中国要倡议“一带一路”？
+                    </button>
+                    <div class="collapse-content">
+                        <button class="btn-toggle btn-answer" onclick="toggleCollapse(this)">
+                            💡 答案与解析
+                        </button>
+                        <div class="collapse-content">
+                            <div class="answer-text">
+                                <strong>背景：</strong>全球化面临逆流（贸易保护主义），世界经济增长乏力。<br>
+                                <strong>目的：</strong><br>
+                                1. 打造政治互信、经济融合、文化包容的利益共同体、命运共同体和责任共同体。<br>
+                                2. 为世界经济增长提供新动力，推动构建公正合理的国际经济新秩序。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- 框架解读 结束 -->
+<!-- ================= 模块四：知识输出 ================= -->
+            <div id="section-output" style="margin-top: 50px;">
+                <h2 style="border-bottom: 3px solid var(--secondary-color); padding-bottom: 10px; margin-bottom: 20px; color: var(--primary-color);">
+                    模块四：知识输出
+                </h2>
+
+                <h3 style="color: var(--text-main); margin-bottom: 15px;">🔍 问题探究：法律与经济生活</h3>
+                <div class="material-container">
+                    <div class="source-text">
+                        <strong>材料：</strong>《中华人民共和国电子商务法》<br>
+                        第十一条 电子商务经营者应当依法履行纳税义务……<br>
+                        第十三条 ……应当符合保障人身、财产安全的要求和环境保护要求……<br>
+                        第十四条 ……应当依法出具纸质发票或者电子发票……
+                    </div>
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 任务：结合所学，分析该法产生的背景及其对生活的影响。
+                    </button>
+                    <div class="collapse-content">
+                        <button class="btn-toggle btn-answer" onclick="toggleCollapse(this)">
+                            💡 答案与解析
+                        </button>
+                        <div class="collapse-content">
+                            <div class="answer-text">
+                                <strong>背景：</strong>电子商务发展迅速，规模扩大；出现了假冒伪劣、偷税漏税、侵权等乱象，缺乏法律规范。<br>
+                                <strong>影响：</strong><br>
+                                1. 保护权益：保障消费者的人身财产安全和知情权。<br>
+                                2. 规范市场：明确纳税义务，打击违法经营，促进电商健康发展。<br>
+                                3. 便利生活：电子发票等规定让消费更加便捷、环保。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: var(--text-main); margin-bottom: 15px;">🌱 学习拓展：科技与生活</h3>
+                <div class="material-container">
+                    <div class="answer-text" style="background-color: #fdfefe; border-color: #ddd;">
+                        <strong>思考：</strong>选择一种现代便利经济活动的方式（如电子支付），谈谈它对生活的影响。<br>
+                        <em>（提示：可从便捷性、安全性、生活方式改变等角度作答）</em>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= 模块五：核心素养 ================= -->
+            <div id="section-literacy" style="margin-top: 50px;">
+                <h2 style="border-bottom: 3px solid var(--secondary-color); padding-bottom: 10px; margin-bottom: 20px; color: var(--primary-color);">
+                    模块五：核心素养
+                </h2>
+
+                <h3 style="color: var(--text-main); margin-bottom: 15px;">📊 历史解释：20世纪以来经济发展模式的演变</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th width="15%">时期</th>
+                            <th width="25%">资本主义国家</th>
+                            <th width="25%">社会主义国家</th>
+                            <th width="20%">发展中国家</th>
+                            <th width="15%">核心趋势</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>一战前</strong></td>
+                            <td>自由资本主义 -> 垄断资本主义</td>
+                            <td>（无）</td>
+                            <td>殖民地经济</td>
+                            <td>市场分割</td>
+                        </tr>
+                        <tr>
+                            <td><strong>两次大战间</strong></td>
+                            <td>大危机 -> 罗斯福新政（干预）/ 法西斯</td>
+                            <td>新经济政策 -> 斯大林模式（计划）</td>
+                            <td>民族工业起步</td>
+                            <td>体制探索</td>
+                        </tr>
+                        <tr>
+                            <td><strong>二战后</strong></td>
+                            <td>国家宏观调控 -> 黄金时期 -> 滞胀调整</td>
+                            <td>改革受挫 -> 苏联解体 / 中国特色社会主义</td>
+                            <td>工业化曲折发展</td>
+                            <td>体系化</td>
+                        </tr>
+                        <tr>
+                            <td><strong>21世纪</strong></td>
+                            <td>寻求新增长点，面临新危机</td>
+                            <td>中国崛起，市场经济完善</td>
+                            <td>融入全球化</td>
+                            <td><strong>全球化</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ================= 模块六：课堂小结与随堂练习 ================= -->
+            <div id="section-summary" style="margin-top: 50px; padding-bottom: 100px;">
+                <h2 style="border-bottom: 3px solid var(--secondary-color); padding-bottom: 10px; margin-bottom: 20px; color: var(--primary-color);">
+                    模块六：课堂小结与随堂练习
+                </h2>
+
+                <div style="background-color: #eaf2f8; padding: 20px; border-radius: 8px; border-left: 5px solid #3498db; margin-bottom: 30px;">
+                    <h3 style="color: #2c3e50; margin-bottom: 10px;">📝 本课小结</h3>
+                    <p style="line-height: 1.8;">
+                        本节课我们探讨了20世纪以来世界经济的发展历程。这一过程展现了三种不同经济模式的探索与演变：
+                    </p>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li><strong>资本主义的调整：</strong>从自由放任到<strong>国家宏观调控</strong>，再到应对新危机的不断调整。</li>
+                        <li><strong>社会主义的探索：</strong>从苏联的<strong>计划经济</strong>到改革受挫，再到中国<strong>社会主义市场经济</strong>的成功实践。</li>
+                        <li><strong>全球化的深入：</strong>各国经济联系日益紧密，机遇与挑战并存，中国方案（“一带一路”）展现大国担当。</li>
+                    </ul>
+                </div>
+
+                <!-- 随堂练习 -->
+                <h3 style="color: var(--primary-color);">✍️ 随堂练习</h3>
+                
+                <div class="material-container">
+                    <div style="font-weight: bold; margin-bottom: 10px;">一、关键词填空（点击横线查看答案）</div>
+                    <div style="line-height: 2.2; font-size: 1.05em;">
+                        1. 1929年经济危机后，美国实施 <span class="cloze" onclick="this.classList.toggle('revealed')">罗斯福新政</span>，开创了国家干预经济的新模式。<br>
+                        2. 苏联在斯大林时期建立了高度集中的 <span class="cloze" onclick="this.classList.toggle('revealed')">计划经济体制</span>，优先发展重工业。<br>
+                        3. 1992年中共十四大确立了建立 <span class="cloze" onclick="this.classList.toggle('revealed')">社会主义市场经济体制</span> 的改革目标。<br>
+                        4. 二战后，世界经济发展的特点是政府 <span class="cloze" onclick="this.classList.toggle('revealed')">宏观调控</span> 与市场调节相结合。
+                    </div>
+                </div>
+
+                <div class="material-container">
+                    <div style="font-weight: bold; margin-bottom: 10px;">二、材料分析题</div>
+                    <div class="source-text">
+                        <strong>材料：</strong>20世纪70年代，西方国家出现了生产停滞和通货膨胀并存的“滞胀”现象。各国纷纷调整政策，减少国家对经济的干预，出售部分国有企业，削减社会福利开支。<br>
+                        ——摘编自《世界经济史》
+                    </div>
+                    <button class="btn-toggle btn-question" onclick="toggleCollapse(this)">
+                        ❓ 问题：根据材料，指出20世纪70年代西方国家经济政策发生了什么变化？为什么？
+                    </button>
+                    <div class="collapse-content">
+                        <button class="btn-toggle btn-answer" onclick="toggleCollapse(this)">
+                            💡 答案与解析
+                        </button>
+                        <div class="collapse-content">
+                            <div class="answer-text">
+                                <strong>变化：</strong>由加强国家干预（凯恩斯主义）转向减少国家干预（新自由主义）。<br>
+                                <strong>原因：</strong><br>
+                                1. 凯恩斯主义失灵，无法解决“滞胀”问题。<br>
+                                2. 财政负担过重（福利支出大）。<br>
+                                3. 新自由主义理论（如货币学派、供给学派）的兴起。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main> <!-- 主内容区结束 -->
+
+        <!-- 右侧思维导图工具栏 -->
+        <aside class="map-sidebar">
+            <button class="map-btn map-btn-unit" onclick="openMindMap('unit')" data-tooltip="大单元导图">🌐</button>
+            <button class="map-btn map-btn-course" onclick="openMindMap('course')" data-tooltip="本课结构图">📊</button>
+            <button class="map-btn map-btn-detail" onclick="openMindMap('detail')" data-tooltip="世界市场形成">🧠</button>
+        </aside>
+
+        <!-- 思维导图弹窗层 -->
+        <div id="mindmapOverlay" class="mindmap-overlay">
+            <div class="mindmap-header">
+                <span id="mapTitle">思维导图</span>
+                <button onclick="closeMindMap()" style="border:none; background:none; font-size:1.5rem; cursor:pointer;">&times;</button>
+            </div>
+            <div id="mapCanvas" class="mindmap-canvas">
+                <!-- SVG 内容将通过 JS 渲染 -->
+            </div>
+        </div>
+
+    </div> <!-- 容器结束 -->
+<!-- ================= 脚本逻辑 ================= -->
+    <script>
+        // --- 1. 基础交互功能 ---
+
+        // 顶部导航滚动
+        function scrollToSection(id) {
+            // 移除所有激活状态
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            // 激活当前点击项
+            event.currentTarget.classList.add('active');
+            
+            const element = document.getElementById(id);
+            if(element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // 左侧时间轴跳转
+        function jumpTo(id) {
+            // 确保对应板块可见（主要针对框架解读）
+            const element = document.getElementById(id);
+            if(element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // 高亮闪烁效果
+                const originalBg = element.style.backgroundColor;
+                element.style.backgroundColor = '#fff3cd'; // 浅黄色高亮
+                element.style.transition = 'background-color 0.5s';
+                
+                setTimeout(() => {
+                    element.style.backgroundColor = originalBg || '#fff';
+                }, 1500);
+            }
+        }
+
+        // 左侧时期折叠
+        function toggleEra(header) {
+            header.classList.toggle('collapsed');
+            const list = header.nextElementSibling;
+            // 切换显示状态
+            if (list.classList.contains('hidden')) {
+                list.classList.remove('hidden');
+            } else {
+                if (list.style.display === 'none') {
+                    list.style.display = 'block';
+                } else {
+                    list.style.display = 'none';
+                }
+            }
+        }
+
+        // 内容卡片折叠
+        function toggleCollapse(btn) {
+            btn.classList.toggle('open');
+            const content = btn.nextElementSibling;
+            content.classList.toggle('show');
+        }
+
+        // --- 2. 思维导图系统 ---
+
+        // 定义思维导图数据
+        const mapData = {
+            // Level 1: 大单元导图
+            'unit': {
+                title: '大单元：20世纪以来经济与生活',
+                svg: `
+                <svg width="100%" height="100%" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 样式定义 -->
+                    <defs>
+                        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="2" dy="2" stdDeviation="2" flood-opacity="0.2"/>
+                        </filter>
+                    </defs>
+                    
+                    <!-- 根节点 -->
+                    <g transform="translate(250, 180)">
+                        <rect x="-60" y="-25" width="120" height="50" rx="10" fill="#2c3e50" filter="url(#shadow)"/>
+                        <text x="0" y="5" text-anchor="middle" fill="white" font-weight="bold" font-size="14">经济与生活</text>
+                    </g>
+
+                    <!-- 分支连线 -->
+                    <path d="M250,155 L250,80" stroke="#bdc3c7" stroke-width="2"/>
+                    <path d="M250,205 L150,300" stroke="#bdc3c7" stroke-width="2"/>
+                    <path d="M250,205 L350,300" stroke="#bdc3c7" stroke-width="2"/>
+
+                    <!-- 节点 1: 世界经济 -->
+                    <g transform="translate(250, 60)">
+                        <rect x="-70" y="-20" width="140" height="40" rx="5" fill="#3498db" filter="url(#shadow)"/>
+                        <text x="0" y="5" text-anchor="middle" fill="white" font-size="12">一、世界经济的发展</text>
+                    </g>
+                    
+                    <!-- 节点 2: 国际贸易 -->
+                    <g transform="translate(150, 320)">
+                        <rect x="-70" y="-20" width="140" height="40" rx="5" fill="#e67e22" filter="url(#shadow)"/>
+                        <text x="0" y="5" text-anchor="middle" fill="white" font-size="12">二、国际贸易与生活</text>
+                    </g>
+
+                    <!-- 节点 3: 国际金融 -->
+                    <g transform="translate(350, 320)">
+                        <rect x="-70" y="-20" width="140" height="40" rx="5" fill="#27ae60" filter="url(#shadow)"/>
+                        <text x="0" y="5" text-anchor="middle" fill="white" font-size="12">三、国际金融与生活</text>
+                    </g>
+
+                    <!-- 逻辑说明 -->
+                    <text x="300" y="380" text-anchor="middle" fill="#7f8c8d" font-size="10">
+                        逻辑主线：生产力发展 → 交换需求（贸易） → 资金流通（金融） → 生活改变
+                    </text>
+                </svg>
+                `
+            },
+
+            // Level 2: 课程结构导图
+            'course': {
+                title: '本课结构：世界经济的发展',
+                svg: `
+                <svg width="100%" height="100%" viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#bdc3c7" />
+                        </marker>
+                    </defs>
+
+                    <!-- 中心轴 -->
+                    <line x1="300" y1="50" x2="300" y2="450" stroke="#eee" stroke-width="4" stroke-dasharray="10,5"/>
+
+                    <!-- 节点 1: 资本主义 -->
+                    <g transform="translate(150, 100)">
+                        <rect x="-80" y="-25" width="160" height="50" rx="8" fill="#f1c40f" stroke="#f39c12" stroke-width="2"/>
+                        <text x="0" y="-5" text-anchor="middle" font-weight="bold" font-size="12" fill="#795548">资本主义的调整</text>
+                        <text x="0" y="15" text-anchor="middle" font-size="10" fill="#795548">危机 → 新政 → 宏观调控</text>
+                    </g>
+
+                    <!-- 节点 2: 社会主义 -->
+                    <g transform="translate(450, 250)">
+                        <rect x="-80" y="-25" width="160" height="50" rx="8" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+                        <text x="0" y="-5" text-anchor="middle" font-weight="bold" font-size="12" fill="white">社会主义的探索</text>
+                        <text x="0" y="15" text-anchor="middle" font-size="10" fill="white">苏俄/联 → 挫折 → 中国特色</text>
+                    </g>
+
+                    <!-- 节点 3: 发展中国家 -->
+                    <g transform="translate(150, 400)">
+                        <rect x="-80" y="-25" width="160" height="50" rx="8" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                        <text x="0" y="-5" text-anchor="middle" font-weight="bold" font-size="12" fill="white">发展中国家</text>
+                        <text x="0" y="15" text-anchor="middle" font-size="10" fill="white">独立 → 工业化 → 挑战</text>
+                    </g>
+
+                    <!-- 核心趋势 -->
+                    <g transform="translate(300, 250)">
+                        <circle r="40" fill="#34495e" stroke="#2c3e50" stroke-width="3"/>
+                        <text x="0" y="-5" text-anchor="middle" fill="white" font-weight="bold" font-size="10">20世纪</text>
+                        <text x="0" y="10" text-anchor="middle" fill="white" font-weight="bold" font-size="10">经济</text>
+                    </g>
+
+                    <!-- 连接线 -->
+                    <line x1="230" y1="125" x2="270" y2="225" stroke="#bdc3c7" stroke-width="2" marker-end="url(#arrow)"/>
+                    <line x1="370" y1="250" x2="330" y2="250" stroke="#bdc3c7" stroke-width="2" marker-end="url(#arrow)"/>
+                    <line x1="230" y1="375" x2="270" y2="275" stroke="#bdc3c7" stroke-width="2" marker-end="url(#arrow)"/>
+
+                </svg>
+                `
+            },
+// Level 3: 细节导图（世界市场形成）
+            'detail': {
+                title: '细节导图：世界市场的形成过程',
+                svg: `
+                <svg width="100%" height="100%" viewBox="0 0 600 700" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <marker id="arrow-down" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                            <path d="M0,0 L0,10 L10,5 z" fill="#95a5a6" />
+                        </marker>
+                    </defs>
+
+                    <!-- 阶段 1 -->
+                    <g transform="translate(100, 50)">
+                        <rect x="0" y="0" width="180" height="60" rx="5" fill="#fff" stroke="#e67e22" stroke-width="2"/>
+                        <text x="90" y="25" text-anchor="middle" font-weight="bold" font-size="12" fill="#d35400">1. 雏形出现</text>
+                        <text x="90" y="45" text-anchor="middle" font-size="10" fill="#666">新航路开辟/商业革命</text>
+                    </g>
+                    
+                    <!-- 证据 1 -->
+                    <g transform="translate(320, 60)">
+                        <text x="0" y="0" font-size="11" fill="#34495e">证据：美洲金银流入，股份公司出现</text>
+                        <line x1="-30" y1="-5" x2="-10" y2="-5" stroke="#ccc"/>
+                    </g>
+
+                    <line x1="190" y1="110" x2="190" y2="140" stroke="#ccc" stroke-width="2" marker-end="url(#arrow-down)"/>
+
+                    <!-- 阶段 2 -->
+                    <g transform="translate(100, 150)">
+                        <rect x="0" y="0" width="180" height="60" rx="5" fill="#fff" stroke="#f39c12" stroke-width="2"/>
+                        <text x="90" y="25" text-anchor="middle" font-weight="bold" font-size="12" fill="#e67e22">2. 进一步拓展</text>
+                        <text x="90" y="45" text-anchor="middle" font-size="10" fill="#666">早期殖民扩张</text>
+                    </g>
+
+                    <!-- 证据 2 -->
+                    <g transform="translate(320, 160)">
+                        <text x="0" y="0" font-size="11" fill="#34495e">证据：三角贸易，殖民掠夺</text>
+                        <line x1="-30" y1="-5" x2="-10" y2="-5" stroke="#ccc"/>
+                    </g>
+
+                    <line x1="190" y1="210" x2="190" y2="240" stroke="#ccc" stroke-width="2" marker-end="url(#arrow-down)"/>
+
+                    <!-- 阶段 3 -->
+                    <g transform="translate(100, 250)">
+                        <rect x="0" y="0" width="180" height="60" rx="5" fill="#fff" stroke="#27ae60" stroke-width="2"/>
+                        <text x="90" y="25" text-anchor="middle" font-weight="bold" font-size="12" fill="#27ae60">3. 初步形成</text>
+                        <text x="90" y="45" text-anchor="middle" font-size="10" fill="#666">第一次工业革命</text>
+                    </g>
+
+                    <!-- 证据 3 -->
+                    <g transform="translate(320, 260)">
+                        <text x="0" y="0" font-size="11" fill="#34495e">证据：蒸汽船/火车，商品输出</text>
+                        <line x1="-30" y1="-5" x2="-10" y2="-5" stroke="#ccc"/>
+                    </g>
+
+                    <line x1="190" y1="310" x2="190" y2="340" stroke="#ccc" stroke-width="2" marker-end="url(#arrow-down)"/>
+
+                    <!-- 阶段 4 -->
+                    <g transform="translate(100, 350)">
+                        <rect x="0" y="0" width="180" height="60" rx="5" fill="#fff" stroke="#2980b9" stroke-width="2"/>
+                        <text x="90" y="25" text-anchor="middle" font-weight="bold" font-size="12" fill="#2980b9">4. 最终形成</text>
+                        <text x="90" y="45" text-anchor="middle" font-size="10" fill="#666">第二次工业革命</text>
+                    </g>
+
+                    <!-- 证据 4 -->
+                    <g transform="translate(320, 360)">
+                        <text x="0" y="0" font-size="11" fill="#34495e">证据：电报/电话，资本输出，瓜分世界</text>
+                        <line x1="-30" y1="-5" x2="-10" y2="-5" stroke="#ccc"/>
+                    </g>
+
+                    <line x1="190" y1="410" x2="190" y2="440" stroke="#ccc" stroke-width="2" marker-end="url(#arrow-down)"/>
+
+                    <!-- 阶段 5 -->
+                    <g transform="translate(100, 450)">
+                        <rect x="0" y="0" width="180" height="60" rx="5" fill="#fff" stroke="#8e44ad" stroke-width="2"/>
+                        <text x="90" y="25" text-anchor="middle" font-weight="bold" font-size="12" fill="#8e44ad">5. 深化与体系化</text>
+                        <text x="90" y="45" text-anchor="middle" font-size="10" fill="#666">二战后/经济全球化</text>
+                    </g>
+
+                    <!-- 证据 5 -->
+                    <g transform="translate(320, 460)">
+                        <text x="0" y="0" font-size="11" fill="#34495e">证据：WTO, IMF, 跨国公司</text>
+                        <line x1="-30" y1="-5" x2="-10" y2="-5" stroke="#ccc"/>
+                    </g>
+                </svg>
+                `
+            }
+        };
+
+        // --- 3. 渲染与开关逻辑 ---
+
+        function openMindMap(type) {
+            const overlay = document.getElementById('mindmapOverlay');
+            const canvas = document.getElementById('mapCanvas');
+            const title = document.getElementById('mapTitle');
+            const data = mapData[type];
+
+            if (data) {
+                // 1. 设置标题
+                title.textContent = data.title;
+                // 2. 注入SVG
+                canvas.innerHTML = data.svg;
+                // 3. 打开面板
+                overlay.classList.add('open');
+            }
+        }
+
+        function closeMindMap() {
+            const overlay = document.getElementById('mindmapOverlay');
+            overlay.classList.remove('open');
+        }
+
+        // 初始化：默认展开第一个时期
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstEra = document.querySelector('.era-title');
+            if (firstEra) {
+                // 默认保持折叠，或者调用 toggleEra(firstEra) 展开
+            }
+        });
+
+    </script>
+</body>
+</html>
