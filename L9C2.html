@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第9课：边防压力与财政危机 - 深度教学多媒体课件</title>
+    <style>
+        :root {
+            --primary-orange: #d35400;
+            --light-orange: #fdf5e6;
+            --primary-blue: #1d3557;
+            --light-blue: #f1f5f9;
+            --primary-green: #2a9d8f;
+            --light-green: #e8f5e9;
+            --primary-red: #8f1d1d;
+            --light-red: #fef5f5;
+            --text-main: #2b2d42;
+            --text-secondary: #64748b;
+            --bg-color: #f8fafc;
+            --border-color: #ebdcd5;
+            --timeline-line: #cbd5e1;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fbf9f6;
+            color: #3e3330;
+            line-height: 1.75;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* --- 顶栏、侧边栏一键收放过渡动画 --- */
+        header, .timeline-sidebar, .mindmap-sidebar, .content-area {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* --- 顶部暗橙导航栏 --- */
+        header {
+            height: 65px;
+            background: linear-gradient(135deg, var(--primary-orange), #a04000);
+            box-shadow: 0 4px 12px rgba(211, 84, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            flex-shrink: 0;
+            border-bottom: 3px solid var(--primary-red);
+            padding-left: 140px; /* 避开左侧悬浮菜单按钮 */
+        }
+
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            gap: 15px;
+        }
+
+        .nav-item {
+            padding: 8px 18px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #ffe5d9;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background-color: rgba(255, 255, 255, 0.25);
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* --- 主体布局 --- */
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* --- 左侧大事年表 --- */
+        .timeline-sidebar {
+            width: 250px;
+            background: white;
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            padding: 20px;
+            flex-shrink: 0;
+        }
+
+        .timeline-title {
+            font-size: 1.15em;
+            color: var(--primary-orange);
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--primary-orange);
+            padding-bottom: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .tl-group {
+            margin-bottom: 20px;
+        }
+
+        .tl-year {
+            font-weight: bold;
+            font-size: 1.05em;
+            color: var(--primary-red);
+            margin-bottom: 5px;
+        }
+
+        .tl-event {
+            position: relative;
+            padding-left: 15px;
+            font-size: 0.88em;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            border-left: 2px solid var(--timeline-line);
+            margin-left: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .tl-event:hover {
+            color: var(--primary-orange);
+            border-left-color: var(--primary-orange);
+            font-weight: bold;
+        }
+
+        .tl-event::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 6px;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border: 2px solid var(--timeline-line);
+            border-radius: 50%;
+        }
+
+        /* --- 中间内容区 --- */
+        .content-area {
+            flex: 1;
+            padding: 30px 40px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            font-size: 1em; /* 用于JS无级缩放字体 */
+        }
+
+        .tab-content {
+            display: none;
+            max-width: 950px;
+            margin: 0 auto;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 课文逐句精讲样式 --- */
+        .sentence-wrapper {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            margin-bottom: 35px;
+            overflow: hidden;
+            border-left: 6px solid var(--primary-orange);
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .textbook-sentence {
+            font-size: 1.25em;
+            line-height: 1.8;
+            padding: 25px;
+            color: var(--text-main);
+            font-weight: 500;
+            background: #fff;
+            position: relative;
+        }
+
+        .textbook-sentence::before {
+            content: "课文原文";
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 0.7em;
+            color: #aaa;
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* --- 教学设计折叠卡片 --- */
+        .teaching-design {
+            padding: 0 25px 25px 25px;
+            background: #fbfbfc;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .design-label {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: white;
+            font-size: 0.8em;
+            padding: 4px 12px;
+            border-radius: 0 0 8px 8px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .fold-card {
+            margin-top: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .fold-btn {
+            width: 100%;
+            text-align: left;
+            padding: 14px 20px;
+            background: var(--light-blue);
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+            font-size: 0.95em;
+        }
+
+        .fold-btn:hover {
+            background: #e1f0ff;
+        }
+
+        .fold-btn::after {
+            content: '展开 ➕';
+            font-size: 0.85em;
+        }
+
+        .fold-btn.active::after {
+            content: '收起 ➖';
+        }
+
+        .fold-content {
+            display: none;
+            padding: 20px 25px;
+            color: #444;
+            line-height: 1.7;
+            border-top: 1px solid var(--light-blue);
+            font-size: 0.95em;
+        }
+
+        .question-box {
+            color: #b22222;
+            font-weight: bold;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--primary-red);
+            padding-left: 10px;
+        }
+
+        .source-box {
+            font-family: "Kaiti", "STKaiti", "楷体", serif;
+            font-size: 1.08em;
+            background: #fffdf5;
+            padding: 18px;
+            border: 1px solid #ebdcd5;
+            border-left: 5px solid var(--primary-orange);
+            margin: 15px 0;
+            border-radius: 4px;
+            line-height: 1.7;
+        }
+
+        .source-box strong {
+            font-family: sans-serif;
+            color: #333;
+        }
+
+        .footnote {
+            font-size: 0.82em;
+            color: #7f8c8d;
+            margin-top: 8px;
+            font-family: sans-serif;
+            background: #f1f5f9;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .answer-box {
+            background: var(--light-green);
+            padding: 18px;
+            border-radius: 6px;
+            color: #1b4332;
+            border: 1px solid #d8f3dc;
+            margin-top: 15px;
+        }
+
+        /* --- 右侧思维导图按钮栏 --- */
+        .mindmap-sidebar {
+            width: 75px;
+            background: #1e1e24;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 30px;
+            gap: 20px;
+            z-index: 90;
+        }
+
+        .mm-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            border: none;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .mm-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+        }
+
+        .btn-unit { background: #5c3d2e; } /* 咖色 - 单元结构 */
+        .btn-course { background: #475569; } /* 钢青色 - 课程体系 */
+        .btn-detail { background: var(--primary-orange); } /* 朱砂橙 - 变法详图 */
+
+        /* --- 弹窗样式 (思维导图) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.75);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: white;
+            width: 85%;
+            height: 85%;
+            border-radius: 12px;
+            position: relative;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 32px;
+            cursor: pointer;
+            color: #aaa;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .mm-container {
+            flex: 1;
+            overflow: auto;
+            background: #fafaf9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* --- 通用表格与测试题样式 --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            font-size: 0.92em;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+        }
+        th {
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        /* 一键折叠与字号无级缩放控制面板 */
+        .menu-trigger {
+            position: fixed;
+            top: 14px;
+            left: 20px;
+            z-index: 200;
+            background-color: var(--primary-orange);
+            color: white;
+            border: 2px solid #fff;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease-in-out;
+        }
+        .menu-trigger:hover {
+            transform: scale(1.05);
+            background-color: #a04000;
+        }
+
+        .font-controls {
+            position: fixed;
+            top: 14px;
+            right: 20px;
+            z-index: 200;
+            display: flex;
+            gap: 8px;
+        }
+        .font-btn {
+            background: white;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.2s ease-in-out;
+        }
+        .font-btn:hover {
+            background-color: var(--light-blue);
+            border-color: var(--primary-orange);
+            transform: scale(1.08);
+            color: var(--primary-orange);
+        }
+
+        /* 菜单收起状态下的动态偏移动画 */
+        body.panels-collapsed header {
+            margin-top: -65px;
+        }
+        body.panels-collapsed .timeline-sidebar {
+            margin-left: -250px;
+        }
+        body.panels-collapsed .mindmap-sidebar {
+            margin-right: -75px;
+        }
+
+        /* ==================== 新增：随堂检测试题卡片机制（完全对标《课题训练7》风格） ==================== */
+        .question-card { 
+            margin-bottom: 35px; 
+            border: 1px solid var(--border-color); 
+            border-radius: 10px; 
+            padding: 24px; 
+            background-color: #fff; 
+            box-shadow: 0 4px 10px rgba(140, 45, 25, 0.01);
+            transition: all 0.3s;
+        }
+        .question-card:hover { box-shadow: 0 6px 18px rgba(140, 45, 25, 0.05); border-color: #d4af37; }
+        
+        .inline-control-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0;
+            background-color: #faf7f5;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #f5dad2;
+        }
+        @media (min-width: 900px) {
+            .inline-control-bar {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        .btn-deduct, .btn-analysis {
+            background-color: #8c2d19;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-deduct:hover { background-color: #a03c27; }
+        .btn-deduct.active { background-color: #27ae60; }
+        
+        .btn-analysis { background-color: #6e5c58; }
+        .btn-analysis:hover { background-color: #534541; }
+        .btn-analysis.active { background-color: #2980b9; }
+
+        .horizontal-options {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 8px;
+            flex-grow: 1;
+            justify-content: center;
+            margin: 5px 0;
+        }
+        .opt-btn {
+            flex: 1 1 20%;
+            min-width: 140px;
+            background-color: #fff;
+            border: 1.5px solid #ebdcd5;
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            color: #534541;
+            line-height: 1.4;
+        }
+        .opt-btn:hover {
+            background-color: #fdf1ed;
+            border-color: #8c2d19;
+            color: #8c2d19;
+        }
+        .opt-btn.correct-select {
+            background-color: #d4edda !important;
+            border-color: #28a745 !important;
+            color: #155724 !important;
+            font-weight: bold;
+        }
+        .opt-btn.incorrect-select {
+            background-color: #f8d7da !important;
+            border-color: #dc3545 !important;
+            color: #721c24 !important;
+        }
+
+        /* 题干文本正向思维高亮解析样式 */
+        .hl-question { border-bottom: 2px solid #e74c3c; color: #e74c3c; font-weight: bold; }
+        .hl-context { border-bottom: 2px dashed #2980b9; color: #2980b9; font-weight: bold; }
+        .hl-evidence { border-bottom: 2px solid #f39c12; color: #d35400; font-weight: bold; }
+
+        /* 交互解题沙盘 */
+        .thinking-sandbox {
+            margin-top: 15px;
+            border: 1px dashed #ebd8d0;
+            background-color: #fdfbf9;
+            border-radius: 6px;
+            padding: 18px;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .chain-title { font-weight: bold; color: #8c2d19; border-left: 4px solid #d4af37; padding-left: 8px; margin-bottom: 12px; font-size: 0.95rem; }
+        .flow-container { display: flex; flex-direction: column; gap: 8px; }
+        .flow-step { display: flex; gap: 12px; background: #fff; border: 1px solid #f5dad2; padding: 10px 14px; border-radius: 4px; }
+        .step-badge { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: bold; }
+        .badge-1 { background-color: #e74c3c; }
+        .badge-2 { background-color: #2980b9; }
+        .badge-3 { background-color: #f39c12; }
+        .badge-4 { background-color: #27ae60; }
+        .flow-arrow { text-align: center; color: #ebd8d0; font-size: 1rem; margin: -2px 0; }
+        .step-content { font-size: 0.9rem; line-height: 1.6; color: #534541; }
+        .step-content strong { color: #322521; }
+
+        /* 考点剖析展示区 */
+        .analysis-box {
+            margin-top: 15px;
+            background-color: #fff;
+            border: 1px solid #ebdcd5;
+            border-radius: 8px;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .analysis-content { padding: 20px; border-left: 4px solid #6e5c58; }
+        .analysis-tag { display: inline-block; padding: 3px 10px; border-radius: 3px; font-size: 0.8rem; margin-right: 10px; color: white; font-weight: bold; }
+        .tag-green { background-color: #2f855a; }
+        .tag-blue { background-color: #2b6cb0; }
+        .tag-red { background-color: #8c2d19; }
+        .analysis-text { margin-top: 12px; color: #534541; font-size: 0.95rem; line-height: 1.8; }
+        .analysis-item { margin-bottom: 12px; border-bottom: 1px dashed #eee; padding-bottom: 10px; }
+        .analysis-item:last-child { border-bottom: none; }
+
+        /* 回答对错动态指示 */
+        .right-indicator { display: none; color: #2f855a; font-weight: bold; margin: 10px 0; font-size: 0.92rem; }
+
+        /* ==================== 模态框高对比度大字体设计（教师多媒体投影专用） ==================== */
+        /* 重写模态框中的文本样式，达到高反差和放大效果 */
+        .modal-content h2, .modal-content h3 {
+            color: #000000 !important;
+            font-size: 1.65em !important;
+            font-weight: 900 !important;
+            text-shadow: 1px 1px 0px #fff;
+            margin-bottom: 15px;
+        }
+        .modal-content p {
+            color: #000000 !important;
+            font-size: 1.15em !important;
+            font-weight: bold !important;
+        }
+        /* 重构SVG内部文本，保证投影大屏的高清晰度 */
+        .map-svg text {
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif !important;
+            font-weight: 900 !important;
+        }
+        .map-svg rect {
+            stroke: #000000 !important;
+            stroke-width: 2.5px !important;
+        }
+        /* 确保高对比度：黑底用白字，白/黄底用黑字 */
+        .text-on-dark {
+            fill: #ffffff !important;
+            font-size: 14px !important;
+        }
+        .text-on-light {
+            fill: #000000 !important;
+            font-size: 13px !important;
+        }
+        .text-title-on-light {
+            fill: #000000 !important;
+            font-size: 14px !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 菜单一键收放控制中枢 -->
+    <button class="menu-trigger" onclick="toggleAllPanels()">☰ 菜单 (已展开)</button>
+
+    <!-- 字号无级缩放控制台 -->
+    <div class="font-controls">
+        <button class="font-btn" onclick="adjustFont(1)" title="放大正文字体">➕A</button>
+        <button class="font-btn" onclick="adjustFont(-1)" title="缩小正文字体">➖A</button>
+    </div>
+
+    <!-- 顶部导航栏 -->
+    <header>
+        <ul class="nav-tabs">
+            <li class="nav-item" onclick="switchTab('review')">制度弊病与危机前瞻</li>
+            <li class="nav-item" onclick="switchTab('perception')">两宋“双冗”危机主线</li>
+            <li class="nav-item active" onclick="switchTab('framework')">逐句课文精讲</li>
+            <li class="nav-item" onclick="switchTab('output')">随堂巩固检测</li>
+            <li class="nav-item" onclick="switchTab('literacy')">学科核心素养</li>
+            <li class="nav-item" onclick="switchTab('summary')">教学总结与反思</li>
+        </ul>
+    </header>
+
+    <!-- 主体容器 -->
+    <div class="main-container">
+        
+        <!-- 左侧大事年表 -->
+        <aside class="timeline-sidebar">
+            <div class="timeline-title">边防与财政危机轴</div>
+            
+            <div class="tl-group">
+                <div class="tl-year">979 (太平兴国四年)</div>
+                <div class="tl-event" onclick="scrollToId('q_liao')">高梁河之战：宋太宗北伐辽朝惨败</div>
+            </div>
+
+            <div class="tl-group">
+                <div class="tl-year">1004 (景德元年)</div>
+                <div class="tl-event" onclick="scrollToId('q_liao')">澶渊之盟：宋辽议和，每年纳“岁币”</div>
+            </div>
+
+            <div class="tl-group">
+                <div class="tl-year">1038 (宝元元年)</div>
+                <div class="tl-event" onclick="scrollToId('q_xia')">李元昊建西夏，宋夏战争爆发</div>
+            </div>
+
+            <div class="tl-group">
+                <div class="tl-year">1044 (庆历四年)</div>
+                <div class="tl-event" onclick="scrollToId('q_xia')">庆历和议：西夏称臣，宋赐“岁赐”</div>
+            </div>
+
+            <div class="tl-group">
+                <div class="tl-year">1050s (宋仁宗朝)</div>
+                <div class="tl-event" onclick="scrollToId('q_three')">军队达120余万，养官和养兵负担沉重</div>
+                <div class="tl-event" onclick="scrollToId('q_three')">“三冗”赤字危机加深，“积贫”显现</div>
+            </div>
+
+            <div class="tl-group">
+                <div class="tl-year">1060s (宋英宗朝)</div>
+                <div class="tl-event" onclick="scrollToId('q_three')">司马光上《论财利疏》，剖析国库危机</div>
+            </div>
+        </aside>
+
+        <!-- 中间内容区 -->
+        <div class="content-area">
+
+            <!-- 1. 制度弊病与危机前瞻 -->
+            <div id="review" class="tab-content">
+                <div class="sentence-wrapper" style="border-left-color: var(--primary-orange);">
+                    <div class="textbook-sentence" style="background: var(--light-orange);">
+                        <h3>🔗 铺垫：集权制度的负面资产与危机传导</h3>
+                        <p>在进入本子目之前，必须使学生意识到宋初“极度防弊”的底层代价：</p>
+                        <ul>
+                            <li><strong>以文驭武的死穴：</strong> 统调分离、频繁换防和将从中御，固然防范了禁军篡政，但导致了将领毫无临战指挥权、士兵缺乏日常训练，“兵无常帅，帅无常兵”，形成军事“积弱”。</li>
+                            <li><strong>分权制衡的累赘：</strong> 设三省六部、二府三司、地方四监司等重合机构，造成了官僚体系膨胀；募兵“养兵”作治安缓冲造成军队冗滥。最终合流为致命财政财政无底洞。</li>
+                        </ul>
+                        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 15px 0;">
+                        <p><strong>🤔 思考：</strong> 面对“大有不可安”的积弱地缘与积贫财政，北宋是如何在内外双重撕裂下走向危机的？</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. 两宋“双冗”危机主线 -->
+            <div id="perception" class="tab-content">
+                <div class="sentence-wrapper" style="border-left-color: var(--primary-blue);">
+                    <div class="textbook-sentence">
+                        <h3>🗺️ 板块设计：边防局势与财政崩溃的内在传导</h3>
+                        <p>理解本子目，必须紧扣“积弱”引起边防压力，“防弊”造成财政危机这两个历史必然性：</p>
+                        
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
+                            <div style="flex: 1; min-width: 210px; background: var(--light-blue); padding: 18px; border-radius: 8px;">
+                                <h4 style="color: var(--primary-blue); margin-top: 0; border-bottom: 1.5px solid #bdd7f5; padding-bottom: 5px;">① 北门大开</h4>
+                                <p style="font-size: 0.88em; margin: 8px 0 0 0;">因丢失<strong>燕云十六州</strong>北伐屡败，通过<strong>“澶渊之盟”</strong>纳岁币，买来北部边防的基本安定。</p>
+                            </div>
+                            
+                            <div style="flex: 1; min-width: 210px; background: var(--light-orange); padding: 18px; border-radius: 8px;">
+                                <h4 style="color: var(--primary-orange); margin-top: 0; border-bottom: 1.5px solid #fcebbd; padding-bottom: 5px;">② 西夏叩关</h4>
+                                <p style="font-size: 0.88em; margin: 8px 0 0 0;">对西夏屡战屡败，被迫达成<strong>“庆历和议”</strong>，通过给西夏“岁赐”维持表面上的宗藩关系。</p>
+                            </div>
+
+                            <div style="flex: 1; min-width: 210px; background: var(--light-green); padding: 18px; border-radius: 8px;">
+                                <h4 style="color: var(--primary-green); margin-top: 0; border-bottom: 1.5px solid #c2f0c2; padding-bottom: 5px;">③ 冗滥兵官</h4>
+                                <p style="font-size: 0.88em; margin: 8px 0 0 0;">募兵流于“防盗”导致<strong>军队过百万、冗兵累累</strong>；机构重合、官僚冗繁，造成了“积贫”财政崩溃。</p>
+                            </div>
+
+                            <div style="flex: 1; min-width: 210px; background: #faebf0; padding: 18px; border-radius: 8px;">
+                                <h4 style="color: var(--primary-red); margin-top: 0; border-bottom: 1.5px solid #f7d2db; padding-bottom: 5px;">④ 学界争鸣</h4>
+                                <p style="font-size: 0.88em; margin: 8px 0 0 0;">历史学者对<strong>“积贫积弱”</strong>有着经典争鸣：它是体制失能的客观事实，还是局部国力的片面评语？</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. 逐句课文精讲 -->
+            <div id="framework" class="tab-content active">
+                
+                <!-- 句段 1：辽朝崛起与澶渊之盟 -->
+                <div class="sentence-wrapper" id="q_liao">
+                    <div class="textbook-sentence">
+                        早在北宋建立之前，契丹族建立的辽朝在北方草原崛起，占领了燕云十六州，对中原形成严重威胁。北宋统一后，两次发起夺回燕云十六州的北伐，均告惨败。后来辽军大举南下，兵临黄河北岸。双方签订协议，维持已有边界，辽宋皇帝以兄弟相称。北宋每年送给辽一笔钱物，称为“岁币”。通过这项协议，北宋获得了北部边防的基本安定。
+                    </div>
+
+                    <div class="teaching-design">
+                        <span class="design-label">辽宋外交大博弈与岁币史料研读</span>
+                        
+                        <div class="fold-card">
+                            <button class="fold-btn" onclick="toggleFold(this)">
+                                <span>🚀 探究一：如何理性客观地评价宋辽“以钱财换和平”（岁币）的历史得失？</span>
+                            </button>
+                            <div class="fold-content">
+                                <div class="question-box">
+                                    问题：结合下方南宋史家李焘的经典论述，探讨每年交付岁币的“澶渊之盟”给北宋政治、财政带来了什么双重后果？
+                                </div>
+                                
+                                <div class="source-box">
+                                    <strong>史料一：【和议岁币支出的经济学考量】</strong><br>
+                                    “（澶渊之盟后）虽每岁赠进（指给辽朝岁币），较于用兵之费，不及百分之一。”<br>
+                                    ——[南宋]李焘《续资治通鉴长编》
+                                    <div class="footnote"><strong>[解析]</strong> 岁币（银10万两、绢20万匹）在总财政中仅属九牛一毛，其成本远低于连年征战消耗的庞大军费开支。</div>
+                                </div>
+
+                                <div class="answer-box">
+                                    <strong>✅ 答案解析与辩证评价：</strong><br>
+                                    1. <strong>历史局限性（“失”）：</strong> 
+                                    (1) <strong>政治尊严受挫：</strong> 作为名义上的大国，被迫通过大笔财富购买边境稳定，开启了“以钱财换和平”的不良先例。<br>
+                                    (2) <strong>国防松懈：</strong> “岁币换和平”消磨了统治集团的忧患意识，导致军备废弛，国防积弱进一步加深。<br><br>
+                                    2. <strong>历史合理性（“得”）：</strong><br>
+                                    (1) <strong>节省军费开支（如史料一所述）：</strong> 比之于连年征战，岁币支出极为有限，避免了因大规模战争引发财政全面大赤字。<br>
+                                    (2) <strong>促进商贸与文化融合：</strong> 和议后，宋辽边界设立了<strong>“榷场”（官方贸易市场）</strong>，开展大规模茶、丝、盐等经济贸易，加快了北方游牧民族与中原汉族之间的文化和物质交融。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 句段 2：西夏对峙与庆历和议 -->
+                <div class="sentence-wrapper" id="q_xia">
+                    <div class="textbook-sentence">
+                        后来，北宋又与西北党项族新建立的西夏发生战争，也是屡战屡败。双方最终达成和议：西夏向北宋称臣，但实际上保持帝号；北宋每年送给西夏钱物，称为“岁赐”。
+                    </div>
+
+                    <div class="teaching-design">
+                        <span class="design-label">宋夏和议的面子与里子</span>
+                        
+                        <div class="fold-card">
+                            <button class="fold-btn" onclick="toggleFold(this)">
+                                <span>⚖️ 探究二：“岁币”与“岁赐”在政治关系上有何不同？</span>
+                            </button>
+                            <div class="fold-content">
+                                <div class="question-box">
+                                    问题：对比宋辽“澶渊之盟”与宋夏“庆历和议”条款中外交辞令的微妙差异，分析北宋在面对周边民族政权时如何极力维护形式上的“大一统宗藩尊严”？
+                                </div>
+                                
+                                <div class="source-box">
+                                    <strong>史料二：【庆历和议条款】（1044年）</strong><br>
+                                    一、西夏元昊对宋<strong>称臣</strong>，宋册封元昊为夏国主；<br>
+                                    二、宋每年<strong>“赐”</strong>西夏银七万二千两，绢十五万三千匹，茶三万斤；<br>
+                                    三、重开沿边榷场互市。
+                                </div>
+
+                                <div class="answer-box">
+                                    <strong>✅ 政治关系差异深度解析：</strong>
+                                    <ul>
+                                        <li><strong>宋辽和议（兄弟对等关系）：</strong> 宋辽皇帝互称<strong>“兄弟”</strong>。宋给辽的钱物称为<strong>“岁币”</strong>，表明两朝在外交礼仪上平级，并称南、北朝。</li>
+                                        <li><strong>宋夏和议（名义君臣关系）：</strong> 西夏对宋<strong>“称臣”</strong>，宋给西夏的钱物称为<strong>“岁赐”</strong>（即上级对下级的赏赐）。这表明北宋虽在战场上屡战屡败，但通过多给银绢，换回了西夏名义上作为臣子的“面子”，维护了中原皇帝的宗藩统治尊荣，而西夏则拿到了互市与钱财的“实惠（里子）”。</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 句段 3：三冗危机的爆发 -->
+                <div class="sentence-wrapper" id="q_three">
+                    <div class="textbook-sentence">
+                        北宋在边疆战事中频吃败仗，却供养了一支空前庞大的军队。这支军队是通过招募组建的，多而不精，管理混乱，训练废弛，素质低下。军队不断扩编，导致军费直线上升，占到国家财政开支的大半。另外，北宋政府机构设置重叠，官僚子弟入仕过滥，致使官僚队伍也不断膨胀。养兵和养官成为朝廷的沉重负担，财政状况日益恶化。
+                    </div>
+
+                    <div class="teaching-design">
+                        <span class="design-label">“三冗”与“积贫”的制度根源剖析</span>
+                        
+                        <div class="fold-card">
+                            <button class="fold-btn" onclick="toggleFold(this)">
+                                <span>🔍 深度解剖：募兵制与中枢“防弊”如何交织出财政灾难？</span>
+                            </button>
+                            <div class="fold-content">
+                                <div class="question-box">
+                                    问题：阅读下方司马光著名的《论财利疏》，分析为何在天下统一、承平已久的北宋中期，国库财政反而陷入“遑遑救经费而不足”的绝境？
+                                </div>
+                                
+                                <div class="source-box">
+                                    <strong>史料三：【对比：开国多乱财足 vs 承平久远国空】</strong><br>
+                                    “昔太祖初得天下之时，止有一百一十一州耳……又承五代荒乱之余，府库空竭……未尝闻财用不足如今日之汲汲（急迫）也。陛下（宋神宗）承祖宗之业，奄有四百余州，天下统一……百姓阜安，是宜财用美溢百倍于前。奈何竭府库之所蓄，罄率土之所有，当天下无事之时，遑遑专救经费而不足？万一有不可期之灾患，将何以待之乎！”<br>
+                                    ——[北宋]司马光《传家集》卷25《论财利疏》
+                                </div>
+                                <div class="source-box">
+                                    <strong>史料四：【北宋的募兵“养兵”基本政策】</strong><br>
+                                    “不收为兵，则恐为盗。”……“饥岁莫急于防民之盗，而防盗莫先于募民为兵。”<br>
+                                    ——《宋朝事实·兵纪》
+                                    <div class="footnote"><strong>[解析]</strong> 募兵制不仅是军事征集手段，在北宋更演变为一种有意识招募饥民、灾民入军，以消弭地方农民反抗温床的社会治安稳定剂（养兵政策）。</div>
+                                </div>
+
+                                <div class="answer-box">
+                                    <strong>✅ 财政危机（“三冗一贫”）传导路径：</strong>
+                                    <ol>
+                                        <li><strong>冗兵：多而不精，巨额军费（史料四逻辑）。</strong> 
+                                            为了防范内乱，只要遇到荒年爆发灾荒，朝廷就通过募兵广泛吸纳饥民。这导致北宋军队恶性扩编，从建国初20余万暴增到120余万。“天下六分之物，五分养兵”。
+                                        </li>
+                                        <li><strong>冗官：机构重叠，官俸高昂。</strong> 
+                                            为了分化事权、相互掣肘，中枢增设参知政事、三司等大量副职；地方增设通判、路级平行四司。机构臃肿、冗员泛滥，且宋代官俸禄极厚。
+                                        </li>
+                                        <li><strong>冗费：养兵、养官和岁币，诱发“积贫”（史料三阶段）。</strong> 
+                                            庞大的军队、庞大的官僚队伍以及岁币支出合流，导致国家财政支出在和平年代直线上升，将高度发达的商业税、农业税财富完全透支（国帑虚竭），导致面临危机灾害时国家缺乏起码的自救实力。
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 句段 4：学界关于“积贫积弱”的论争 -->
+                <div class="sentence-wrapper" id="q_debate">
+                    <div class="textbook-sentence">
+                        [补充学术研究] 对于北宋中期的国势和“积贫积弱”的断语，在现代历史学界和史论上存在着相当大的争议和讨论视角。
+                    </div>
+
+                    <div class="teaching-design">
+                        <span class="design-label">历史学高阶辨证思维</span>
+                        
+                        <div class="fold-card">
+                            <button class="fold-btn" onclick="toggleFold(this)">
+                                <span>⚖️ 探究三：学界争鸣——如何唯物辩证地看待宋代“积贫积弱”说？</span>
+                            </button>
+                            <div class="fold-content">
+                                <div class="question-box">
+                                    问题：阅读钱穆《国史大纲》与李裕民教授关于宋代国力的截然不同的研判，思考我们在历史评估中应该如何处理这种看似对立学术观点？
+                                </div>
+                                
+                                <div class="source-box">
+                                    <strong>史料五：【传统定性：体制失衡积弱不振】</strong><br>
+                                    “宋代对外之积弱不振，内部之积贫难疗。为宋代财用之囊者，第一是冗兵，第二则是冗吏。以中国以往历史而论，只要国家走上统一的路，以广土众民供养一个中央政府，除非穷奢极欲，绝不至于患贫。其患在制度畸形。”<br>
+                                    ——钱穆《国史大纲》
+                                </div>
+                                <div class="source-box">
+                                    <strong>史料六：【修正定义：综合国力极其强盛】</strong><br>
+                                    “从现在的角度说，衡量国家强弱的标准，更主要的是看它的综合国力。倘若按综合实力分析，宋应当说是超过了辽、金的。如果从综合国力角度考虑，宋王朝不仅不能说弱，还应该说是相当强的。总之，以‘积贫积弱’概括宋代的特点是不准确的。”<br>
+                                    ——李裕民《宋代“积贫积弱”说商》
+                                </div>
+
+                                <div class="answer-box">
+                                    <strong>✅ 唯物史观与史论辨析引导：</strong><br>
+                                    这两种论断都具有其特定的学术证据支撑，反映了<strong>历史评价多维视角</strong>的魅力：<br>
+                                    <ul>
+                                        <li><strong>钱穆侧重于“政治与军事防御体制”的维度：</strong> 
+                                            着眼于政府行政绩效、国防军事御侮水平以及财政制度危机。在这个领域，宋代冗兵冗官确实导致军事被动、边疆战败、赤字累累。因此，“积贫积弱”是客观的<strong>政治和体制诊断</strong>。
+                                        </li>
+                                        <li><strong>李裕民侧重于“经济、科技与思想文化”的综合维度：</strong> 
+                                            着眼于小农经济的成熟、工商业高度繁荣、市井平民文化的繁盛、理学勃兴以及三大发明的突破。在此意义上，两宋的国民财富、国民素质、科技文化综合国力居于当时世界的绝对领先地位。
+                                        </li>
+                                        <li><strong>综合反思：</strong> 历史研究中，“弱”与“强”、“贫”与“富”并不对立。北宋面临的是<strong>“强大的文明体量”与“极其脆弱的、自我锁死的国防军事动员体制”之间的巨大矛盾</strong>。这种体制性防弊设计，最终制约了其国家综合实力转化为实际边防战斗力，这是极深的历史悲剧和教训。
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- 逐句课文精讲结束 -->
+
+            <!-- 4. 随堂巩固检测 -->
+            <div id="output" class="tab-content">
+                <!-- ==================== 随堂检测试题卡片机制（完全对标《课题训练7》风格，不省略任何原典与解析） ==================== -->
+                <div class="section-title" style="margin-top:0px;">随堂检测：交互式一轮复习自测卷</div>
+
+                <!-- Q1 -->
+                <div class="question-card" id="q_test1" data-part="part1">
+                    <div class="q-header">1. (2026·湖南省级阶测) 
+                        <span class="raw-text">北宋与辽朝订立“澶渊之盟”后，每年需向辽朝输送大笔钱物（岁币）。南宋学者李焘在《续资治通鉴长编》中对此曾指出：“虽每岁赠进，较于用兵之费，不及百分之一”。李焘的这一论断意在说明 ( )</span>
+                        <span class="highlight-text" style="display: none;">
+                            <span class="hl-context">北宋与辽朝订立“澶渊之盟”后</span>，每年需向辽朝输送大笔钱物（岁币）。南宋学者李焘在《续资治通鉴长编》中对此曾指出：<span class="hl-evidence">“虽每岁赠进，较于用兵之费，不及百分之一”</span>。<span class="hl-question">李焘的这一论断意在说明</span> ( )
+                        </span>
+                    </div>
+
+                    <!-- 核心三合一并列控制栏 -->
+                    <div class="inline-control-bar">
+                        <button class="btn-deduct" onclick="toggleDeduction('q_test1')">🧭 正向逻辑链</button>
+                        
+                        <div class="horizontal-options">
+                            <button class="opt-btn" onclick="checkOption(this, 'A', false, 'q_test1')">A. 岁币彻底解决了北宋财政危机</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'B', false, 'q_test1')">B. 澶渊之盟消除了宋辽边防压力</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'C', true, 'q_test1')">C. 和议在一定程度上具有合理性</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'D', false, 'q_test1')">D. 宋廷实行屈辱退让的卖国政策</button>
+                        </div>
+
+                        <button class="btn-analysis" onclick="toggleAnalysis('q_test1')">🔍 考点透视与解析</button>
+                    </div>
+
+                    <div class="right-indicator"></div>
+
+                    <!-- Q1 正向逻辑推导沙盘 -->
+                    <div class="thinking-sandbox">
+                        <div class="chain-title">🧭 “正向逻辑推导”思维沙盘：</div>
+                        <div class="flow-container">
+                            <div class="flow-step">
+                                <div class="step-badge badge-1">1</div>
+                                <div class="step-content"><strong>定位求答项：</strong>“意在说明”，要求探求南宋学者李焘对“岁币”制度的真实评价立场。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-2">2</div>
+                                <div class="step-content"><strong>提取文本线索：</strong>“虽每岁赠进，较于用兵之费，不及百分之一”——将岁币支出与连年征战消耗的庞大军费开支进行数字化经济对比，得出岁币支出微乎其微。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-3">3</div>
+                                <div class="step-content"><strong>逻辑推导：</strong>李焘通过经济账的对比，旨在为“以钱财换和平”的政策进行客观辩护，论证该政策在特定边防积弱背景下，客观上降低了国家财政消耗，维护了北部边防的基本安定。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-4">4</div>
+                                <div class="step-content"><strong>锁定正确答案：</strong>对应 <strong>C项</strong>。</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q1 考点剖析展示区 -->
+                    <div class="analysis-box">
+                        <div class="analysis-content">
+                            <div class="analysis-item">
+                                <span class="analysis-tag tag-green">正确答案</span><strong>C</strong>
+                            </div>
+                            <div class="analysis-text">
+                                <strong>解析：</strong>历史评价应秉持多维视角。根据李焘的言论，“虽每岁赠进，较于用兵之费，不及百分之一”，说明宋廷每年付出的岁币相比于长期战争消耗的巨额军费，其成本是极低的。通过这项协议，北宋获得了北部边防的基本安定，有利于经济的恢复与发展。这说明北宋这种“以钱财换和平”的做法在当时积弱的客观现实下，具有一定的合理性和可行性，故选C项。<br><br>
+                                <strong>错项分析：</strong><br>
+                                • A项：表述绝对化。“岁币”在一定程度上加重了财政负担，而非“彻底解决”财政危机，排除；<br>
+                                • B项：“消除”一词表述过于夸大，澶渊之盟只是“基本安定”了北部边防，潜在的威胁依然存在，且西北仍有西夏的军事威胁，排除；<br>
+                                • D项：该项属于传统片面、偏于激进民族观点的文学化评判，未理解李焘从理性经济和务实边防视角出发得出的科学史论，排除。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-card" id="q_test2" data-part="part1">
+                    <div class="q-header">2. (2026·广东高州质检) 
+                        <span class="raw-text">北宋统治者将募兵发展为一种有意识的“养兵”政策，希望通过普遍招募、广泛募兵来稳定社会治安。当时有官员宣称：“饥岁莫急于防民之盗，而防盗莫先于募民为兵”。这种政策旨在 ( )</span>
+                        <span class="highlight-text" style="display: none;">
+                            <span class="hl-context">北宋统治者</span>将募兵发展为一种有意识的“养兵”政策，希望通过普遍招募、广泛募兵来稳定社会治安。当时有官员宣称：<span class="hl-evidence">“饥岁莫急于防民之盗，而防盗莫先于募民为兵”</span>。<span class="hl-question">这种政策旨在</span> ( )
+                        </span>
+                    </div>
+
+                    <!-- 核心三合一并列控制栏 -->
+                    <div class="inline-control-bar">
+                        <button class="btn-deduct" onclick="toggleDeduction('q_test2')">🧭 正向逻辑链</button>
+                        
+                        <div class="horizontal-options">
+                            <button class="opt-btn" onclick="checkOption(this, 'A', false, 'q_test2')">A. 提升宋军整体军事素养和战斗力</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'B', true, 'q_test2')">B. 消除动乱因素以维系国内统治</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'C', false, 'q_test2')">C. 彻底解决民户贫富分化的矛盾</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'D', false, 'q_test2')">D. 改变中枢文臣统兵的制度设计</button>
+                        </div>
+
+                        <button class="btn-analysis" onclick="toggleAnalysis('q_test2')">🔍 考点透视与解析</button>
+                    </div>
+
+                    <div class="right-indicator"></div>
+
+                    <!-- Q2 正向逻辑推导沙盘 -->
+                    <div class="thinking-sandbox">
+                        <div class="chain-title">🧭 “正向逻辑推导”思维沙盘：</div>
+                        <div class="flow-container">
+                            <div class="flow-step">
+                                <div class="step-badge badge-1">1</div>
+                                <div class="step-content"><strong>定位求答项：</strong>“政策旨在”，考查北宋特殊“养兵”和“募兵”政策的根本政治目的。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-2">2</div>
+                                <div class="step-content"><strong>提取文本线索：</strong>“饥岁莫急于防民之盗，而防盗莫先于募民为兵”——在饥荒之年，首要任务是防范饥民造反，而最好的办法是把这些可能造反的青壮年招募进军队。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-3">3</div>
+                                <div class="step-content"><strong>逻辑推导：</strong>北宋招募流民和灾民入军，本质上是一种防范内乱的社会保障与治安管理机制。通过消除内部的造反温床，维系赵宋皇权的长治久安。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-4">4</div>
+                                <div class="step-content"><strong>锁定正确答案：</strong>对应 <strong>B项</strong>。</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q2 考点剖析展示区 -->
+                    <div class="analysis-box">
+                        <div class="analysis-content">
+                            <div class="analysis-item">
+                                <span class="analysis-tag tag-green">正确答案</span><strong>B</strong>
+                            </div>
+                            <div class="analysis-text">
+                                <strong>解析：</strong>根据课文内容，北宋统治者将募兵发展为一种有意识的“养兵”政策，主张“不收为兵，则恐为盗”。特别在“饥岁”（荒年），招募流民当兵能稳定社会秩序，消除由于饥荒引发的农民暴动和动乱隐患，以此维系国内统治，故选B项。<br><br>
+                                <strong>错项分析：</strong><br>
+                                • A项：养兵政策大量招收老弱病残和流民，导致军队“多而不精，训练废弛，素质低下”，这不仅无法提升，反而严重削弱了宋军整体的军事素养和战斗力（“积弱”的表现），排除；<br>
+                                • C项：募兵只能缓和荒年的生存危机，无法“彻底解决”由于土地兼并等封建制结构带来的贫富分化，排除；<br>
+                                • D项：北宋“以文驭武”、“崇文抑武”的政治体制并未因此改变，募兵主要是兵员征集制度而非中枢军事领导制度设计，排除。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-card" id="q_test3" data-part="part1">
+                    <div class="q-header">3. (2026·四川达州质检) 
+                        <span class="raw-text">北宋中期，司马光曾指出：太祖建国初仅有百余州，经历战乱，但府库充实、财用有余；而如今神宗承平已久，疆域扩大到四百余州，天下统一，却面临着“竭府库之所蓄，罄率土之所有……遑遑专救经费而不足”的困局。导致这一局面的最核心原因是 ( )</span>
+                        <span class="highlight-text" style="display: none;">
+                            <span class="hl-context">北宋中期</span>，司马光曾指出：太祖建国初仅有百余州，经历战乱，但府库充实、财用有余；而如今神宗承平已久，疆域扩大到四百余州，天下统一，却面临着<span class="hl-evidence">“竭府库之所蓄，罄率土之所有……遑遑专救经费而不足”的困局</span>。<span class="hl-question">导致这一局面的最核心原因是</span> ( )
+                        </span>
+                    </div>
+
+                    <!-- 核心三合一并列控制栏 -->
+                    <div class="inline-control-bar">
+                        <button class="btn-deduct" onclick="toggleDeduction('q_test3')">🧭 正向逻辑链</button>
+                        
+                        <div class="horizontal-options">
+                            <button class="opt-btn" onclick="checkOption(this, 'A', false, 'q_test3')">A. 辽与西夏对中原的持续掠夺和蚕食</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'B', true, 'q_test3')">B. 官僚体制急剧膨胀和庞大军队的供养</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'C', false, 'q_test3')">C. 地方官员截留大批税款对抗朝廷</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'D', false, 'q_test3')">D. 王安石变法中各项理财举措的失败</button>
+                        </div>
+
+                        <button class="btn-analysis" onclick="toggleAnalysis('q_test3')">🔍 考点透视与解析</button>
+                    </div>
+
+                    <div class="right-indicator"></div>
+
+                    <!-- Q3 正向逻辑推导沙盘 -->
+                    <div class="thinking-sandbox">
+                        <div class="chain-title">🧭 “正向逻辑推导”思维沙盘：</div>
+                        <div class="flow-container">
+                            <div class="flow-step">
+                                <div class="step-badge badge-1">1</div>
+                                <div class="step-content"><strong>定位求答项：</strong>“最核心原因”，要求从结构、制度层面追索北宋“积贫”（财政极其匮乏）现象背后的内因。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-2">2</div>
+                                <div class="step-content"><strong>提取文本线索：</strong>早期百余州、战乱繁频反而钱财充足；承平（和平）已久、四百余州，反而“竭府库之积、经费严重不足”。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-3">3</div>
+                                <div class="step-content"><strong>逻辑推导：</strong>为了防范地方藩镇和武将割据，中央设置了重合臃肿的官僚机构（分化事权导致“冗官”），同时招募过百余万的庞大军队（防民为盗导致“冗兵”）。这两大巨额包袱构成了财政支出的黑洞，即所谓“养兵和养官成为朝廷的沉重负担，财政状况日益恶化”，这是导致“积贫”的制度性核心成因。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-4">4</div>
+                                <div class="step-content"><strong>锁定正确答案：</strong>对应 <strong>B项</strong>。</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q3 考点剖析展示区 -->
+                    <div class="analysis-box">
+                        <div class="analysis-content">
+                            <div class="analysis-item">
+                                <span class="analysis-tag tag-green">正确答案</span><strong>B</strong>
+                            </div>
+                            <div class="analysis-text">
+                                <strong>解析：</strong>材料反映的是北宋中期的财政危机（积贫）。根据历史唯物史观及两宋政治制度特征，北宋政府机构设置重叠，官僚子弟入仕过滥，致使官僚队伍不断膨胀（冗官）；同时，通过募兵政策供养了一支空前庞大但战斗力低下的军队（冗兵），军费开支占到了国家财政支出的绝大部分（“天下六分之物，五分养兵”）。养兵和养官成为了朝廷的沉重负担，也是导致“竭府库之所蓄”财政危机的制度性根本原因，故选B项。<br><br>
+                                <strong>错项分析：</strong><br>
+                                • A项：辽和西夏的岁币、岁赐虽然加重了开支，但相比于庞大的内部军费和官俸支出（“用兵之费，不及百分之一”），岁币在总赤字中所占比例极低，非“最核心”原因，排除；<br>
+                                • C项：北宋初年通过设立转运司、通判等将地方财权基本收归中央，地方并无抗衡朝廷并大量截留税款的能力，排除；<br>
+                                • D项：司马光此疏旨在向宋神宗陈述王安石变法之前的财政常态困局，试图论证不应乱理财，且变法一定程度上达到了富国、增加大笔财政收入的目的，并非财政危机的“核心起因”，排除。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. 学科核心素养 -->
+            <div id="literacy" class="tab-content">
+                <div class="sentence-wrapper" style="border-left-color: #dc3545;">
+                    <div class="textbook-sentence">
+                        <h3>🌟 历史学科核心素养提炼</h3>
+                        
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: var(--primary-orange); margin-bottom: 5px;">① 唯物史观 (Historical Materialism)</h4>
+                            <p style="margin: 0; font-size: 0.95em;">辩证地解析<strong>地缘摩擦与国内财政</strong>之间的因果联系。北宋在对外边疆地缘对峙中屡尝败绩（“积弱”），根源于其“防范内乱、剥夺武将大权”的制度重塑。而军事上的被动弱势，反过来又迫使宋朝廷不得不无限度增补军队数量，将大量开支用于冗兵的维持与岁币，导致财政赤字黑洞日益失控。这完美展现了<strong>“上层建筑防御机制过载 ➡️ 诱发军事职能失效 ➡️ 反噬经济制度基础”</strong>的唯物史观制度演变路径。</p>
+                        </div>
+
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: var(--primary-red); margin-bottom: 5px;">② 史料实证 (Historical Evidence)</h4>
+                            <p style="margin: 0; font-size: 0.95em;">通过经典原始奏章互证，实现深度史料发掘。司马光著名的《论财利疏》（史料三）运用建国之初“百州战乱而府库实”与承平已久“四百州大一统而专救经费不足”的<strong>宏大对比和财务实证</strong>，极为有力地揭示出中叶财政崩溃并不源于社会生产力衰退，而是体制自我膨胀（冗官冗兵冗费）消耗。这一材料是透视“积贫”成因的第一手核心文献证据。</p>
+                        </div>
+
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: var(--primary-blue); margin-bottom: 5px;">③ 历史解释 (Historical Interpretation)</h4>
+                            <p style="margin: 0; font-size: 0.95em;"><strong>从“积贫积弱”到“王安石变法”的必然逻辑。</strong></p>
+                            <ul>
+                                <li>“积弱”和“积贫”是宋代立国“家法”——重在内部维稳、防范造反、分割权力的必然政治副作用。当这种成本累积到国家财政无以为继、外部强敌（辽、夏、乃至后来的女真）磨刀霍霍之时，封建国家原有的运转惯性已被彻底锁死。正是这种“穷则思变”的死局，推动了庆历新政以及之后波澜壮阔的<strong>王安石变法</strong>。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. 教学总结与反思 -->
+            <div id="summary" class="tab-content">
+                <div class="sentence-wrapper" style="border-left-color: var(--primary-green);">
+                    <div class="textbook-sentence" style="text-align: center; background: var(--light-green);">
+                        <h3>🎓 课堂结语：安全成本与财政灾难</h3>
+                        <p style="font-size: 1.1em; max-width: 800px; margin: 0 auto; line-height: 1.8; color: #1b4332;">
+                            北宋的制度设计堪称中国古代精密防御的极致。统治者极度追求政权“内部安全”和“不发生兵变”，通过招募流民做兵（养兵政策）和极度分化事权，成功防范了内部篡逆。
+                            <br><br>
+                            然而，这种过载的安全体系最终化为了高昂的财政账单。庞大的“冗官、冗兵”让大一统国家财富陷入空转内耗，边防被割裂而军事极度积弱。
+                            北宋在外部地缘震荡下的“积贫积弱”，警示了我们：<strong>一个不讲究行政效率、单纯以分权防范 and 利益分化实现自我安全的机制，最终将因难以承受的财政和国防成本走向覆灭。</strong> 这一困局，成为了推动王安石变法改革的最宏大历史前言。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- 中间内容区结束 -->
+
+        <!-- 右侧思维导图按钮栏 -->
+        <aside class="mindmap-sidebar">
+            <button class="mm-btn btn-unit" onclick="showMindMap('unit')">大单元<br>宏观</button>
+            <button class="mm-btn btn-course" onclick="showMindMap('course')">本课<br>框架</button>
+            <button class="mm-btn btn-detail" onclick="showMindMap('detail')">本目<br>详解</button>
+        </aside>
+
+    </div> <!-- 主体容器结束 -->
+
+    <!-- 思维导图弹窗系统 -->
+    <div id="mindMapModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            
+            <!-- 1. 大单元宏观导图 -->
+            <div id="mm-unit" class="mm-container" style="display: none;">
+                <h3 style="color: #3d3b30; text-align: center; margin-top: 0;">🌐 第三单元：辽宋夏金多民族政权并立与元朝的统一</h3>
+                <p style="color: #666; text-align: center; font-size: 0.9em; margin-bottom: 25px;">大单元宏观视角：两宋时期地缘格局与大国关系变化</p>
+                <svg class="map-svg" viewBox="0 0 900 450">
+                    <!-- 连线 -->
+                    <path d="M 450 60 L 150 150 M 450 60 L 450 150 M 450 60 L 750 150" stroke="#cbd5e1" stroke-width="2" fill="none" />
+                    <path d="M 150 200 L 150 260 M 450 200 L 450 260 M 750 200 L 750 260" stroke="#cbd5e1" stroke-width="2" fill="none" />
+                    <path d="M 150 310 L 450 380 M 450 310 L 450 380 M 750 310 L 450 380" stroke="#cbd5e1" stroke-width="2" fill="none" />
+
+                    <!-- 核心根节点 -->
+                    <g transform="translate(325, 20)">
+                        <rect width="250" height="50" rx="8" fill="#3d3b30" />
+                        <text x="125" y="30" class="text-on-dark" font-weight="bold" text-anchor="middle">多民族政权并立地缘博弈</text>
+                    </g>
+
+                    <!-- 分支 1 (高亮) -->
+                    <g transform="translate(50, 140)" stroke="#d35400" stroke-width="1.5">
+                        <rect width="200" height="55" rx="6" fill="#d35400" />
+                        <text x="100" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">第9课：两宋的政治与军事</text>
+                        <text x="100" y="42" class="text-on-dark" text-anchor="middle">宋初集权、积贫积弱、王安石变法</text>
+                    </g>
+                    <g transform="translate(50, 250)">
+                        <rect width="200" height="55" rx="4" fill="#fffdfa" stroke="#d35400" stroke-width="1.5" />
+                        <text x="100" y="25" class="text-title-on-light" font-weight="bold" text-anchor="middle">本子目核心定位</text>
+                        <text x="100" y="42" class="text-on-light" text-anchor="middle">探讨防御性汉族政权的地缘危机</text>
+                    </g>
+
+                    <!-- 分支 2 -->
+                    <g transform="translate(350, 140)">
+                        <rect width="200" height="55" rx="6" fill="#1e3a8a" />
+                        <text x="100" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">第10课：辽夏金元的统治</text>
+                        <text x="100" y="42" class="text-on-dark" text-anchor="middle">猛安谋克、南北面官、多元一统</text>
+                    </g>
+                    <g transform="translate(350, 250)">
+                        <rect width="200" height="55" rx="4" fill="#f8fafc" stroke="#1e3a8a" stroke-width="1.5" />
+                        <text x="100" y="25" class="text-title-on-light" font-weight="bold" text-anchor="middle">把握少数民族政权</text>
+                        <text x="100" y="42" class="text-on-light" text-anchor="middle">对多边大国秩序的构建与双向融合</text>
+                    </g>
+
+                    <!-- 分支 3 -->
+                    <g transform="translate(650, 140)">
+                        <rect width="200" height="55" rx="6" fill="#15803d" />
+                        <text x="100" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">第11课：经济、社会与文化</text>
+                        <text x="100" y="42" class="text-on-dark" text-anchor="middle">重心南移、榷场商贸、平民理学</text>
+                    </g>
+                    <g transform="translate(650, 250)">
+                        <rect width="200" height="55" rx="4" fill="#f8fafc" stroke="#15803d" stroke-width="1.5" />
+                        <text x="100" y="25" class="text-title-on-light" font-weight="bold" text-anchor="middle">反思和平博弈红利</text>
+                        <text x="100" y="42" class="text-on-light" text-anchor="middle">岁币与榷场贸易交融下的社会繁盛</text>
+                    </g>
+
+                    <!-- 终点聚合 -->
+                    <g transform="translate(325, 370)">
+                        <rect width="250" height="50" rx="8" fill="#5c3d2e" />
+                        <text x="125" y="30" class="text-on-dark" font-weight="bold" text-anchor="middle">元朝统一：地缘多方并立终结</text>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- 2. 本课框架导图 -->
+            <div id="mm-course" class="mm-container" style="display: none;">
+                <h3 style="color: #475569; text-align: center; margin-top: 0;">📖 第9课：两宋的政治和军事（本课结构体系）</h3>
+                <p style="color: #666; text-align: center; font-size: 0.9em; margin-bottom: 25px;">逻辑大因果链：从集权过度、三冗臃肿到变法失败、偏安结局</p>
+                <svg class="map-svg" viewBox="0 0 900 450">
+                    <!-- 纵向推进连线 -->
+                    <path d="M 450 65 L 450 115 M 450 165 L 450 215 M 450 265 L 450 315 M 450 365 L 450 400" stroke="#cbd5e1" stroke-width="2.5" fill="none" />
+
+                    <!-- 第一子目 -->
+                    <g transform="translate(250, 15)">
+                        <rect width="400" height="50" rx="8" fill="#1d3557" />
+                        <text x="200" y="30" class="text-on-dark" font-weight="bold" text-anchor="middle">子目一：宋初专制集权的加强 (收权力、分中枢、削藩镇)</text>
+                    </g>
+
+                    <!-- 承接 1 -->
+                    <g transform="translate(350, 115)">
+                        <rect width="200" height="50" rx="6" fill="#f1f5f9" stroke="#d35400" stroke-width="1.5" />
+                        <text x="100" y="22" class="text-title-on-light" font-weight="bold" text-anchor="middle">集权政治负资产变现：</text>
+                        <text x="100" y="38" class="text-title-on-light" font-weight="bold" text-anchor="middle">军事被动、三冗官多兵冗费累</text>
+                    </g>
+
+                    <!-- 第二子目 (高亮) -->
+                    <g transform="translate(250, 215)" stroke="#d35400" stroke-width="2">
+                        <rect width="400" height="50" rx="8" fill="#d35400" />
+                        <text x="200" y="30" class="text-on-dark" font-weight="bold" text-anchor="middle">👑 子目二：边防压力与财政危机 (本节精讲核心)</text>
+                    </g>
+
+                    <!-- 承接 2 -->
+                    <g transform="translate(350, 315)">
+                        <rect width="200" height="50" rx="6" fill="#f1f5f9" stroke="#047857" stroke-width="1.5" />
+                        <text x="100" y="22" class="text-title-on-light" font-weight="bold" text-anchor="middle">制度自救之途：</text>
+                        <text x="100" y="38" class="text-title-on-light" font-weight="bold" text-anchor="middle">王安石变法（官府干预、强兵富国）</text>
+                    </g>
+
+                    <!-- 第四子目 -->
+                    <g transform="translate(250, 395)">
+                        <rect width="400" height="50" rx="8" fill="#8f1d1d" />
+                        <text x="200" y="30" class="text-on-dark" font-weight="bold" text-anchor="middle">子目四：南宋的偏安（绍兴和议、岳飞抗金、世为侄国）</text>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- 3. 本目详解导图 -->
+            <div id="mm-detail" class="mm-container" style="display: none;">
+                <h3 style="color: var(--primary-orange); text-align: center; margin-top: 0;">👑 边防压力与财政危机的底层因果链条</h3>
+                <p style="color: #666; text-align: center; font-size: 0.9em; margin-bottom: 25px;">北宋“积贫积弱”现状的政治病理剖析</p>
+                <svg class="map-svg" viewBox="0 0 1000 550">
+                    <!-- 核心主线连接 -->
+                    <path d="M 500 50 L 500 100" stroke="#666" stroke-width="2" fill="none" />
+                    <path d="M 500 150 L 250 200" stroke="#666" stroke-width="2" fill="none" />
+                    <path d="M 500 150 L 750 200" stroke="#666" stroke-width="2" fill="none" />
+                    
+                    <path d="M 250 250 L 250 320" stroke="#1d3557" stroke-width="2" fill="none" />
+                    <path d="M 750 250 L 750 320" stroke="#8f1d1d" stroke-width="2" fill="none" />
+                    
+                    <path d="M 250 395 L 500 450" stroke="#666" stroke-width="2" fill="none" />
+                    <path d="M 750 395 L 500 450" stroke="#666" stroke-width="2" fill="none" />
+
+                    <!-- 根：集权防弊弊端 -->
+                    <g transform="translate(375, 10)">
+                        <rect width="250" height="40" rx="6" fill="#212529" />
+                        <text x="125" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">祖宗之法 ➡️ 崇文抑武、极度分散事权</text>
+                    </g>
+
+                    <!-- 双重死结 -->
+                    <g transform="translate(350, 95)">
+                        <rect width="300" height="55" rx="6" fill="#d35400" />
+                        <text x="150" y="24" class="text-on-dark" font-weight="bold" text-anchor="middle">北宋中期：积弱与积贫并显</text>
+                        <text x="150" y="42" class="text-on-dark" text-anchor="middle">(传导本质：重防范内耗 ➡️ 战力丧失 ➡️ 赤字崩盘)</text>
+                    </g>
+
+                    <!-- 边防危机 -->
+                    <g transform="translate(150, 195)">
+                        <rect width="200" height="55" rx="6" fill="#1d3557" />
+                        <text x="100" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">地缘积弱（对外军事被动）</text>
+                        <text x="100" y="42" class="text-on-dark" text-anchor="middle">北失燕云、将从中御、兵无常帅</text>
+                    </g>
+
+                    <!-- 财政危机 -->
+                    <g transform="translate(650, 195)">
+                        <rect width="200" height="55" rx="6" fill="#8f1d1d" />
+                        <text x="100" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">内部积贫（冗赘吞噬国库）</text>
+                        <text x="100" y="42" class="text-on-dark" text-anchor="middle">官多衙臃、兵连流民、岁币流失</text>
+                    </g>
+
+                    <!-- 边防危机具体过程 -->
+                    <g transform="translate(110, 310)">
+                        <rect width="280" height="85" rx="4" fill="#f0f4f8" stroke="#1d3557" stroke-width="1.5" />
+                        <text x="140" y="22" class="text-title-on-light" font-weight="bold" text-anchor="middle">边防割裂的表现：</text>
+                        <text x="140" y="42" class="text-on-light" font-weight="bold" text-anchor="middle">① 宋辽议和：澶渊之盟，以兄弟之国输岁币</text>
+                        <text x="140" y="60" class="text-on-light" font-weight="bold" text-anchor="middle">② 宋夏战败：庆历和议，夏称臣但宋给岁赐</text>
+                        <text x="140" y="78" class="text-on-light" font-weight="bold" text-anchor="middle">③ 评判：岁币虽开不尊，但远省军费且活榷商</text>
+                    </g>
+
+                    <!-- 财政危机具体成因 -->
+                    <g transform="translate(610, 310)">
+                        <rect width="280" height="85" rx="4" fill="#fff5f5" stroke="#8f1d1d" stroke-width="1.5" />
+                        <text x="140" y="22" class="text-title-on-light" font-weight="bold" text-anchor="middle">“三冗一贫”的逻辑传导：</text>
+                        <text x="140" y="42" class="text-on-light" font-weight="bold" text-anchor="middle">① 冗兵：募兵防民为盗，禁军增至120余万</text>
+                        <text x="140" y="60" class="text-on-light" font-weight="bold" text-anchor="middle">② 冗官：机构叠床架屋、恩荫泛滥致俸开剧增</text>
+                        <text x="140" y="78" class="text-on-light" font-weight="bold" text-anchor="middle">③ 冗费：养兵、养官加岁币岁赐，国帑赤字虚竭</text>
+                    </g>
+
+                    <!-- 历史争鸣 -->
+                    <g transform="translate(325, 460)">
+                        <rect width="350" height="80" rx="6" fill="#fefae0" stroke="#d35400" stroke-width="2" />
+                        <text x="175" y="22" class="text-title-on-light" font-weight="bold" text-anchor="middle">历史学者对“积贫积弱”的断论辩析：</text>
+                        <text x="175" y="40" class="text-on-light" font-weight="bold" text-anchor="middle">钱穆《国史大纲》：畸形体制下的绝对弱与贫</text>
+                        <text x="175" y="56" class="text-on-light" font-weight="bold" text-anchor="middle">李裕民：国民繁荣、商品经济高歌，国力实乃世界最强</text>
+                        <text x="175" y="72" class="text-on-light" font-weight="bold" text-anchor="middle">本旨：高度繁茂的文明体量 ⚔️ 锁死瘫痪的国防体制矛盾</text>
+                    </g>
+                </svg>
+            </div>
+
+        </div> <!-- 模态框内容结束 -->
+    </div> <!-- 模态框结束 -->
+
+    <!-- 交互脚本 -->
+    <script>
+        // 横向选择题作答反馈机制
+        function checkOption(btnElement, optionLetter, isCorrect, qId) {
+            const card = document.getElementById(qId);
+            const indicator = card.querySelector('.right-indicator');
+            const allOptBtns = card.querySelectorAll('.opt-btn');
+
+            // 清除本题所有按钮之前的选择痕迹
+            allOptBtns.forEach(btn => {
+                btn.classList.remove('correct-select', 'incorrect-select');
+            });
+
+            if (isCorrect) {
+                btnElement.classList.add('correct-select');
+                indicator.style.display = 'block';
+                indicator.style.color = '#2f855a';
+                indicator.innerHTML = '✓ 恭喜，选择正确！可点击右侧 “🔍 考点透视” 研读更深层次解析。';
+            } else {
+                btnElement.classList.add('incorrect-select');
+                indicator.style.display = 'block';
+                indicator.style.color = '#8c2d19';
+                indicator.innerHTML = '❌ 选项 ' + optionLetter + ' 并非最佳答案，请结合正向逻辑链重读题干！';
+                
+                // 自动高亮出正确选项
+                allOptBtns.forEach(btn => {
+                    if (qId === 'q_test1' && btn.innerText.includes('C.')) btn.classList.add('correct-select');
+                    if (qId === 'q_test2' && btn.innerText.includes('B.')) btn.classList.add('correct-select');
+                    if (qId === 'q_test3' && btn.innerText.includes('B.')) btn.classList.add('correct-select');
+                });
+            }
+        }
+
+        // 切换正向思维链
+        function toggleDeduction(qId) {
+            const card = document.getElementById(qId);
+            if (!card) return;
+
+            const rawText = card.querySelector('.raw-text');
+            const highlightText = card.querySelector('.highlight-text');
+            const sandbox = card.querySelector('.thinking-sandbox');
+            const btn = card.querySelector('.btn-deduct');
+
+            if (sandbox.style.display === 'none' || !sandbox.style.display) {
+                // 打开
+                if (rawText) rawText.style.display = 'none';
+                if (highlightText) highlightText.style.display = 'inline';
+                sandbox.style.display = 'block';
+                if (btn) {
+                    btn.innerHTML = '🧭 收起逻辑链';
+                    btn.classList.add('active');
+                }
+            } else {
+                // 关闭
+                if (rawText) rawText.style.display = 'inline';
+                if (highlightText) highlightText.style.display = 'none';
+                sandbox.style.display = 'none';
+                if (btn) {
+                    btn.innerHTML = '🧭 正向逻辑链';
+                    btn.classList.remove('active');
+                }
+            }
+        }
+
+        // 切换解析盒
+        function toggleAnalysis(qId) {
+            const card = document.getElementById(qId);
+            if (!card) return;
+
+            const analysisBox = card.querySelector('.analysis-box');
+            const btn = card.querySelector('.btn-analysis');
+
+            if (analysisBox.style.display === 'none' || !analysisBox.style.display) {
+                analysisBox.style.display = 'block';
+                if (btn) {
+                    btn.innerHTML = '🔍 收起考点透视';
+                    btn.classList.add('active');
+                }
+            } else {
+                analysisBox.style.display = 'none';
+                if (btn) {
+                    btn.innerHTML = '🔍 考点透视与解析';
+                    btn.classList.remove('active');
+                }
+            }
+        }
+
+        // 顶部导航栏板块切换
+        function switchTab(tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            
+            const targetNav = Array.from(navItems).find(item => item.getAttribute('onclick').includes(tabId));
+            if(targetNav) targetNav.classList.add('active');
+
+            // 折叠状态下如果切换板块，保持折叠位置
+            document.querySelector('.content-area').scrollTop = 0;
+        }
+
+        // 点击左侧时间轴平滑滚动至对应教学区
+        function scrollToId(elementId) {
+            switchTab('framework');
+            setTimeout(() => {
+                const targetElement = document.getElementById(elementId);
+                if(targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100);
+        }
+
+        // 折叠卡片开闭功能
+        function toggleFold(btn) {
+            const content = btn.nextElementSibling;
+            const isOpen = content.style.display === 'block';
+            content.style.display = isOpen ? 'none' : 'block';
+            btn.classList.toggle('active', !isOpen);
+        }
+
+        // 右侧多层级思维导图弹窗显示
+        const modal = document.getElementById('mindMapModal');
+        const mapContainers = {
+            'unit': document.getElementById('mm-unit'),
+            'course': document.getElementById('mm-course'),
+            'detail': document.getElementById('mm-detail')
+        };
+
+        function showMindMap(type) {
+            modal.style.display = 'flex';
+            Object.values(mapContainers).forEach(el => el.style.display = 'none');
+            if(mapContainers[type]) {
+                mapContainers[type].style.display = 'block';
+            }
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // 一键控制所有面板收起/展开
+        function toggleAllPanels() {
+            document.body.classList.toggle('panels-collapsed');
+            const triggerBtn = document.querySelector('.menu-trigger');
+            if (document.body.classList.contains('panels-collapsed')) {
+                triggerBtn.innerHTML = '🍔 菜单 (已收起)';
+            } else {
+                triggerBtn.innerHTML = '☰ 菜单 (已展开)';
+            }
+        }
+
+        // 字体无级缩放系统
+        let currentFontSize = 1.0; // em为基准
+        function adjustFont(direction) {
+            currentFontSize += direction * 0.08;
+            // 设置字号缩放极值边界保护
+            if (currentFontSize < 0.8) currentFontSize = 0.8;
+            if (currentFontSize > 1.6) currentFontSize = 1.6;
+            
+            const contentArea = document.querySelector('.content-area');
+            contentArea.style.fontSize = currentFontSize + 'em';
+        }
+    </script>
+</body>
+</html>
