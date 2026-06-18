@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1858年印度政府法案研究：以米尔斯著作《1858年的印度》为中心</title>
+    <style>
+        :root {
+            --primary-color: #1e293b;   /* 维多利亚深石板蓝 */
+            --accent-color: #8c1d40;    /* 帝国红 / 勃艮第红 */
+            --text-color: #2d3748;      /* 暗黛色 */
+            --bg-color: #fdfdfa;        /* 护眼暖白纸张色 */
+            --sidebar-bg: #f8fafc;      /* 现代侧边栏底色 */
+            --border-color: #cbd5e1;    /* 边框浅灰 */
+            --font-serif: "STSong", "SimSun", "Songti SC", "Georgia", serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f1f3f5;
+            color: var(--text-color);
+            font-family: var(--font-serif);
+            line-height: 1.8;
+        }
+
+        /* 页面整体框架 */
+        .wrapper {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* 左侧固定目录导航栏 */
+        .sidebar {
+            width: 320px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 40px 25px;
+            overflow-y: auto;
+            font-family: var(--font-sans);
+            z-index: 100;
+        }
+
+        .sidebar h2 {
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .sidebar li.h1-link {
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .sidebar li.h2-link {
+            padding-left: 15px;
+            font-size: 13px;
+        }
+
+        .sidebar li.h3-link {
+            padding-left: 30px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #4a5568;
+            transition: color 0.2s ease;
+        }
+
+        .sidebar a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        /* 右侧正文主体区 */
+        .main-content {
+            margin-left: 320px;
+            width: calc(100% - 320px);
+            background-color: var(--bg-color);
+            padding: 60px 80px;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.03);
+            position: relative;
+        }
+
+        /* 学术格式头部 */
+        header {
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 40px;
+            margin-bottom: 45px;
+        }
+
+        .publish-tag {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        header h1 {
+            font-family: var(--font-sans);
+            font-size: 30px;
+            color: var(--primary-color);
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .author-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .author-meta {
+            font-size: 14px;
+            color: #718096;
+            font-family: var(--font-sans);
+        }
+
+        /* 摘要与关键词 */
+        .abstract-box {
+            background-color: #f8fafc;
+            border-left: 4px solid var(--primary-color);
+            padding: 25px 30px;
+            margin: 30px 0;
+            font-size: 15px;
+            color: #4a5568;
+        }
+
+        .abstract-box p {
+            text-indent: 0;
+            margin-bottom: 10px;
+        }
+
+        .abstract-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-family: var(--font-sans);
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        /* 正文排版 */
+        article p {
+            text-indent: 2em;
+            margin-bottom: 1.8em;
+            font-size: 17px;
+            text-align: justify;
+        }
+
+        /* 标题样式 */
+        article h2 {
+            font-family: var(--font-sans);
+            font-size: 22px;
+            color: var(--primary-color);
+            border-bottom: 1px solid #cbd5e1;
+            padding-bottom: 8px;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        article h3 {
+            font-family: var(--font-sans);
+            font-size: 18px;
+            color: #34495e;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        article h4 {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            color: #4a5568;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* 块级引用 */
+        blockquote {
+            margin: 20px 40px;
+            padding: 15px 20px;
+            background-color: #f8fafc;
+            border-left: 4px solid var(--accent-color);
+            font-style: italic;
+            color: #374151;
+            text-align: justify;
+        }
+
+        /* 引用角标样式 */
+        sup a.citation-trigger {
+            color: var(--accent-color);
+            font-weight: bold;
+            text-decoration: none;
+            padding: 0 3px;
+            font-family: var(--font-sans);
+            font-size: 13px;
+        }
+
+        sup a.citation-trigger:hover {
+            text-decoration: underline;
+            background-color: rgba(140, 29, 64, 0.1);
+            border-radius: 3px;
+        }
+
+        /* 数据表格样式 */
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-family: var(--font-sans);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        table.data-table th, table.data-table td {
+            border: 1px solid #cbd5e1;
+            padding: 10px 12px;
+            text-align: center;
+        }
+
+        table.data-table th {
+            background-color: #f1f5f9;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        table.data-table caption {
+            font-family: var(--font-sans);
+            font-weight: bold;
+            font-size: 14px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        /* 页下注释面板 */
+        .footnotes-section {
+            margin-top: 80px;
+            border-top: 3px double var(--primary-color);
+            padding-top: 35px;
+            font-family: var(--font-serif);
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .footnotes-section h3 {
+            font-family: var(--font-sans);
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .footnotes-section ol {
+            padding-left: 20px;
+        }
+
+        .footnotes-section li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .back-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-left: 6px;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* 气泡弹窗样式 */
+        .footnote-popover {
+            position: absolute;
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            padding: 15px 35px 15px 15px;
+            width: 320px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #334155;
+            z-index: 1000;
+            display: none;
+            font-family: var(--font-serif);
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .footnote-popover .close-btn {
+            position: absolute;
+            top: 6px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #94a3b8;
+            font-weight: bold;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .footnote-popover .close-btn:hover {
+            color: #475569;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 响应式排版 */
+        @media (max-width: 1024px) {
+            .wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 25px;
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- 左侧导航目录栏 -->
+    <aside class="sidebar">
+        <h2>目录 Navigation</h2>
+        <ul>
+            <li class="h2-link"><a href="#abstract-zh">中文摘要</a></li>
+            <li class="h2-link"><a href="#abstract-en">ABSTRACT</a></li>
+            <li class="h2-link"><a href="#intro">引言</a></li>
+            <li class="h2-link"><a href="#chapter1">第一章 东印度公司治下的印度：行政架构</a></li>
+            <li class="h3-link"><a href="#ch1-s1">一、 双重治理结构与权力分配</a></li>
+            <li class="h3-link"><a href="#ch1-s2">二、 地方政府运作</a></li>
+            <li class="h2-link"><a href="#chapter2">第二章 维系帝国的工具</a></li>
+            <li class="h3-link"><a href="#ch2-s1">一、 印度公务员制度</a></li>
+            <li class="h3-link"><a href="#ch2-s2">二、 军事力量与特遣队</a></li>
+            <li class="h3-link"><a href="#ch2-s3">三、 海军与教会</a></li>
+            <li class="h2-link"><a href="#chapter3">第三章 英属印度的司法行政</a></li>
+            <li class="h3-link"><a href="#ch3-s1">一、 英属印度现行法律概览</a></li>
+            <li class="h3-link"><a href="#ch3-s2">二、 最高法院体系</a></li>
+            <li class="h3-link"><a href="#ch3-s3">三、 印度土著居民司法体系</a></li>
+            <li class="h3-link"><a href="#ch3-s4">四、 印度法律委员会与司法改革</a></li>
+            <li class="h2-link"><a href="#chapter4">第四章 英属印度的税收制度</a></li>
+            <li class="h3-link"><a href="#ch4-s1">一、 土地税制度</a></li>
+            <li class="h3-link"><a href="#ch4-s2">二、 鸦片税与过境税</a></li>
+            <li class="h3-link"><a href="#ch4-s3">三、 盐税垄断</a></li>
+            <li class="h3-link"><a href="#ch4-s4">四、 关税与土邦补贴</a></li>
+            <li class="h2-link"><a href="#chapter5">第五章 公共工程建设</a></li>
+            <li class="h3-link"><a href="#ch5-s1">一、 政府对公共工程的重视</a></li>
+            <li class="h3-link"><a href="#ch5-s2">二、 道路、桥梁与运河</a></li>
+            <li class="h3-link"><a href="#ch5-s3">三、 铁路与电报的革命</a></li>
+            <li class="h2-link"><a href="#conclusion">结论</a></li>
+            <li class="h2-link"><a href="#bibliography">参考文献</a></li>
+            <li class="h2-link"><a href="#acknowledgements">后记</a></li>
+            <li class="h2-link"><a href="#notes-anchor">页下注释 (Notes)</a></li>
+        </ul>
+    </aside>
+
+    <!-- 右侧正文区 -->
+    <main class="main-content">
+        <header>
+            <div class="publish-tag">微信公众号“班昭路”文章</div>
+            <h1>1858年印度政府法案研究：以米尔斯著作《1858年的印度》为中心</h1>
+            <div class="author-name">张钟文</div>
+            <div class="author-meta">原文链接：https://archive.org/details/in.ernet.dli.2015.195728 &nbsp;|&nbsp; 微信公众号链接：https://mp.weixin.qq.com/s/CnMQ4sHIKy5ozi-GmcVO2Q</div>
+        </header>
+
+        <!-- 中文摘要 -->
+        <section id="abstract-zh" class="abstract-box">
+            <p><span class="abstract-title">摘要：</span>1858年印度政府法案是英国殖民统治印度历史上的一个重要里程碑。该法案废除了东印度公司，将印度的统治权移交给英国王室，标志着英国政府对印度直接统治的开始。本文详细分析了1858年印度政府法案的背景、内容、影响以及其历史意义。文章首先回顾了东印度公司在印度的统治历史，特别是1857年印度民族起义对英国殖民政策的影响。接着，文章深入剖析了该法案的具体条款，包括政府机构的设置、权力分配、行政体系和司法制度等方面。此外，文章还探讨了该法案对印度社会、经济、政治和文化的影响，以及其对印度民族主义运动的推动作用。最后，文章总结了1858年印度政府法案的历史地位和意义，并对其对印度历史进程的影响进行了评价。</p>
+            <p style="margin-top:10px; font-weight: bold;">关键词: 1858年印度政府法案, 东印度公司, 英国殖民统治, 印度民族起义, 印度民族主义</p>
+        </section>
+
+        <!-- 英文摘要 -->
+        <section id="abstract-en" class="abstract-box" style="font-family: var(--font-sans);">
+            <p><span class="abstract-title">ABSTRACT:</span> The Government of India Act 1858 marked a significant turning point in the history of British colonial rule in India. This act abolished the East India Company, transferring the governance of India to the British Crown, and thus initiating direct rule by the British government. This paper provides a comprehensive analysis of the Government of India Act 1858, exploring its context, content, impact, and historical significance. The paper begins by revisiting the history of the East India Company's rule in India, focusing particularly on the impact of the 1857 Indian Rebellion on British colonial policy. It then delves into the specific provisions of the act, encompassing the establishment of governmental bodies, power distribution, administrative systems, and judicial structures. Furthermore, the paper examines the act's impact on Indian society, economy, politics, and culture, including its contribution to the burgeoning Indian nationalist movement. Finally, the paper concludes by summarizing the historical position and significance of the Government of India Act 1858 and evaluating its impact on the course of Indian history.</p>
+            <p style="margin-top:10px; font-weight: bold;">Keywords: Government of India Act 1858, East India Company, British colonial rule, Indian Rebellion of 1857, Indian nationalism</p>
+        </section>
+
+        <article>
+            <!-- 引言 -->
+            <h2 id="intro">引言</h2>
+            
+            <h3 id="intro-1">一、 米尔斯《1858年的印度》的写作背景与价值</h3>
+            <p>亚瑟·米尔斯（Arthur Mills）所著《1858年的印度》（<i>India in 1858</i>）一书，恰好诞生于英国殖民统治印度历史上的一个关键转折点。1857年，席卷印度次大陆的民族大起义，深刻撼动了东印度公司对印度长达一个多世纪的统治。这场起义的烈火，不仅烧毁了公司在印度的诸多设施，更焚毁了英国公众对公司治理能力的信心。面对来自国内的质疑和印度的动荡局势，英国政府不得不着手对印度的治理模式进行根本性的变革。正是在这一历史背景下，米尔斯的著作应运而生，其目的在于为英国公众和决策者提供一份关于印度行政、财政和司法现状的全面、客观而准确的系统性报告。<sup><a href="#fn1" class="citation-trigger" id="ref1" data-fn="1">[1]</a></sup></p>
+            <p>米尔斯在其著作的“前言”中，开宗明义地阐述了其写作动机。他写道：</p>
+            <blockquote>
+                “印度政府即将发生变化的消息自然会引发关于英帝国这一部分未来管理政策的各种建议。以下各页的目的不是为了增加这些建议，也不是为了审视那些灾难性事件的原因，这些事件使英国社会各阶层都对印度及其命运产生了兴趣。”<sup><a href="#fn2" class="citation-trigger" id="ref2" data-fn="2">[2]</a></sup>
+            </blockquote>
+            <p>这段话清晰地表明，米尔斯无意于提出新的政治蓝图或对大起义根源进行主观探讨，而是将着眼点放在对英属印度现有的政治、行政、司法和财政制度进行清晰而系统的学术梳理，为人们理解印度的现状提供必要的信息基础，从而为即将到来的重大立法变革提供扎实的参考依据。</p>
+            <p>为了确保信息的准确性，米尔斯在写作过程中采取了极其严谨的治学态度。他广泛参考了东印度公司和英国政府的官方文件，以及议会委员会收集的证词记录，并对这些资料进行了仔细的核对和分析。在涉及具体数据时，他更是谨慎地注明了资料来源。米尔斯在《1858年的印度》中并未对英国的殖民统治进行直接的道德评判，而是试图以一种客观而冷静的视角来呈现印度的现状。他将自己定位为一名“信息的提供者”，而非“政策的制定者”，并将最终的判断权留给了解析该法案的历史学家。</p>
+
+            <h3 id="intro-2">二、 1858年印度政府法案出台的时代背景</h3>
+            <p>1858年印度政府法案并非横空出世，而是英国对印政策在多重历史因素交织影响下的一次重大调整。其时代背景可以从三个关键层面来把握：东印度公司统治的渐趋衰落、1857年印度民族起义的爆发以及英国国内对双重治理模式的反思。</p>
+            
+            <h4>（一） 东印度公司统治的渐趋衰落</h4>
+            <p>自17世纪初登陆印度，东印度公司便以其商业野心和军事实力，逐渐将触角伸向广袤的印度次大陆。通过一系列的贸易特许状和征服战争，公司不断扩张其在印度的势力范围。然而，随着时间的推移，公司“以利润最大化为导向”的统治弊端日益显现。米尔斯在著作中指出，公司的权力过度集中在董事会手中，其行政体系臃肿而充满低效。公司在孟加拉、马德拉斯和孟买等管辖区实行的土地税收制度（如“地主永久解决制”与“赖亚特瓦里制”），给广大印度农民套上了沉重的枷锁。<sup><a href="#fn3" class="citation-trigger" id="ref3" data-fn="3">[3]</a></sup> 此外，公司垄断盐税与强制推行鸦片贸易，也引发了印度社会的强烈反弹。到19世纪中叶，东印度公司的合法性已经丧失殆尽。</p>
+
+            <h4>（二） 1857年印度民族起义：压垮公司的最后一根大棒</h4>
+            <p>1857年爆发的印度民族起义，是压垮东印度公司的决定性力量。这场起义由密拉特的“西帕伊”（土著士兵）哗变为导火索，迅速席卷了北印度和中印度大片地区。起义者要求恢复印度的独立与主权。起义虽然最终被英国军队残酷镇压，但它暴露了东印度公司军事防务的脆弱，尤其是对其土著军队失去控制的危机，使得英国统治者认识到原有的商业公司代理统治模式已无法保障大英帝国在次大陆的根本安全。<sup><a href="#fn4" class="citation-trigger" id="ref4" data-fn="4">[4]</a></sup></p>
+
+            <h4>（三） 英国国内对印度治理模式的反思</h4>
+            <p>大起义的爆发彻底激化了英国议会和公众对东印度公司双重政府（Double Government）体制的批判。国会中自由主义和功利主义学派的代表人物纷纷指出，由一个股份商业公司管理数亿人口的帝国，在现代宪政体制下是荒谬而不可持续的。在这种强烈的反思浪潮与政治压力下，巴麦尊内阁与继任的德比内阁相继提出废除公司的议案，最终促成了1858年8月2日《印度政府法案》（<i>An Act for the Better Government of India</i>）的正式通过。该法案标志着王室直接统治（The British Raj）时代的来临。<sup><a href="#fn5" class="citation-trigger" id="ref5" data-fn="5">[5]</a></sup></p>
+
+            <!-- 第一章 -->
+            <h2 id="chapter1">第一章 东印度公司治下的印度：行政架构与权力运作</h2>
+            
+            <h3 id="ch1-s1">一、 双重治理结构：东印度公司董事会与英国政府的权力分配</h3>
+            <p>在1858年印度政府法案颁布之前，英属印度的最高权力体系呈现出一种奇特的“双重治理结构”（Double Government）。这种结构由位于伦敦的东印度公司董事会（Court of Directors）与英国政府设立的控制委员会（Board of Control）共同组成。米尔斯在其著作的第二章“英属印度现有政府”中，对此进行了极其详尽的解剖。</p>
+
+            <h4>（一） 东印度公司董事会的构成与职权</h4>
+            <p>东印度公司董事会作为一个独立的法人机构，在名义上拥有印度的行政管理权。根据1853年《宪章法案》修改后的规则，董事会由18名董事组成，其中12名由持有一定数量公司股票的股东大会（Court of Proprietors）选举产生，其余6名则由英国王室直接任命。董事会内部设立了三个常设专业委员会：财务与国内委员会（Finance and Home）、政治与军事委员会（Political and Military）以及收入、司法与立法委员会（Revenue, Judicial, and Legislative）。<sup><a href="#fn6" class="citation-trigger" id="ref6" data-fn="6">[6]</a></sup></p>
+            <p>此外，董事会中还设有一个极具机密性质的“秘密委员会”（Secret Committee），通常由董事长、副董事长和一名资深董事组成。该委员会直接对接来自印度的机密政治和军事电报，并在英国政府的授意下，无需经过全体董事会讨论即可下达战争或外交指令。这反映出公司在军事扩张时期的行政集权倾向。</p>
+
+            <h4>（二） 控制委员会的职权与运作机制</h4>
+            <p>控制委员会（Board of Control，官方名称为“印度事务专员委员会”）代表英国王室和内阁行使对公司的最终监督权。控制委员会由数名内阁大臣（包括财政大臣、国务大臣等）兼任，但实际权力完全掌握在由执政党任命的控制委员会主席（President of the Board of Control）一人手中。控制委员会不仅有权审查和修改董事会拟定发往印度的所有信件，还对总督、总司令等高级官员的任命拥有最终否决权。在涉及战争、和平或与印度土邦的外交谈判等重大政治问题上，控制委员会主席可以直接通过董事会的秘密委员会下达政府的绝对指令，公司必须无条件执行。<sup><a href="#fn7" class="citation-trigger" id="ref7" data-fn="7">[7]</a></sup></p>
+
+            <h4>（三） 董事会与控制委员会的互动模式：以“事先沟通”为例</h4>
+            <p>由于双重政府体制存在天然的摩擦，为了避免正式行文时的僵局，双方发展出一种非正式的协商机制，即“事先沟通”（Previous Communication）制度。米尔斯详细描述了这一过程：</p>
+            <blockquote>
+                当印度发来电报或公文时，公司的职员首先拟定一份复信草案，并由董事长和副董事长以“非正式”的形式送交控制委员会主席审查。控制委员会的相关部门职员会对其进行详细的评注和修改，并呈交主席。经过非正式的往返修改、达成妥协后，该草案才被送回东印度大楼，作为正式草案在董事会内通过，最后再正式呈交控制委员会批准。<sup><a href="#fn8" class="citation-trigger" id="ref8" data-fn="8">[8]</a></sup>
+            </blockquote>
+            <p>这种非正式的“事先沟通”虽然在一定程度上缓解了双重治理的制度冲突，但其带来的繁文缛节、公文积压以及责任不清，极大地降低了殖民行政的效率。米尔斯指出，有些紧急公文在两家机构的反复扯皮中往往被搁置数月甚至一年以上。这也是大起义后英国朝野一致要求彻底废除双重政府体制、实行王室直接管辖的主要原因。</p>
+
+            <h3 id="ch1-s2">二、 地方政府：总督及其理事会与下属政府</h3>
+            
+            <h4>（一） 总督及其理事会的权力与职责</h4>
+            <p>在印度本土，英属印度的最高行政长官是印度总督（Governor-General of India）。总督通常由董事会提名并在王室批准下任命，任期一般为五年。总督通过“总督及最高理事会”（Governor-General in Council）行使权力。该理事会最初由四名普通成员组成（三名拥有十年以上印度服务经历的文武官员，一名由王室任命的英国法律专家，如麦考利）。1853年《宪章法案》颁布后，理事会引入了来自各省的六名“立法成员”，使之具备了“立法理事会”（Legislative Council）的雏形。<sup><a href="#fn9" class="citation-trigger" id="ref9" data-fn="9">[9]</a></sup></p>
+            <p>总督在理事会中拥有绝对的主导权。在关系到和平、安全或大英帝国重大核心利益的情况下，总督有权不顾理事会多数成员的反对，强行发起并执行自己的行政决定。总督直接管辖不属于各管辖区的地方行政区（如旁遮普、奥德、贝拉尔等“非条例省份”）。</p>
+
+            <h4>（二） 下属政府的构成与权限</h4>
+            <p>英属印度的领土被划分为不同的省级行政单位。其中，历史悠久的马德拉斯（Madras）和孟买（Bombay）管辖区保留了较高的自治地位，它们分别由一名省总督（Governor）和一个由三名成员组成的省理事会共同管理，并拥有自己独立的军队、民政部门和直接向伦敦董事会报告的权力。而孟加拉（Bengal）和西北省（North-Western Provinces）则属于“副总督”（Lieutenant-Governor）辖区，其副总督由印度总督直接任命，不设理事会，在财政和行政上对总督表现出更强的依附性。<sup><a href="#fn10" class="citation-trigger" id="ref10" data-fn="10">[10]</a></sup></p>
+
+            <h4>（三） 中央政府对地方政府的监督与控制</h4>
+            <p>尽管马德拉斯和孟买政府拥有一定的习惯特权，但总督及其最高理事会对所有下属省区政府保留了绝对的财政和立法控制。根据1833年《宪章法案》的规定：</p>
+            <blockquote>
+                “未经印度总督及最高理事会的事先批准，下属各省政府不得设立任何新的职位，亦不得授予任何新的薪水、酬金或津贴。”
+            </blockquote>
+            <p>这种财政集权体制，虽然确保了全印度财政预算的一致性，但也导致了地方政府在公共工程建设（如道路、灌溉）上的极度被动。省政府任何超过特定限额的开支都必须层层上报至加尔各答，极大地压抑了地方的发展活力。米尔斯通过其翔实的行政层级记录，揭示了这一体制在空间治理上的深层矛盾。</p>
+
+            <!-- 第二章 -->
+            <h2 id="chapter2">第二章 维系帝国的工具：公务员制度、军队、海军与教会</h2>
+            
+            <h3 id="ch2-s1">一、 印度公务员制度：契约制与非契约制</h3>
+            <p>在英属印度的日常统治中，东印度公司依靠一套被称为“印度公务员系统”的官僚机器。米尔斯将其详细划分为“契约制公务员”（Covenanted Civil Service）与“非契约制公务员”（Uncovenanted Civil Service）两个等级。</p>
+
+            <h4>（一） 契约制公务员：选拔、培训与晋升</h4>
+            <p>契约制公务员是殖民地行政的核心阶层，垄断了从地区税收员、地方法官到省秘书、萨达尔法院法官的所有高级和中级行政与司法职位。在1853年之前，这些职位作为美差，完全由公司董事们通过个人赞助权（Patronage）进行分配，其候选人必须进入位于英国的海里伯里学院（Haileybury College）接受两年的东方语言、法律和政治经济学培训。1853年《宪章法案》废除了这一特权，规定自1855年起，契约制公务员的选拔向所有英国臣民开放公开竞争性考试（Open Competition）。这一改革奠定了现代专业文官制度的基础。<sup><a href="#fn11" class="citation-trigger" id="ref11" data-fn="11">[11]</a></sup></p>
+
+            <h4>（二） 非契约制公务员：欧洲人与本地人的任用</h4>
+            <p>相比之下，人数更为庞大的“非契约制公务员”主要填补基层的、技术性或低级的行政职位。这一群体不仅包含部分在印度出生的欧洲人和欧亚混血儿，更吸纳了大量的印度本地人。米尔斯指出，自威廉·本廷克总督改革以来，为了降低行政成本并建立地方合作，大量的印度本地精英被提拔为基层司法官（如首席萨达尔阿明、萨达尔阿明和莫卧儿法官）和基层税收官（如泰西尔达）。这种在“欧洲文官监督下由本地人具体代理”的模式，构成了英属印度基层行政的真实面貌。<sup><a href="#fn12" class="citation-trigger" id="ref12" data-fn="12">[12]</a></sup></p>
+
+            <table class="data-table">
+                <caption>东印度公司公务员薪酬体系（1850年代）</caption>
+                <thead>
+                    <tr>
+                        <th>级别</th>
+                        <th>典型职位</th>
+                        <th>人员构成</th>
+                        <th>平均年薪范围（英镑）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>特级文官</td>
+                        <td>最高理事会成员、各省总督</td>
+                        <td>英国精英（契约制）</td>
+                        <td>£5,000 - £10,000</td>
+                    </tr>
+                    <tr>
+                        <td>高级文官</td>
+                        <td>各省政府秘书、萨达尔法院法官</td>
+                        <td>英国文官（契约制）</td>
+                        <td>£3,000 - £5,000</td>
+                    </tr>
+                    <tr>
+                        <td>中级行政官</td>
+                        <td>地区税收员、高级地方法官</td>
+                        <td>英国文官（契约制）</td>
+                        <td>£1,500 - £3,000</td>
+                    </tr>
+                    <tr>
+                        <td>初级行政/司法官</td>
+                        <td>首席萨达尔阿明、副税收员</td>
+                        <td>优秀本地人/欧洲非契约制人员</td>
+                        <td>£600 - £1,200</td>
+                    </tr>
+                    <tr>
+                        <td>基层办事员</td>
+                        <td>莫卧儿法官、泰西尔达、文书</td>
+                        <td>印度本地人（非契约制）</td>
+                        <td>£120 - £360</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 id="ch2-s2">二、 军事力量：土著部队、欧洲部队与土邦军队</h3>
+            <p>军事力量是大英帝国在次大陆最直接、最不可或缺的统治工具。米尔斯在其著作中，提供了1857年大起义爆发前英属印度武装力量极其珍贵的一手统计数据。</p>
+
+            <h4>（一） 东印度公司土著部队（西帕伊）的构成与规模</h4>
+            <p>土著部队是公司军队的绝对绝对主力，其总人数在1857年之前高达234,270人。这支军队由高等级印度教徒、穆斯林和锡克人组成，共编有269个团，涵盖步兵、骑兵、工兵和炮兵等兵种。然而，虽然士兵为本地人，但各团的高级指挥权完全由英国军官垄断，土著军官的最高军衔仅相当于副官或排长，种姓偏见与职业天花板为后来的兵变埋下了深层火药。<sup><a href="#fn13" class="citation-trigger" id="ref13" data-fn="13">[13]</a></sup></p>
+
+            <h4>（二） 东印度公司欧洲部队的构成与规模</h4>
+            <p>为了防范和震慑庞大的土著军队，公司自身也维持着一支完全由欧洲志愿者招募组成的“公司欧洲部队”，总兵力为22,047人。这支部队在装备和训练上都远优于土著部队，尤其是公司的炮兵部队，绝大部分由欧洲士兵操作，以确保致命武器不落入本地西帕伊之手。</p>
+
+            <h4>（三） 女王部队与土邦特遣队的规模与义务</h4>
+            <p>除了公司的自有军队，英国陆军部也直接在印度驻扎了属于英国王室的“女王部队”（Queen's Troops），总兵力约为22,000至30,000人（大起义期间紧急增兵至64,500人），其运输和驻扎费用全部由印度的财政收入承担。此外，根据东印度公司与各依附土邦签订的“从属同盟”条约，各土邦有义务维持特定规模的、接受英国军官指挥的“土邦特遣队”（如瓜廖尔特遣队、海得拉巴特遣队等，总兵力约41,735人），用于维护地方安宁并在战争时期协助公司作战。<sup><a href="#fn14" class="citation-trigger" id="ref14" data-fn="14">[14]</a></sup></p>
+
+            <h3 id="ch2-s3">三、 海军与教会</h3>
+            
+            <h4>（一） 东印度公司海军（印度海军）</h4>
+            <p>东印度公司维持着一支独立的海上武装力量，称为“印度海军”（Indian Navy）。这支海军主要配备中小型蒸汽战船和武装巡逻艇，其主要职责是巡逻波斯湾、阿拉伯海以及孟加拉湾，打击沿海海盗，保护公司的鸦片与棉花贸易航线，并在第一次鸦片战争与对缅甸战争中承担了重要的海上封锁与登陆支持任务。</p>
+
+            <h4>（二） 教会机构的构成与经费来源</h4>
+            <p>与世俗武力相伴随的是精神上的渗透。在公司统治后期，迫于英国国内福音派和人道主义势力的压力，公司逐步建立起一套官方支持的基督教教会建制。英属印度被划分为加尔各答、马德拉斯和孟买三个教区，由三名主教和135名圣公会随军牧师组成。令人瞩目的是，这些完全服务于欧洲官兵和文官精神生活的教会机构，其庞大的维持经费和主教高昂的薪俸（如加尔各答主教年薪高达5,000英镑），完全由印度的领土税收收入（即印度异教徒纳税人的税款）支付，这在印度社会中引发了深层的宗教疑虑与敌意，被普遍视为英国人试图强行推行基督教化的明证。<sup><a href="#fn15" class="citation-trigger" id="ref15" data-fn="15">[15]</a></sup></p>
+
+            <!-- 第三章 -->
+            <h2 id="chapter3">三、 英属印度的司法行政：法律体系与法院架构</h2>
+            
+            <h3 id="ch3-s1">一、 英属印度现行法律概览</h3>
+            <p>英属印度的法律行政体系是殖民统治中最为庞杂和混乱的领域。它是一个在不同的历史时期、由不同的立法主体、针对不同的管辖对象叠床架屋而成的“法律拼贴画”。</p>
+
+            <h4>（一） 法律的制定与公布：帝国议会与总督的立法权</h4>
+            <p>英属印度的法律渊源主要有三：一是英国国会通过的、明确适用于印度的成文法令（Statutes）；二是总督及其最高理事会在1834年之前制定的“条例”（Regulations，如著名的《孟加拉条例》）；三是1834年之后由立法理事会通过的统一“法案”（Acts）。所有法律在印度颁布前，都必须以英文、乌尔都语、波斯语以及各省本地语言翻译公布，并在特定的官报上公示。这一过程虽然体现了西方法律的程序正义，但在实际翻译和适用中经常因文化差异而产生扭曲。<sup><a href="#fn16" class="citation-trigger" id="ref16" data-fn="16">[16]</a></sup></p>
+
+            <h4>（二） 法律的适用范围：英国法律与土著法律的并存</h4>
+            <p>在法律适用上，英属印度实行严格的二元体制。对于居住在印度的英国出生臣民，在民事和刑事上完全适用英国普通法。而对于占人口绝对多数的印度教徒和穆斯林，在契约、土地等商事领域逐步适用公司条例的同时，在婚姻、继承、种姓和宗教等个人身份法（Personal Law）领域，则完全保留并适用各自传统的宗教法律。这种“英国普通法与土著宗教法并存”的混合体制，构成了殖民地法治的基本特色。<sup><a href="#fn17" class="citation-trigger" id="ref17" data-fn="17">[17]</a></sup></p>
+
+            <h3 id="ch3-s2">二、 适用于英国出生臣民的司法体系：最高法院</h3>
+            
+            <h4>（一） 最高法院的设立背景与历史沿革</h4>
+            <p>为了保障英国臣民不受东印度公司地方官员的专断侵害，英国议会根据1773年《规制法案》，首先在加尔各答设立了威廉堡最高法院（Supreme Court of Judicature at Fort William），随后又在马德拉斯（1801年）和孟买（1823年）设立了同等地位的最高法院。这些法院直属于英国王室，法官完全由王室任命，其终审上诉需直接呈交伦敦的枢密院司法委员会（Judicial Committee of the Privy Council）。<sup><a href="#fn18" class="citation-trigger" id="ref18" data-fn="18">[18]</a></sup></p>
+
+            <h4>（二） 最高法院的构成、管辖权与程序</h4>
+            <p>最高法院通常由一名首席法官（Chief Justice）和两名助理法官组成。其管辖权不仅限于各管辖区首府城市（Presidency Towns，如加尔各答、马德拉斯、孟买市）范围内的所有居民（无论种族），还涵盖全印度境内居住的所有英国出生臣民，以及受雇于公司和英国臣民的本地雇员。最高法院完全采用英国威斯敏斯特法庭的诉讼程序、陪审团制度和普通法规则，在印度的东方环境中顽强地维系着英格兰普通法制度的纯洁性。<sup><a href="#fn19" class="citation-trigger" id="ref19" data-fn="19">[19]</a></sup></p>
+
+            <h4>（三） 最高法院的缺陷与改革呼声</h4>
+            <p>然而，最高法院在印度的运作面临着极大的争议。其最大的弊端在于其诉讼费用极其昂贵，且诉讼程序繁琐至极。米尔斯指出，一个简单的债务纠纷在最高法院的运作下，其诉讼成本经常超过争议金额本身，使普通本地人望而却步。此外，最高法院的法官完全由来自英国本土的律师担任，他们对印度的语言、习俗和宗教社会一无所知，经常用僵化的英国普通法教条强行裁判印度的社会纠纷，引发了多次司法危机，改革最高法院、使之与地方公司法院合并的呼声不绝于耳。</p>
+
+            <h3 id="ch3-s3">三、 适用于印度土著居民的司法体系</h3>
+            <p>相比于高高在上的最高法院，管理亿万印度本地人日常民刑诉讼的是一套被称为“公司法院”（Company's Courts）的庞大地方司法体系。</p>
+
+            <h4>（一） 民事法庭：莫卧儿法庭、萨达尔法庭与地方法院</h4>
+            <p>在民事司法领域，公司法院呈现出清晰的等级制。最基层的是由本地人法官审理的小额民事法庭，按管辖金额和法官级别分为莫卧儿法庭（Munsiffs，管辖30英镑以下纠纷）、萨达尔阿明法庭（Sudder Ameens，管辖100英镑以下纠纷）以及首席萨达尔阿明法庭（Principal Sudder Ameens，管辖500英镑以下纠纷）。在这之上，是由契约制欧洲文官担任的地区和城市法院（Zillah and City Courts），负责大额民事案件并受理来自基层法庭的上诉。而民事司法的最高终审机构则是各省的萨达尔迪瓦尼法院（Sudder Dewanny Adawlut），其判决在特定情况下才可上诉至枢密院。<sup><a href="#fn20" class="citation-trigger" id="ref20" data-fn="20">[20]</a></sup></p>
+
+            <h4>（二） 刑事法庭：治安法庭、巡回法庭与萨达尔法庭</h4>
+            <p>刑事司法体制与民事类似，由地区治安法官（Magistrate，通常由地区税收员兼任）负责轻微刑事案件的审理。对于重大刑事罪行（如谋杀、强盗），则由地区和城市法官作为“巡回法官”定期开庭审判。刑事司法的最高上诉和终审机构是各省的萨达尔尼扎穆特法院（Sudder Nizamat Adawlut，在马德拉斯和孟买称为Foujdarry Adawlut）。萨达尔法院有权判处死刑，但死刑判决必须有两名以上法官的共同签署方可执行。<sup><a href="#fn21" class="citation-trigger" id="ref21" data-fn="21">[21]</a></sup></p>
+
+            <h4>（三） 警察体系：欧洲警察与村庄警察</h4>
+            <p>刑事司法的执行依赖于警察体系。在县和省一级，公司建立了现代化的、由欧洲警官监督和指挥的“达罗加”（Darogahs）和“塔纳”（Thanas）警察派出所制度。然而在最基层的数万个印度村庄里，由于警力有限，英国人不得不继续依赖并沿用古老的“村庄守望者”（Chowkeydars，村庄警察）制度，由村民和地主资助，负责日常的防盗和向欧洲警官汇报罪案。这种“欧洲警官与村庄传统守望者”相结合的廉价警察网络，成为了殖民地治安的基本保障。<sup><a href="#fn22" class="citation-trigger" id="ref22" data-fn="22">[22]</a></sup></p>
+
+            <h3 id="ch3-s4">四、 印度法律委员会：司法改革的探索与困境</h3>
+            
+            <h4>（一） 1833年法案与印度法律委员会的设立</h4>
+            <p>面对英属印度“法律适用因人而异、民刑法典极度混乱”的局面，英国议会在1833年《宪章法案》中，授权总督设立了“印度法律委员会”（Indian Law Commission），旨在对全印度的法律、司法机构和程序进行彻底的清理与法典化（Codification）改革。该委员会的首任主席即是杰出的英国历史学家、辉格党人托马斯·巴宾顿·麦考利（Thomas Babington Macaulay）。<sup><a href="#fn23" class="citation-trigger" id="ref23" data-fn="23">[23]</a></sup></p>
+
+            <h4>（二） 法律委员会的改革建议：刑法典、民法典与统一司法体系</h4>
+            <p>麦考利领导的法律委员会展现了极高的法学造诣和启蒙主义激情。委员会于1837年起草完成了《印度刑法典》草案（<i>Draft of the Indian Penal Code</i>，通称“麦考利法典”）。该草案彻底打破了基于《古兰经》和伊斯兰法学的传统刑事惩罚体系，引入了西方的“法律面前人人平等”原则，对犯罪定义、证据规则和刑罚种类进行了理性的、高度系统化的重构。此外，委员会还着手起草统一的民事诉讼程序法典，并建议将最高法院与萨达尔法院合并，建立起全印度统一、层级清晰的现代司法法院网络。<sup><a href="#fn24" class="citation-trigger" id="ref24" data-fn="24">[24]</a></sup></p>
+
+            <h4>（三） 改革的阻碍与法律委员会的消亡</h4>
+            <p>然而，法律委员会这些高度超前的理性法典草案，在英属印度的现实政治环境中遭遇了极大的阻力。一方面，契约制文官和地方公司法官强烈反对废除现有的简易诉讼程序，认为麦考利法典过于复杂和繁琐；另一方面，在印度的欧洲不法侨民也发起了一场声势浩大的反抗运动（被称为“黑色法案”争议），强烈反对取消他们在刑事诉讼中免受地方公司法院审判的司法特权。由于英国政府与印度地方政府之间的意见分歧和政治妥协，麦考利起草的《刑法典》在通过的道路上被搁置了整整二十余年，直到1857年大起义的猛烈冲击后，才最终于1860年正式获得通过，这充分展现了殖民司法改革在传统社会中的艰难与困境。</p>
+
+            <!-- 第四章 -->
+            <h2 id="chapter4">第四章 英属印度的税收制度：土地、鸦片、盐与关税</h2>
+            
+            <h3 id="ch4-s1">一、 土地税：从莫卧儿税制到英国税制</h3>
+            <p>土地税（Land Revenue）是英属印度政府财政绝对绝对的支柱，其在总收入中的占比长期维持在50%以上。米尔斯在其著作中，以极其详实的数据对这一核心制度进行了区域性的深层剖析。</p>
+
+            <h4>（一） 土地税的演变历程：莫卧儿税制、公司税制与英国税制</h4>
+            <p>在英国人到来前，莫卧儿王朝采取以实物或货币征收的农业税，税额通常占土地总产出的三分之一或四分之一，且税率在歉收年份可以灵活减免。东印度公司在1765年获得孟加拉的“迪瓦尼”（税收权）后，出于对稳定现金收入的病态追求，将莫卧儿税制彻底资本主义化和契约化，建立起一套严格、僵化、以司法强制手段保障追缴的近代土地税收体系。<sup><a href="#fn25" class="citation-trigger" id="ref25" data-fn="25">[25]</a></sup></p>
+
+            <h4>（二） 土地税收制度的类型：地主制与“赖亚特瓦里”制</h4>
+            <p>在具体的征收和产权界定上，英国人在印度推行了两种针锋相对的经济学实验：一是康沃利斯总督在孟加拉推行的“地主永久解决制”（Zamindari System），即承认传统的包税人“柴明达尔”为合法的地主，税额永久固定，由地主向农民征收租金并上缴政府；二是托马斯·芒罗在南印度推行的“赖亚特瓦里”制（Ryotwari System），即国家不通过中间地主，直接与单个农民（赖亚特）签订租约，每三十年重新评估并调整税额。这两种制度对印度农村的社会分化产生了完全不同的塑造。<sup><a href="#fn26" class="citation-trigger" id="ref26" data-fn="26">[26]</a></sup></p>
+
+            <h4>（三） 各地现行土地税收制度：孟加拉、西北省、马德拉斯、孟买与旁遮普</h4>
+            <p>米尔斯逐一分析了1858年时各管辖区的实际土地税收状况：</p>
+            <ul>
+                <li><strong>孟加拉管辖区</strong>：实行1793年“永久解决制”。地主拥有绝对产权，但如果无法按期缴纳固定税款，其土地会被政府在加尔各答公开拍卖，这导致了孟加拉传统贵族的破产与城市投机新地主的崛起。</li>
+                <li><strong>西北省</strong>：实行“迈哈尔瓦里”制（Mahalwari System）。税收评估以“迈哈尔”（即村庄地产共同体）为单位，由村庄内的兄弟会联合承担土地税契约，租期为30年，税率一般占净资产的50%至66.7%。<sup><a href="#fn27" class="citation-trigger" id="ref27" data-fn="27">[27]</a></sup></li>
+                <li><strong>马德拉斯省</strong>：大部分实行“赖亚特瓦里”制。由于国家直接评估每块土地，评估过程繁琐，导致基层官吏腐败和高估税额，农民负债累累。</li>
+                <li><strong>孟买省</strong>：实行经过改良的、以三十年为期的“赖亚特瓦里”制，并在孔坎地区保留了名为“霍蒂”（Khotes）的村庄地主中介制度。</li>
+                <li><strong>旁遮普省</strong>：主要推行以村庄兄弟会为单位的“村庄共同体土地税合同制度”，在尊重自耕农所有权的同时，强化了村庄内的共同连带责任。</li>
+            </ul>
+
+            <h4>（四） 免税土地：拉基拉吉土地、贾吉尔土地与伊南土地</h4>
+            <p>在复杂的土地所有制中，还并存着大片历史遗留下来的免税土地。拉基拉吉（Lakhiraj）土地是莫卧儿时期授予宗教、教育和慈善机构的永久免税土地；贾吉尔（Jaghires）土地是莫卧儿皇帝赐予军事将领以维持兵员的封地；伊南（Inam）土地则是南印度传统的免税赏赐地。英国人为了获取最大的土地收入，在接管各地后，纷纷成立了专门的“伊南委员会”（Inam Commission），对这些免税土地的古老地契进行严厉审查，强行收回了大量无法提供完美书面证明的免税土地，这一行动直接激怒了印度的地主和祭司阶层，成为1857年大起义的重要火药桶。<sup><a href="#fn28" class="citation-trigger" id="ref28" data-fn="28">[28]</a></sup></p>
+
+            <h3 id="ch4-s2">二、 鸦片税：政府垄断与过境税</h3>
+            <p>鸦片贸易是英属印度财政中最为暴利、最具地缘政治色彩的领域，也是政府的第二大财政支柱。米尔斯详细剖析了这一机制的两个分支。</p>
+
+            <h4>（一） 孟加拉鸦片垄断制度</h4>
+            <p>在孟加拉，公司对鸦片实行绝对的国家垄断（Monopoly）。在比哈尔和贝拿勒斯等省区，私人种植罂粟被严令禁止。公司通过盐土局和鸦片代理人，向数以万计的印度赖亚特农民提供丰厚的“预付款”（Advances），强迫或诱导他们将最肥沃的农田用于种植罂粟。收获的粗制鸦片必须全部交付给政府设在巴特那和加济布尔（Ghazeepore）的垄断加工厂，加工包装后运往加尔各答，在政府的月度拍卖会上出售给英商和华商，进而走私到中国市场。1856年，孟加拉鸦片垄断为政府带来了高达2,767,136英镑的净利润。<sup><a href="#fn29" class="citation-trigger" id="ref29" data-fn="29">[29]</a></sup></p>
+
+            <h4>（二） 马尔瓦鸦片过境税制度</h4>
+            <p>在印度中部（非英国直接管辖的土邦地区，如马尔瓦），公司由于缺乏政治主权，无法直接垄断鸦片生产。为了防止马尔瓦鸦片通过走私渠道（如葡萄牙控制的达曼、迪乌港口）流向中国、冲击孟加拉鸦片的垄断利润，公司采取了征收高额“过境税”（Transit Duty）的策略。所有马尔瓦鸦片运往孟买港口出口时，必须在英国设立的海关关卡购买昂贵的“通行证”（Passes），通行证费一度被提高到每箱（140磅）400卢比。通过这种高额关税，公司成功控制了中印度的鸦片流向，并获得了每年超过100万英镑的财政净收入。<sup><a href="#fn30" class="citation-trigger" id="ref30" data-fn="30">[30]</a></sup></p>
+
+            <h3 id="ch4-s3">三、 盐税：政府垄断与消费税</h3>
+            
+            <h4>（一） 孟加拉盐务机构与盐税征收</h4>
+            <p>盐是人人不可或缺的生活必需品。在孟加拉，公司对沿海地区食盐的制造和销售实行完全的垄断。公司通过盐务代理人（Salt Agents），向数万名在孙德尔本斯（Sunderbans）沼泽地忍受恶劣环境和猛兽袭击的熬盐工（被称为“马兰吉斯”）预付款，并以固定的极低价强制收购他们生产的所有的盐。随后，政府将这笔盐税附加在销售价格上，在指定仓库中持续售卖。1856年，孟加拉盐税税率高达每莫德（Maund，约82磅）2.5卢比，相当于每磅收取3/4便士，使得食盐的零售价格成为穷苦大众一项沉重的负担，引发了旷日持久的社会不满。<sup><a href="#fn31" class="citation-trigger" id="ref31" data-fn="31">[31]</a></sup></p>
+
+            <h4>（二） 其他地区的盐税征收方式：西北省、马德拉斯、孟买与旁遮普</h4>
+            <p>在英属印度的其他管辖区，盐税的征收方式则根据当地的自然地理和政治条件做出了灵活的调整：</p>
+            <ul>
+                <li><strong>西北省</strong>：该地区不产盐，其盐供应主要依赖于从孟加拉进口以及从拉贾斯坦邦等土邦购买。为了平衡两者竞争，公司在西北省建立了一道庞大的陆路海关线，对跨越边境的土邦盐征收过境税（每莫德 2 卢比），使之与缴纳了消费税的孟加拉盐在相同的价格下竞争。<sup><a href="#fn32" class="citation-trigger" id="ref32" data-fn="32">[32]</a></sup></li>
+                <li><strong>马德拉斯</strong>：与孟加拉类似，同样采用政府垄断模式，但销售价格被控制在较低的水平（每莫德 1 卢比），以缓和地方社会的矛盾。<sup><a href="#fn33" class="citation-trigger" id="ref33" data-fn="33">[33]</a></sup></li>
+                <li><strong>孟买</strong>：采取自由生产与消费税相结合的制度。公司不垄断食盐制造，但对私人盐场制造的盐和进口盐征收每莫德 12 安纳的消费税，在促进盐业发展的同时获取了税收。<sup><a href="#fn34" class="citation-trigger" id="ref34" data-fn="34">[34]</a></sup></li>
+                <li><strong>旁遮普</strong>：该地区的盐主要来自著名的盐矿区（Salt Range）。政府直接经营这些盐矿，并以每莫德 2 卢比的固定开采税进行销售，控制了整个北印度的矿盐市场。<sup><a href="#fn35" class="citation-trigger" id="ref35" data-fn="35">[35]</a></sup></li>
+            </ul>
+
+            <h3 id="ch4-s4">（四） 关税、土邦补贴与其他收入</h3>
+            <p>在海关关税方面，英国逐步在印度推行自由贸易政策。1813年和1833年的宪章法案废除了公司的贸易垄断后，1855年公司对关税制度进行了重大改革，将大部分进口商品的关税统一为10%的从价税，并对谷物、煤炭、原棉、马匹和金银实行免税，从而方便英国工业品流入印度，并将印度的原材料运往世界市场。<sup><a href="#fn36" class="citation-trigger" id="ref36" data-fn="36">[36]</a></sup></p>
+            <p>土邦补贴则是通过与印度半自治土邦签订条约获得的。米尔斯指出，“根据现行条约，英国政府与印度土邦之间收到的贡赋和补贴总额约为每年 50 万英镑”。 这些土邦以货币（补贴）或维持一支直接接受英国军官指挥的“军事特遣队”（如海得拉巴辅助部队、瓜廖尔土兵部队）的形式，向宗主国提供政治上的顺从与财政上的支持。<sup><a href="#fn37" class="citation-trigger" id="ref37" data-fn="37">[37]</a></sup></p>
+            <p>其他杂项收入，包括要求在所有司法程序和民事契约上使用印花税票的<strong>印花税</strong>；通过拍卖酒类与毒品销售许可证获得的<strong>酒税</strong>（Abkarree）；以及<strong>邮政服务</strong>和<strong>造币厂利润</strong>等。<sup><a href="#fn38" class="citation-trigger" id="ref38" data-fn="38">[38]</a></sup></p>
+
+            <table class="data-table">
+                <caption>表一：1856-1857年英属印度政府主要财政收入来源明细</caption>
+                <thead>
+                    <tr>
+                        <th>收入项目 (Source of Revenue)</th>
+                        <th>总收入（卢比 / Rupees）</th>
+                        <th>折合英镑 (GBP)</th>
+                        <th>占总收入比例 (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>土地税 (Land Revenue)</td>
+                        <td>171,837,000</td>
+                        <td>17,183,700</td>
+                        <td>53.3%</td>
+                    </tr>
+                    <tr>
+                        <td>鸦片税 (Opium Monopoly & Overpass)</td>
+                        <td>4,767,136</td>
+                        <td>4,767,136</td>
+                        <td>14.8%</td>
+                    </tr>
+                    <tr>
+                        <td>盐税 (Salt Revenue)</td>
+                        <td>2,800,000</td>
+                        <td>2,800,000</td>
+                        <td>8.7%</td>
+                    </tr>
+                    <tr>
+                        <td>关税 (Customs)</td>
+                        <td>2,028,000</td>
+                        <td>2,028,000</td>
+                        <td>6.2%</td>
+                    </tr>
+                    <tr>
+                        <td>土邦补贴与贡赋 (Tributes)</td>
+                        <td>500,000</td>
+                        <td>500,000</td>
+                        <td>1.6%</td>
+                    </tr>
+                    <tr>
+                        <td>杂项（印花税、酒税、邮政等）</td>
+                        <td>4,964,864</td>
+                        <td>4,964,864</td>
+                        <td>15.4%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 公共工程 -->
+            <h2 id="chapter5">五、 公共工程：道路、桥梁、运河、铁路与电报</h2>
+            
+            <h3 id="ch5-s1">一、 政府对公共工程的重视与投入</h3>
+            <p>进入 19 世纪中叶，随着公司在印度的扩张逐渐转向内部经营，基础设施建设成为了殖民地政府工作的重要内容。1855 年，在达尔豪西总督的推动下，印度成立了专门的“公共工程部”（Public Works Department），废除了旧有的军事委员会管理体制，实现了公共工程建设从军事化管理向民政化管理的转变。<sup><a href="#fn44" class="citation-trigger" id="ref44" data-fn="44">[44]</a></sup></p>
+            <p>英国人在印度投资建设公共工程，首先是为了适应工业革命后英国资本输出的需要，其次是为了满足英国对印度棉花、小麦、茶叶等原材料进口的需求，同时在政治上也是为了方便军队的快速调动以巩固国防。米尔斯指出，“通过道路和铁路的改善、运河和灌溉设施的扩展，使得这个国家在遇到农作物歉收或严重的饥荒时，拥有更大的抵御能力”。<sup><a href="#fn45" class="citation-trigger" id="ref45" data-fn="45">[45]</a></sup></p>
+
+            <h3 id="ch3-s2">二、 道路建设：从军队公路到“大路”</h3>
+            <p>印度的道路建设起初主要服务于军事战略，即著名的“军队公路”，连接着公司在印度的各个军事据点。但在 19 世纪 30 年代后，以连接加尔各答和德里的“大路”（Grand Trunk Road）的修建为标志，道路建设开始转向民用与商业目的。大路路基宽阔、路面坚固，极大促进了沿线的交通和商品贸易。<sup><a href="#fn46" class="citation-trigger" id="ref46" data-fn="46">[46]</a></sup></p>
+
+            <h3 id="ch5-s3">三、 桥梁建设：铁索桥与铁路桥</h3>
+            <p>跨越印度密布的大江大河（如恒河、亚穆纳河等）对于交通运输是极大的考验。19 世纪初，公司开始在主要河流上引入铁索悬索桥技术（如加尔各答附近的霍拉铁索桥）。而在铁路大发展时期，为了承载重型火车的通过，钢桁架铁路桥和石拱铁路桥也开始大面积兴修，彻底连接了被大河分割的印度的各主要经济区域。<sup><a href="#fn47" class="citation-trigger" id="ref47" data-fn="47">[47]</a></sup></p>
+
+            <h3 id="ch5-s4">四、 运河建设：灌溉与航运</h3>
+            <p>运河建设是印度公共工程中成效最显著、影响最深远的领域。英国人在对西亚穆纳运河、东亚穆纳运河等莫卧儿帝国旧有运河实施整修的基础上，于 1843 年开工建设了规模宏大的上恒河运河（Ganges Canal）工程，该工程于 1854 年投入运营，全长达 900 英里，灌溉了 150 万英亩的干旱土地，在预防饥荒和促进商业作物（如甘蔗、棉花）种植上取得了巨大的经济回报。在南方，亚瑟·科顿上校主持修建了戈达瓦里河和克里希纳河的三角洲筑坝灌溉工程，将南印度大片沿海平原变成了高产的水稻和棉花基地。<sup><a href="#fn48" class="citation-trigger" id="ref48" data-fn="48">[48]</a></sup></p>
+
+            <h3 id="ch5-s5">五、 铁路与电报：交通运输的革命性变化</h3>
+            <p>19 世纪 50 年代，铁路在印度的修建标志着交通革命的开始。1853年，由大印度半岛铁路公司承建的孟买至塔那的铁路线正式通车。随后，加尔各答至布尔德万、马德拉斯至韦洛尔等干线铁路相继开通。电报线路的建设也几乎与铁路同步推进，至 1856 年，连接加尔各答、白沙瓦、孟买、马德拉斯等核心城市的电报网络已长达数千英里。铁路和电报的结合，使行政命令的传达和军队的调动实现了前所未有的高速度，在 1857 年大起义中为英国人迅速集中兵力、镇压叛乱发挥了决定性作用。<sup><a href="#fn49" class="citation-trigger" id="ref49" data-fn="49">[49]</a></sup></p>
+
+            <table class="data-table">
+                <caption>表二：1856年英属印度主要铁路与电报干线建设概况</caption>
+                <thead>
+                    <tr>
+                        <th>铁路 / 电报线路名称 (Lines)</th>
+                        <th>起始与终点 (Terminus)</th>
+                        <th>开通里程 (Miles)</th>
+                        <th>主要功能与地缘战略价值</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>大印度半岛铁路 (Great Indian Peninsula)</td>
+                        <td>孟买 至 塔那 (Bombay to Tannah)</td>
+                        <td>20</td>
+                        <td>印度首条铁路，主要用于棉花外运与军事机动。</td>
+                    </tr>
+                    <tr>
+                        <td>东印度铁路 (East Indian Railway)</td>
+                        <td>加尔各答 至 布尔德万 (Calcutta to Burdwan)</td>
+                        <td>120</td>
+                        <td>连接孟加拉煤矿区与首府加尔各答，具有极高经济价值。</td>
+                    </tr>
+                    <tr>
+                        <td>马德拉斯铁路 (Madras Railway)</td>
+                        <td>马德拉斯 至 贝波尔 (Madras to Beypoor)</td>
+                        <td>60</td>
+                        <td>横跨南印度半岛，便利军事物资与农产品运输。</td>
+                    </tr>
+                    <tr>
+                        <td>全印帝国电报网 (Grand Trunk Telegraph)</td>
+                        <td>加尔各答、白沙瓦、孟买、马德拉斯</td>
+                        <td>4,000</td>
+                        <td>连接四大核心军政枢纽，实现战略信息的瞬间传达。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 结论 -->
+            <h2 id="conclusion">结论</h2>
+            
+            <h3 id="conclusion-1">一、 米尔斯《1858年的印度》对理解法案的贡献</h3>
+            <p>亚瑟·米尔斯在《1858年的印度》一书中，以极其严谨、翔实和系统的第一手数据资料，为处于 1857 年民族起义风暴眼中的英国公众和决策者，提供了一份不可替代的、关于英属印度政治、司法、财政和军事状况的“全景式”报告。他的客观叙述虽然规避了直接的道德评判，但却以无可辩驳的体制漏洞，证明了东印度公司在管理这个两亿人口帝国时的腐败、低效和统治的脆弱，为英国议会最终做出废除公司、将权力收归王室提供了坚实的数据支持与法理依据。<sup><a href="#fn54" class="citation-trigger" id="ref54" data-fn="54">[54]</a></sup></p>
+
+            <h3 id="conclusion-2">二、 1858年印度政府法案的影响：从公司统治到王室直辖</h3>
+            <p>1858年印度政府法案是英属印度历史的转折点。它在法律上宣判了东印度公司的终结，建立起了由印度国务大臣（Secretary of State for India）和印度理事会（Council of India）直接负责的内阁制行政框架。总督被冠以“副王”（Viceroy）的称号，代表英国女王行使绝对的统治权。然而，这种行政集权并未能彻底消除公司统治时期的深层矛盾。王室直辖后的土地、盐务、鸦片和税收体制，在很大程度上是对公司税制的继承和强化。英国政府对高耗水经济作物种植和铁路等公共工程的追求，在增加财政收入的同时，也固化了印度农村的社会分化。司法体制的二元性，也依然对欧洲人实行特权袒护，这些未解决的统治弊病，在19世纪后期进一步加剧了印度人民的贫困与社会分化，从而在客观上成为推动印度民族大觉醒与印度国民大会党（国大党）等早期民族主义运动兴起的强力催化剂。<sup><a href="#fn55" class="citation-trigger" id="ref55" data-fn="55">[55]</a></sup></p>
+
+            <h3 id="conclusion-3">三、 对未来研究的展望</h3>
+            <p>未来的研究应当进一步发掘伦敦印度事务部（India Office Records）未公开的档案，结合 1858 年前后各省（特别是旁遮普、奥德等新并吞地区）的基层税收簿册，深入探讨1858年政府法案在不同地理空间和不同社会阶层中的具体贯彻与变异。同时，将 1858 年法案置于 19 世纪大英帝国全球殖民扩张（如英帝国在加拿大、澳大利亚等地的特许公司收回王室运动）的横向比较框架下，能为我们理解英帝国殖民治理的转型逻辑提供更广阔的学术视野。</p>
+        </article>
+
+        <!-- 参考文献 -->
+        <section id="bibliography" style="margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 30px;">
+            <h2>参考文献 (Bibliography)</h2>
+
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[1] Arthur Mills, <i>India in 1858: A Summary of the Existing Administration of the British Empire in the East</i>, London: John Murray, 1858.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[2] Sir William Wilson Hunter, <i>The India of the Queen and Other Essays</i>, London: Longmans, Green, and Co., 1903.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[3] Thomas R. Metcalf, <i>The Aftermath of Revolt: India, 1857-1870</i>, Princeton: Princeton University Press, 1964.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[4] S. Ambirajan, <i>Classical Political Economy and British Policy in India</i>, Cambridge: Cambridge University Press, 1978.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[5] Bernard S. Cohn, <i>An Anthropologist among the Historians and Other Essays</i>, Oxford: Oxford University Press, 1987.</p>
+
+
+<!-- 弹窗容器结构 -->
+<div class="footnote-popover" id="footnote-popover">
+    <button class="close-btn" aria-label="关闭">&times;</button>
+    <div class="popover-content"></div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const triggers = document.querySelectorAll('.citation-trigger');
+        const popover = document.getElementById('footnote-popover');
+        const popoverContent = popover.querySelector('.popover-content');
+        const closeBtn = popover.querySelector('.close-btn');
+
+        // 显示气泡弹窗
+        function showPopover(trigger, contentHtml) {
+            // 清理并剔除“返回正文(↩)”的链接
+            const cleanHtml = contentHtml.replace(/<a[^>]*class="back-link"[^>]*>.*?<\/a>/ig, '');
+            popoverContent.innerHTML = cleanHtml;
+            popover.style.display = 'block';
+
+            // 动态定位计算
+            const triggerRect = trigger.getBoundingClientRect();
+            const popoverWidth = popover.offsetWidth;
+            const popoverHeight = popover.offsetHeight;
+
+            // 页面绝对坐标系统
+            const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+            // X 轴居中对齐
+            let popoverLeft = triggerRect.left + scrollX - (popoverWidth / 2) + (triggerRect.width / 2);
+            // Y 轴定位在角标上方 12px
+            let popoverTop = triggerRect.top + scrollY - popoverHeight - 12;
+
+            // 越界保护
+            if (popoverLeft < 10) {
+                popoverLeft = 10;
+            }
+            if (popoverLeft + popoverWidth > window.innerWidth) {
+                popoverLeft = window.innerWidth - popoverWidth - 10;
+            }
+            if (triggerRect.top - popoverHeight < 15) {
+                popoverTop = triggerRect.bottom + scrollY + 12;
+            }
+
+            popover.style.left = `${popoverLeft}px`;
+            popover.style.top = `${popoverTop}px`;
+        }
+
+        function hidePopover() {
+            popover.style.display = 'none';
+        }
+
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const fnId = trigger.getAttribute('data-fn');
+                const targetNote = document.getElementById(`fn${fnId}`);
+                if (targetNote) {
+                    showPopover(trigger, targetNote.innerHTML);
+                }
+            });
+        });
+
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hidePopover();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!popover.contains(e.target)) {
+                hidePopover();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hidePopover();
+            }
+        });
+    });
+</script>
+</body>
+</html>
