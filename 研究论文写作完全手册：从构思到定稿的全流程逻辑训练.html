@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>研究论文写作完全手册 - 逻辑与实战</title>
+    <style>
+        /* 全局变量与重置 */
+        :root {
+            --primary-color: #2c3e50; /*以此深蓝代表学术严谨 */
+            --accent-color: #c0392b;  /*以此深红代表重点逻辑 */
+            --bg-color: #f4f4f9;
+            --text-color: #333;
+            --sidebar-width: 280px;
+            --header-height: 60px;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: "Georgia", "Microsoft YaHei", serif; /* 采用衬线字体提升阅读体验 */
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            height: 100vh;
+            overflow: hidden; /* 防止整个页面滚动，只让内容区滚动 */
+            display: grid;
+            grid-template-areas: 
+                "header header header"
+                "left main right";
+            grid-template-columns: var(--sidebar-width) 1fr var(--sidebar-width);
+            grid-template-rows: var(--header-height) 1fr;
+        }
+
+        /* --- 顶部导航窗格 (章节目次) --- */
+        header {
+            grid-area: header;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+        
+        header h1 { font-size: 1.2rem; margin-right: 30px; font-weight: bold; letter-spacing: 1px; }
+        
+        nav ul { list-style: none; display: flex; overflow-x: auto; white-space: nowrap; }
+        nav ul li { margin-right: 20px; }
+        nav ul li a { 
+            color: #bdc3c7; 
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            transition: color 0.3s;
+            font-family: "Arial", sans-serif;
+        }
+        nav ul li a:hover, nav ul li a.active { color: white; border-bottom: 2px solid var(--accent-color); }
+
+        /* --- 左侧时间轴 (研究生命周期) --- */
+        #left-sidebar {
+            grid-area: left;
+            background-color: #fff;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .sidebar-title {
+            font-size: 1rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+
+        /* 时间轴样式 */
+        .timeline { position: relative; border-left: 2px solid #ddd; margin-left: 10px; padding-left: 20px; }
+        .timeline-item { margin-bottom: 25px; position: relative; }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+        .timeline-item h4 { font-size: 0.95rem; margin-bottom: 5px; cursor: pointer; color: var(--primary-color); }
+        .timeline-item h4:hover { color: var(--accent-color); text-decoration: underline; }
+        .timeline-item p { font-size: 0.8rem; color: #666; line-height: 1.4; }
+
+        /* --- 右侧思维导图 (逻辑概念) --- */
+        #right-sidebar {
+            grid-area: right;
+            background-color: #fff;
+            border-left: 1px solid #ddd;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        /* 树状思维导图按钮 */
+        .mindmap-node { margin-bottom: 15px; }
+        .mindmap-btn {
+            background-color: #ecf0f1;
+            border: none;
+            color: #2c3e50;
+            padding: 8px 12px;
+            text-align: left;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.2s;
+            margin-bottom: 5px;
+        }
+        .mindmap-btn:hover { background-color: #d5dbdb; border-left: 4px solid var(--accent-color); }
+        
+        .sub-node { margin-left: 15px; display: none; /* 默认折叠 */ }
+        .sub-btn {
+            background-color: transparent;
+            border: 1px solid #eee;
+            font-size: 0.85rem;
+            padding: 5px 10px;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            margin-bottom: 2px;
+        }
+        .sub-btn:hover { background-color: #fcfcfc; color: var(--accent-color); }
+        .show { display: block; }
+
+        /* --- 中央内容区 --- */
+        #main-content {
+            grid-area: main;
+            padding: 40px 60px;
+            overflow-y: auto;
+            background-color: white;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            scroll-behavior: smooth;
+        }
+
+        /* 内容排版样式 */
+        .chapter-title { 
+            font-size: 2rem; 
+            color: var(--primary-color); 
+            margin: 60px 0 30px 0; 
+            border-bottom: 1px solid #eee; 
+            padding-bottom: 10px; 
+        }
+        .section-title { 
+            font-size: 1.5rem; 
+            color: var(--accent-color); 
+            margin: 40px 0 20px 0; 
+        }
+        .para-text { margin-bottom: 20px; text-align: justify; }
+        
+        .highlight-box {
+            background-color: #fff8e1;
+            border-left: 5px solid #f1c40f;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .list-group { margin-left: 20px; margin-bottom: 20px; }
+        .list-group li { margin-bottom: 10px; }
+
+        /* 响应式调整 */
+        @media (max-width: 1200px) {
+            body { grid-template-columns: 220px 1fr 220px; }
+        }
+        @media (max-width: 768px) {
+            body {
+                grid-template-areas: 
+                    "header"
+                    "main";
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+            }
+            #left-sidebar, #right-sidebar { display: none; } /* 移动端暂时隐藏侧边栏 */
+        }
+    </style>
+    <script>
+        // 简单的交互逻辑：点击思维导图展开子节点
+        function toggleNode(id) {
+            var element = document.getElementById(id);
+            if (element.classList.contains("show")) {
+                element.classList.remove("show");
+            } else {
+                element.classList.add("show");
+            }
+        }
+
+        // 滚动定位逻辑
+        function scrollToSection(id) {
+            var element = document.getElementById(id);
+            if(element) {
+                element.scrollIntoView({behavior: "smooth", block: "start"});
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <!-- 顶部导航 -->
+    <header>
+        <h1>论文写作逻辑流</h1>
+        <nav>
+            <ul>
+                <li><a href="#intro" onclick="scrollToSection('intro')">引言：哲学基石</a></li>
+                <li><a href="#ch1" onclick="scrollToSection('ch1')">第一章：准备</a></li>
+                <li><a href="#ch2" onclick="scrollToSection('ch2')">第二章：研究与论证</a></li>
+                <li><a href="#ch3" onclick="scrollToSection('ch3')">第三章：构思初稿</a></li>
+                <li><a href="#ch4" onclick="scrollToSection('ch4')">第四章：格式规范</a></li>
+                <li><a href="#ch5" onclick="scrollToSection('ch5')">第五章：定稿</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 左侧：时间轴 (流程逻辑) -->
+    <aside id="left-sidebar">
+        <div class="sidebar-title">研究项目时间轴</div>
+        <div class="timeline">
+            <!-- 这里将放置对应各章节的时间节点 -->
+            <div class="timeline-item">
+                <h4 onclick="scrollToSection('intro')">阶段 0: 思维觉醒</h4>
+                <p>确立组织、纪律与惯例的意识。</p>
+            </div>
+            <div class="timeline-item">
+                <h4 onclick="scrollToSection('ch1')">阶段 1: 奠基 (准备)</h4>
+                <p>从宽泛兴趣到具体选题的限制过程。</p>
+            </div>
+            <div class="timeline-item">
+                <h4 onclick="scrollToSection('ch2')">阶段 2: 构建框架</h4>
+                <p>运用逻辑推理，积累并整理笔记。</p>
+            </div>
+            <div class="timeline-item">
+                <h4 onclick="scrollToSection('ch3')">阶段 3: 转化为文字</h4>
+                <p>从提纲到初稿的智力飞跃。</p>
+            </div>
+            <div class="timeline-item">
+                <h4 onclick="scrollToSection('ch4')">阶段 4: 规范化</h4>
+                <p>学术界的"游戏规则"：引用与格式。</p>
+            </div>
+            <div class="timeline-item">
+                <h4 onclick="scrollToSection('ch5')">阶段 5: 打磨成品</h4>
+                <p>审查、修改与最终定稿。</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 右侧：思维导图 (概念逻辑) -->
+    <aside id="right-sidebar">
+        <div class="sidebar-title">逻辑思维导图</div>
+        
+        <!-- 核心概念组 -->
+        <div class="mindmap-node">
+            <button class="mindmap-btn" onclick="toggleNode('node-critical')">批判性思维 (Core)</button>
+            <div id="node-critical" class="sub-node">
+                <button class="sub-btn">决策能力</button>
+                <button class="sub-btn">问题解决</button>
+                <button class="sub-btn">创造力</button>
+                <button class="sub-btn">客观性</button>
+            </div>
+        </div>
+
+        <div class="mindmap-node">
+            <button class="mindmap-btn" onclick="toggleNode('node-method')">第一性原理 (Thinking)</button>
+            <div id="node-method" class="sub-node">
+                <button class="sub-btn">质疑假设</button>
+                <button class="sub-btn">回归本质</button>
+                <button class="sub-btn">重构方案</button>
+            </div>
+        </div>
+
+        <div class="mindmap-node">
+            <button class="mindmap-btn" onclick="toggleNode('node-logic')">推理模式 (Logic)</button>
+            <div id="node-logic" class="sub-node">
+                <button class="sub-btn">演绎推理 (自上而下)</button>
+                <button class="sub-btn">归纳推理 (自下而上)</button>
+                <button class="sub-btn">溯因推理 (最佳猜测)</button>
+            </div>
+        </div>
+
+        <div class="mindmap-node">
+            <button class="mindmap-btn" onclick="toggleNode('node-notes')">笔记系统 (System)</button>
+            <div id="node-notes" class="sub-node">
+                <button class="sub-btn">直接引文</button>
+                <button class="sub-btn">释义总结</button>
+                <button class="sub-btn">个人观点</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 中央：主要内容区 -->
+    <main id="main-content">
+        <!-- 
+            内容将通过后续的 9 个代码块填充到这里。
+            结构将严格按照：引言 -> 第一章 -> ... -> 第五章 -> 总结
+        -->
+<!-- 代码块 2：引言与哲学基石 -->
+
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h1 style="font-size: 2.5rem; color: #2c3e50; margin-bottom: 10px;">研究论文写作完全手册</h1>
+            <p style="font-size: 1.2rem; color: #7f8c8d;">从构思到定稿的全流程逻辑训练</p>
+        </div>
+
+        <!-- 引言部分 -->
+        <section id="intro">
+            <h2 class="chapter-title">引言：研究论文的哲学与思维基石</h2>
+            
+            <p class="para-text">
+                撰写研究论文的核心挑战，不仅在于信息的搜集与堆砌，更在于思想的构建与表达。它要求研究者将纷繁复杂的材料消化、吸收，并最终提炼成一个条理清晰、论证严谨的智力成果。
+            </p>
+
+            <div class="highlight-box">
+                <strong>Ralph Berry 的核心洞见：</strong> 
+                研究论文的哲学核心建立在三个关键词之上。这三者共同构成了学术写作的基石。
+            </div>
+
+            <!-- 三大基石卡片布局 -->
+            <div style="display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap;">
+                <div style="flex: 1; background: #fff; border: 1px solid #ddd; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <h3 style="color: var(--accent-color); margin-bottom: 10px;">1. 组织 (Organization)</h3>
+                    <p style="font-size: 0.9rem; color: #555;">要求高效地规划时间与精力，并构建逻辑严谨的内在结构。</p>
+                </div>
+                <div style="flex: 1; background: #fff; border: 1px solid #ddd; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <h3 style="color: var(--accent-color); margin-bottom: 10px;">2. 纪律 (Discipline)</h3>
+                    <p style="font-size: 0.9rem; color: #555;">是筛选权威资料、审慎提出个人见解的保障。</p>
+                </div>
+                <div style="flex: 1; background: #fff; border: 1px solid #ddd; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <h3 style="color: var(--accent-color); margin-bottom: 10px;">3. 惯例 (Convention)</h3>
+                    <p style="font-size: 0.9rem; color: #555;">一套公认的学术规范，确保研究成果能被清晰地理解和评判。</p>
+                </div>
+            </div>
+
+            <p class="para-text">
+                要成功驾驭这三大要素，离不开一个更为根本的能力——<strong>批判性思维</strong>。根据《培养批判性思维能力的50项活动》的定义，这是一种以逻辑化、系统化的方式分析、评估和解读信息的能力。它要求我们质疑假设，考量多元视角，并基于坚实的推理得出结论。
+            </p>
+
+            <h3 class="section-title">批判性思维的四大核心价值</h3>
+            <ul class="list-group">
+                <li>
+                    <strong>提升决策能力 (Improves decision-making)</strong>：帮助研究者审慎评估各种选项，做出更明智、更有效的选择。
+                </li>
+                <li>
+                    <strong>增强问题解决能力 (Enhances problem-solving)</strong>：将复杂问题分解，识别根本原因，并构思出切实可行的解决方案。
+                </li>
+                <li>
+                    <strong>激发创造力 (Fosters creativity)</strong>：鼓励挑战既有观念，从而催生创新思想，探索全新的概念。
+                </li>
+                <li>
+                    <strong>促进客观性 (Promotes objectivity)</strong>：确保所有判断和结论都建立在事实与逻辑推理之上，而非个人偏见或主观臆断。
+                </li>
+            </ul>
+
+            <p class="para-text">
+                本手册旨在成为您的学术导师，引导您将批判性思维的原则贯穿于论文写作的每一个具体步骤中，从最初的准备阶段直至最终的定稿。
+            </p>
+        </section>
+<!-- 代码块 3：第一章 - 选题与第一性原理 -->
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+
+        <!-- 第一章：准备阶段 -->
+        <section id="ch1">
+            <h2 class="chapter-title">第一章：准备阶段 —— 奠定坚实基础</h2>
+            
+            <p class="para-text">
+                研究的准备阶段决定了整个项目的成败。一个定义模糊的主题或一份粗疏的文献清单，几乎注定会使后续的写作过程充满挫折与混乱。相反，一个经过深思熟虑、范围明确的研究主题和一份经过严格筛选的文献基础，是后续所有工作的坚固基石。
+            </p>
+
+            <!-- 第一节：选择与界定 -->
+            <h3 class="section-title">第一节：选择与界定研究主题</h3>
+            
+            <h4 style="color:#2c3e50; margin-top:20px;">分析选择主题的过程</h4>
+            <p class="para-text">
+                Ralph Berry指出，研究过程本质上是一个不断<strong>“限制” (restriction)</strong> 的过程。它始于一个宽泛的兴趣领域，通过逐步聚焦，最终收窄为一个具体的、可操作的论文标题。
+            </p>
+            <div style="background-color: #e8f8f5; border-left: 4px solid #1abc9c; padding: 15px; margin: 15px 0;">
+                <strong>限制过程示例：</strong><br>
+                宏大领域：<em>“城市交通”</em> &rarr; 聚焦问题：<em>“单向交通系统”</em> &rarr; 具体论题：<em>“单向交通系统在缓解市中心拥堵中的作用”</em>
+            </div>
+            <p class="para-text">
+                这个过程本身就是一次重要的智力训练，它迫使您在混乱中建立秩序，明确研究的目标与边界。
+            </p>
+
+            <h4 style="color:#2c3e50; margin-top:20px;">评估研究的可行性</h4>
+            <p class="para-text">
+                在最终确定主题之前，必须进行一次冷静的现实性评估。一个再有趣的主题，如果没有足够的研究资源支撑，也只是空中楼阁。您需要扪心自问：
+            </p>
+            <ul class="list-group">
+                <li>关于这个主题，是否有足够数量的书籍、学术论文、报告或数据可供查阅？</li>
+                <li>您所在的图书馆或通过网络能否获取这些关键资料？</li>
+            </ul>
+            <p class="para-text">
+                只有在确认资源充足后，才能正式启动项目，避免在研究中途因资料匮乏而陷入困境。
+            </p>
+
+            <h4 style="color:#2c3e50; margin-top:20px;">介绍“第一性原理”思维</h4>
+            <p class="para-text">
+                为了提出更具原创性的研究问题，我们可以借鉴<strong>“第一性原理”思维 (reasoning from first principles)</strong>。正如“Farnam Street”博客所阐述的，这种思维方式要求我们不依赖类比或既有惯例，而是将问题分解为其最基本的、不可再分的组成部分，并从这些“第一性原理”出发，重新构建解决方案。
+            </p>
+            
+            <div class="highlight-box">
+                <strong>挑战核心假设：</strong>
+                与其接受“事情一直都是这样”，不如追问：
+                <ul>
+                    <li>我们如何知道这是真的？</li>
+                    <li>如果我们从零开始，我们会创造出同样的东西吗？</li>
+                    <li>支撑现有观点的核心事实是什么？</li>
+                </ul>
+            </div>
+
+            <p class="para-text">
+                例如，在研究社交媒体对青少年心理健康的影响时，一个常见的假设是“社交媒体使用时长越长，负面影响越大”。第一性原理思维会挑战这个假设，回归问题的本质：
+            </p>
+            <ul class="list-group">
+                <li>“心理健康的核心要素是什么？”（如归属感、自我认同、社会比较）。</li>
+                <li>“社交媒体的哪些具体机制与这些要素互动？”（如点赞反馈、信息流内容，而非笼统的“时长”）。</li>
+            </ul>
+            <p class="para-text">
+                通过这种分解，研究者可能提出更具原创性的问题，如“不同类型的社交媒体互动（主动发布 vs. 被动浏览）如何差异化地影响青少年的社会比较心理？”，从而超越简单的因果假设。
+            </p>
+<!-- 代码块 4：第一章 - 资源利用与参考文献 -->
+
+            <!-- 第二节：利用图书馆与网络资源 -->
+            <h3 class="section-title">第二节：利用图书馆与网络资源</h3>
+            
+            <h4 style="color:#2c3e50; margin-top:20px;">阐述图书馆的核心价值</h4>
+            <p class="para-text">
+                在数字化时代，实体图书馆的价值依然不可替代。Ralph Berry强调，图书馆员 (library staff) 是研究者最重要的伙伴。他们是信息检索的专家，能够为您提供专业的文献检索建议。
+            </p>
+
+            <h4 style="color:#2c3e50; margin-top:20px;">两种主要的图书分类法</h4>
+            <table style="width:100%; border-collapse: collapse; margin-bottom: 20px;">
+                <thead>
+                    <tr style="background-color: var(--primary-color); color: white;">
+                        <th style="padding: 10px; border: 1px solid #ddd;">分类法</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">核心特点</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>杜威十进制分类法</strong><br>(Dewey Decimal System)</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">将知识体系分为10个主类（如800-899代表文学），并使用小数进行无限细分，常见于公共图书馆。</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>美国国会图书馆分类法</strong><br>(Library of Congress Classification)</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">使用字母和数字组合，将知识分为21个大类（如N代表艺术），分类更细致，主要用于大型研究型图书馆。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4 style="color:#2c3e50; margin-top:20px;">评估网络资源的可靠性</h4>
+            <p class="para-text">
+                互联网提供了海量信息，但其质量良莠不齐。Sonja Cameron和Susan E. Beck等人提出的评估标准，可以帮助我们有效筛选可信赖的网络资源。
+            </p>
+            <div style="background-color: #fff; border: 1px solid #ddd; padding: 15px; border-radius: 8px;">
+                <ul class="list-group" style="margin-bottom: 0;">
+                    <li><strong>权威性 (Authority)</strong>：作者或发布机构是谁？网站是否隶属于知名的学术机构(.edu, .ac.uk)？</li>
+                    <li><strong>准确性 (Accuracy)</strong>：信息是否有事实依据？数据是否可以被核实？</li>
+                    <li><strong>客观性 (Objectivity)</strong>：信息是否存在明显的偏见？是否区分了事实与观点？</li>
+                    <li><strong>时效性 (Currency)</strong>：信息是什么时候发布的？链接是否有效？</li>
+                    <li><strong>覆盖范围 (Coverage)</strong>：该资源对主题的探讨是否深入全面？</li>
+                </ul>
+            </div>
+
+            <!-- 第三节：构建初步参考文献 -->
+            <h3 class="section-title">第三节：构建初步参考文献</h3>
+            
+            <p class="para-text">
+                在研究的初期阶段，您的目标是尽可能广泛地搜集所有潜在相关的文献，形成一份详尽的<strong>初步参考文献 (preliminary bibliography)</strong>。
+            </p>
+
+            <h4 style="color:#2c3e50; margin-top:20px;">区分不同类型的文献来源</h4>
+            <ul class="list-group">
+                <li><strong>已出版来源 (Published sources)</strong>：书籍、学术期刊、报纸、政府报告。具有较高可信度。</li>
+                <li><strong>未出版来源 (Unpublished sources)</strong>：日记、信件、手稿、学位论文。提供第一手见解。</li>
+                <li><strong>人类联系 (Human contacts)</strong>：访谈、电子邮件交流。提供书面材料中无法找到的背景信息。</li>
+            </ul>
+
+            <h4 style="color:#2c3e50; margin-top:20px;">如何记录参考文献</h4>
+            <p class="para-text">
+                为了在后续写作中准确引用，从一开始就必须一丝不苟地记录每一条文献的详细信息。
+            </p>
+            <div class="highlight-box">
+                <strong>关键信息清单：</strong>
+                <ul>
+                    <li>书籍：作者/编者全名、完整书名、出版地、出版社、年份。</li>
+                    <li>期刊：作者、文章名、期刊名、卷号、期号、年份、页码。</li>
+                    <li>网络：作者、标题、网站名、完整URL、<strong>访问日期</strong>（至关重要！）。</li>
+                </ul>
+                <small>*特别提示：记录图书馆藏书时，务必记下<strong>索书号 (Call Number)</strong>。</small>
+            </div>
+
+            <h4 style="color:#2c3e50; margin-top:20px;">评估文献的标准</h4>
+            <p class="para-text">
+                Ralph Berry提出了两个核心筛选标准：
+                <br>1. <strong>出版日期</strong>：知识是不断更新的。参考文献应兼顾经典（奠基性作品）与前沿（近十年成果）。
+                <br>2. <strong>作者的地位</strong>：作者是否是该领域的公认专家？同时要警惕作者的潜在偏见 (axe to grind)。
+            </p>
+        </section>
+<!-- 代码块 5：第二章 - 逻辑推理类型 -->
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+
+        <!-- 第二章：研究与论证 -->
+        <section id="ch2">
+            <h2 class="chapter-title">第二章：研究与论证 —— 构建严谨的逻辑框架</h2>
+            
+            <p class="para-text">
+                本章具有重要的战略意义，其核心任务是将您搜集到的零散信息，转化为一篇结构清晰、说服力强的学术论证。要实现这一目标，关键在于掌握逻辑推理的基本原则和发展一套系统高效的笔记方法。
+            </p>
+
+            <!-- 第一节：逻辑推理的类型 -->
+            <h3 class="section-title">第一节：逻辑推理的类型</h3>
+            
+            <h4 style="color:#2c3e50; margin-top:20px;">对比分析三种核心推理模式</h4>
+            <p class="para-text">
+                根据“The Decision Lab”和“Merriam-Webster”的定义，我们可以将三种核心的推理模式进行如下对比：
+            </p>
+            
+            <table style="width:100%; border-collapse: collapse; margin-bottom: 20px;">
+                <thead>
+                    <tr style="background-color: var(--primary-color); color: white;">
+                        <th style="padding: 10px; border: 1px solid #ddd;">推理类型</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">定义</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">结论确定性</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>演绎推理</strong><br>(Deductive Reasoning)</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">从一般性原则出发，推导出特定结论。“自上而下”。</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #27ae60; font-weight: bold;">确定 (Certain)</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>归纳推理</strong><br>(Inductive Reasoning)</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">从具体观察出发，总结出普遍性结论。“自下而上”。</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #e67e22; font-weight: bold;">或然 (Probable)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>溯因推理</strong><br>(Abductive Reasoning)</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">基于不完整观察，提出最可能的解释。“最佳猜测”。</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #3498db; font-weight: bold;">最佳猜测 (Best Guess)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4 style="color:#2c3e50; margin-top:20px;">详细阐述归纳推理的五种方法</h4>
+            <p class="para-text">
+                归纳推理是学术研究中最常用的方法之一。根据“7.3: 推理的类型”，主要有以下五种具体方法：
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                <div style="border: 1px solid #ddd; padding: 15px; border-radius: 6px; background-color: #fff;">
+                    <strong style="color: var(--accent-color);">1. 示例推理</strong><br>
+                    <small>通过列举具体实例支持普遍结论。</small>
+                </div>
+                <div style="border: 1px solid #ddd; padding: 15px; border-radius: 6px; background-color: #fff;">
+                    <strong style="color: var(--accent-color);">2. 因果推理</strong><br>
+                    <small>论证某一事件是另一事件发生的原因。</small>
+                </div>
+                <div style="border: 1px solid #ddd; padding: 15px; border-radius: 6px; background-color: #fff;">
+                    <strong style="color: var(--accent-color);">3. 符号推理</strong><br>
+                    <small>论证一个现象是另一个现象存在的标志（非因果）。</small>
+                </div>
+                <div style="border: 1px solid #ddd; padding: 15px; border-radius: 6px; background-color: #fff;">
+                    <strong style="color: var(--accent-color);">4. 比较推理</strong><br>
+                    <small>类比相似事物，推断属性也适用。</small>
+                </div>
+                <div style="border: 1px solid #ddd; padding: 15px; border-radius: 6px; background-color: #fff;">
+                    <strong style="color: var(--accent-color);">5. 权威推理</strong><br>
+                    <small>基于专家或可靠来源的主张。</small>
+                </div>
+            </div>
+
+            <h4 style="color:#2c3e50; margin-top:20px;">演绎推理与逻辑定律</h4>
+            <p class="para-text">
+                演绎推理的经典形式是<strong>三段论</strong>：大前提（普遍规则） + 小前提（具体实例） = 结论。
+                <br><br>
+                为确保论证一致性，必须遵循<strong>三大基本定律</strong>：
+            </p>
+            <ul class="list-group">
+                <li><strong>同一律</strong>：概念必须保持确定性，不能偷换概念。</li>
+                <li><strong>矛盾律</strong>：相互矛盾的判断不能同时为真。</li>
+                <li><strong>排中律</strong>：相互矛盾的判断必有一真，不存在中间状态。</li>
+            </ul>
+<!-- 代码块 6：第二章 - 高效笔记系统 -->
+
+            <!-- 第二节：高效的笔记方法 -->
+            <h3 class="section-title">第二节：高效的笔记方法</h3>
+            
+            <h4 style="color:#2c3e50; margin-top:20px;">强调使用笔记卡片的重要性</h4>
+            <p class="para-text">
+                Ralph Berry强烈建议使用独立的<strong>笔记卡片 (note-cards)</strong>，而非传统的笔记本。
+                <br>这一方法的巨大优势在于<strong>灵活性</strong>与<strong>原子化</strong>：当您完成笔记后，可以轻易地对卡片进行重新排序，就像拼积木一样根据论文提纲构建结构。
+            </p>
+
+            <h4 style="color:#2c3e50; margin-top:20px;">笔记卡片的三个核心要素</h4>
+            <p class="para-text">一张标准的笔记卡片（6x4英寸）应包含以下结构：</p>
+            
+            <!-- 模拟笔记卡片视觉效果 -->
+            <div style="
+                background-color: #fffbf0; 
+                border: 1px solid #dcdcdc; 
+                padding: 20px; 
+                width: 90%; 
+                margin: 20px auto; 
+                box-shadow: 3px 3px 8px rgba(0,0,0,0.1); 
+                font-family: 'Courier New', Courier, monospace;
+                position: relative;
+                min-height: 200px;
+            ">
+                <!-- 1. 标签 -->
+                <div style="border-bottom: 2px solid #aaa; padding-bottom: 5px; margin-bottom: 15px; font-weight: bold; color: #444;">
+                    1. 描述性标签：莎士比亚戏剧中的角色塑造
+                </div>
+                
+                <!-- 2. 主体 -->
+                <div style="color: #222; margin-bottom: 30px; font-size: 0.95rem;">
+                    2. 笔记主体：<br>
+                    "The hearts / That spaniel'd me at heels..."<br>
+                    （此处记录核心观点或引文）
+                </div>
+
+                <!-- 3. 来源 -->
+                <div style="position: absolute; bottom: 15px; right: 20px; font-style: italic; color: #666;">
+                    3. 来源：Bradbrook, p. 54
+                </div>
+            </div>
+
+            <h4 style="color:#2c3e50; margin-top:20px;">区分三种不同类型的笔记</h4>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div style="border-left: 4px solid var(--primary-color); padding-left: 15px; background: #f4f6f7;">
+                    <strong>1. 直接引文 (Direct quotation)</strong>
+                    <p style="margin: 5px 0; font-size: 0.9rem;">逐字逐句抄录，必须使用引号。适用于语言精辟或需要精确分析的段落。</p>
+                </div>
+                <div style="border-left: 4px solid var(--accent-color); padding-left: 15px; background: #fdf2f2;">
+                    <strong>2. 释义或总结 (Paraphrase)</strong>
+                    <p style="margin: 5px 0; font-size: 0.9rem;">用自己的话转述，不使用引号。表明您已消化原文。</p>
+                </div>
+                <div style="border-left: 4px solid #27ae60; padding-left: 15px; background: #eafaf1;">
+                    <strong>3. 个人观点 (Own opinions)</strong>
+                    <p style="margin: 5px 0; font-size: 0.9rem;">阅读时的灵感或批判。建议标记 <strong>[我的观点]</strong> 或使用不同颜色，严防混淆。</p>
+                </div>
+            </div>
+
+            <h4 style="color:#2c3e50; margin-top:20px;">直接引文的格式规范</h4>
+            <p class="para-text">为确保学术严谨性，记录直接引文时需遵循以下符号规则：</p>
+            <table style="width:100%; border-collapse: collapse; font-size: 0.95rem;">
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 8px; font-weight: bold; color: var(--accent-color);">原文拼写</td>
+                    <td style="padding: 8px;">即使原文有错或过时，也必须如实照录。</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 8px; font-weight: bold; color: var(--accent-color);">[sic]</td>
+                    <td style="padding: 8px;">意为“原文如此”，用于标记原文中的明显错误。</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 8px; font-weight: bold; color: var(--accent-color);">... (省略号)</td>
+                    <td style="padding: 8px;">表示省略了原文中的部分内容。</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; font-weight: bold; color: var(--accent-color);">[ ] (方括号)</td>
+                    <td style="padding: 8px;">用于插入您的解释性文字，以示与原文的区别。</td>
+                </tr>
+            </table>
+        </section>
+<!-- 代码块 7：第三章 - 提纲与初稿构建 -->
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+
+        <!-- 第三章：撰写初稿 -->
+        <section id="ch3">
+            <h2 class="chapter-title">第三章：撰写初稿 —— 将思想转化为文字</h2>
+            
+            <p class="para-text">
+                撰写初稿是将数周乃至数月的研究和思考付诸实践的关键一步。其核心挑战在于，如何通过构建一个清晰的提纲来驾驭海量的笔记卡片，将零散的观点编织成一篇连贯、有力的文章。
+            </p>
+
+            <!-- 第一节：构建论文框架提纲 -->
+            <h3 class="section-title">第一节：构建论文框架提纲</h3>
+            
+            <h4 style="color:#2c3e50; margin-top:20px;">分析提纲的核心功能</h4>
+            <p class="para-text">
+                Ralph Berry将制作提纲视为整个写作过程中<strong>“智力要求最高的部分” (most intellectually exacting part)</strong>。
+                <br>提纲不仅是章节列表，更是思维逻辑的蓝图。它迫使您对所有笔记进行分类、排序和取舍，确保结构均衡、论证层层递进。
+            </p>
+
+            <h4 style="color:#2c3e50; margin-top:20px;">经典提纲范例：城市交通问题</h4>
+            <div style="background-color: #f8f9fa; border: 1px solid #c3c3c3; padding: 25px; border-radius: 4px; font-family: 'Times New Roman', serif;">
+                <h4 style="text-align: center; margin-bottom: 20px;">标题：城市交通问题</h4>
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 10px;"><strong>I. 引言：</strong> 对问题进行总体陈述。</li>
+                    <li style="margin-bottom: 10px;"><strong>II. 问题的各个方面：</strong>
+                        <ul style="padding-left: 20px; list-style-type: lower-alpha;">
+                            <li>本地交通与过境交通的同时使用。</li>
+                            <li>限速与红绿灯减慢车流速度。</li>
+                            <li>交叉路口问题。</li>
+                            <li>停放的车辆。</li>
+                            <li>商业区的装卸货问题。</li>
+                            <li>行人，尤其是在人行横道处。</li>
+                        </ul>
+                    </li>
+                    <li style="margin-bottom: 10px;"><strong>III. 已尝试的解决方案：</strong>
+                        <ul style="padding-left: 20px; list-style-type: lower-alpha;">
+                            <li>斯劳实验 (The Slough Experiment)。</li>
+                            <li>其他各种解决方案：
+                                <ol style="padding-left: 20px;">
+                                    <li>修建城市高速公路以分流。</li>
+                                    <li>潮汐式车道（早晨三进一出，傍晚反之）。</li>
+                                    <li>立交桥或智能交通信号灯。</li>
+                                    <li>多层或地下停车场。</li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </li>
+                    <li style="margin-bottom: 10px;"><strong>IV. 结论：</strong> 规划者为保持交通畅通所做的努力的总体趋势与前景。</li>
+                </ul>
+            </div>
+
+            <!-- 第二节：撰写论文主体部分 -->
+            <h3 class="section-title">第二节：撰写论文主体部分</h3>
+            
+            <h4 style="color:#2c3e50; margin-top:20px;">引言的构成要素 (Introduction)</h4>
+            <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+                <div style="flex: 1; background: #e8f6f3; padding: 15px; border-radius: 6px;">
+                    <strong style="color: #16a085;">1. 钩子 (Hook)</strong>
+                    <p style="font-size: 0.9rem;">发人深省的问题、惊人的数据或轶事，迅速抓住读者。</p>
+                </div>
+                <div style="flex: 1; background: #e8f6f3; padding: 15px; border-radius: 6px;">
+                    <strong style="color: #16a085;">2. 背景 (Background)</strong>
+                    <p style="font-size: 0.9rem;">提供必要的上下文，解释问题的重要性。</p>
+                </div>
+                <div style="flex: 1; background: #e8f6f3; padding: 15px; border-radius: 6px;">
+                    <strong style="color: #16a085;">3. 中心论点 (Thesis)</strong>
+                    <p style="font-size: 0.9rem;">用一句话明确概括核心主张，这是论文的灵魂。</p>
+                </div>
+            </div>
+
+            <h4 style="color:#2c3e50; margin-top:20px;">正文段落的逻辑解剖</h4>
+            <p class="para-text">每一个段落都应是一个迷你的论证单元：</p>
+            <div style="border-left: 4px solid var(--accent-color); padding-left: 20px; margin: 20px 0;">
+                <p><strong>A. 主张 (Claim)</strong>：段落主题句，陈述本段要证明的分论点。</p>
+                <p><strong>B. 理由 (Reasons)</strong>：解释为什么您的主张是成立的。</p>
+                <p><strong>C. 证据 (Evidence)</strong>：<span style="background: #fdf2f2;">这是最具说服力的部分。</span>提供事实、数据、案例或直接引文。</p>
+            </div>
+
+            <h4 style="color:#2c3e50; margin-top:20px;">处理反方观点 (Counter-arguments)</h4>
+            <p class="para-text">
+                成熟的论证不会回避异见。处理流程如下：
+            </p>
+            <ul class="list-group">
+                <li><strong>反方主张 (Counterclaim)</strong>：客观陈述相反意见，体现思维的全面性。</li>
+                <li><strong>反驳 (Rebuttal)</strong>：解释为何对方观点存在缺陷或证据不足，从而巩固您的立场。</li>
+            </ul>
+
+            <!-- 第三节：撰写结论 -->
+            <h3 class="section-title">第三节：撰写结论</h3>
+            <p class="para-text">
+                结论不是简单的重复，而是升华。核心任务包括：<strong>总结要点</strong>、<strong>重申中心论点</strong>（换种措辞）、以及<strong>强调研究意义</strong>或发出行动呼吁。
+            </p>
+        </section>
+<!-- 代码块 8：第四章 - 格式与引用规范 -->
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+
+        <!-- 第四章：格式与规范 -->
+        <section id="ch4">
+            <h2 class="chapter-title">第四章：格式与规范 —— 遵循学术惯例</h2>
+            
+            <p class="para-text">
+                学术写作不仅关乎内容，同样关乎形式。一篇格式混乱、引注不明的论文，无论其观点多么深刻，都会使其可信度大打折扣。本章将详细介绍引文、脚注和参考文献的标准化格式，这是研究者必须遵守的“游戏规则”。
+            </p>
+
+            <!-- 第一节：引文的格式处理 -->
+            <h3 class="section-title">第一节：引文的格式处理</h3>
+            <p class="para-text">根据引文长度的不同，处理方式也有所区别：</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
+                <div style="border: 1px solid #ddd; padding: 20px; background-color: #fff;">
+                    <h4 style="color: var(--primary-color); border-bottom: 2px solid var(--accent-color); display: inline-block;">短引文 (Short)</h4>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">少于60个单词</p>
+                    <p class="para-text" style="background: #f9f9f9; padding: 10px; border-left: 3px solid #ccc; font-style: italic;">
+                        正如Berry所指出的，'短引文应自然地融入正文段落中，并使用单引号将其括起来'，从而保持行文流畅。
+                    </p>
+                </div>
+                <div style="border: 1px solid #ddd; padding: 20px; background-color: #fff;">
+                    <h4 style="color: var(--primary-color); border-bottom: 2px solid var(--accent-color); display: inline-block;">长引文 (Long)</h4>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">较长的段落</p>
+                    <div class="para-text" style="background: #f9f9f9; padding: 15px; margin-left: 20px; font-size: 0.95rem;">
+                        对于较长的引文，应将其设置为一个独立的、缩进的文本块。该文本块不需要添加任何引号。这种格式上的区分使长段引文在视觉上一目了然。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第二节：脚注的创建与使用 -->
+            <h3 class="section-title">第二节：脚注的创建与使用</h3>
+            <p class="para-text">
+                脚注是学术诚信的基石。每当引用事实、观点或原文时，必须注明出处。
+            </p>
+            
+            <div class="highlight-box">
+                <strong>标准脚注格式示例：</strong>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="margin-bottom: 10px;">
+                        <span style="color: var(--accent-color); font-weight: bold;">[首次引用书籍]</span><br>
+                        ¹ David Welch, editor, <em>Nazi Propaganda: the Power and the Limitations</em> (London, 1983), pp. 29–44 (p. 29).
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        <span style="color: var(--accent-color); font-weight: bold;">[首次引用期刊]</span><br>
+                        ² A. J. P. Taylor, ‘Accident Prone or What Happened Next’, <em>Encounter</em>, Vol. 49 (October 1977), pp. 53–61 (p. 54).
+                    </li>
+                    <li>
+                        <span style="color: var(--accent-color); font-weight: bold;">[后续引用 (简化)]</span><br>
+                        ³ <em>ibid.</em>, p. 10. <span style="color:#888; font-size:0.8rem;">(意为“同上”)</span><br>
+                        ⁴ Welch, p. 35. <span style="color:#888; font-size:0.8rem;">(隔开后再次引用)</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 第三节：整理最终参考文献 -->
+            <h3 class="section-title">第三节：整理最终参考文献</h3>
+            <p class="para-text">
+                最终参考文献 (Bibliography) 是一个经过精炼的清单，只包含<strong>实际引用</strong>或对研究产生重要影响的文献。列表应按<strong>作者姓氏字母顺序</strong>排列。
+            </p>
+
+            <table style="width:100%; border: 1px solid #ddd; border-collapse: collapse;">
+                <tr style="background-color: #f4f4f9;">
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd; width: 80px;"><strong>书籍</strong></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">
+                        Shirer, William L. <em>The Rise and Fall of the Third Reich</em>. New York, 1960.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>期刊</strong></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">
+                        Lietzmann, Sabina. ‘Daily Life in the Third Reich’, <em>The New York Times Book Review</em>, 28 October 1984, p. 38.
+                    </td>
+                </tr>
+                <tr style="background-color: #f4f4f9;">
+                    <td style="padding: 10px;"><strong>网络</strong></td>
+                    <td style="padding: 10px;">
+                        Slayman, Andrew L. (1999) ‘A Cache of Vintage Ships’, <em>Archaeology</em> [Online]. Available from: http://www... [accessed 18 September 1999].
+                    </td>
+                </tr>
+            </table>
+        </section>
+<!-- 代码块 9：第五章 - 审查与定稿 -->
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+
+        <!-- 第五章：审查与定稿 -->
+        <section id="ch5">
+            <h2 class="chapter-title">第五章：审查与定稿 —— 打磨最终成品</h2>
+            
+            <p class="para-text">
+                审查与定稿是确保论文质量的最后一道防线。一个论证严密但呈现草率的作品，其说服力会大打折扣；反之，一个经过精心打磨的作品，则能极大地提升其学术价值。
+            </p>
+
+            <!-- 第一节：改进草稿的技巧 -->
+            <h3 class="section-title">第一节：改进草稿的技巧</h3>
+            
+            <h4 style="color:#2c3e50; margin-top:20px;">实现“流畅性” (Flow)</h4>
+            <p class="para-text">
+                一篇优秀的论文读起来应该毫不费力。Ralph Berry强调使用两种工具：
+            </p>
+            <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+                <div style="flex: 1; background-color: #fff; border-left: 4px solid #3498db; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                    <h5 style="margin-bottom: 5px; color: #2980b9;">1. 主题句 (Topic sentence)</h5>
+                    <p style="font-size: 0.9rem; margin: 0;">段落的第一句话，清晰概括该段的核心思想，为读者提供路线图。</p>
+                </div>
+                <div style="flex: 1; background-color: #fff; border-left: 4px solid #9b59b6; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                    <h5 style="margin-bottom: 5px; color: #8e44ad;">2. 过渡词 (Guide words)</h5>
+                    <p style="font-size: 0.9rem; margin: 0;">如 <em>However, Consequently, Moreover</em>，像路标一样引导逻辑关系。</p>
+                </div>
+            </div>
+
+            <h4 style="color:#2c3e50; margin-top:20px;">为读者写作 (Writing for the Reader)</h4>
+            <p class="para-text">
+                切勿陷入知识的“诅咒”。
+                <br>• <strong>避免晦涩术语</strong>：除非必要，否则使用明了的语言。
+                <br>• <strong>寻求外部反馈</strong>：将草稿读给朋友听。如果他们问“这是什么意思？”，说明你需要修改。
+                <br>• <strong>冷却期 (Cooling Period)</strong>：写完后放置几天再读，你会发现自己像个陌生人一样能客观挑错。
+            </p>
+
+            <!-- 第二节：规避常见错误 -->
+            <h3 class="section-title">第二节：规避常见错误</h3>
+            <p class="para-text">基于Ralph Berry的总结，以下是定稿前必须进行的“自我体检”：</p>
+
+            <table style="width:100%; border-collapse: collapse; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <thead>
+                    <tr style="background-color: #e74c3c; color: white;">
+                        <th style="padding: 12px; text-align: left; width: 30%;">错误类型</th>
+                        <th style="padding: 12px; text-align: left;">修正建议</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 12px; background: #fdf2f2; font-weight: bold; color: #c0392b;">1. 目的与结论不符</td>
+                        <td style="padding: 12px;">结论必须由正文证据自然导出，不能是一个与引言无关的宽泛声明。检查首尾呼应。</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 12px; background: #fdf2f2; font-weight: bold; color: #c0392b;">2. 文献引用不足</td>
+                        <td style="padding: 12px;">不仅直接引文，<strong>释义和转述</strong>也必须添加脚注。这是学术诚信的底线。</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 12px; background: #fdf2f2; font-weight: bold; color: #c0392b;">3. 来源过时或片面</td>
+                        <td style="padding: 12px;">检查参考文献。是否包含近十年的成果？论证是否只依赖单一学派？力求平衡。</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; background: #fdf2f2; font-weight: bold; color: #c0392b;">4. 呈现草率</td>
+                        <td style="padding: 12px;">细节决定成败。检查页边距、字体一致性及拼写错误。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box" style="margin-top: 40px; border-left-color: var(--primary-color); background-color: #ecf0f1;">
+                <h4 style="color: var(--primary-color); margin-top: 0;">总结陈词</h4>
+                <p style="font-size: 1rem; line-height: 1.6;">
+                    研究论文的写作，从本质上说，是一个系统性的、需要严谨纪律的智力过程。它始于批判性的思考与探究，中经有条不紊的组织与论证，最终呈现为一份遵循学术惯例的专业文稿。掌握这些原则，您不仅能产出卓越的研究，更将成为在任何领域中，一个更具洞察力与说服力的声音。
+                </p>
+            </div>
+        </section>
+<!-- 代码块 10：页脚与闭合标签 -->
+
+        <!-- 底部留白 -->
+        <div style="height: 60px;"></div>
+        
+        <!-- 页脚区域 -->
+        <footer style="
+            text-align: center; 
+            padding: 40px; 
+            border-top: 2px solid #f0f0f0; 
+            color: #7f8c8d; 
+            font-size: 0.85rem;
+            margin-top: auto;
+        ">
+            <p style="margin-bottom: 10px;">
+                <strong>逻辑与文章写作教学系统</strong><br>
+                基于 Ralph Berry《The Research Project: How to Write It》第五版架构设计
+            </p>
+            <p>
+                <em>"Experience is not what happens to you; it's what you do with what happens to you." — Aldous Huxley</em>
+            </p>
+            
+            <!-- 返回顶部按钮 -->
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="
+                background-color: var(--primary-color); 
+                color: white; 
+                border: none; 
+                padding: 10px 20px; 
+                border-radius: 20px; 
+                cursor: pointer; 
+                margin-top: 15px;
+                font-size: 0.9rem;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                transition: background 0.3s;
+            ">
+                ⬆️ 返回顶部开始新的研究
+            </button>
+        </footer>
+
+    </main> <!-- 闭合主内容区 -->
+
+    <!-- 右侧边栏的闭合标签已在代码块1中包含，此处闭合body和html -->
+</body>
+</html>
