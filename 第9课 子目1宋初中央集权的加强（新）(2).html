@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第9课：宋初中央集权的加强 - 深度教学多媒体课件</title>
+    <style>
+        :root {
+            --primary-orange: #c05621;
+            --light-orange: #fffaf0;
+            --primary-blue: #1d3557;
+            --light-blue: #f1f5f9;
+            --primary-green: #2a9d8f;
+            --light-green: #e8f5e9;
+            --primary-red: #8f1d1d;
+            --light-red: #fef5f5;
+            --text-main: #2b2d42;
+            --text-secondary: #64748b;
+            --bg-color: #f8fafc;
+            --border-color: #ebdcd5;
+            --timeline-line: #cbd5e1;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fbf9f6;
+            color: #3e3330;
+            line-height: 1.75;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* 顶栏、侧边栏一键收放过渡动画 */
+        header, .timeline-sidebar, .mindmap-sidebar, .content-area {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* 顶部暗青/朱砂导航栏 */
+        header {
+            height: 65px;
+            background: linear-gradient(135deg, var(--primary-blue), #112233);
+            box-shadow: 0 4px 12px rgba(29, 53, 87, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            flex-shrink: 0;
+            border-bottom: 3px solid var(--primary-red);
+            padding-left: 140px; /* 避开左侧悬浮菜单按钮 */
+        }
+
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            gap: 15px;
+        }
+
+        .nav-item {
+            padding: 8px 18px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #cbd5e1;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 主体布局 */
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 左侧大事年表 */
+        .timeline-sidebar {
+            width: 250px;
+            background: white;
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            padding: 20px;
+            flex-shrink: 0;
+        }
+
+        .timeline-title {
+            font-size: 1.15em;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--primary-blue);
+            padding-bottom: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .tl-group {
+            margin-bottom: 20px;
+        }
+
+        .tl-year {
+            font-weight: bold;
+            font-size: 1.05em;
+            color: var(--primary-red);
+            margin-bottom: 5px;
+        }
+
+        .tl-event {
+            position: relative;
+            padding-left: 15px;
+            font-size: 0.88em;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            border-left: 2px solid var(--timeline-line);
+            margin-left: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .tl-event:hover {
+            color: var(--primary-orange);
+            border-left-color: var(--primary-orange);
+            font-weight: bold;
+        }
+
+        .tl-event::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 6px;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border: 2px solid var(--timeline-line);
+            border-radius: 50%;
+        }
+
+        /* 中间内容区 */
+        .content-area {
+            flex: 1;
+            padding: 30px 40px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            font-size: 1em;
+        }
+
+        .tab-content {
+            display: none;
+            max-width: 950px;
+            margin: 0 auto;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 课文逐句精讲样式 */
+        .sentence-wrapper {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            margin-bottom: 35px;
+            overflow: hidden;
+            border-left: 6px solid var(--primary-blue);
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .textbook-sentence {
+            font-size: 1.25em;
+            line-height: 1.8;
+            padding: 25px;
+            color: var(--text-main);
+            font-weight: 500;
+            background: #fff;
+            position: relative;
+        }
+
+        .textbook-sentence::before {
+            content: "课文原文";
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 0.7em;
+            color: #aaa;
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* 教学设计折叠卡片 */
+        .teaching-design {
+            padding: 0 25px 25px 25px;
+            background: #fbfbfc;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .design-label {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: white;
+            font-size: 0.8em;
+            padding: 4px 12px;
+            border-radius: 0 0 8px 8px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .fold-card {
+            margin-top: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .fold-btn {
+            width: 100%;
+            text-align: left;
+            padding: 14px 20px;
+            background: var(--light-blue);
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+            font-size: 0.95em;
+        }
+
+        .fold-btn:hover {
+            background: #e1f0ff;
+        }
+
+        .fold-btn::after {
+            content: '展开 ➕';
+            font-size: 0.85em;
+        }
+
+        .fold-btn.active::after {
+            content: '收起 ➖';
+        }
+
+        .fold-content {
+            display: none;
+            padding: 20px 25px;
+            color: #444;
+            line-height: 1.7;
+            border-top: 1px solid var(--light-blue);
+            font-size: 0.95em;
+        }
+
+        .question-box {
+            color: #b22222;
+            font-weight: bold;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--primary-red);
+            padding-left: 10px;
+        }
+
+        .source-box {
+            font-family: "Kaiti", "STKaiti", "楷体", serif;
+            font-size: 1.08em;
+            background: #fffdf5;
+            padding: 18px;
+            border: 1px solid #ebdcd5;
+            border-left: 5px solid var(--primary-orange);
+            margin: 15px 0;
+            border-radius: 4px;
+            line-height: 1.7;
+        }
+
+        .source-box strong {
+            font-family: sans-serif;
+            color: #333;
+        }
+
+        .footnote {
+            font-size: 0.82em;
+            color: #7f8c8d;
+            margin-top: 8px;
+            font-family: sans-serif;
+            background: #f1f5f9;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .answer-box {
+            background: var(--light-green);
+            padding: 18px;
+            border-radius: 6px;
+            color: #1b4332;
+            border: 1px solid #d8f3dc;
+            margin-top: 15px;
+        }
+
+        /* 右侧思维导图按钮栏 */
+        .mindmap-sidebar {
+            width: 75px;
+            background: #1e1e24;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 30px;
+            gap: 20px;
+            z-index: 90;
+        }
+
+        .mm-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            border: none;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .mm-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+        }
+
+        .btn-unit { background: #5c3d2e; } 
+        .btn-course { background: #475569; } 
+        .btn-detail { background: var(--primary-orange); } 
+
+        /* 弹窗样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.75);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: white;
+            width: 85%;
+            height: 85%;
+            border-radius: 12px;
+            position: relative;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 32px;
+            cursor: pointer;
+            color: #aaa;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .mm-container {
+            flex: 1;
+            overflow: auto;
+            background: #fafaf9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* 菜单控制和字体控制 */
+        .menu-trigger {
+            position: fixed;
+            top: 14px;
+            left: 20px;
+            z-index: 200;
+            background-color: var(--primary-orange);
+            color: white;
+            border: 2px solid #fff;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease-in-out;
+        }
+        .menu-trigger:hover {
+            transform: scale(1.05);
+            background-color: #a04000;
+        }
+
+        .font-controls {
+            position: fixed;
+            top: 14px;
+            right: 20px;
+            z-index: 200;
+            display: flex;
+            gap: 8px;
+        }
+        .font-btn {
+            background: white;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.2s ease-in-out;
+        }
+        .font-btn:hover {
+            background-color: var(--light-blue);
+            border-color: var(--primary-orange);
+            transform: scale(1.08);
+            color: var(--primary-orange);
+        }
+
+        body.panels-collapsed header {
+            margin-top: -65px;
+        }
+        body.panels-collapsed .timeline-sidebar {
+            margin-left: -250px;
+        }
+        body.panels-collapsed .mindmap-sidebar {
+            margin-right: -75px;
+        }
+
+        /* 随堂检测试题卡片机制 */
+        .question-card { 
+            margin-bottom: 35px; 
+            border: 1px solid var(--border-color); 
+            border-radius: 10px; 
+            padding: 24px; 
+            background-color: #fff; 
+            box-shadow: 0 4px 10px rgba(140, 45, 25, 0.01);
+            transition: all 0.3s;
+        }
+        .question-card:hover { box-shadow: 0 6px 18px rgba(140, 45, 25, 0.05); border-color: #d4af37; }
+        
+        .inline-control-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0;
+            background-color: #faf7f5;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #f5dad2;
+        }
+        @media (min-width: 900px) {
+            .inline-control-bar {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        .btn-deduct, .btn-analysis {
+            background-color: #8c2d19;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-deduct:hover { background-color: #a03c27; }
+        .btn-deduct.active { background-color: #27ae60; }
+        
+        .btn-analysis { background-color: #6e5c58; }
+        .btn-analysis:hover { background-color: #534541; }
+        .btn-analysis.active { background-color: #2980b9; }
+
+        .horizontal-options {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 8px;
+            flex-grow: 1;
+            justify-content: center;
+            margin: 5px 0;
+        }
+        .opt-btn {
+            flex: 1 1 20%;
+            min-width: 140px;
+            background-color: #fff;
+            border: 1.5px solid #ebdcd5;
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            color: #534541;
+            line-height: 1.4;
+        }
+        .opt-btn:hover {
+            background-color: #fdf1ed;
+            border-color: #8c2d19;
+            color: #8c2d19;
+        }
+        .opt-btn.correct-select {
+            background-color: #d4edda !important;
+            border-color: #28a745 !important;
+            color: #155724 !important;
+            font-weight: bold;
+        }
+        .opt-btn.incorrect-select {
+            background-color: #f8d7da !important;
+            border-color: #dc3545 !important;
+            color: #721c24 !important;
+        }
+
+        .hl-question { border-bottom: 2px solid #e74c3c; color: #e74c3c; font-weight: bold; }
+        .hl-context { border-bottom: 2px dashed #2980b9; color: #2980b9; font-weight: bold; }
+        .hl-evidence { border-bottom: 2px solid #f39c12; color: #d35400; font-weight: bold; }
+
+        .thinking-sandbox {
+            margin-top: 15px;
+            border: 1px dashed #ebd8d0;
+            background-color: #fdfbf9;
+            border-radius: 6px;
+            padding: 18px;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .chain-title { font-weight: bold; color: #8c2d19; border-left: 4px solid #d4af37; padding-left: 8px; margin-bottom: 12px; font-size: 0.95rem; }
+        .flow-container { display: flex; flex-direction: column; gap: 8px; }
+        .flow-step { display: flex; gap: 12px; background: #fff; border: 1px solid #f5dad2; padding: 10px 14px; border-radius: 4px; }
+        .step-badge { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: bold; }
+        .badge-1 { background-color: #e74c3c; }
+        .badge-2 { background-color: #2980b9; }
+        .badge-3 { background-color: #f39c12; }
+        .badge-4 { background-color: #27ae60; }
+        .flow-arrow { text-align: center; color: #ebd8d0; font-size: 1rem; margin: -2px 0; }
+        .step-content { font-size: 0.9rem; line-height: 1.6; color: #534541; }
+        .step-content strong { color: #322521; }
+
+        .analysis-box {
+            margin-top: 15px;
+            background-color: #fff;
+            border: 1px solid #ebdcd5;
+            border-radius: 8px;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .analysis-content { padding: 20px; border-left: 4px solid #6e5c58; }
+        .analysis-tag { display: inline-block; padding: 3px 10px; border-radius: 3px; font-size: 0.8rem; margin-right: 10px; color: white; font-weight: bold; }
+        .tag-green { background-color: #2f855a; }
+        .tag-blue { background-color: #2b6cb0; }
+        .tag-red { background-color: #8c2d19; }
+        .analysis-text { margin-top: 12px; color: #534541; font-size: 0.95rem; line-height: 1.8; }
+        .analysis-item { margin-bottom: 12px; border-bottom: 1px dashed #eee; padding-bottom: 10px; }
+        .analysis-item:last-child { border-bottom: none; }
+
+        .right-indicator { display: none; color: #2f855a; font-weight: bold; margin: 10px 0; font-size: 0.92rem; }
+
+        /* 模态框高对比度大字体设计（教师多媒体投影专用） */
+        .modal-content h2, .modal-content h3 {
+            color: #000000 !important;
+            font-size: 1.65em !important;
+            font-weight: 900 !important;
+            text-shadow: 1px 1px 0px #fff;
+            margin-bottom: 15px;
+        }
+        .modal-content p {
+            color: #000000 !important;
+            font-size: 1.15em !important;
+            font-weight: bold !important;
+        }
+        .map-svg text {
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif !important;
+            font-weight: 900 !important;
+        }
+        .map-svg rect {
+            stroke: #000000 !important;
+            stroke-width: 2.5px !important;
+        }
+        .text-on-dark {
+            fill: #ffffff !important;
+            font-size: 14px !important;
+        }
+        .text-on-light {
+            fill: #000000 !important;
+            font-size: 13px !important;
+        }
+        .text-title-on-light {
+            fill: #000000 !important;
+            font-size: 14px !important;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="menu-trigger" onclick="toggleAllPanels()">☰ 菜单 (已展开)</button>
+
+    <div class="font-controls">
+        <button class="font-btn" onclick="adjustFont(1)" title="放大正文字体">➕A</button>
+        <button class="font-btn" onclick="adjustFont(-1)" title="缩小正文字体">➖A</button>
+    </div>
+
+    <header>
+        <ul class="nav-tabs">
+            <li class="nav-item" onclick="switchTab('unit')">单元导学与大纲解读</li>
+            <li class="nav-item" onclick="switchTab('background')">五代教训与“防弊”立意</li>
+            <li class="nav-item active" onclick="switchTab('framework')">逐句课文精讲</li>
+            <li class="nav-item" onclick="switchTab('practice')">随堂巩固检测</li>
+            <li class="nav-item" onclick="switchTab('literacy')">学科核心素养</li>
+            <li class="nav-item" onclick="switchTab('summary')">教学总结与反思</li>
+        </ul>
+    </header>
+
+    <div class="main-container">
+        
+        <aside class="timeline-sidebar">
+            <div class="timeline-title">北宋初期集权大事记</div>
+            
+            <div class="tl-group">
+                <div class="tl-year">907年</div>
+                <div class="tl-event" onclick="scrollToId('q_wudai')">后梁代唐，五代十国割据动荡局面开启</div>
+            </div>
+
+            <div class="tl-group">
+                <div class="tl-year">960年</div>
+                <div class="tl-event" onclick="scrollToId('q_chenqiao')">陈桥兵变，赵匡胤夺权建宋，定都东京</div>
+            </div>
+
+            <div class="tl-group">
+                <div class="tl-year">961年</div>
+                <div class="tl-event" onclick="scrollToId('q_chongwen')">宋太祖“杯酒释兵权”，收归宿将禁军控制权</div>
+            </div>
+
+            <div class="tl-group">
+                <div class="tl-year">964年</div>
+                <div class="tl-event" onclick="scrollToId('q_difang')">罢领支郡，设转运司管地方财政</div>
+            </div>
+
+            <div class="tl-group">
+                <div class="tl-year">972年</div>
+                <div class="tl-event" onclick="scrollToId('q_zhongshu')">中书门下分立枢密院与三司，分割宰相事权</div>
+            </div>
+
+            <div class="tl-group">
+                <div class="tl-year">979年</div>
+                <div class="tl-event" onclick="scrollToId('q_chenqiao')">宋太宗灭北汉，结束五代十国分裂局面</div>
+            </div>
+        </aside>
+
+        <div class="content-area">
+
+            <!-- 1. 单元导读 -->
+            <div id="unit" class="tab-content">
+                <div class="sentence-wrapper" style="border-left-color: var(--primary-orange);">
+                    <div class="textbook-sentence" style="background: var(--light-orange);">
+                        <h3>🌐 第三单元 单元导学解读</h3>
+                        <p><strong>【单元课标要求】</strong><br>
+                        通过了解两宋的政治和军事，认识这一时期在政治、经济、文化与社会等方面的新变化；了解辽夏金元诸政权的建立发展和相关制度建设，认识北方少数民族政权在统一多民族封建国家发展中的重要作用。</p>
+                        
+                        <p><strong>【大单元教学脉络解析】</strong><br>
+                        本时段上承隋唐，下启明清，是多民族政权并立走向大一统的关键时期。可细分为三个发展阶段：</p>
+                        <ol>
+                            <li><strong>北宋与辽、西夏的对峙：</strong> 内部统治集权稳定，社会经济繁荣，但军事防御被动。</li>
+                            <li><strong>南宋与金、西夏的并立：</strong> 偏安半壁，南北交往加深，经济中心完成南移。</li>
+                            <li><strong>元朝的统一：</strong> 创行行省制，初步奠定近代中国版图，开启了北方少数民族建立全国性统一王朝的先河。</li>
+                        </ol>
+                        <hr style="border: 0; border-top: 1px dashed var(--border-color); margin: 15px 0;">
+                        <p><strong>💡 宏观思考：</strong> 为什么宋朝内部统治极其稳定，能杜绝唐后期以来的军阀割据与内乱，但在对外军事对抗中却长期处于劣势？让我们深入剖析其立国的“家法制度”。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. 背景导语 -->
+            <div id="background" class="tab-content">
+                <div class="sentence-wrapper" style="border-left-color: var(--primary-red);">
+                    <div class="textbook-sentence" style="background: var(--light-red);" id="q_wudai">
+                        <h3>📚 导言：五代之弊与“防弊之政”</h3>
+                        <p>五代时期，天子“兵强马壮者为之”，中原王朝更迭频繁。政局动荡的本质在于：<strong>兵权掌握在藩镇武将手中，君弱臣强、中央权力极度流失。</strong></p>
+                        <p>北宋统治者有针对性地采取了“防弊之政，为立国之法”的执政路线。其核心战略是：</p>
+                        <ul>
+                            <li><strong>守内虚外、强干弱枝：</strong> 将精兵良财悉数收归中枢。</li>
+                            <li><strong>分事权以相互制约：</strong> 防止任一机构或重臣权力过大。</li>
+                            <li><strong>以文驭武、重文轻武：</strong> 斩断武人干政的制度通路。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. 逐句课文精讲 -->
+            <div id="framework" class="tab-content active">
+                
+                <!-- 句段 1：建国与防弊意图 -->
+                <div class="sentence-wrapper" id="q_chenqiao">
+                    <div class="textbook-sentence">
+                        960年，后周禁军统帅赵匡胤发动兵变夺取帝位，建立宋朝，定都东京，史称北宋。赵匡胤就是宋太祖。北宋建立后，相继灭掉南方的几个割据政权和北方的北汉，结束了五代十国的分裂局面。统治者鉴于唐后期以来军阀割据、政局动荡的历史教训，有针对性地采取了一系列强化中央集权、维护政权稳定的措施。
+                    </div>
+
+                    <div class="teaching-design">
+                        <span class="design-label">一轮复习高阶探究：兵变篡位与立国法度</span>
+                        
+                        <div class="fold-card">
+                            <button class="fold-btn" onclick="toggleFold(this)">
+                                <span>📖 教学重点：理解“以防弊之政为立国之法”的底层动机</span>
+                            </button>
+                            <div class="fold-content">
+                                <div class="question-box">
+                                    思考：为什么说赵宋王朝在创立之初，其制度建设的首要特征是“防弊”而不是单纯的“行政效率”？
+                                </div>
+                                <div class="source-box">
+                                    <strong>【史料探析】《宋史十讲》（邓广铭著）</strong><br>
+                                    “因为在夺取政权之初，对内部的篡夺成风的局势必须刹住，对外部的分离析局势也必须加以结束，而且还要防范其重演。所以，赵匡胤在即位之后，在政治、军事和财政经济诸方面的立法都贯穿着一个总的原则：以防弊之政，为立国之法。”
+                                </div>
+                                <div class="answer-box">
+                                    <strong>【深度评析】</strong><br>
+                                    五代十国的皇帝大多为禁军宿将，通过军人拥戴登上帝位。赵匡胤本身即为后周禁军统帅，通过“陈桥兵变、黄袍加身”篡位夺权。这种获取政权的路径，使赵匡胤君臣产生了根深蒂固的危机感：<strong>今天部下能拥戴我，明天部下就能拥戴别人。</strong> 因此，宋初制度重塑的首要任务是“扎牢安全防范的篱笆”（防兵变、防政变、防割据），而非追求行政效率的最大化。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 句段 2：地方分权措施 -->
+                <div class="sentence-wrapper" id="q_difang">
+                    <div class="textbook-sentence">
+                        为加强对地方的控制，中央派文官出任地方各州的长官知州，节度使逐渐变为虚衔；设诸路转运司统管地方财政，保证各州赋税绝大部分上缴朝廷；将地方精锐部队编入禁军，拱卫京师，镇守地方，定期更换驻地。
+                    </div>
+
+                    <div class="teaching-design">
+                        <span class="design-label">家法之一：强干弱枝、守内虚外</span>
+                        
+                        <div class="fold-card">
+                            <button class="fold-btn" onclick="toggleFold(this)">
+                                <span>🔍 制度细节：地方治权、财权与兵权的精准切割</span>
+                            </button>
+                            <div class="fold-content">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <thead>
+                                        <tr style="background: #f1f5f9;">
+                                            <th style="padding: 10px; border: 1px solid var(--border-color); width: 25%;">切割维度</th>
+                                            <th style="padding: 10px; border: 1px solid var(--border-color); width: 35%;">宋初具体策略</th>
+                                            <th style="padding: 10px; border: 1px solid var(--border-color); width: 40%;">防弊指向与运行机理</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color); font-weight: bold;">地方治权</td>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color);">派文官出任知州，“罢领支郡”</td>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color);">武人无权过问地方民政；支郡直接隶属中央，节度使权力被蚕食为“荣誉虚衔”。</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color); font-weight: bold;">地方财权</td>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color);">设<strong>诸路转运司</strong>收回财权，除“留置经费”外悉数上缴</td>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color);">取消节度使征税权，断绝地方自养私人军队、独立割据的物质基础。</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color); font-weight: bold;">地方兵权</td>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color);">精壮骁勇编入中央禁军；推行<strong>“更戍法”</strong></td>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color);">地方禁军定期与京师宿卫调防，“兵无常帅，帅无常兵”，难以构成凝聚力。</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                                <div class="source-box" style="margin-top: 15px;">
+                                    <strong>【拓展知识：节度使是如何成为荣誉虚街的】</strong><br>
+                                    宋廷采取温水煮青蛙的策略，规定各支郡的长官一律改由中央文官担任，节度使只能管理其驻地的一州政事（罢领支郡），逐步收归其兵权与财权。节度使逐渐演变成发给丰厚俸禄的养老性高级名衔，失去了地方实权。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 句段 3：中枢机构分权 -->
+                <div class="sentence-wrapper" id="q_zhongshu">
+                    <div class="textbook-sentence">
+                        为分散机构权力，在中央，枢密院专掌军政，三司专掌财政，与宰相分权，并增设参知政事为副相。枢密院与禁军管理机构“三衙”分权，前者有调兵权但并不统兵，后者统兵但无权调兵。在地方，包括转运司在内，先后设立了平行的四个路级机构，从不同方面对各州进行监控和节制。州一级增设通判，与知州共同签署文书，彼此制约。
+                    </div>
+
+                    <div class="teaching-design">
+                        <span class="design-label">家法之二：分化事权、叠床架屋</span>
+                        
+                        <div class="fold-card">
+                            <button class="fold-btn" onclick="toggleFold(this)">
+                                <span>⚖️ 深度研读：中书门下、枢密院、三司与通判</span>
+                            </button>
+                            <div class="fold-content">
+                                <div class="question-box">
+                                    思考：宋代中央“二府三司”与地方“路、州”的行政分权逻辑与唐代三省六部有何不同？
+                                </div>
+                                <div class="answer-box">
+                                    <strong>【中枢权力切割与安全闭环】</strong><br>
+                                    唐代的三省六部主要是根据<strong>“决策-审议-执行”的行政流程分工</strong>，属于流程分权；而宋代的二府三司制则是对<strong>“政、军、财”三大核心实权的硬性切割</strong>：
+                                    <ul>
+                                        <li><strong>行政权：</strong> 中书门下（政事堂）执掌，长官同平章事（宰相），增设参知政事（副相）分其权。</li>
+                                        <li><strong>军政权：</strong> 枢密院掌管，枢密使与宰相文武并立（“二府”）。</li>
+                                        <li><strong>财政权：</strong> 三司掌管（度支、盐铁、户部），三司使号称“计相”。</li>
+                                        <li><strong>兵权内部再切割：</strong> 枢密院（文臣）掌“调兵权”，禁军三衙（武将）掌“统兵权”，形成“调兵不用兵，统兵不调兵”的安全均势。</li>
+                                    </ul>
+
+                                    <strong>【地方层级的权力网络监视】</strong><br>
+                                    <ul>
+                                        <li><strong>四监司（路级）：</strong> 平行设立安抚司（帅司-掌军事防务）、转运司（漕司-掌财政赋税）、提点刑狱司（宪司-掌司法监察）、提举常平司（仓司-掌救灾平粜）。四个路级机构互不隶属，直接向中枢汇报，共同监控地方州郡。</li>
+                                        <li><strong>通判（州级）：</strong> 州一级增设通判。通判由中央直接任免派驻，号称“监郡”。<strong>“凡民政、兵政、钱谷、户口、赋役、狱讼，通判与知州共同签书，非通判联署则文书无效。”</strong> 形成了对知州行政权极具实效的贴身监督。</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 句段 4：崇文抑武路线 -->
+                <div class="sentence-wrapper" id="q_chongwen">
+                    <div class="textbook-sentence">
+                        为抑制武将势力膨胀，北宋实行崇文抑武的方针，罢免宿将兵权，用文官担任枢密院长官；大力提倡文治，扩大科举规模，抬高文官和士人的地位。
+                    </div>
+
+                    <div class="teaching-design">
+                        <span class="design-label">家法之三：以文驭武与士大夫政治体系</span>
+                        
+                        <div class="fold-card">
+                            <button class="fold-btn" onclick="toggleFold(this)">
+                                <span>🌸 文官阶层的崛起与“重文轻武”的政策实态</span>
+                            </button>
+                            <div class="fold-content">
+                                <div class="question-box">
+                                    思考：宋代科举的变革和文臣地位的抬高，对形成中国古代完备的“士大夫政治”有什么深远意义？
+                                </div>
+                                <div class="source-box">
+                                    <strong>【史料探析】历代科举取士数量对比数据</strong><br>
+                                    唐代（290年）取进士及诸科约6600余人，年均二十余人。<br>
+                                    宋代（320年）通过正奏名和特奏名取士共11万余人，年均数百人，取士数量远超隋唐与后世明清。
+                                </div>
+                                <div class="answer-box">
+                                    <strong>【崇文抑武的制度细节与影响】</strong><br>
+                                    1. <strong>士林宽容（不杀士大夫）：</strong> 宋太祖传下石刻遗训，规定“不得杀士大夫及上书言事者”，使宋代言路大开。士大夫阶层不仅是政务执行者，也是“共同治理天下”的政治主体，政治自主性极高。<br>
+                                    2. <strong>剥夺武臣行政权：</strong> 武将不干预民政，甚至军队出征，武臣作统帅需由皇帝随军分发“阵图”，由中枢遥控（“将从中御”），剥夺将领的前线应变决策权。<br>
+                                    3. <strong>双刃剑效应：</strong> 这一策略带来了文化的极度繁荣和国内政治的空前稳定，但也彻底挫伤了军队的求胜意志和武臣的进取精神，成为军事“积弱”的根源。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 句段 5：利弊评价 -->
+                <div class="sentence-wrapper" id="q_evaluate">
+                    <div class="textbook-sentence">
+                        这些措施强化了中央集权，有效地预防了内部动乱，巩固了国家的统一和安定。但“事为之防，曲为之制”，制度过于僵化，权力分割过细，也影响了行政效率，助长了因循保守的政治风气。
+                    </div>
+
+                    <div class="teaching-design">
+                        <span class="design-label">唯物史观深度解析：集权稳固性与行政效能的底层张力</span>
+                        
+                        <div class="fold-card">
+                            <button class="fold-btn" onclick="toggleFold(this)">
+                                <span>⚖️ 探究三：解读“事为之防，曲为之制”的体制代价</span>
+                            </button>
+                            <div class="fold-content">
+                                <div class="question-box">
+                                    问题：如何理解宋朝史家与思想家对本朝集权制度的利弊剖析？
+                                </div>
+                                
+                                <div class="source-box">
+                                    <strong>【史料阅读】苏洵《嘉祐集》卷1《审势》</strong><br>
+                                    “吾宋制治，有县令，有郡守，有转运使，以大系小，丝牵绳联，总合于上。虽其地在万里外，方数千里，拥兵百万，而天子一呼于殿陛间，三尺竖子驰传（zhuàn）捧诏，召而归之京师，则解印趋走，惟恐不及。”
+                                    <div class="footnote"><strong>[注释]</strong> 
+                                    ① 丝牵绳联：用丝绳把各级地方官吏层层维系，最终集权于上。<br>
+                                    ② 三尺竖子：指低级的政府信使、驿卒。<br>
+                                    ③ 驰传：乘坐驿车传达诏令。
+                                    </div>
+                                </div>
+
+                                <div class="source-box">
+                                    <strong>【史料阅读】南宋学者叶适对宋初集权措施的尖锐批评</strong><br>
+                                    “今内外上下，一事之小，一罪之微，皆先有法以待之；极一世之人志虑之所周浃（jiā，完备），忽得一智，自以为甚奇，而法固已备之矣，是法之密也。虽然，人之才不获尽，人之志不获伸，昏然俯首一听于法度，而事功日隳（huī，毁坏），风俗日坏，贫民愈无告，奸人愈得志。”
+                                    ——《水心别集》卷10《实谋》
+                                </div>
+
+                                <div class="answer-box">
+                                    <strong>【师生共研：宋初中央集权措施的利弊得失分析】</strong><br>
+                                    <strong>【利：防范内部割据动乱】</strong><br>
+                                    宋初的措施有效地防范了地方军阀拥兵自立。如苏洵史料所绘，地方虽“拥兵百万”，但中央一纸诏书，将领便解印趋走，唯恐不及，成功避免了中原混战和军阀政治重演。两宋300余年基本无地方兵变和剧烈的国内政治篡弑，统治极其稳定。
+                                    <br><br>
+                                    <strong>【弊：压抑政治和体制活力（如叶适所述）】</strong><br>
+                                    1. <strong>制度冗密束缚人能：</strong> “法之密也”导致官僚体系一味泥古守成、不敢逾越，严重束缚了官僚阶层的行政能动性与应变创造力，助长了因循保守的官场风气。<br>
+                                    2. <strong>行政效率低下：</strong> 权力分割过细（叠床架屋），导致遇事多方推诿、无人负责，机构冗繁、办事程序低效。<br>
+                                    3. <strong>国防军事虚弱：</strong> 崇文抑武和将从中御使将领缺乏日常权威和临阵决策权，最终导致边疆遇敌被动挨打，形成了深重的“积弱”危机。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- 逐句精讲结束 -->
+
+            <!-- 4. 随堂巩固检测 -->
+            <div id="practice" class="tab-content">
+                <div class="section-title" style="font-size: 1.3em; font-weight: bold; margin-bottom: 20px; color: var(--primary-blue); border-left: 5px solid var(--primary-red); padding-left: 10px;">
+                    🎯 一轮复习交互式高阶演练卷
+                </div>
+
+                <!-- Q1 -->
+                <div class="question-card" id="q_test1">
+                    <div class="q-header">1. (2026·湖南高三开学考) 
+                        <span class="raw-text">宋太祖即位后，针对五代以来武人专政、政局不稳的教训，推行“崇文抑武”的政策，不仅用文臣出任枢密院（掌军政）长官，更在地方大规模派文臣出任知州、知府。这一政策在政治体制上的主要指向是 ( )</span>
+                        <span class="highlight-text" style="display: none;">
+                            <span class="hl-context">宋太祖即位后</span>，针对五代以来武人专政、政局不稳的教训，推行“崇文抑武”的政策，不仅<span class="hl-evidence">用文臣出任枢密院（掌军政）长官，更在地方大规模派文臣出任知州、知府</span>。<span class="hl-question">这一政策在政治体制上的主要指向是</span> ( )
+                        </span>
+                    </div>
+
+                    <div class="inline-control-bar">
+                        <button class="btn-deduct" onclick="toggleDeduction('q_test1')">🧭 正向逻辑链</button>
+                        
+                        <div class="horizontal-options">
+                            <button class="opt-btn" onclick="checkOption(this, 'A', false, 'q_test1')">A. 提升地方应对边疆危机的行政效率</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'B', true, 'q_test1')">B. 削弱地方武人势力并强化集权体制</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'C', false, 'q_test1')">C. 杜绝了各阶层知识分子反抗朝廷</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'D', false, 'q_test1')">D. 恢复唐代前期三省六部的运作流程</button>
+                        </div>
+
+                        <button class="btn-analysis" onclick="toggleAnalysis('q_test1')">🔍 考点透视与解析</button>
+                    </div>
+
+                    <div class="right-indicator"></div>
+
+                    <!-- Q1 正向逻辑推导沙盘 -->
+                    <div class="thinking-sandbox">
+                        <div class="chain-title">🧭 “正向逻辑推导”思维沙盘：</div>
+                        <div class="flow-container">
+                            <div class="flow-step">
+                                <div class="step-badge badge-1">1</div>
+                                <div class="step-content"><strong>定位求答项：</strong>“主要指向”，指探究“崇文抑武”这一战略在政体控制上的根本动机。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-2">2</div>
+                                <div class="step-content"><strong>提取文本线索：</strong>“针对五代以来武人专政的教训”，“文臣出任枢密院长官、地方知州”，文官开始全面挤压、替代武将控制政治与军事。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-3">3</div>
+                                <div class="step-content"><strong>逻辑推导：</strong>由文臣任知州可断绝节度使等武人控制割据地方的渠道，将调兵权（枢密院）赋予文臣防范了军事将领作乱，其首要意图在于强化君主专制和中央集权。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-4">4</div>
+                                <div class="step-content"><strong>锁定正确答案：</strong>对应 <strong>B项</strong>。</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q1 考点剖析展示区 -->
+                    <div class="analysis-box">
+                        <div class="analysis-content">
+                            <div class="analysis-item">
+                                <span class="analysis-tag tag-green">正确答案</span><strong>B</strong>
+                            </div>
+                            <div class="analysis-text">
+                                <strong>解析：</strong>五代之弊核心在于地方藩镇武将拥兵自重。宋初崇文抑武、重用文官，将地方民政和中枢军政大权（枢密院）收归文官掌控，其根本目的就是防范武将夺权、削弱割据势力，以此构筑极其稳固的君主专制中央集权政治，故选B项。<br><br>
+                                <strong>错项分析：</strong><br>
+                                • A项：这一体制分割过细，往往导致地方在面临突发危机和外敌时拖沓、应变缓慢，实际上降低了行政效率，排除；<br>
+                                • C项：该项“杜绝了”表述绝对化，无法杜绝民间阶层的反抗，排除；<br>
+                                • D项：宋代“二府三司”制与唐代三省六部制权力流程完全不同，属于行政实权分权而非流程合作分工，排除。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-card" id="q_test2">
+                    <div class="q-header">2. (2026·福建高三质检) 
+                        <span class="raw-text">宋太宗曾下诏说：“凡民政、兵政、钱谷、户口、赋役、狱讼，通判与知州共同签署文书。非通判联署，则其文书无效。”这一规定的底层设计旨在 ( )</span>
+                        <span class="highlight-text" style="display: none;">
+                            <span class="hl-context">宋太宗曾下诏说</span>，凡民政、兵政、钱谷、户口、赋役、狱讼，<span class="hl-evidence">通判与知州共同签署文书。非通判联署，则其文书无效</span>。<span class="hl-question">这一规定的底层设计旨在</span> ( )
+                        </span>
+                    </div>
+
+                    <div class="inline-control-bar">
+                        <button class="btn-deduct" onclick="toggleDeduction('q_test2')">🧭 正向逻辑链</button>
+                        
+                        <div class="horizontal-options">
+                            <button class="opt-btn" onclick="checkOption(this, 'A', false, 'q_test2')">A. 大幅减轻地方政府日常政务的压力</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'B', false, 'q_test2')">B. 实现中书门下与枢密院的文武制衡</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'C', true, 'q_test2')">C. 通过分权监督防范知州权力恶性膨胀</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'D', false, 'q_test2')">D. 将国家的财政管理实权赋予知州</button>
+                        </div>
+
+                        <button class="btn-analysis" onclick="toggleAnalysis('q_test2')">🔍 考点透视与解析</button>
+                    </div>
+
+                    <div class="right-indicator"></div>
+
+                    <div class="thinking-sandbox">
+                        <div class="chain-title">🧭 “正向逻辑推导”思维沙盘：</div>
+                        <div class="flow-container">
+                            <div class="flow-step">
+                                <div class="step-badge badge-1">1</div>
+                                <div class="step-content"><strong>定位求答项：</strong>“底层设计旨在”，考查宋朝派设“通判”的政治意图。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-2">2</div>
+                                <div class="step-content"><strong>提取文本线索：</strong>“通判与知州共签署”、“非通判联署，则文书无效”——知州下达任何行政命令必须有通判在公文上联合签字才能生效，两者形成制约。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-3">3</div>
+                                <div class="step-content"><strong>逻辑推导：</strong>通判是中央直接委派至地方州的监察、行政兼备官员，此项规定直接剥夺了知州独自在地方作决断的一言堂特权，形成了典型的分权监督网。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-4">4</div>
+                                <div class="step-content"><strong>锁定正确答案：</strong>对应 <strong>C项</strong>。</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analysis-box">
+                        <div class="analysis-content">
+                            <div class="analysis-item">
+                                <span class="analysis-tag tag-green">正确答案</span><strong>C</strong>
+                            </div>
+                            <div class="analysis-text">
+                                <strong>解析：</strong>通判被称为“监郡”，是北宋加强对地方知州进行监控的特设职务。由于知州名义上是一州长官，其行政诏令必须有通判的协同副署才能合法下达，这在制度上杜绝了知州在地方营建个人势力、形成尾大不掉的可能，起到了分权防弊、加强中央集权的作用，故选C项。<br><br>
+                                <strong>错项分析：</strong><br>
+                                • A项：协同联署联签制度，实际上繁琐了盖印程序，增加了工作对接成本，没有减轻地方政务压力，排除；<br>
+                                • B项：中书门下与枢密院是中央中枢一级的“文武并列制衡（二府）”，通判在地方州一级，属于空间层级张冠李戴，排除；<br>
+                                • D项：北宋地方财政主要由平行于知州的转运使统管，知州并无独立庞大的财政支配权，且通判不是把财权全权“赋于知州”，而是制约，排除。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-card" id="q_test3">
+                    <div class="q-header">3. (2026·广东高三模拟) 
+                        <span class="raw-text">南宋学者叶适在分析本朝集权措施时指出：“今内外上下，一事之小，一罪之微，皆先有法以待之……人之才不获尽，人之志不获伸，昏然俯首一听于法度，而事功日隳。”叶适这一论断主要揭示了宋初集权措施 ( )</span>
+                        <span class="highlight-text" style="display: none;">
+                            <span class="hl-context">南宋学者叶适在分析本朝集权措施时指出</span>，今内外上下，一事之小，一罪之微，皆先有法以待之……<span class="hl-evidence">人之才不获尽，人之志不获伸，昏然俯首一听于法度，而事功日隳</span>。<span class="hl-question">叶适这一论断主要揭示了宋初集权措施</span> ( )
+                        </span>
+                    </div>
+
+                    <div class="inline-control-bar">
+                        <button class="btn-deduct" onclick="toggleDeduction('q_test3')">🧭 正向逻辑链</button>
+                        
+                        <div class="horizontal-options">
+                            <button class="opt-btn" onclick="checkOption(this, 'A', false, 'q_test3')">A. 有效地预防了各州武将和割据叛乱</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'B', false, 'q_test3')">B. 调动了地方官员处理政务的主动性</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'C', true, 'q_test3')">C. 造成体制过于死板并压抑了行政活力</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'D', false, 'q_test3')">D. 使得君主权力受到了士大夫层层制约</button>
+                        </div>
+
+                        <button class="btn-analysis" onclick="toggleAnalysis('q_test3')">🔍 考点透视与解析</button>
+                    </div>
+
+                    <div class="right-indicator"></div>
+
+                    <div class="thinking-sandbox">
+                        <div class="chain-title">🧭 “正向逻辑推导”思维沙盘：</div>
+                        <div class="flow-container">
+                            <div class="flow-step">
+                                <div class="step-badge badge-1">1</div>
+                                <div class="step-content"><strong>定位求答项：</strong>“主要揭示了”，考查南宋叶适对宋朝制度积弊的理论研判。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-2">2</div>
+                                <div class="step-content"><strong>提取文本线索：</strong>“一事之微，皆先有法以待之”，“人之才不获尽，志不获伸，昏然一听于法度”，朝廷制度网太密，导致臣民循规蹈矩，失去创造力和担当。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-3">3</div>
+                                <div class="step-content"><strong>逻辑推导：</strong>“法之密”走向了反面——人沦为制度的顺从提线木偶，因循守旧、保守妥协。表明过度分权防弊带来的代价是体制极度僵化，行政效能日趋衰退。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-4">4</div>
+                                <div class="step-content"><strong>锁定正确答案：</strong>对应 <strong>C项</strong>。</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analysis-box">
+                        <div class="analysis-content">
+                            <div class="analysis-item">
+                                <span class="analysis-tag tag-green">正确答案</span><strong>C</strong>
+                            </div>
+                            <div class="analysis-text">
+                                <strong>解析：</strong>叶适的论述核心在于剖析宋朝“防弊体制”的致命局限。一事之微都有条文束缚（“事为之防，曲为之制”），导致官员无权临机处断，只能“昏然俯首一听于法度”，严重压抑了官员行政主观能动性与人才的施展空间，最终因行政保守僵硬而导致了国防和国力上的不振（事功日隳），故选C项。<br><br>
+                                <strong>错项分析：</strong><br>
+                                • A项：该项是北宋集权的长处，但属于叶适反思的“另一极面”（非本段材料核心痛点），排除；<br>
+                                • B项：本题制度繁文缛节严重压抑了地方的主动性，与“调动”表述背道而驰，排除；<br>
+                                • D项：材料论及的是“法度”对官僚个人才能、志向的扼杀，不涉及君主权力受士大夫制衡，排除。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. 学科核心素养 -->
+            <div id="literacy" class="tab-content">
+                <div class="sentence-wrapper" style="border-left-color: #dc3545;">
+                    <div class="textbook-sentence">
+                        <h3>🌟 历史学科核心素养提炼</h3>
+                        
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: var(--primary-orange); margin-bottom: 5px;">① 唯物史观 (Historical Materialism)</h4>
+                            <p style="margin: 0; font-size: 0.95em;">辩证解析<strong>制度防弊目标与行政能效代价</strong>之间的对立统一。宋初对节度使、武臣和地方势力的彻底解构，完美预防了唐末五代以来的地方叛乱，为文明社会的持续创造奠定了坚实的内部安定。但由此派生的“事事设防，曲意牵制”上层建筑网络，导致权能分割严重过载，形成了无法逃逸的惰性行政文化（因循保守、办事低效）。这一现象极具说服力地呈现了<strong>任何上层建筑制度在追求极端绝对安全时都会产生自我窒息的副作用。</strong></p>
+                        </div>
+
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: var(--primary-red); margin-bottom: 5px;">② 史料实证 (Historical Evidence)</h4>
+                            <p style="margin: 0; font-size: 0.95em;">通过剖析苏洵《审势》中的“丝牵绳联”与叶适《水心别集》中的“昏然俯首”，多角度论证两宋政务的微妙制衡结构。运用最典型、最权威的一手奏议文献和思想家视角，引导高三生在解题研考中进行史料对勘，得出<strong>宋朝体制具有“内部集权极稳、地方权能极虚、行政风骨极旧”</strong>的扎实历史结论。</p>
+                        </div>
+
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: var(--primary-blue); margin-bottom: 5px;">③ 历史解释 (Historical Interpretation)</h4>
+                            <p style="margin: 0; font-size: 0.95em;"><strong>从“防弊之政”走向“积弱偏安”的因果关系。</strong></p>
+                            <ul>
+                                <li>宋初对军事统兵权（三衙）与调兵权（枢密院）的切割，防范了禁军篡权，但也彻底割裂了“将”与“兵”的临战指挥纽带。文臣主管中枢国防、前线行军处处受制于中枢“阵图”遥控，导致了前线将领求稳退避、国防虚弱。“崇文抑武”的政策演化到极端，使北宋在面对雄视北方的辽、西夏时不得不靠支付岁币维系和平（“以钱财换和平”），埋下了积弱积贫的底层种子。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. 教学总结与反思 -->
+            <div id="summary" class="tab-content">
+                <div class="sentence-wrapper" style="border-left-color: var(--primary-green);">
+                    <div class="textbook-sentence" style="text-align: center; background: var(--light-green);">
+                        <h3>🎓 课堂结语：历史理性与体制防范</h3>
+                        <p style="font-size: 1.1em; max-width: 800px; margin: 0 auto; line-height: 1.8; color: #1b4332;">
+                            宋初政治制度是典型的<strong>“防弊政治”</strong>。它通过精致的分权体制网络，成功地解决了“武将作乱、藩镇割据”的中国古代封建顽疾，迎来了长达三百载文治昌明的士大夫共治时代。
+                            <br><br>
+                            然而，没有任何一种体制是免费的。北宋为了内部政治安全的极端稳固，支付了庞大机构重叠（冗官）、战力不振、决策僵硬的制度成本。
+                            <strong>这种重内轻外、以法窒才的安全设计，虽然在对内防范上成效显著，但在应对外部游牧草原铁骑的狂野博弈时，迅速暴露出军事脆弱的死穴，最终传导出了积贫积弱的地缘危机。</strong> 这正是历史发展中多向选择和利弊共生的迷人魅力。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- 中间内容区结束 -->
+
+        <aside class="mindmap-sidebar">
+            <button class="mm-btn btn-unit" onclick="showMindMap('unit')">大单元<br>视角</button>
+            <button class="mm-btn btn-course" onclick="showMindMap('course')">本课<br>大纲</button>
+            <button class="mm-btn btn-detail" onclick="showMindMap('detail')">集权<br>详解</button>
+        </aside>
+
+    </div> <!-- 主体容器结束 -->
+
+    <!-- 思维导图弹窗系统 -->
+    <div id="mindMapModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            
+            <!-- 1. 大单元宏观导图 -->
+            <div id="mm-unit" class="mm-container" style="display: none;">
+                <h3 style="color: #3d3b30; text-align: center; margin-top: 0;">🌐 第三单元：多民族政权并立与元代大一统</h3>
+                <p style="color: #666; text-align: center; font-size: 0.9em; margin-bottom: 25px;">宏观演进视角：政权并立到南北交融，元代重新走向宏大统一</p>
+                <svg class="map-svg" viewBox="0 0 900 450">
+                    <path d="M 450 60 L 150 150 M 450 60 L 450 150 M 450 60 L 750 150" stroke="#cbd5e1" stroke-width="2" fill="none" />
+                    <path d="M 150 200 L 150 260 M 450 200 L 450 260 M 750 200 L 750 260" stroke="#cbd5e1" stroke-width="2" fill="none" />
+                    <path d="M 150 310 L 450 380 M 450 310 L 450 380 M 750 310 L 450 380" stroke="#cbd5e1" stroke-width="2" fill="none" />
+
+                    <!-- 核心根节点 -->
+                    <g transform="translate(325, 20)">
+                        <rect width="250" height="50" rx="8" fill="#3d3b30" />
+                        <text x="125" y="30" class="text-on-dark" font-weight="bold" text-anchor="middle">多民族并立与多元一统</text>
+                    </g>
+
+                    <!-- 分支 1 -->
+                    <g transform="translate(50, 140)" stroke="#1d3557" stroke-width="1.5">
+                        <rect width="200" height="55" rx="6" fill="#1d3557" />
+                        <text x="100" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">第9课：两宋的政治与军事</text>
+                        <text x="100" y="42" class="text-on-dark" text-anchor="middle">宋初集权、边防危机、王安石变法</text>
+                    </g>
+                    <g transform="translate(50, 250)">
+                        <rect width="200" height="55" rx="4" fill="#fffdfa" stroke="#1d3557" stroke-width="1.5" />
+                        <text x="100" y="25" class="text-title-on-light" font-weight="bold" text-anchor="middle">集权防弊与边疆积弱</text>
+                        <text x="100" y="42" class="text-on-light" text-anchor="middle">探析汉族政权内部安全代偿机制</text>
+                    </g>
+
+                    <!-- 分支 2 -->
+                    <g transform="translate(350, 140)">
+                        <rect width="200" height="55" rx="6" fill="#c05621" />
+                        <text x="100" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">第10课：辽夏金元的统治</text>
+                        <text x="100" y="42" class="text-on-dark" text-anchor="middle">南北面官、猛安谋克、行省制</text>
+                    </g>
+                    <g transform="translate(350, 250)">
+                        <rect width="200" height="55" rx="4" fill="#f8fafc" stroke="#c05621" stroke-width="1.5" />
+                        <text x="100" y="25" class="text-title-on-light" font-weight="bold" text-anchor="middle">因俗而治与二元体制</text>
+                        <text x="100" y="42" class="text-on-light" text-anchor="middle">认识北方少数民族对版图的奠定</text>
+                    </g>
+
+                    <!-- 分支 3 -->
+                    <g transform="translate(650, 140)">
+                        <rect width="200" height="55" rx="6" fill="#15803d" />
+                        <text x="100" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">第11课：经济社会文化变化</text>
+                        <text x="100" y="42" class="text-on-dark" text-anchor="middle">重心南移、平民社会、理学勃兴</text>
+                    </g>
+                    <g transform="translate(650, 250)">
+                        <rect width="200" height="55" rx="4" fill="#f8fafc" stroke="#15803d" stroke-width="1.5" />
+                        <text x="100" y="25" class="text-title-on-light" font-weight="bold" text-anchor="middle">市井繁荣与理学共治</text>
+                        <text x="100" y="42" class="text-on-light" text-anchor="middle">宋学勃兴与民间契约社会的来临</text>
+                    </g>
+
+                    <!-- 元朝归宿 -->
+                    <g transform="translate(325, 370)">
+                        <rect width="250" height="50" rx="8" fill="#5c3d2e" />
+                        <text x="125" y="30" class="text-on-dark" font-weight="bold" text-anchor="middle">元朝统合：统一多民族国家发展</text>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- 2. 本课框架导图 -->
+            <div id="mm-course" class="mm-container" style="display: none;">
+                <h3 style="color: #475569; text-align: center; margin-top: 0;">📖 第9课：两宋的政治和军事（课时脉络图）</h3>
+                <p style="color: #666; text-align: center; font-size: 0.9em; margin-bottom: 25px;">政略因果大闭环：从宋初重防弊、中叶大积贫，到变法难挽颓势</p>
+                <svg class="map-svg" viewBox="0 0 900 450">
+                    <path d="M 450 65 L 450 115 M 450 165 L 450 215 M 450 265 L 450 315 M 450 365 L 450 400" stroke="#cbd5e1" stroke-width="2.5" fill="none" />
+
+                    <!-- 第一子目 -->
+                    <g transform="translate(250, 15)" stroke="#1d3557" stroke-width="2">
+                        <rect width="400" height="50" rx="8" fill="#1d3557" />
+                        <text x="200" y="30" class="text-on-dark" font-weight="bold" text-anchor="middle">👑 子目一：宋初中央集权的加强 (收地方权、分中枢、崇文抑武)</text>
+                    </g>
+
+                    <!-- 传导 1 -->
+                    <g transform="translate(350, 115)">
+                        <rect width="200" height="50" rx="6" fill="#f1f5f9" stroke="#d35400" stroke-width="1.5" />
+                        <text x="100" y="22" class="text-title-on-light" font-weight="bold" text-anchor="middle">集权防制代价暴露：</text>
+                        <text x="100" y="38" class="text-title-on-light" font-weight="bold" text-anchor="middle">三冗危机、边疆积弱挨打</text>
+                    </g>
+
+                    <!-- 第二子目 -->
+                    <g transform="translate(250, 215)">
+                        <rect width="400" height="50" rx="8" fill="#c05621" />
+                        <text x="200" y="30" class="text-on-dark" font-weight="bold" text-anchor="middle">子目二：边防压力与财政危机 (岁币换安宁、国帑虚耗)</text>
+                    </g>
+
+                    <!-- 传导 2 -->
+                    <g transform="translate(350, 315)">
+                        <rect width="200" height="50" rx="6" fill="#f1f5f9" stroke="#047857" stroke-width="1.5" />
+                        <text x="100" y="22" class="text-title-on-light" font-weight="bold" text-anchor="middle">王安石理财强兵：</text>
+                        <text x="100" y="38" class="text-title-on-light" font-weight="bold" text-anchor="middle">富国见效，强兵流产，党争祸国</text>
+                    </g>
+
+                    <!-- 第四子目 -->
+                    <g transform="translate(250, 395)">
+                        <rect width="400" height="50" rx="8" fill="#8f1d1d" />
+                        <text x="200" y="30" class="text-on-dark" font-weight="bold" text-anchor="middle">子目四：南宋偏安 (靖康之变、绍兴和议、宋金南北分治)</text>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- 3. 本目详解导图 -->
+            <div id="mm-detail" class="mm-container" style="display: none;">
+                <h3 style="color: var(--primary-orange); text-align: center; margin-top: 0;">👑 宋初中央集权加强的“防弊”控制大网络</h3>
+                <p style="color: #666; text-align: center; font-size: 0.9em; margin-bottom: 25px;">全景拆解：如何通过权力碎化和文官制约，一劳永逸锁定武将作乱</p>
+                <svg class="map-svg" viewBox="0 0 1000 550">
+                    <path d="M 500 50 L 500 100" stroke="#666" stroke-width="2" fill="none" />
+                    <path d="M 500 150 L 180 210 M 500 150 L 500 210 M 500 150 L 820 210" stroke="#cbd5e1" stroke-width="2.5" fill="none" />
+                    
+                    <path d="M 180 265 L 180 330" stroke="#1d3557" stroke-width="2" fill="none" />
+                    <path d="M 500 265 L 500 330" stroke="#c05621" stroke-width="2" fill="none" />
+                    <path d="M 820 265 L 820 330" stroke="#8f1d1d" stroke-width="2" fill="none" />
+
+                    <!-- 根 -->
+                    <g transform="translate(375, 10)">
+                        <rect width="250" height="40" rx="6" fill="#212529" />
+                        <text x="125" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">防弊之政 ➡️ 矫枉五代藩镇武人跋扈之失</text>
+                    </g>
+
+                    <!-- 三大家法总汇 -->
+                    <g transform="translate(350, 95)">
+                        <rect width="300" height="55" rx="6" fill="#1d3557" />
+                        <text x="150" y="24" class="text-on-dark" font-weight="bold" text-anchor="middle">赵宋立国“家法”体系大网</text>
+                        <text x="150" y="42" class="text-on-dark" text-anchor="middle">(权力运作核心：削、分、限三轴并驱)</text>
+                    </g>
+
+                    <!-- 家法一：控地方 -->
+                    <g transform="translate(60, 210)">
+                        <rect width="240" height="55" rx="6" fill="#1d3557" />
+                        <text x="120" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">① 收地方权力 (控地方、防割据)</text>
+                        <text x="120" y="42" class="text-on-dark" text-anchor="middle">知州由文臣代武将、节度使作虚置</text>
+                    </g>
+                    <g transform="translate(40, 330)">
+                        <rect width="280" height="85" rx="4" fill="#f0f4f8" stroke="#1d3557" stroke-width="1.5" />
+                        <text x="140" y="22" class="text-title-on-light" font-weight="bold" text-anchor="middle">地方制衡网络细节：</text>
+                        <text x="140" y="42" class="text-on-light" font-weight="bold" text-anchor="middle">财权：设转运司，除留存外尽缴京师</text>
+                        <text x="140" y="60" class="text-on-light" font-weight="bold" text-anchor="middle">兵权：精锐纳禁军防京师，“更戍法”轮驻</text>
+                        <text x="140" y="78" class="text-on-light" font-weight="bold" text-anchor="middle">监察：设通判“联署公文”，知州难单决</text>
+                    </g>
+
+                    <!-- 家法二：分中枢 -->
+                    <g transform="translate(380, 210)">
+                        <rect width="240" height="55" rx="6" fill="#c05621" />
+                        <text x="120" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">② 分散中枢机构权力 (防僭越)</text>
+                        <text x="120" y="42" class="text-on-dark" text-anchor="middle">二府三司分掌政、军、财，宰相权虚</text>
+                    </g>
+                    <g transform="translate(360, 330)">
+                        <rect width="280" height="85" rx="4" fill="#fffaf0" stroke="#c05621" stroke-width="1.5" />
+                        <text x="140" y="22" class="text-title-on-light" font-weight="bold" text-anchor="middle">中枢权力制约大网络：</text>
+                        <text x="140" y="42" class="text-on-light" font-weight="bold" text-anchor="middle">政军分：政事堂(相) vs 枢密院(军)</text>
+                        <text x="140" y="60" class="text-on-light" font-weight="bold" text-anchor="middle">政财分：三司掌财政，被称为“计相”</text>
+                        <text x="140" y="78" class="text-on-light" font-weight="bold" text-anchor="middle">军权碎：枢密调兵 ⚔️ 三衙统兵，武不干预</text>
+                    </g>
+
+                    <!-- 家法三：抑武人 -->
+                    <g transform="translate(700, 210)">
+                        <rect width="240" height="55" rx="6" fill="#8f1d1d" />
+                        <text x="120" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">③ 崇文抑武 (以文驭武、立文治)</text>
+                        <text x="120" y="42" class="text-on-dark" text-anchor="middle">文臣执军务大柄，科举大规模拔擢士子</text>
+                    </g>
+                    <g transform="translate(680, 330)">
+                        <rect width="280" height="85" rx="4" fill="#fff5f5" stroke="#8f1d1d" stroke-width="1.5" />
+                        <text x="140" y="22" class="text-title-on-light" font-weight="bold" text-anchor="middle">士林与文官治世常态：</text>
+                        <text x="140" y="42" class="text-on-light" font-weight="bold" text-anchor="middle">罢宿将：杯酒释兵权，文臣领枢密院</text>
+                        <text x="140" y="60" class="text-on-light" font-weight="bold" text-anchor="middle">不杀人：遗训宽容士人，士大夫共治</text>
+                        <text x="140" y="78" class="text-on-light" font-weight="bold" text-anchor="middle">广取士：科举量远胜前代，门第门阀退场</text>
+                    </g>
+
+                    <!-- 评价汇总 -->
+                    <g transform="translate(250, 440)">
+                        <rect width="500" height="85" rx="6" fill="#f8fafc" stroke="#333" stroke-width="2" />
+                        <text x="250" y="22" class="text-title-on-light" font-weight="bold" text-anchor="middle">“防弊集权”历史综合辩证解析：</text>
+                        <text x="250" y="42" class="text-on-light" font-weight="bold" text-anchor="middle">长处：极大预防内乱，300年不现地方兵变剧震，保障平民创富生息</text>
+                        <text x="250" y="62" class="text-on-light" font-weight="bold" text-anchor="middle">代价：法度繁杂，办事低效；“将从中御”束缚了军事能动性，国家军事积弱</text>
+                        <text x="250" y="78" class="text-on-light" font-weight="bold" text-anchor="middle">总结：高度成熟、空前稳定的内部文治 ⚔️ 无法自我突围的国防代价</text>
+                    </g>
+                </svg>
+            </div>
+
+        </div> <!-- 模态框内容结束 -->
+    </div> <!-- 模态框结束 -->
+
+    <script>
+        function checkOption(btnElement, optionLetter, isCorrect, qId) {
+            const card = document.getElementById(qId);
+            const indicator = card.querySelector('.right-indicator');
+            const allOptBtns = card.querySelectorAll('.opt-btn');
+
+            allOptBtns.forEach(btn => {
+                btn.classList.remove('correct-select', 'incorrect-select');
+            });
+
+            if (isCorrect) {
+                btnElement.classList.add('correct-select');
+                indicator.style.display = 'block';
+                indicator.style.color = '#2f855a';
+                indicator.innerHTML = '✓ 恭喜，选择正确！可点击右侧 “🔍 考点透视” 研读更深层次解析。';
+            } else {
+                btnElement.classList.add('incorrect-select');
+                indicator.style.display = 'block';
+                indicator.style.color = '#8c2d19';
+                indicator.innerHTML = '❌ 选项 ' + optionLetter + ' 并非最佳答案，请结合正向逻辑链重读题干！';
+                
+                allOptBtns.forEach(btn => {
+                    if (qId === 'q_test1' && btn.innerText.includes('B.')) btn.classList.add('correct-select');
+                    if (qId === 'q_test2' && btn.innerText.includes('C.')) btn.classList.add('correct-select');
+                    if (qId === 'q_test3' && btn.innerText.includes('C.')) btn.classList.add('correct-select');
+                });
+            }
+        }
+
+        function toggleDeduction(qId) {
+            const card = document.getElementById(qId);
+            if (!card) return;
+
+            const rawText = card.querySelector('.raw-text');
+            const highlightText = card.querySelector('.highlight-text');
+            const sandbox = card.querySelector('.thinking-sandbox');
+            const btn = card.querySelector('.btn-deduct');
+
+            if (sandbox.style.display === 'none' || !sandbox.style.display) {
+                if (rawText) rawText.style.display = 'none';
+                if (highlightText) highlightText.style.display = 'inline';
+                sandbox.style.display = 'block';
+                if (btn) {
+                    btn.innerHTML = '🧭 收起逻辑链';
+                    btn.classList.add('active');
+                }
+            } else {
+                if (rawText) rawText.style.display = 'inline';
+                if (highlightText) highlightText.style.display = 'none';
+                sandbox.style.display = 'none';
+                if (btn) {
+                    btn.innerHTML = '🧭 正向逻辑链';
+                    btn.classList.remove('active');
+                }
+            }
+        }
+
+        function toggleAnalysis(qId) {
+            const card = document.getElementById(qId);
+            if (!card) return;
+
+            const analysisBox = card.querySelector('.analysis-box');
+            const btn = card.querySelector('.btn-analysis');
+
+            if (analysisBox.style.display === 'none' || !analysisBox.style.display) {
+                analysisBox.style.display = 'block';
+                if (btn) {
+                    btn.innerHTML = '🔍 收起考点透视';
+                    btn.classList.add('active');
+                }
+            } else {
+                analysisBox.style.display = 'none';
+                if (btn) {
+                    btn.innerHTML = '🔍 考点透视与解析';
+                    btn.classList.remove('active');
+                }
+            }
+        }
+
+        function switchTab(tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            
+            const targetNav = Array.from(navItems).find(item => item.getAttribute('onclick').includes(tabId));
+            if(targetNav) targetNav.classList.add('active');
+
+            document.querySelector('.content-area').scrollTop = 0;
+        }
+
+        function scrollToId(elementId) {
+            switchTab('framework');
+            setTimeout(() => {
+                const targetElement = document.getElementById(elementId);
+                if(targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100);
+        }
+
+        function toggleFold(btn) {
+            const content = btn.nextElementSibling;
+            const isOpen = content.style.display === 'block';
+            content.style.display = isOpen ? 'none' : 'block';
+            btn.classList.toggle('active', !isOpen);
+        }
+
+        const modal = document.getElementById('mindMapModal');
+        const mapContainers = {
+            'unit': document.getElementById('mm-unit'),
+            'course': document.getElementById('mm-course'),
+            'detail': document.getElementById('mm-detail')
+        };
+
+        function showMindMap(type) {
+            modal.style.display = 'flex';
+            Object.values(mapContainers).forEach(el => el.style.display = 'none');
+            if(mapContainers[type]) {
+                mapContainers[type].style.display = 'block';
+            }
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        function toggleAllPanels() {
+            document.body.classList.toggle('panels-collapsed');
+            const triggerBtn = document.querySelector('.menu-trigger');
+            if (document.body.classList.contains('panels-collapsed')) {
+                triggerBtn.innerHTML = '🍔 菜单 (已收起)';
+            } else {
+                triggerBtn.innerHTML = '☰ 菜单 (已展开)';
+            }
+        }
+
+        let currentFontSize = 1.0; 
+        function adjustFont(direction) {
+            currentFontSize += direction * 0.08;
+            if (currentFontSize < 0.8) currentFontSize = 0.8;
+            if (currentFontSize > 1.6) currentFontSize = 1.6;
+            
+            const contentArea = document.querySelector('.content-area');
+            contentArea.style.fontSize = currentFontSize + 'em';
+        }
+    </script>
+</body>
+</html>
