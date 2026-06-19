@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讹答剌事变的背景梳理 - 学术数字化版本</title>
+    <style>
+        :root {
+            --primary-color: #1a365d;   /* 牛津学术深蓝 */
+            --accent-color: #8c1d40;    /* 学术人文朱红 */
+            --text-color: #2d3748;      /* 书页印刷级炭黑 */
+            --bg-color: #fdfdfb;        /* 护眼暖白纸张色 */
+            --sidebar-bg: #f8fafc;      /* 现代学术侧边栏底色 */
+            --border-color: #cbd5e1;    /* 细边框浅灰 */
+            --font-serif: "Georgia", "Times New Roman", "STSong", "SimSun", "Songti SC", serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f1f3f5;
+            color: var(--text-color);
+            font-family: var(--font-serif);
+            line-height: 1.8;
+        }
+
+        /* 页面整体框架 */
+        .wrapper {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* 左侧固定目录导航栏 */
+        .sidebar {
+            width: 320px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 40px 25px;
+            overflow-y: auto;
+            font-family: var(--font-sans);
+            z-index: 100;
+        }
+
+        .sidebar h2 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .sidebar li.h1-link {
+            font-weight: bold;
+            font-size: 13px;
+            margin-top: 20px;
+        }
+
+        .sidebar li.h2-link {
+            padding-left: 15px;
+            font-size: 12px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #4a5568;
+            transition: color 0.2s ease;
+        }
+
+        .sidebar a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        /* 右侧正文主体区 */
+        .main-content {
+            margin-left: 320px;
+            width: calc(100% - 320px);
+            background-color: var(--bg-color);
+            padding: 60px 80px;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.03);
+            position: relative;
+            text-align: justify;
+        }
+
+        /* 学术格式头部 */
+        header {
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 40px;
+            margin-bottom: 45px;
+            padding-top: 30px;
+        }
+
+        .publish-tag {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        header h1 {
+            font-family: var(--font-sans);
+            font-size: 28px;
+            color: var(--primary-color);
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .author-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .author-meta {
+            font-size: 13px;
+            color: #718096;
+            font-family: var(--font-sans);
+            line-height: 1.6;
+        }
+
+        /* 摘要与关键词 */
+        .abstract-box {
+            background-color: #f8fafc;
+            border-left: 4px solid var(--accent-color);
+            padding: 25px 30px;
+            margin: 30px 0;
+            font-size: 15px;
+            color: #4a5568;
+        }
+
+        .abstract-box p {
+            text-indent: 0;
+            margin-bottom: 10px;
+        }
+
+        .abstract-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-family: var(--font-sans);
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        /* 正文排版 */
+        article p {
+            text-indent: 2em;
+            margin-bottom: 1.8em;
+            font-size: 17px;
+        }
+
+        article h2 {
+            font-family: var(--font-sans);
+            font-size: 21px;
+            color: var(--primary-color);
+            border-bottom: 1px solid #cbd5e1;
+            padding-bottom: 8px;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        article h3 {
+            font-family: var(--font-sans);
+            font-size: 17px;
+            color: #34495e;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* 引用角标样式 */
+        sup a.citation-trigger {
+            color: var(--accent-color);
+            font-weight: bold;
+            text-decoration: none;
+            padding: 0 3px;
+            font-family: var(--font-sans);
+            font-size: 13px;
+        }
+
+        sup a.citation-trigger:hover {
+            text-decoration: underline;
+            background-color: rgba(140, 29, 64, 0.1);
+            border-radius: 3px;
+        }
+
+        /* 页下注释面板 */
+        .footnotes-section {
+            margin-top: 80px;
+            border-top: 3px double var(--primary-color);
+            padding-top: 35px;
+            font-family: var(--font-serif);
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .footnotes-section h3 {
+            font-family: var(--font-sans);
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .footnotes-section ol {
+            padding-left: 20px;
+        }
+
+        .footnotes-section li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .back-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-left: 6px;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* 气泡弹窗样式 */
+        .footnote-popover {
+            position: absolute;
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            padding: 15px 35px 15px 15px;
+            width: 320px;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #334155;
+            z-index: 1000;
+            display: none;
+            font-family: var(--font-serif);
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .footnote-popover .close-btn {
+            position: absolute;
+            top: 6px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #94a3b8;
+            font-weight: bold;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .footnote-popover .close-btn:hover {
+            color: #475569;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 响应式 */
+        @media (max-width: 1024px) {
+            .wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 25px;
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- 左侧目录导航 -->
+    <aside class="sidebar">
+        <h2>论文大纲</h2>
+        <ul>
+            <li class="h1-link"><a href="#proposal-header">基本信息</a></li>
+            <li class="h1-link"><a href="#proposal-abstract">摘要 Abstract</a></li>
+            <li class="h1-link"><a href="#section1">一、事变前的蒙古</a></li>
+            <li class="h1-link"><a href="#section2">二、事变前的花剌子模和西辽</a></li>
+            <li class="h1-link"><a href="#section3">三、蒙古与花剌子模的初次交手</a></li>
+            <li class="h1-link"><a href="#section4">四、讹答剌事变的发生</a></li>
+            <li class="h1-link"><a href="#section5">五、思考与结语</a></li>
+            <li class="h1-link"><a href="#notes-anchor">文献注释 Notes</a></li>
+        </ul>
+    </aside>
+
+    <!-- 右侧正文主体区 -->
+    <main class="main-content">
+        <header id="proposal-header">
+            <div class="publish-tag">河南科技大学人文学院 • 历史学 2014 级学士学位研究手稿</div>
+            <h1>讹答剌事变的背景梳理</h1>
+            <div class="author-name">张钟文</div>
+            <div class="author-meta">
+                河南科技大学 人文学院 历史学 2014 级
+            </div>
+        </header>
+
+        <!-- 摘要区 -->
+        <section id="proposal-abstract" class="abstract-box">
+            <p><span class="abstract-title">摘要：</span>公元 1218 年，中亚一个叫做讹答剌的小城发生的蒙古官派商队被杀掠事件，迅速升级，引发了当时两个新兴大国的战争。蒙古大军在成吉思汗率领下西进，征服了花剌子模帝国。蒙古西征是 13 世纪发生的一个大事件，彻底改变了欧亚大陆历史的进程，至今仍有重要影响。讹答剌事件发生前，冲突的双方，蒙古与花剌子模都是新近崛起的大国，彼此距离遥远，缺乏了解。本为促进关系的贸易，变成了血腥战争的导火索。回顾这一历史事件的背景，可以在今天让我们对这次事变有更全面的认识。</p>
+            <p style="margin-top:10px; font-weight: bold;">关键词：成吉思汗；蒙古；花剌子模；摩柯末；讹答剌</p>
+        </section>
+
+        <article>
+            <!-- 第一章 -->
+            <h2 id="section1">一、事变前的蒙古</h2>
+            <p>公元 1162 年，铁木真生于漠北草原。当时的蒙古四分五裂，战争频繁。他的父亲是乞颜部可汗也速该。后来也速该被外部所杀，铁木真一家在部落内也被敌人孤立，四处追杀。铁木真的童年与母亲和兄弟相依为命，贫苦而危险。不过在二十多年的成长与战斗后，铁木真变得成熟和强大，他首先重新控制了乞颜部。1189 年，他被乞颜部众人推选为可汗。<sup><a href="#fn1" class="citation-trigger" id="ref1" data-fn="1">[1]</a></sup></p>
+            <p>年轻的札木合是蒙古札达阑部可汗，幼年时曾与铁木真结为安达。札木合拥有强大的实力，曾给予铁木真重要的帮助。铁木真被选为可汗后第一时间向他通报，也许是草原上血腥的斗争让札木合心生忌惮，他并未承认铁木真的汗位。第二年，札木合就集结众多部落进攻铁木真，发生了“十三翼之战”。虽然铁木真在强大的进攻下撤退，札木合一路取胜。但由于札木合战争中的的行为过于残暴，反而失去了人心，他没能消灭铁木真。<sup><a href="#fn2" class="citation-trigger" id="ref2" data-fn="2">[2]</a></sup>随后铁木真进攻，先是击灭世仇塔塔儿部，在战斗中再次打败札木合，后来在蔑儿乞惕部被击灭后，基本统一东部蒙古。反对他的人聚集到了西方乃蛮部的大旗下。1204 年，铁木真攻打乃蛮部，乃蛮塔阳汗兵败被杀。<sup><a href="#fn3" class="citation-trigger" id="ref3" data-fn="3">[3]</a></sup>其子屈出律逃往西辽。蒙古基本统一。</p>
+            <p>1206 年春，蒙古诸贵族向强大的征服者铁木真上尊号“成吉思汗”，使其登基成为“大蒙古国皇帝”。<sup><a href="#fn4" class="citation-trigger" id="ref4" data-fn="4">[4]</a></sup>统一的蒙古此时终于不用受人制约。1205 年至 1209 年，蒙古三次进攻西夏，迫使其求和。1211 年至 1218 年，蒙古大军主攻金朝，击败数十万金军。可以说此时成吉思汗的注意力在南方的金和西夏上，并没有西征的意图。</p>
+
+            <!-- 第二章 -->
+            <h2 id="section2">二、事变前的花剌子模和西辽</h2>
+            <p>花剌子模是一个历史悠久的地区，但大部分时间依附于周边大国。12、13 世纪之交的花剌子模是一个中亚突厥人王朝，属于塞尔柱帝国的一部分。12 世纪塞尔柱帝国式微，东方经济发达的花剌子模就逐渐独立。1141 年，花剌子模作为塞尔柱帝国的同盟军与东方新兴的西辽(即喀喇契丹)作战。塞尔柱帝国在卡特万战役中被击败，于是花剌子模向西辽称臣。<sup><a href="#fn5" class="citation-trigger" id="ref5" data-fn="5">[5]</a></sup>不过这只是一种弱邦延续上千年应付强敌的策略。花剌子模的力量在不断增强，苏丹阿拉乌丁·摩柯末统治时，实力达到鼎盛。此时摩柯末不愿再称臣，1207 年派兵占领撒马尔罕，与西辽相抗衡。1210 年，花剌子模打败了一度取胜的西辽古尔汗直鲁古，取得了河中地区的实际控制权。<sup><a href="#fn6" class="citation-trigger" id="ref6" data-fn="6">[6]</a></sup></p>
+            <p>流亡的屈出律于 1208 年逃亡西辽，得到了古尔汗的欢迎，还得到了他的女儿。<sup><a href="#fn7" class="citation-trigger" id="ref7" data-fn="7">[7]</a></sup>但是野心勃勃的屈出律急于掌握西辽的政权，他意图反叛古尔汗，就与花剌子模苏丹摩柯末联合。内外夹攻之下，1211 年，古尔汗在战乱中被俘。<sup><a href="#fn8" class="citation-trigger" id="ref8" data-fn="8">[8]</a></sup>1211 年至 1218 年，屈出律统治着西辽。花剌子模则崛起为当时伊斯兰世界首屈一指的大国。</p>
+            <p>屈出律在西辽成功篡权的消息传到蒙古，引起了成吉思汗的警觉。成吉思汗“不欲其旧敌安然窃据一国汗位”<sup><a href="#fn9" class="citation-trigger" id="ref9" data-fn="9">[9]</a></sup>，在 1218 年派出哲别将军去剿灭屈出律。屈出律无法抵挡，逃跑至巴达哈伤，在今瓦罕河谷东部的答拉兹峡谷迷路<sup><a href="#fn10" class="citation-trigger" id="ref10" data-fn="10">[10]</a></sup>，被捕后斩首。哲别命曷斯麦里取其首级传示于喀什葛尔、叶尔牵(即叶尔羌)等城，皆降，西辽灭。<sup><a href="#fn11" class="citation-trigger" id="ref11" data-fn="11">[11]</a></sup></p>
+
+            <!-- 第三章 -->
+            <h2 id="section3">三、蒙古与花剌子模的初次交手</h2>
+            <p>成吉思汗还向西派出了另一支军队。漠北有强部蔑儿乞惕，曾与成吉思汗结怨并争战多年，在战斗中甚至一度掠走成吉思汗长妻孛尔贴。因此蔑儿乞惕部在被成吉思汗最终击败后遭到屠杀，残部不断西逃。成吉思汗派出了速不台将军出征逃窜于畏兀儿以西的蔑儿乞惕残部，在楚河将其击灭。<sup><a href="#fn12" class="citation-trigger" id="ref12" data-fn="12">[12]</a></sup>这已经到达了花剌子模的势力范围。<sup><a href="#fn13" class="citation-trigger" id="ref13" data-fn="13">[13]</a></sup></p>
+            <p>根据《世界征服者史》和《史集》记载，当速不台军准备回撤时，花剌子模军队已经追了上来。蒙古人表示不愿发生冲突，即将离开：“方欲进击，蒙古主帅遣使来言，两国未处战争中，且曾奉命，若遇花剌子模军，当以友谊相待。请分所获蔑儿乞惕部之人与物以犒军。”<sup><a href="#fn14" class="citation-trigger" id="ref14" data-fn="14">[14]</a></sup>但是摩柯末还是发动进攻，结果被蒙古人打败了:“他们进攻算端(即苏丹)亲自坐守的中路，算端因此险些被俘。”蒙古军队不愿纠缠，夜晚迅速撤向东方。志费尼认为，这次交手后，“成吉思汗则考验了他们的勇力，摸清了算端的兵力强弱，同时也看到，他们之间已无尚未抹去的障碍，已无能进行抗拒的敌人。”<sup><a href="#fn15" id="ref15" data-fn="15">[15]</a></sup>而拉施特则在《史集》中写道：“这次战斗发生后，算端回到了撒马尔罕。他心中惶惶不安……时常流露出后悔之意。”<sup><a href="#fn16" id="ref16" data-fn="16">[16]</a></sup></p>
+
+            <!-- 第四章 -->
+            <h2 id="section4">四、讹答剌事变的发生</h2>
+            <p>蒙古是游牧民族，许多商品不能自行生产，比如日常生活中必要的纺织品。因此贸易非常重要。他们战争中掳掠来的财富也需要通过贸易才能很好地使用。成吉思汗一直对与蒙古贸易的穆斯林商人非常重视，保证他们的安全，还提供良好的居住地。<sup><a href="#fn17" id="ref17" data-fn="17">[17]</a></sup>花剌子模是中亚贸易通道上的重要国家，很多与蒙古贸易的穆斯林商人来自这里。这很有可能是成吉思汗避免与花剌子模冲突的重要原因。为了表示对花剌子模的和平意愿，1218 年，成吉思汗派出了官方商队，讹答剌事变正是由这次贸易所引发。</p>
+            <p>《世界征服者史》记载，忽毡的阿合马、巴勒乞黑等三人决定共同到东方旅行，携带了大量商品。成吉思汗对他们非常优待。当他们返回时，成吉思汗命他的儿子、那颜和将官各从自己的部属中抽调两三人，去算端的国土做生意，这样集中了四百五十名穆斯林。成吉思汗还致以如下的使信：“你邦的商人已至我处，今将他们遣归，情况你即将获悉。我们也派出一队商旅，随他们前往你邦，以购买你方的珍宝。从今后，因我等之间关系和情谊的发展，那仇怨的脓疮可以挤除，骚乱反叛的毒汁可以洗净。”一行人抵达花剌子模东部边境城市讹答剌后，该城长官亦那勒术起了谋财之念。于是他将这些商人拘留，并报告了算端。算端未经考虑便要了他们的命，认为剥夺他们的财货是合法的。这期间，一个商人逃了出去，动身去见可汗并报告了情况。成吉思汗非常愤怒，在祈祷三天三夜后开始准备战争。<sup><a href="#fn18" id="ref18" data-fn="18">[18]</a></sup></p>
+            <p>《史集》的记载基本与其相同。并都提到成吉思汗再次派出使者向摩柯末宣战。<sup><a href="#fn19" id="ref19" data-fn="19">[19]</a></sup></p>
+            <p>不过《多桑蒙古史》引《札兰丁传》的记载，成吉思汗遣使说：“若讹答剌虐杀商人一事果非君命，则请以守将付我，听则请即备战。”还提到摩柯末“遂杀巴合剌，薙(同剃)蒙古副使二人鬚而遣之归。”<sup><a href="#fn20" id="ref20" data-fn="20">[20]</a></sup></p>
+            <p>《元朝秘史》中只是说“其后太祖征回回，为其杀使兀忽纳等百人。”<sup><a href="#fn21" id="ref21" data-fn="21">[21]</a></sup></p>
+            <p>讹答剌城被蒙古军攻陷的时间有争议。<sup><a href="#fn22" id="ref22" data-fn="22">[22]</a></sup>1219 年秋，蒙古大军向花剌子模挺进。1220 年五月，蒙古四路大军在撒马尔罕城下会师，攻克撒马尔罕，摩柯末逃跑。1221 年摩柯末之子札兰丁被击败，逃往印度。花剌子模亡。</p>
+
+            <!-- 五、思考与结语 -->
+            <h2 id="section5">五、思考与结语</h2>
+            <p>边境问题。《史集》记载：“落到古失鲁克(即屈出律)手中的突厥斯坦领地，当古失鲁克被成吉思汗军队所杀时，被算端全部占领。”<sup><a href="#fn23" id="ref23" data-fn="23">[23]</a></sup>速不台的军队还和花剌子模军发生了战斗。可以看出讹答剌事变并不是孤立事件，双方在边境上就有龃龉。</p>
+            <p>称呼问题。根据《多桑蒙古史》记载，成吉思汗遣使对摩柯末说：“我之视君，犹爱子也。”多桑分析成吉思汗“言其视摩柯末如己子者，实欲其称臣也。亚洲之君主鲜识根据平等独立原则之政治交际，常用父子兄弟叔侄等称，以判服属之等差。”同时提到摩柯末对此事非常不满，事后“算端曰：‘我之国大，汝有所知也。顾乃敢谓我为子！彼虏何物？兵力几何？’”<sup><a href="#fn24" id="ref24" data-fn="24">[24]</a></sup>而伊儿汗国时期的历史学家志费尼与拉施特只是说这是蒙古人表示亲切的称呼，这种解释的不同，可能与作者本身的时代有关。</p>
+            <p>蒙古军队有无侵略之必要。多桑认为“此繁荣邻国(即花剌子模)之富庶，不免启鞑靼地域诸游牧部落之贪心，未久此蒙古侵略者得藉词而开边衅焉。”勒内·格鲁塞则认为成吉思汗一开始是愿意与花剌子模通商的，只是杀商事件开启了战端。<sup><a href="#fn25" id="ref25" data-fn="25">[25]</a></sup></p>
+            <p>花剌子模的内政。一个政治组织的内政和外交决策是紧密联结的，如果我们认为花剌子模是一个苏丹高度集权的帝国。那么史料中反映出的摩柯末杀商和杀使事件都是矛盾而令人困惑的。摩柯末自然有其轻敌和狂妄的性格特征，<sup><a href="#fn26" id="ref26" data-fn="26">[26]</a></sup>军事决策上误判。但不代表他没有正常的政治理性，在得不到什么利益的情况下向一个强大而陌生的邻居宣战。《多桑蒙古史》载：“顾哈亦儿汗(即讹答剌城守将亦纳勒术)为算端母之亲属，摩柯末虽欲惩罚，亦执之以献，势所不能。盖诸大将权重，不受算端之制也。”还有“奈撒人摩柯末会曰：‘算端虽破国灭主甚众，然不能惩罚一奴。’”“算端母秃儿罕可敦赋性刚强。当于外戚，而为之长。”<sup><a href="#fn27" id="ref27" data-fn="27">[27]</a></sup>勒内·格鲁塞分析：“花剌子模王朝虽然出自一个塞尔柱的显贵家族，却没有部落支持它。他们的军队是由吉尔吉斯草原的古兹和康里部落中胡乱征集的雇佣兵组成。”<sup><a href="#fn28" id="ref28" data-fn="28">[28]</a></sup>所以摩柯末的王权其实受到了自己的钦察母亲和各地拥兵的钦察贵族的制约。假设摩柯末希望与成吉思汗和平相处，但他自己并不能控制国内形势，将亦纳勒术交给成吉思汗处置。因为这样会遭到钦察贵族的集体反对。在处理讹答剌事件上，我们有理由认为摩柯末并不能完全按照自己的意愿做出决策。蒙古西征也最终证明了花剌子模松散的政治结构和低下的组织能力。快速崛起的花剌子模帝国并没有表面那么强大。</p>
+            <p>综上所述，本文是一些读书摘抄汇集而成，对讹答剌事件前的蒙古和花剌子模的历史进程进行了梳理，并提出了一些问题，其中很多内容都值得深入探究。蒙古对花剌子模的征服，及之后向西的远征也是文明之间的探索、交流和碰撞。蒙古人两次西征促进了欧亚大陆的交流：人口流动、技术扩散、文化传播及物种交流，这对于我们了解、学习和研究蒙古史、中亚史和东西交通史都具有重要的价值。</p>
+        </article>
+
+        <!-- 页下注释数据源 -->
+        <section id="notes-anchor" class="footnotes-section">
+            <h3>文献注释 (Notes)</h3>
+            <ol>
+                <li id="fn1">《蒙古秘史》，特·官特扎布、阿斯钢译，北京：新华出版社，2006 年，第 62 页。<a href="#ref1" class="back-link">↩</a></li>
+                <li id="fn2">《蒙古秘史》，特·官特扎布、阿斯钢译，北京：新华出版社，2006 年，第 70-72 页。<a href="#ref2" class="back-link">↩</a></li>
+                <li id="fn3">《蒙古秘史》，特·官特扎布、阿斯钢译，北京：新华出版社，2006 年，第 162 页。<a href="#ref3" class="back-link">↩</a></li>
+                <li id="fn4">《蒙古秘史》，特·官特扎布、阿斯钢译，北京：新华出版社，2006 年，第 173 页。<a href="#ref4" class="back-link">↩</a></li>
+                <li id="fn5">拉施特：《史集》，第一卷，第二分册，余大钧、周建奇译，北京：商务印书馆，1983 年，第 257 页。<a href="#ref5" class="back-link">↩</a></li>
+                <li id="fn6">志费尼：《世界征服者史》，第二部，第十章，何高济译，北京：中国人民大学出版社，2012 年，第 289-294 页。<a href="#ref6" class="back-link">↩</a></li>
+                <li id="fn7">志费尼：《世界征服者史》，第一部，第八章，何高济译，北京：中国人民大学出版社，2012 年，第 49-52 页。<a href="#ref7" class="back-link">↩</a></li>
+                <li id="fn8">《辽史》，第一册，卷三十，《天祚皇帝四》，北京：中华书局，1974 年，第 358 页。<a href="#ref8" class="back-link">↩</a></li>
+                <li id="fn9">多桑：《多桑蒙古史》，冯成钧译，北京：中华书局，1962 年，第 81 页。<a href="#ref9" class="back-link">↩</a></li>
+                <li id="fn10">南京大学历史系元史组，姚大力：《屈出律败亡地点考》，《元史及北方民族史研究集刊》，第五期，1981 年，第 78 页。<a href="#ref10" class="back-link">↩</a></li>
+                <li id="fn11">《元史》，第十册，卷一百二十，《曷斯麦里列传》，北京：中华书局，1976 年，第 2969 页。<a href="#ref11" class="back-link">↩</a></li>
+                <li id="fn12">志费尼：《世界征服者史》，第一部，何高济译，北京：中国人民大学出版社，2012 年，第 53、54 页。<a href="#ref12" class="back-link">↩</a></li>
+                <li id="fn13">何秋涛校正，王国维校注：《圣武亲征录校注》，《续修四库全书》，史部，杂史类，北京图书馆藏清光绪小沤巢刻本影印，第 705 页。<a href="#ref13" class="back-link">↩</a></li>
+                <li id="fn14">多桑：《多桑蒙古史》，冯成钧译，北京：中华书局，1962 年，第 94 页。<a href="#ref14" class="back-link">↩</a></li>
+                <li id="fn15">志费尼：《世界征服者史》，第一部，第八章，何高济译，北京：中国人民大学出版社，2012 年，第 54、55 页。<a href="#ref15" class="back-link">↩</a></li>
+                <li id="fn16">拉施特：《史集》，第一卷，第二分册，余大钧、周建奇译，北京：商务印书馆，1983 年，第 260-262 页。<a href="#ref16" class="back-link">↩</a></li>
+                <li id="fn17">拉施特：《史集》，第一卷，第二分册，余大钧、周建奇译，北京：商务印书馆，1983 年，第 258 页。<a href="#ref17" class="back-link">↩</a></li>
+                <li id="fn18">志费尼：《世界征服者史》，第一部，第十一章，何高济译，北京：中国人民大学出版社，2012 年，第 62-64 页。<a href="#ref18" class="back-link">↩</a></li>
+                <li id="fn19">拉施特：《史集》，第一卷，第二分册，余大钧、周建奇译，北京：商务印书馆，1983 年，第 259、260 页。<a href="#ref19" class="back-link">↩</a></li>
+                <li id="fn20">多桑：《多桑蒙古史》，冯成钧译，北京：中华书局，1962 年，第 94 页。<a href="#ref20" class="back-link">↩</a></li>
+                <li id="fn21">《元朝秘史》路芜等点校，《二十五别史》，第二十三册，卷十三，济南：齐鲁书社，2002 年，第 180 页。<a href="#ref21" class="back-link">↩</a></li>
+                <li id="fn22">张玉祥：《蒙古军队攻取中亚讹答剌城之时间考辨》，《西部蒙古论坛》，2009 年第四期，第 47 页。<a href="#ref22" class="back-link">↩</a></li>
+                <li id="fn23">拉施特：《史集》，第一卷，第二分册，余大钧、周建奇译，北京：商务印书馆，1983 年，第 262 页。<a href="#ref23" class="back-link">↩</a></li>
+                <li id="fn24">多桑：《多桑蒙古史》，冯成钧译，北京：中华书局，1962 年，第 92、93 页。<a href="#ref24" class="back-link">↩</a></li>
+                <li id="fn25">勒内·格鲁塞：《草原帝国》，蓝琪译，北京：商务印书馆，1998 年，第 102 页。<a href="#ref25" class="back-link">↩</a></li>
+                <li id="fn26">勒内·格鲁塞：《草原帝国》，蓝琪译，北京：商务印书馆，1998 年，第 101 页。<a href="#ref26" class="back-link">↩</a></li>
+                <li id="fn27">多桑：《多桑蒙古史》，冯成钧译，北京：中华书局，1962 年，第 91-94 页。<a href="#ref27" class="back-link">↩</a></li>
+                <li id="fn28">勒内·格鲁塞：《草原帝国》，蓝琪译，北京：商务印书馆，1998 年，第 102 页。<a href="#ref28" class="back-link">↩</a></li>
+            </ol>
+        </section>
+    </main>
+</div>
+
+<!-- 弹窗容器结构 -->
+<div class="footnote-popover" id="footnote-popover">
+    <button class="close-btn" aria-label="关闭">&times;</button>
+    <div class="popover-content"></div>
+</div>
+
+<script>
+    // 页面交互逻辑：点击文献标记，在上方弹出不跳转的可关闭气泡弹窗
+    document.addEventListener('DOMContentLoaded', () => {
+        const triggers = document.querySelectorAll('.citation-trigger');
+        const popover = document.getElementById('footnote-popover');
+        const popoverContent = popover.querySelector('.popover-content');
+        const closeBtn = popover.querySelector('.close-btn');
+
+        function showPopover(trigger, contentHtml) {
+            // 清理并剔除“返回正文(↩)”的链接，使弹窗阅读体验更加纯粹
+            const cleanHtml = contentHtml.replace(/<a[^>]*class="back-link"[^>]*>.*?<\/a>/ig, '');
+            popoverContent.innerHTML = cleanHtml;
+            
+            popover.style.display = 'block';
+
+            const triggerRect = trigger.getBoundingClientRect();
+            const popoverWidth = popover.offsetWidth;
+            const popoverHeight = popover.offsetHeight;
+
+            // 获取滚动偏移量
+            const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+            // 计算左偏移量，使气泡居中于触发角标
+            let popoverLeft = triggerRect.left + scrollX - (popoverWidth / 2) + (triggerRect.width / 2);
+            // 计算顶偏移量，默认在触发角标上方 12 像素
+            let popoverTop = triggerRect.top + scrollY - popoverHeight - 12;
+
+            // 越界保护
+            if (popoverLeft < 10) {
+                popoverLeft = 10;
+            }
+            if (popoverLeft + popoverWidth > window.innerWidth) {
+                popoverLeft = window.innerWidth - popoverWidth - 10;
+            }
+            // 若上方空间不足，则将弹窗置于角标下方
+            if (triggerRect.top - popoverHeight < 15) {
+                popoverTop = triggerRect.bottom + scrollY + 12;
+            }
+
+            popover.style.left = `${popoverLeft}px`;
+            popover.style.top = `${popoverTop}px`;
+        }
+
+        function hidePopover() {
+            popover.style.display = 'none';
+        }
+
+        // 绑定触发器点击事件
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault(); // 阻止原有的超链接锚点跳转
+                e.stopPropagation(); // 阻止事件冒泡到 document
+
+                const fnId = trigger.getAttribute('data-fn');
+                const targetNote = document.getElementById(`fn${fnId}`);
+                if (targetNote) {
+                    showPopover(trigger, targetNote.innerHTML);
+                }
+            });
+        });
+
+        // 绑定关闭按钮点击事件
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hidePopover();
+        });
+
+        // 点击页面其他空白区域时自动隐藏弹窗
+        document.addEventListener('click', (e) => {
+            if (!popover.contains(e.target)) {
+                hidePopover();
+            }
+        });
+
+        // 监听 Escape 键，按下时自动隐藏弹窗
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hidePopover();
+            }
+        });
+    });
+</script>
+</body>
+</html>
