@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第8课 世界市场与商业贸易 - 交互式课件</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --timeline-color: #bdc3c7;
+            --highlight: #e74c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* 顶部导航栏 */
+        header {
+            background-color: #ecf0f1;
+            border-bottom: 2px solid #bdc3c7;
+            padding: 0 20px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            z-index: 100;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 5px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #7f8c8d;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--accent-color);
+            background-color: rgba(0,0,0,0.02);
+        }
+
+        /* 主体布局 */
+        .layout-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 左侧年表 */
+        .timeline-sidebar {
+            width: 200px;
+            background-color: #fff;
+            border-right: 1px solid #ddd;
+            overflow-y: auto;
+            padding: 20px 10px;
+            display: none; /* 默认隐藏，仅在框架解读显示 */
+        }
+
+        .nav-btn.active[data-target="framework"] ~ .layout-container .timeline-sidebar {
+            display: block; /* 仅JS控制逻辑辅助 */
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            border-left: 2px solid var(--timeline-color);
+            transition: 0.3s;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--timeline-color);
+            border-radius: 50%;
+        }
+
+        .timeline-item:hover::before, .timeline-item.active::before {
+            background: var(--accent-color);
+        }
+
+        .timeline-item:hover, .timeline-item.active {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .year {
+            font-size: 0.85em;
+            color: #7f8c8d;
+        }
+
+        .event {
+            font-size: 0.9em;
+        }
+
+        /* 中间内容区 */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px;
+            scroll-behavior: smooth;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 教材精讲块样式 */
+        .lecture-block {
+            margin-bottom: 60px;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .textbook-sentence {
+            font-size: 1.4em;
+            font-family: "Songti SC", serif;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-weight: bold;
+        }
+
+        /* 卡片通用样式 */
+        .card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 12px 15px;
+            background: #e9ecef;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.9em;
+            color: #495057;
+        }
+
+        .card-header:hover {
+            background: #dee2e6;
+        }
+
+        .card-header::after {
+            content: '+';
+            font-size: 1.2em;
+        }
+
+        .card.open .card-header::after {
+            content: '-';
+        }
+
+        .card-body {
+            padding: 0;
+            max-height: 0;
+            transition: max-height 0.3s ease-out;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .card.open .card-body {
+            max-height: 2000px; /* 足以容纳长文本 */
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        /* 特定卡片类型颜色 */
+        .type-guide .card-header { border-left: 4px solid #2ecc71; color: #27ae60; background: #eafaf1; }
+        .type-material .card-header { border-left: 4px solid #f1c40f; color: #d35400; background: #fef9e7; }
+        .type-activity .card-header { border-left: 4px solid #9b59b6; color: #8e44ad; background: #f5eef8; }
+        .type-img .card-header { border-left: 4px solid #e74c3c; color: #c0392b; background: #fdedec; }
+
+        /* 史料问答交互 */
+        .qa-container {
+            border: 1px dashed #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .qa-question {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .qa-material {
+            background: #fffdf5;
+            padding: 10px;
+            font-style: italic;
+            border-left: 3px solid #ccc;
+            margin-bottom: 10px;
+        }
+        .qa-answer-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .qa-answer {
+            margin-top: 10px;
+            padding: 10px;
+            background: #e8f6f3;
+            border-radius: 4px;
+            display: none;
+        }
+        .qa-answer.visible {
+            display: block;
+        }
+
+        /* 标签 */
+        .tag {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7em;
+            margin-right: 5px;
+            color: white;
+        }
+        .tag-guide { background: #2ecc71; }
+        .tag-data { background: #3498db; }
+        .tag-note { background: #95a5a6; }
+
+        /* 右侧按钮 */
+        .right-sidebar-btn {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 120px;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            border-radius: 8px 0 0 8px;
+            cursor: pointer;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+            z-index: 90;
+        }
+
+        .right-sidebar-btn:hover {
+            background: var(--accent-color);
+        }
+
+        /* 模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            width: 80%;
+            height: 80%;
+            border-radius: 8px;
+            padding: 20px;
+            overflow: auto;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* 文本内容样式 */
+        .text-content p {
+            margin-bottom: 0.8em;
+            text-align: justify;
+        }
+        .source {
+            font-size: 0.85em;
+            color: #666;
+            text-align: right;
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="font-weight:bold; font-size:1.2em;">第8课 世界市场与商业贸易</div>
+    <div class="nav-tabs" id="mainTabs">
+        <button class="nav-btn" data-target="review">知识回顾</button>
+        <button class="nav-btn" data-target="holistic">整体感知</button>
+        <button class="nav-btn active" data-target="framework">框架解读</button>
+        <button class="nav-btn" data-target="output">知识输出</button>
+        <button class="nav-btn" data-target="competency">核心素养</button>
+        <button class="nav-btn" data-target="summary">课堂小结</button>
+    </div>
+</header>
+
+<div class="layout-container">
+    <!-- 左侧年表 (仅在框架解读Tab显示) -->
+    <aside class="timeline-sidebar" id="timelineSidebar" style="display:block;">
+        <div style="margin-bottom:15px; font-weight:bold; color:#2c3e50;">课程进度</div>
+        <div class="timeline-item" onclick="scrollToId('sec-intro')">
+            <div class="year">17世纪</div>
+            <div class="event">课程导入</div>
+        </div>
+        <div class="timeline-item" onclick="scrollToId('sec-1')">
+            <div class="year">15世纪前</div>
+            <div class="event">孤立发展</div>
+        </div>
+        <div class="timeline-item" onclick="scrollToId('sec-2')">
+            <div class="year">15-16世纪</div>
+            <div class="event">新航路开辟</div>
+        </div>
+        <div class="timeline-item" onclick="scrollToId('sec-3')">
+            <div class="year">17-18世纪</div>
+            <div class="event">殖民扩张</div>
+        </div>
+        <div class="timeline-item" onclick="scrollToId('sec-4')">
+            <div class="year">18世纪中</div>
+            <div class="event">初步形成</div>
+        </div>
+        <div class="timeline-item" onclick="scrollToId('sec-5')">
+            <div class="year">工业革命</div>
+            <div class="event">拓展与深化</div>
+        </div>
+        <div class="timeline-item" onclick="scrollToId('sec-6')">
+            <div class="year">19世纪中</div>
+            <div class="event">交通革命</div>
+        </div>
+        <div class="timeline-item" onclick="scrollToId('sec-7')">
+            <div class="year">19世纪末</div>
+            <div class="event">商品与原料</div>
+        </div>
+        <div class="timeline-item" onclick="scrollToId('sec-8')">
+            <div class="year">第二次工业革命</div>
+            <div class="event">资本输出</div>
+        </div>
+        <div class="timeline-item" onclick="scrollToId('sec-9')">
+            <div class="year">19世纪末20世纪初</div>
+            <div class="event">瓜分狂潮</div>
+        </div>
+        <div class="timeline-item" onclick="scrollToId('sec-10')">
+            <div class="year">20世纪初</div>
+            <div class="event">最终形成</div>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        
+        <!-- Tab 1: 知识回顾 -->
+        <div id="review" class="content-section">
+            <div class="lecture-block">
+                <h3>教材分析与教学建议</h3>
+                <div class="text-content">
+                    <p><strong>一、重点和难点</strong></p>
+                    <p>1.重点：近代商业贸易的发展变化。</p>
+                    <p>2.难点：世界市场与商业贸易发展变化的关系。</p>
+                    <hr>
+                    <p><strong>二、内容分析及教学建议</strong></p>
+                    <p>1.本课立意：揭示自大航海时代以来世界市场的逐步形成与商业贸易的发展变化，建立起世界市场与商业贸易之间的内在关联，从而认识近代以来资本主义世界市场的不断发展对商业贸易的影响。</p>
+                    <p>2.子目间逻辑关系：本课包括两个子目。第一子目是“世界市场的形成”，第二子目是“近代商业贸易的变化”。两个子目之间的逻辑关系是:近代世界市场的形成是商业贸易发展变化的背景，是促成近代商业贸易发生变化的条件。第一子目是因，第二子目是果。</p>
+                    <p>3.内容取舍的考虑：本课主要从两个方面向学生介绍了近代以来世界市场与商业贸易的发展历程。第一子目着重分析了世界市场的形成过程，采用概述的方式叙述新航路的开辟和早期殖民扩张加强了世界各地的联系，世界市场开始出现;在欧洲列强全球殖民扩张和两次工业革命的推动下，世界市场日益扩展并在20世纪初最终形成。第二子目是本课重点，从贸易中心的转移、商业经营方式、商品种类的丰富及国际贸易格局的变化等方面介绍新航路开辟后近代世界商业贸易的发展变化。第二子目大部分是新增加的内容，重点选取对商业贸易的变化起关键作用的新机构和新经营形式，如商品交易所、银行、股份制公司等，展现近代以来世界商业贸易的发展，使学生感受商业贸易的变化。本课两个子目的内容中，重点叙述近代商业贸易的发展变革，对世界市场的形成则简要概述。这样设计的主要原因在于，世界市场的形成等内容在必修课程中已作为重要内容讲授过，学生有一定基础，理解起来比较容易。而近代商业贸易的发展变革、世界市场与商业发展变化的关系在必修课程中并未着重讲述涉及的内容、概念等，学生理解起来是比较困难的，需要比较详细地叙述。</p>
+                    <hr>
+                    <p><strong>一、学习目标</strong></p>
+                    <p>1、通过学习世界市场的形成过程，理解新航路开辟、早期殖民扩张和工业革命是推动世界市场形成的重大事件，认识世界市场是资本主义全球扩张的必然结果。</p>
+                    <p>2、通过归纳相关历史材料，认识近代商业贸易发展变化的领域，包括国际贸易中心的变化、新的商业经营形式的出现和商品类型的丰富，主要指向史料实证素养。</p>
+                    <p>3、能够解释世界市场与商业贸易的关系，体会商业活动与人类生产、生活的进步之间的关联。</p>
+                    <p><strong>二、学习重点：</strong>近代商业贸易的发展变化。</p>
+                    <p><strong>三、学习难点：</strong>世界市场与商业贸易发展变化的关系。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: 整体感知 (理论概念) -->
+        <div id="holistic" class="content-section">
+            <div class="lecture-block">
+                <h3>世界市场的概念与理论</h3>
+                
+                <div class="card type-guide open">
+                    <div class="card-header">世界市场的形成（教材分析补充说明）</div>
+                    <div class="card-body">
+                        <p><strong>世界市场有狭义、广义之分。</strong>狭义的世界市场是我们通常所指的商品贸易的交换场所，是世界各国通过互助合作和贸易往来建立起来的商品交换的领域。广义的世界市场是指发展为世界规模的资产阶级经济社会的整体。这两方面联系密切，前者是后者发展的前提和条件，后者是前者发展的结果。全球范围的世界市场的形成，意味着国际交换具有了普遍性。各个国家的生产、交换、消费过程和整个世界经济的运行机制相协调，形成普遍的世界交往，这样作为流通过程要素的狭义世界市场把各个国家联结为世界范围统一的经济整体，这就是广义的世界市场。</p>
+                        <p><strong>世界市场的发展和形成与资本主义生产力、生产关系的发展有着密切的关系</strong>，统一的世界市场总体的形成大约经历了400年的时间。世界市场的初级阶段是从15世纪末到18世纪60年代，此时的世界市场的地理范围是有限的。18世纪60年代到19世纪六七十年代是世界市场迅猛发展的时期，这一时期整个世界市场联系在一起;由于机器大工业的发展，产业资本取代了商业资本，在世界市场上居支配地位，它促进了国际专业化分工及国际贸易的深化。19世纪70年代到20世纪30年代是世界市场总体的形成时期，这一时期的世界市场，垄断资本占主导地位，形成了以金本位制为特征的世界货币贸易体系。世界市场的规模不断扩大，商品种类不断增多。20世纪40年代以来，世界市场向多元化、多极化发展。第二次世界大战后，随着科学技术的发展，生产分工出现细分的趋势，因而使国际分工形式发生很大变化，原来的部门间的分工向部门内分工转化，这使部门内贸易得到快速发展，呈现出经营全球化的特点。此外，世界市场区域化、集团化发展日益明显，世界经济呈现一体化、全球化发展趋势。随着科学技术应用于生产，各国纷纷把先进技术用于出口商品的升级换代，因此，世界技术贸易市场发展非常迅猛，技术贸易市场的竞争越来越激烈。</p>
+                    </div>
+                </div>
+
+                <div class="card type-material">
+                    <div class="card-header">学术视野：世界市场理论综述</div>
+                    <div class="card-body">
+                        <p><strong>费利群《马克思世界历史、世界市场理论的全球化思想及其当代价值》：</strong>关于世界市场的概念，在马克思有关著作中的使用有两种情况：一种情况是将世界市场视为世界各国相互间通过对外贸易和经济合作关系建立起来的进行商品交换的场所和领域... 另一种情况是，世界市场表示发展为世界规模的资本主义经济关系整体和总体，是商品交换关系的总和。</p>
+                        <p><strong>黄墨《世界市场与全球化》：</strong>世界市场是指作为人类历史基础的生产和交换在长期发展过程中形成的人与人之间的关系，它是生产力和生产关系相互作用形成的普遍联系。</p>
+                        <p><strong>汤在新《〈资本论〉研究续篇》：</strong>马克思的世界市场概念有广义和狭义之分... 世界市场总体是一个历史范畴，有着自己产生和发展的历史过程... 18世纪60年代到19世纪60年代，随着英国等国的工业革命完成，各国的对外贸易发展... 到1857年世界市场危机时，世界市场总体已处于开始形成的阶段；19世纪70年代以后世界市场总体最终形成并向更加成熟的形态发展。</p>
+                    </div>
+                </div>
+
+                <div class="card type-material">
+                    <div class="card-header">学术观点：形成过程的分歧</div>
+                    <div class="card-body">
+                        <p><strong>张永安《世界经济概论》：</strong>新航路开辟后，世界市场开始形成。</p>
+                        <p><strong>萧国亮、隋福民《世界经济史》：</strong>1500年左右，形成了世界经济。</p>
+                        <p><strong>廖和平《马克思的“世界历史”观》：</strong>15世纪末16世纪初的地理大发现拉开了经济全球化的序幕... 世界市场于19世纪中后期初步建成。</p>
+                        <p><strong>董正华《世界现代化进程十五讲》：</strong>提出不同的观点，认为“资本主义的产生引起西欧各国对海外航路的探寻”的判断很含混而不准确，地理大发现不等于资本主义世界市场的形成... 16世纪，西欧列强争夺的重心仍然是欧洲大陆和附近的海域。</p>
+                        <p><strong>王海英《对现代世界市场发展趋势的探讨》：</strong>古代世界市场... 近代世界市场... 现代市场。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: 框架解读 (主课堂精讲) -->
+        <div id="framework" class="content-section active">
+            
+            <!-- 导入部分 -->
+            <div id="sec-intro" class="lecture-block">
+                <div class="textbook-sentence">导入：17世纪时，海上贸易几乎被荷兰垄断。各地的商品，如挪威的木材、东南亚的香料、中国的丝绸和瓷器等，大部分由荷兰商船转运。</div>
+                
+                <div class="card type-guide open">
+                    <div class="card-header">教材分析与教学建议</div>
+                    <div class="card-body">
+                        <p>本课导入：本课以17世纪荷兰几乎垄断了海上贸易，被誉为“海上马车夫”。本课以17世纪繁忙的阿姆斯特丹港口图文资料导入，旨在说明随着新航路的开辟，以西欧为中心的世界市场逐步形成。由此导入课文正文第一子目的内容。</p>
+                    </div>
+                </div>
+
+                <div class="card type-img">
+                    <div class="card-header">图片说明：繁忙的阿姆斯特丹港口</div>
+                    <div class="card-body">
+                        <p>17世纪时，由于发达的海上运输，同时占据着强大的海上殖民霸权，荷兰被誉为“海上马车夫”，几乎垄断了海上贸易。当时世界各地的物产，大都由荷兰商船转运，荷兰商人的足迹遍布世界。作为荷兰首都的阿姆斯特丹，在当时不仅成为世界上最繁忙的港口，而且是世界商贸中心和国际金融中心。这幅图描绘了当时阿姆斯特丹港口千帆竞逐的繁忙场面，港内船桅林立，岸上堆满货物，一派繁荣景象。</p>
+                        <p>右图描绘了在阿姆斯特丹港口，大船从东方带来香料、小船前去卸货的繁忙景象。</p>
+                        <p style="text-align:center; font-style:italic; color:#666;">▲繁忙的阿姆斯特丹港口</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align:center; font-size:1.5em; color:var(--primary-color); margin:40px 0; font-weight:bold;">第一子目：世界市场的形成</div>
+
+            <!-- 第1句 -->
+            <div id="sec-1" class="lecture-block">
+                <div class="textbook-sentence">15世纪以前，世界各地处于相对孤立的发展状态，亚、欧、非等洲之间的直接交往和了解不多。</div>
+                
+                <div class="card type-guide">
+                    <div class="card-header">教学建议与关键内容说明</div>
+                    <div class="card-body">
+                        <p><strong>关键内容表述的说明：</strong>第一子目“世界市场的形成”。世界市场是近代资本主义经济发展的一个重要方面，是欧洲资本主义在全球扩张的必然结果。课文从新航路的开辟和早期殖民扩张促进世界市场开始形成讲起，然后讲到两次工业革命加速世界各地的经济联系，促进资本主义世界市场的形成，将世界市场的形成和发展的线索清晰呈现出来。这一部分的重点是两次工业革命对于世界市场形成的推动作用，课文中对世界市场从初步形成到最终形成的过程都作了概述，尤其对工业革命在世界市场形成过程的作用进行了说明。关于世界市场，在下文中有相关的概念解释，教师在教学中可以参考。</p>
+                        <hr>
+                        <p><strong>教师讲述：</strong>新航路开辟开启了世界市场的形成过程，促使欧洲人走向世界的因素有很多，其中，资本主义发展，工商业者对利益的渴求，起了很重要的作用。</p>
+                        <p><strong>教师讲述（导入新课）：</strong>15世纪以前，世界五大文明摇篮：西亚两河流域、北非尼罗河流域、南亚印度河流域、东亚黄河长江流域和南欧爱琴海沿岸，联系很少甚至处于隔绝状态。新航路开辟后，通过早期殖民扩张，世界上原来相互隔绝的地区沟通起来，世界各地的联系加强。全球逐渐形成了以欧洲为中心的世界经济体系。各文明由分散走向连接，世界走向汇合，世界各大文明相互渗透，相互吸收，共同促进了世界文明的发展。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第2句 -->
+            <div id="sec-2" class="lecture-block">
+                <div class="textbook-sentence">新航路开辟后，葡萄牙和西班牙开始大规模殖民掠夺。</div>
+                
+                <div class="card type-material">
+                    <div class="card-header">资料与注释：新航路开辟的经济动因</div>
+                    <div class="card-body">
+                         <p><strong>萧国亮、隋福民《世界经济史》：</strong>认为新航路开辟的经济动因与商业有关。新航路开辟前，东西商路主要有三条... 15世纪中叶，奥斯曼帝国崛起，土耳其人开始控制了东西方之间的传统商路，对往来经商的欧洲商人征收高额税费。15世纪金帐汗国解体后，从黑海北岸横穿亚洲大陆直达中国的“丝绸之路”又受阻隔。另一条经埃及和红海的商路也被阿拉伯人占领。西欧各国迫切需要开辟一条通往东方的新航线。对黄金的追求是另一经济动因。</p>
+                    </div>
+                </div>
+
+                <div class="card type-activity open">
+                    <div class="card-header">教学活动：分析新航路开辟的目的与实现</div>
+                    <div class="card-body">
+                        <div class="qa-container">
+                            <div class="qa-question">教师设问：请同学们阅读材料一，分析哥伦布和西班牙女王签订的协议，哥伦布有哪些收获？请同学们阅读材料二分析，协议中体现的西方国家开辟新航路的目的是否实现了？是如何实现的？</div>
+                            
+                            <div class="qa-material">
+                                <p><strong>材料一：</strong>1492年4月17日，伊莎贝拉与哥伦布签订了五条协议：第一，任命哥伦布为他所发现或取得的所有一切岛屿和大陆的元帅... 第二，任命哥伦布为这些岛屿和大陆的总督和省长... 第三，哥伦布保有这些领地所出产、交换而得和开采出来的一切黄金、白银、珍珠、宝石、香料和其他获得物品的十分之一，完全免税... 此外，哥伦布有权向开到这些“新领土”去联系、经商的任何船只投资八分之一，取得利润的八分之一。——[西]克里斯托弗·哥伦布著，孙家堃译：《哥伦布首航美洲的困扰拾录》</p>
+                            </div>
+                            
+                            <div class="qa-material">
+                                <p><strong>材料二：</strong>欧洲各国获得殖民地并获取大量财富的手段为垄断殖民地产品和殖民地市场... 它包括两个方面：一是把货物运入殖民地的权利；二是垄断母国和殖民地之间的运输利益... 应该承认，这种财富的积累是用武力取得的，莫不如此，无一例外... 这样，我们见到的开发方式也就主要有两种：一是西班牙和葡萄牙的封建式；二是荷兰和英国殖民地的资本主义方式。——[德]马克斯·韦伯：《经济史》</p>
+                            </div>
+
+                            <button class="qa-answer-btn" onclick="toggleAnswer(this)">显示答案与解析</button>
+                            <div class="qa-answer">
+                                <p><strong>教师讲述/答案：</strong>从材料一可以看出，哥伦布和女王签订了一份契约，女王承诺获得新领地后给予哥伦布经营、统辖、利润等各方面的收入，这样的条约会激航海者尽可能开拓殖民地以获得自身利益。</p>
+                                <p><strong>教师总结：</strong>从材料二中可以看出，新航路开辟后，当初的目的基本实现，通过垄断殖民地产品和市场，带来西欧国家的利益增长。</p>
+                                <p><strong>设计意图：</strong>引领学生阅读教师补充的材料，并结合教材地图，理解新航路开辟和早期殖民扩张推动世界市场的形成。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card type-material">
+                    <div class="card-header">学术观点：分工贸易体系的形成</div>
+                    <div class="card-body">
+                        <p><strong>李芳华《新航路开辟对于世界分工贸易体系形成的作用分析》：</strong>新航路开辟后大致可分为两个阶段：第一阶段是葡萄牙、西班牙开辟新航路，第二阶段是荷兰、英国发展新航路贸易。在第一阶段，新航路开辟后的主要作用在于方便葡、西两国作为重金属货币的传输漏斗... 在第二阶段，由于运输成本的降低，荷兰和英国凭借其发达的海运优势，将原区域内发达的分工贸易扩展到了全球，即由英国做中介，形成了全球的分工贸易体系。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第3句 -->
+            <div id="sec-3" class="lecture-block">
+                <div class="textbook-sentence">17-18世纪荷、英、法等欧洲国家纷纷加入殖民地争夺行列，建立海外殖民地。</div>
+                <div class="card type-material">
+                    <div class="card-header">资料与注释：多元史观解读</div>
+                    <div class="card-body">
+                        <p><strong>葛会传《多元史观解读“早期殖民扩张与掠夺”》：</strong>新航路开辟是世界市场形成过程中的一个转折点。世界市场形成前世界五大文明... 联系很少。新航路开辟后，通过殖民扩张，世界上原来相互隔绝的地区沟通起来，逐渐形成了以欧洲为中心的世界经济体系。各文明由分散走向连接，世界走向汇合，世界各大文明相互渗透，相互吸收，共同促进了世界文明的发展。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第4句 -->
+            <div id="sec-4" class="lecture-block">
+                <div class="textbook-sentence">欧洲的商人和殖民者直接同世界各地建立起商业联系，世界市场初步形成。</div>
+                
+                <div class="card type-guide">
+                    <div class="card-header">教学过渡</div>
+                    <div class="card-body">
+                        <p><strong>过渡语：</strong>新航路的开辟适应了资本主义发展的需要，使西欧资本主义生产关系得到进一步发展，确立了在世界贸易中的中心地位，其重要途径是殖民扩张和掠夺，随着市场的扩大、需求的增加，工业革命就到来了。</p>
+                    </div>
+                </div>
+
+                <div class="card type-material">
+                    <div class="card-header">资料与注释：早期世界市场的特点</div>
+                    <div class="card-body">
+                        <p><strong>宋则行、樊亢《世界经济史(上)》：</strong>提出，早期世界市场的特点在于：它不仅包括欧洲原有的区域性市场，而且把亚洲、美洲和非洲的沿海地区卷了进来。进行贸易的商品种类增多了，进入市场的大宗贸易品，从奢侈品扩展到日用消费品，亚洲运出的商品从香料扩展到丝棉织品、咖啡、茶叶等，美洲运出的商品从金银扩展到木材、糖、烟草等，欧洲运出的商品种类也逐渐增多，从毛织品、金属制品扩展到其他各种消费品。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第5句 -->
+            <div id="sec-5" class="lecture-block">
+                <div class="textbook-sentence">工业革命后，大机器工厂取代手工工场，资本主义国家的工厂产品大量增加，需要更广阔的世界市场；工厂所需的原材料也需从世界各地获取。</div>
+
+                <div class="card type-guide open">
+                    <div class="card-header">对本课相关内容的补充说明：工业革命与世界市场</div>
+                    <div class="card-body">
+                        <p>英国工业革命促进了世界各地经济联系的加强，加速了世界市场的形成。工业革命在社会生产力发生巨大飞跃的同时引起交通运输业的革命，轮船、火车以及汽车、飞机先后被发明，使人际关系、国际交往日趋密切。这种变化更加有利于先进科学技术和先进生产方式的传播，有助于国际人口流动和资本流通;扩大了分工的规模，使脱离了本国基地的大工业完全依赖国际市场、国际交换和国际分工，扩大了新兴工业世界的范围，带动了世界经济的变化与发展。</p>
+                        <p>首先，由濒临大西洋的英国开始的这场技术革新，冲破种种阻力，打破国界、洲界，向欧洲、美洲和亚洲扩展。工业革命深入和扩展的过程，就是先进技术、设备和先进生产方式不断传播发展的过程。1825年英国解除关于机器输出的禁令后，大批机器和先进技术被引入法、德、美、俄等国，推动了这些国家工业革命的全面开展，同时也刺激了英国的机器制造业。</p>
+                        <p>其次，英国工业革命向其他国家的扩展，进一步强化了国际分工。例如，美国南部的大量优质棉花是英国棉纺织业发展的重要原料。该地区又成为英国工业品的广阔销售市场，美国棉花与英国工业品的相互流通成为两地经济发展的重要因素，使两地经济休戚相关。工业革命促进了国际人口流动和资金流通。外国移民大量涌入美国不仅为资本主义经济发展提供了大量自由劳动力，而且带来了欧洲先进的生产技术，欧洲的资本也大量涌入美国，这些因素共同推动了美国的工业革命。</p>
+                    </div>
+                </div>
+
+                <div class="card type-activity">
+                    <div class="card-header">教学活动：价格革命、商业革命与工业革命</div>
+                    <div class="card-body">
+                        <div class="qa-container">
+                            <div class="qa-question">教师设问：请同学们阅读材料三和材料四分析，价格革命和商业革命在推动工业革命到来方面有何作用？这会产生什么样的后果？</div>
+                            
+                            <div class="qa-material">
+                                <p><strong>材料三：</strong>当通货膨胀时，货币贬值... 使得对金钱有关的事物极为不屑的、主要成分是贵族的地主阶层丧失了经济能力。而能够在涨价潮中将自己的服务和技能销于市场的中产阶级，则有着出色的表现。而表现最好的，多数商人阶层，他们能够贱买贵卖，待价而沽。即使是城市工人，无论有没有一技之长也比地主阶层好过得多... ——[美]菲利普·J·阿德勒：《世界文明史》</p>
+                            </div>
+
+                            <div class="qa-material">
+                                <p><strong>材料四：</strong>商业革命在好几个重要方面有助于工业革命。首先，它为欧洲的工业... 提供了很大的、不断扩展的市场。为了满足这些新市场的需要，工业必须改善其组织和技术... 钉子制造业就是一个很好的例子... 要为工业革命建造工厂和制造机器，就得筹措资金，商业革命也提供了这方面所必需的大量资本，资本以利润的形式从世界各地源源流入欧洲... ——[美]斯塔夫里阿诺斯：《全球通史》</p>
+                            </div>
+
+                            <button class="qa-answer-btn" onclick="toggleAnswer(this)">显示答案与解析</button>
+                            <div class="qa-answer">
+                                <p><strong>教师讲述/答案：</strong>价格革命促使原有的封建阶级衰落，工商业者从中获利，推动了社会商品经济的发展。商业革命使得商业范围在全球扩大，市场需求刺激工业革命的到来；商业革命积累的大量资金也推动了英国工业革命的展开。</p>
+                                <p>西欧的经济富了，人民的生活水平提高了，于是消费需求也增加了。有了市场的需求，又积蓄了巨大数量的资金有待消化。上游有本钱，下游有市场，遂必然有相应的生产能力。这一推力，即推动了工业革命。工业革命完成后，商业继续发展，世界市场在广度和深度上都有所拓展。</p>
+                                <p><strong>设计意图：</strong>通过分析价格革命、商业革命与工业革命的关系，从商业贸易和世界市场的角度理解工业革命带来的影响。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card type-material">
+                    <div class="card-header">资料与注释：收入与市场</div>
+                    <div class="card-body">
+                        <p><strong>龙多·卡梅伦《世界经济简史》：</strong>贸易的扩大，对实际收入有着许多积极的直接影响... 工业革命后市场规模日益扩大。</p>
+                        <p><strong>材料二：</strong>在从1789年到1914年的“漫长的19世纪”，生产和流通领域的一系列技术创新，大大提高了市场化、商品化的程度，使全世界的经济联系更加紧密。正像马克思和恩格斯所说的那样，“使一切国家的生产和消费都成为世界性的了”。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第6句 -->
+            <div id="sec-6" class="lecture-block">
+                <div class="textbook-sentence">蒸汽机车和轮船的出现大大改变了交通运输条件，世界各地间的联系更为便捷。</div>
+                <div class="card type-guide">
+                    <div class="card-header">教学过渡</div>
+                    <div class="card-body">
+                         <p><strong>过渡语：</strong>世界市场的拓展推动生产技术的继续革新，科学技术的进步也推动新的工业革命的到来。</p>
+                    </div>
+                </div>
+                <div class="card type-material">
+                    <div class="card-header">资料与注释：世界贸易的速度</div>
+                    <div class="card-body">
+                        <p><strong>格里高利·克拉克《应该读点经济史》：</strong>19世纪中期尤其是1844年电报问世，以及1851年海底电缆的成功铺设，信息传播速度提高了近一百倍。19世纪，商品的运输成本也大幅下降了。19世纪中期涌现的四个发明大大降低了海洋运输中蒸汽引擎的成本，它们分别是：螺旋推进器、铁质外壳、复合式发动机以及表面冷凝器。这些进步使得欧洲与世界各地之间的联系前所未有地紧密起来。以棉纺织业为例，到1910年，全世界开放的棉纺织市场总规模达到了25亿美元，相当于世界总产量的四分之一... 到20世纪初，40%的世界棉纺织市场都可以随意进入，且进入者能享受和英国工厂一样的待遇。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第7句 -->
+            <div id="sec-7" class="lecture-block">
+                <div class="textbook-sentence">资产阶级凭借工业革命带来的强大经济和军事实力，在拉丁美洲、亚洲和非洲等地建立殖民地和半殖民地。他们倾销工业产品，掠夺原材料，把越来越多的地区纳入资本主义世界市场之中。</div>
+                
+                <div class="card type-material">
+                     <div class="card-header">史料阅读（教科书栏目）</div>
+                     <div class="card-body">
+                         <div class="qa-container">
+                             <div class="qa-material">
+                                 <p>不断扩大产品销路的需要，驱使资产阶级奔走于全球各地。它必须到处落户，到处开发，到处建立联系。——摘自[德]马克思 [德]恩格斯《共产党宣言》，《马克思恩格斯文集》第二卷</p>
+                             </div>
+                             <button class="qa-answer-btn" onclick="toggleAnswer(this)">显示解读</button>
+                             <div class="qa-answer">
+                                 <p><strong>解读：</strong>本则史料摘自《共产党宣言》，分析了工业革命后资产阶级在全球各地扩张的原因，是对正文内容的补充。</p>
+                                 <p><strong>栏目内容设置的考虑：</strong>本课在第一子目提供一则从《共产党宣言》中摘录的史料，用来补充说明工业革命后资本主义国家在亚非拉建立殖民地和半殖民地的原因，有助于加深对正文内容的理解。</p>
+                             </div>
+                         </div>
+                     </div>
+                </div>
+
+                <div class="card type-guide">
+                    <div class="card-header">补充说明：世界工厂与市场加强</div>
+                    <div class="card-body">
+                        <p>最后，到19世纪中叶，英国凭借它先进的生产技术、雄厚的经济实力、发达的交通运输和广大的殖民地而独占鳌头，成为“世界工厂”，这意味着以英国为中心的世界市场初步形成和世界各地经济联系的进一步加强。</p>
+                    </div>
+                </div>
+
+                <div class="card type-material">
+                     <div class="card-header">资料与注释：相关典型资料及解读</div>
+                     <div class="card-body">
+                         <p>北美和俄罗斯的平原是我们的粮田;芝加哥和敖德萨是我们的粮仓;加拿大和波罗的海沿岸是我们的林木生产者:在澳大利亚和新西兰放牧着我们的羊群... 秘鲁运给我们白银，黄金则从南美和澳大利亚流到伦敦... ——刘淑兰编著:《世界资本主义经济史话》</p>
+                         <p><strong>[注释]敖德萨：</strong>在乌克兰南部位于德涅斯特河流入黑海的海口东北30千米处...</p>
+                         <p><strong>[解读]</strong>这份材料是英国经济学家史丹莱·杰温斯的言论。他指出在19世纪中叶英国已经成为“世界工厂”，英国在世界市场上占有特殊地位。</p>
+                     </div>
+                </div>
+            </div>
+
+            <!-- 第8句 -->
+            <div id="sec-8" class="lecture-block">
+                <div class="textbook-sentence">第二次工业革命后，世界主要资本主义国家除输出商品和掠夺原材料外，还利用资本输出，牢牢地控制了落后国家的经济命脉，榨取大量财富。</div>
+                
+                <div class="card type-guide open">
+                    <div class="card-header">教材分析：资本输出示意图</div>
+                    <div class="card-body">
+                        <p><strong>1914年主要资本主义国家资本输出示意图：</strong>第二次工业革命极大地提高了生产力水平，垄断组织形成，资本主义从自由竞争阶段向帝国主义阶段过渡。在这一过程中，资本主义列强对外商品输出仍然占有重要的地位，并且得到了进一步的发展;但是，资本输出的发展要快得多。19世纪末20世纪初，随着主要资本主义国家先后过渡到帝国主义阶段、资本输出有了长足的发展。本图直观地反映了1914年主要资本主义国家资本输出的状况，从中可以看出，资本输出遍布世界各地。</p>
+                    </div>
+                </div>
+
+                <div class="card type-guide">
+                    <div class="card-header">概念解释：资本输出</div>
+                    <div class="card-body">
+                        <p><strong>资本输出：</strong>是指资本主义国家的政府或资本家为了获取高额利润或利息在国外进行的投资和放贷。按输出资本的类型，分为借贷资本输出和生产资本输出。</p>
+                        <ul>
+                            <li><strong>借贷资本输出：</strong>是由帝国主义国家的政府、企业或者银行出面，把资本贷给其他国家的政府、企业或银行，目的是索取利息...</li>
+                            <li><strong>生产资本输出：</strong>是由帝国主义国家的政府、企业或者银行直接投资，在国外独立创办企业... 目的是以远比本国低的价格在输入国购买原材料和劳动力...</li>
+                        </ul>
+                        <p>19世纪末20世纪初，输出资本的主要国家是英国、法国、德国，美国、俄国、日本也开始向其他国家输出资本。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第9句 -->
+            <div id="sec-9" class="lecture-block">
+                <div class="textbook-sentence">为了抢占更多的原料产地、销售市场和投资场所，主要资本主义国家掀起瓜分世界的狂潮。</div>
+                
+                <div class="card type-activity open">
+                    <div class="card-header">教学活动：第二次工业革命后的世界联系</div>
+                    <div class="card-body">
+                        <div class="qa-container">
+                            <div class="qa-question">教师设问：阅读材料五，第二次工业革命完成后，以下这些数字从不同方面描述了世界历史发生的变化，结合教材《主要资本主义国家资本输出示意图》，你能从中看出世界历史发展的什么趋势？</div>
+                            
+                            <div class="qa-material">
+                                <p><strong>材料五：</strong>到1900年，世界各地区之间的联系更加紧密了。这最明显地表现在下面一系列活生生的事实上：到1914年以前铺成的海底电缆长达51.6万公里... 加速了信息的交流... 1869年通航的苏伊士运河... 1914年完成的巴拿马运河... 各大洲也建成横贯大陆的铁路... 1860-1913年世界工业生产的增长超过了6倍... 世界广大领土沦为欧美列强的殖民地。仅亚洲有不少于944.3万平方英里的土地变成列强的殖民地... ——摘编自吴于廑、齐世荣主编：《世界史·近代史》下</p>
+                            </div>
+
+                            <button class="qa-answer-btn" onclick="toggleAnswer(this)">显示答案与解析</button>
+                            <div class="qa-answer">
+                                <p><strong>教师总结：</strong>从材料中可以看出，交通运输条件的改善，使世界各地间联系更为便捷，世界市场最终形成，世界贸易有很大增长。但同时，主要资本主义国家为了商品输出、掠夺原料和资本输出，在亚、非、拉美地区建立殖民地半殖民地，20世纪初，世界被瓜分完毕，资本主义世界市场最终形成。</p>
+                                <p><strong>设计意图：</strong>引领学生阅读教师补充的材料，并结合教材地图，培养提取信息的能力，养成论从史出的思维习惯，理解工业革命和资本主义世界市场形成之间的互动关系。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card type-material">
+                    <div class="card-header">资料与注释：全球化速度加快</div>
+                    <div class="card-body">
+                        <p><strong>董正华《世界现代化进程十五讲》：</strong>认为，到19世纪与20世纪之交，各个领域的全球化速度都在加快。据统计，1870到1914年间世界贸易年均增长3.5%... 到第一次世界大战爆发前夜，随着金本位制的确立和资本国际流动的增加，已经有155个国家参与国际贸易... 技术创新使工业化、现代化加速扩散和深化，带来了全球化的第一次高潮。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第10句 -->
+            <div id="sec-10" class="lecture-block">
+                <div class="textbook-sentence">20世纪初，世界基本被瓜分完毕，亚非拉绝大多数国家和地区被迫加入资本主义世界经济体系，资本主义世界市场最终形成。</div>
+                <div class="card type-guide">
+                    <div class="card-header">教学过渡</div>
+                    <div class="card-body">
+                        <p><strong>过渡语：</strong>世界市场的形成，使商业贸易在世界范围内展开，交流日益密切，引起了商业领域的若干变化。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align:center; margin-top:50px; color:#999;">
+                <p>▲繁忙的阿姆斯特丹港口 (图片占位)</p>
+                <p>1914年主要资本主义国家资本输出示意图 (图片占位)</p>
+            </div>
+
+        </div>
+
+        <!-- Tab 4: 知识输出 -->
+        <div id="output" class="content-section">
+            <div class="lecture-block">
+                <h3>学习聚焦</h3>
+                <p>工业革命推动资本主义向全球扩张，以欧美资本主义国家为主导的世界市场逐步形成。</p>
+            </div>
+            <div class="lecture-block">
+                <h3>教学建议总结</h3>
+                <p>1. 本课立意在于揭示自大航海时代以来世界市场的逐步形成与商业贸易的发展变化，建立起内在关联。</p>
+                <p>2. 第一子目“世界市场的形成”是因，第二子目“近代商业贸易的变化”是果。</p>
+                <p>3. 教学中应重点叙述近代商业贸易的发展变革，因为世界市场的形成在必修课中已有基础，而商业贸易的变化是学生较难理解的新内容。</p>
+            </div>
+        </div>
+
+        <!-- Tab 5: 核心素养 -->
+        <div id="competency" class="content-section">
+            <div class="lecture-block">
+                <h3>核心素养指向</h3>
+                <p><strong>1. 史料实证：</strong>通过归纳相关历史材料（如《共产党宣言》、东印度公司特许证、贸易数据表），认识近代商业贸易发展变化的领域，包括国际贸易中心的变化、新的商业经营形式的出现和商品类型的丰富。</p>
+                <p><strong>2. 唯物史观：</strong>认识世界市场是资本主义全球扩张的必然结果；理解生产力发展（工业革命）对生产关系和世界市场的推动作用。</p>
+                <p><strong>3. 历史解释：</strong>能够解释世界市场与商业贸易的关系，体会商业活动与人类生产、生活的进步之间的关联。</p>
+            </div>
+        </div>
+
+        <!-- Tab 6: 课堂小结 -->
+        <div id="summary" class="content-section">
+            <div class="lecture-block">
+                <h3>课堂小结</h3>
+                <p>本节课我们学习了“世界市场的形成”。从15世纪以前的孤立发展，到新航路开辟后的初步形成，再到两次工业革命推动下的最终确立，世界市场经历了漫长的发展过程。这一过程伴随着殖民扩张、商品输出和资本输出，将世界各地紧密联系在一起，也为近代商业贸易的变化提供了宏大的历史背景。</p>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<!-- 右侧悬浮按钮 -->
+<div class="right-sidebar-btn" onclick="toggleModal()">
+    整体性思维导图
+</div>
+
+<!-- 思维导图模态框 -->
+<div class="modal" id="mindmapModal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="toggleModal()">&times;</span>
+        <h2>世界市场的形成 - 思维导图</h2>
+        <div style="border: 2px solid #ccc; padding: 20px; border-radius: 8px; font-family: sans-serif;">
+            <ul style="list-style-type: none;">
+                <li><strong>世界市场的形成</strong>
+                    <ul style="border-left: 2px solid #3498db; padding-left: 15px; margin-top: 10px;">
+                        <li style="margin-bottom: 10px;">
+                            <strong>第一阶段：初步形成 (15-18世纪)</strong>
+                            <ul>
+                                <li>背景：15世纪前相对孤立</li>
+                                <li>动力：新航路开辟、早期殖民扩张</li>
+                                <li>表现：欧洲与世界各地建立商业联系</li>
+                            </ul>
+                        </li>
+                        <li style="margin-bottom: 10px;">
+                            <strong>第二阶段：拓展与深化 (18世纪60年代-19世纪中期)</strong>
+                            <ul>
+                                <li>动力：第一次工业革命</li>
+                                <li>手段：倾销商品、掠夺原料</li>
+                                <li>技术：蒸汽机车、轮船（交通变革）</li>
+                                <li>格局：英国成为“世界工厂”</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>第三阶段：最终形成 (19世纪末20世纪初)</strong>
+                            <ul>
+                                <li>动力：第二次工业革命</li>
+                                <li>手段：资本输出、瓜分世界</li>
+                                <li>结果：亚非拉被迫卷入资本主义世界经济体系</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Tab 切换逻辑
+    const tabs = document.querySelectorAll('.nav-btn');
+    const sections = document.querySelectorAll('.content-section');
+    const timelineSidebar = document.getElementById('timelineSidebar');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // 移除所有激活状态
+            tabs.forEach(t => t.classList.remove('active'));
+            sections.forEach(s => s.classList.remove('active'));
+            
+            // 激活当前
+            tab.classList.add('active');
+            const targetId = tab.getAttribute('data-target');
+            document.getElementById(targetId).classList.add('active');
+
+            // 仅在框架解读显示侧边栏
+            if (targetId === 'framework') {
+                timelineSidebar.style.display = 'block';
+            } else {
+                timelineSidebar.style.display = 'none';
+            }
+        });
+    });
+
+    // 折叠卡片逻辑
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.card-header')) {
+            const card = e.target.closest('.card');
+            card.classList.toggle('open');
+        }
+    });
+
+    // 问答显示逻辑
+    window.toggleAnswer = function(btn) {
+        const answerDiv = btn.nextElementSibling;
+        if (answerDiv.classList.contains('visible')) {
+            answerDiv.classList.remove('visible');
+            btn.textContent = '显示答案与解析';
+        } else {
+            answerDiv.classList.add('visible');
+            btn.textContent = '收起答案';
+        }
+    };
+
+    // 滚动定位逻辑
+    window.scrollToId = function(id) {
+        const element = document.getElementById(id);
+        if (element) {
+            // 确保在框架解读Tab下
+            if (!document.getElementById('framework').classList.contains('active')) {
+                document.querySelector('[data-target="framework"]').click();
+            }
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // 高亮时间轴
+            highlightTimeline(id);
+        }
+    };
+
+    function highlightTimeline(targetId) {
+        const items = document.querySelectorAll('.timeline-item');
+        items.forEach(item => item.classList.remove('active'));
+        
+        // 简单匹配：这里假设点击是主动触发。
+        // 实际滚动侦测需要IntersectionObserver，为了简化保持纯JS逻辑：
+        const index = Array.from(document.querySelectorAll('.lecture-block')).findIndex(el => el.id === targetId);
+        if (items[index]) items[index].classList.add('active');
+    }
+
+    // 模态框逻辑
+    window.toggleModal = function() {
+        const modal = document.getElementById('mindmapModal');
+        modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+    };
+
+    // 点击模态框背景关闭
+    document.getElementById('mindmapModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.style.display = 'none';
+        }
+    });
+
+</script>
+
+</body>
+</html>

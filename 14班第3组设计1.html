@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>城市的产生 - 第10课子目三</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* 字体定义 */
+        .font-serif { font-family: "Georgia", "KaiTi", serif; }
+        .font-sans { font-family: "Arial", "Heiti SC", sans-serif; }
+
+        /* 导航栏 */
+        .navbar-custom {
+            background: linear-gradient(90deg, #2c3e50, #4ca1af);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        /* 章节过渡色 */
+        .section-ancient { background-color: #fdf6e3; color: #5d4037; } /* 古代土黄 */
+        .section-china { background-color: #fff; border-top: 5px solid #c0392b; } /* 中国红韵 */
+        .section-industrial { background-color: #ecf0f1; color: #2c3e50; } /* 工业灰 */
+        .section-modern { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; } /* 现代蓝 */
+
+        /* 卡片特效 */
+        .info-card {
+            border: none;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        /* 标题修饰 */
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 4px;
+            background-color: currentColor;
+            margin: 10px auto 0;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+<!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">🏙️ 城市的产生</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#header">首页</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#origin">早期萌芽</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#definition">城市定义</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#china">中国历程</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#modern">迈向现代</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#conclusion">文明引擎</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 封面页 -->
+    <header id="header" class="d-flex align-items-center justify-content-center text-center text-white" 
+            style="height: 90vh; background: url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;">
+        <div style="background: rgba(0, 0, 0, 0.6); width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div class="container">
+                <h5 class="text-uppercase letter-spacing-2 text-info mb-3">高二历史选择性必修2 第10课 子目三</h5>
+                <h1 class="display-1 fw-bold mb-4 font-serif">城市的产生</h1>
+                <p class="lead mb-5">从苏美尔的泥板到现代都市圈，探寻人类文明的容器</p>
+                <div class="border-top border-light w-50 mx-auto my-4"></div>
+                <p class="h5">第十四班 第三组<br><span class="fs-6 opacity-75">赵世瑞 · 王翰翔 · 麻一恒</span></p>
+                <a href="#origin" class="btn btn-outline-light btn-lg mt-5 rounded-pill px-5">开始探索 ▼</a>
+            </div>
+        </div>
+    </header>
+<!-- 早期萌芽 -->
+    <section id="origin" class="section-ancient py-5">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title text-bronze">1. 文明的曙光：早期萌芽</h2>
+            </div>
+            
+            <div class="row align-items-center mt-4">
+                <!-- 西方起源 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card info-card shadow-sm" style="background-color: #fffaf0;">
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-warning">🌍 两河流域</h3>
+                            <h6 class="card-subtitle mb-3 text-muted">Mesopotamia</h6>
+                            <p class="card-text">
+                                约公元前3500-前3100年，<strong>苏美尔人</strong>生活的地区产生了一些居民中心。
+                            </p>
+                            <p class="card-text">
+                                几个较大的居民中心结成城市。这是人类最早的城市文明形态之一，如乌鲁克（Uruk）。
+                            </p>
+                            <div class="alert alert-warning py-2 small">
+                                💡 知识点：农业技术的提高和人口的聚集是前提。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 东方起源 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card info-card shadow-sm" style="background-color: #fffaf0;">
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-danger">🐲 中国早期</h3>
+                            <h6 class="card-subtitle mb-3 text-muted">Early China</h6>
+                            <p class="card-text">
+                                在中国，<strong>二里头遗址</strong>等地出现了早期的都城。
+                            </p>
+                            <p class="card-text">
+                                考古发现显示，这些都城已经具备了宫殿区、手工业作坊区等功能分区，标志着国家形态的雏形。
+                            </p>
+                            <div class="alert alert-danger py-2 small">
+                                💡 知识点：二里头文化通常被认为是夏朝中晚期的都城遗址。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 城市的定义 -->
+    <section id="definition" class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title text-dark">2. 什么是城市？</h2>
+                <p class="lead text-muted">城市不仅是人口的聚集，更是功能的集合。</p>
+            </div>
+
+            <div class="row text-center mt-5 g-4">
+                <div class="col-md-4">
+                    <div class="p-4 border rounded-3 h-100 bg-light">
+                        <div class="display-4 mb-3">👑</div>
+                        <h4>政治权力中心</h4>
+                        <p class="text-muted">城市是一定区域内政治权力的集中地，统治阶级在此发布政令，管理国家。</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 border rounded-3 h-100 bg-light">
+                        <div class="display-4 mb-3">🛡️</div>
+                        <h4>军事防御场所</h4>
+                        <p class="text-muted">城墙、护城河等设施的建立，使城市成为保护财富和人民安全的军事堡垒。</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 border rounded-3 h-100 bg-light">
+                        <div class="display-4 mb-3">⛩️</div>
+                        <h4>宗教/礼制中心</h4>
+                        <p class="text-muted">神庙、宗庙的建设，使其成为宗教互动和礼制活动的场所。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 中国历程 -->
+    <section id="china" class="section-china py-5">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title text-danger">3. 中国古代城市的演变</h2>
+            </div>
+
+            <div class="timeline mt-5 position-relative">
+                <!-- 垂直线 -->
+                <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; background: #e74c3c; transform: translateX(-50%);"></div>
+
+                <!-- 商朝 -->
+                <div class="row justify-content-between align-items-center mb-5">
+                    <div class="col-md-5 text-end">
+                        <div class="p-4 bg-light shadow rounded">
+                            <h3 class="text-danger fw-bold">商朝</h3>
+                            <p class="mb-0">中国古代的城市起源于商朝。此时城市已初具规模，宫殿和宗庙位于城市中心。</p>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px; position: relative; z-index: 2;">商</div>
+                    </div>
+                    <div class="col-md-5"></div>
+                </div>
+
+                <!-- 周朝 (补充衔接) -->
+                <div class="row justify-content-between align-items-center mb-5">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-2 text-center">
+                        <div class="bg-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px; position: relative; z-index: 2;">周</div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="p-3 bg-light shadow-sm rounded">
+                            <small class="text-muted">营建城市形成制度（匠人营国），周王城、诸侯都邑各有定制。</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 唐宋 -->
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-2 text-center">
+                        <div class="bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px; position: relative; z-index: 2;">唐宋</div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="p-4 bg-light shadow rounded">
+                            <h3 class="text-danger fw-bold">唐宋变革</h3>
+                            <p><strong>打破界限：</strong> 坊市制度逐渐瓦解，打破了时间（夜市）和空间（街市）的限制。</p>
+                            <p class="mb-0">出现了更多的活动场所以及经济贸易区，城市经济功能大大增强。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 迈向现代 -->
+    <section id="modern" class="section-industrial py-5">
+        <div class="container">
+            <h2 class="section-title text-dark text-center w-100">4. 工业化与城市化</h2>
+            
+            <div class="row mt-5">
+                <!-- 18世纪 工业革命 -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-header bg-secondary text-white fw-bold">⚙️ 18世纪以来</div>
+                        <div class="card-body">
+                            <h5 class="card-title">工业革命的推动</h5>
+                            <p class="card-text">
+                                工业革命导致人口向有<strong>工场（工厂）</strong>的地方转移。
+                            </p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">🏭 工业区聚集了大量人口。</li>
+                                <li class="list-group-item">📈 城市化进程显著加快。</li>
+                                <li class="list-group-item">🚂 交通运输使得城市规模得以扩张。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 二战后 现代 -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-header bg-primary text-white fw-bold">🏙️ 二战以后</div>
+                        <div class="card-body">
+                            <h5 class="card-title">都市圈与现代化</h5>
+                            <p class="card-text">
+                                促进了大规模工业国的形成，以及<strong>都市圈</strong>的产生。
+                            </p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">🌐 城市群出现（如长三角、京津冀）。</li>
+                                <li class="list-group-item">🏘️ 居住条件和生活环境改善与问题并存。</li>
+                                <li class="list-group-item">🚀 到达了高度发达的现代化时期。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 总结：文明引擎 -->
+    <section id="conclusion" class="section-modern py-5 text-center">
+        <div class="container">
+            <h2 class="mb-4 display-5 fw-bold">5. 城市：文明演变的推进器</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <p class="lead mb-4">
+                        城市集中了<strong>知识、技术、经济与文化发展</strong>。
+                    </p>
+                    <p class="fs-5">
+                        城市发展不仅是物理空间的扩张，更是人们对于<strong>社会发展、效率和安稳生活需要</strong>所追求的结果。
+                    </p>
+                    <hr class="bg-light w-50 mx-auto my-4">
+                    <blockquote class="blockquote">
+                        <p class="mb-0 fst-italic">“城市是人类最伟大的发明之一，它让生活更美好。”</p>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 互动小测验 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h3 class="text-center mb-4">🎓 知识点自测</h3>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="fw-bold">问题：中国古代城市界限（坊市制）被打破，出现繁荣商业街区主要是在哪个时期？</p>
+                            <div class="d-grid gap-2 d-md-block text-center">
+                                <button class="btn btn-outline-secondary" onclick="checkAnswer('A')">A. 商朝</button>
+                                <button class="btn btn-outline-secondary" onclick="checkAnswer('B')">B. 秦汉</button>
+                                <button class="btn btn-outline-danger" onclick="checkAnswer('C')">C. 唐宋</button>
+                                <button class="btn btn-outline-secondary" onclick="checkAnswer('D')">D. 明清</button>
+                            </div>
+                            <div id="result" class="mt-3 text-center fw-bold"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function checkAnswer(answer) {
+            const resultDiv = document.getElementById('result');
+            if (answer === 'C') {
+                resultDiv.innerHTML = "<span class='text-success'>✅ 回答正确！唐宋时期打破了坊市界限。</span>";
+            } else {
+                resultDiv.innerHTML = "<span class='text-danger'>❌ 再想想，文中提到了打破界限的时期...</span>";
+            }
+        }
+    </script>
+<!-- 课后思考 -->
+    <section class="py-5 bg-white border-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>🧠 课后思考</h4>
+                    <p>结合教材与所学，思考：</p>
+                    <ul>
+                        <li>城市的产生对人类社会发展和人们的生活有哪些具体影响？</li>
+                        <li>对比古代城市与现代城市，它们的功能发生了哪些变化？</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>📚 拓展阅读</h4>
+                    <p>推荐阅读教材《历史选择性必修2》第10课相关章节，并查阅关于“二里头遗址”或“清明上河图”的资料。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 页脚 -->
+    <footer class="bg-dark text-white py-4 text-center">
+        <div class="container">
+            <p class="mb-1">© 2025 高二历史选必2 第10课教学网页</p>
+            <p class="small text-white-50">设计团队：第十四班 第三组（赵世瑞、王翰翔、麻一恒）</p>
+            <p class="small text-white-50">资料来源：历史教材、教师用书及教学设计</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

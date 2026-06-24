@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第9课：南宋的偏安 - 深度教学多媒体课件</title>
+    <style>
+        :root {
+            --primary-crimson: #800020;
+            --light-crimson: #fdf2f4;
+            --primary-teal: #1d3557;
+            --light-teal: #f1f5f9;
+            --primary-gold: #b5945b;
+            --light-gold: #fcf9f2;
+            --text-main: #2b2d42;
+            --text-secondary: #64748b;
+            --bg-color: #fcfbfa;
+            --border-color: #e5dec9;
+            --timeline-line: #cbd5e1;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: #3e3330;
+            line-height: 1.8;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* 动画过渡 */
+        header, .timeline-sidebar, .mindmap-sidebar, .content-area {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* 顶部深色尊贵导航栏 */
+        header {
+            height: 65px;
+            background: linear-gradient(135deg, var(--primary-crimson), #4a0010);
+            box-shadow: 0 4px 12px rgba(128, 0, 32, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            flex-shrink: 0;
+            border-bottom: 3px solid var(--primary-gold);
+            padding-left: 140px; /* 避开左上角一键折叠按钮 */
+        }
+
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            gap: 15px;
+        }
+
+        .nav-item {
+            padding: 8px 18px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #fbc4cd;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 主体布局 */
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 左侧大事年表 */
+        .timeline-sidebar {
+            width: 250px;
+            background: white;
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            padding: 20px;
+            flex-shrink: 0;
+        }
+
+        .timeline-title {
+            font-size: 1.15em;
+            color: var(--primary-crimson);
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--primary-crimson);
+            padding-bottom: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .tl-group {
+            margin-bottom: 20px;
+        }
+
+        .tl-year {
+            font-weight: bold;
+            font-size: 1.05em;
+            color: var(--primary-gold);
+            margin-bottom: 5px;
+        }
+
+        .tl-event {
+            position: relative;
+            padding-left: 15px;
+            font-size: 0.88em;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            border-left: 2px solid var(--timeline-line);
+            margin-left: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .tl-event:hover {
+            color: var(--primary-crimson);
+            border-left-color: var(--primary-crimson);
+            font-weight: bold;
+        }
+
+        .tl-event::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 6px;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border: 2px solid var(--timeline-line);
+            border-radius: 50%;
+        }
+
+        /* 中间内容区 */
+        .content-area {
+            flex: 1;
+            padding: 30px 40px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            font-size: 1em;
+        }
+
+        .tab-content {
+            display: none;
+            max-width: 950px;
+            margin: 0 auto;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 课文原文精讲包装器 */
+        .sentence-wrapper {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            margin-bottom: 35px;
+            overflow: hidden;
+            border-left: 6px solid var(--primary-crimson);
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .textbook-sentence {
+            font-size: 1.25em;
+            line-height: 1.8;
+            padding: 25px;
+            color: var(--text-main);
+            font-weight: 500;
+            background: #fff;
+            position: relative;
+        }
+
+        .textbook-sentence::before {
+            content: "课文原文";
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 0.7em;
+            color: #aaa;
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* 教学设计折叠卡片 */
+        .teaching-design {
+            padding: 0 25px 25px 25px;
+            background: #fcfcf9;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .design-label {
+            display: inline-block;
+            background: var(--primary-teal);
+            color: white;
+            font-size: 0.8em;
+            padding: 4px 12px;
+            border-radius: 0 0 8px 8px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .fold-card {
+            margin-top: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .fold-btn {
+            width: 100%;
+            text-align: left;
+            padding: 14px 20px;
+            background: var(--light-teal);
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-teal);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+            font-size: 0.95em;
+        }
+
+        .fold-btn:hover {
+            background: #e2eafc;
+        }
+
+        .fold-btn::after {
+            content: '展开 ➕';
+            font-size: 0.85em;
+        }
+
+        .fold-btn.active::after {
+            content: '收起 ➖';
+        }
+
+        .fold-content {
+            display: none;
+            padding: 20px 25px;
+            color: #444;
+            line-height: 1.8;
+            border-top: 1px solid var(--light-teal);
+            font-size: 0.95em;
+        }
+
+        .question-box {
+            color: var(--primary-crimson);
+            font-weight: bold;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--primary-crimson);
+            padding-left: 10px;
+        }
+
+        .source-box {
+            font-family: "Kaiti", "STKaiti", "楷体", serif;
+            font-size: 1.08em;
+            background: var(--light-gold);
+            padding: 18px;
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--primary-gold);
+            margin: 15px 0;
+            border-radius: 4px;
+            line-height: 1.7;
+        }
+
+        .source-box strong {
+            font-family: sans-serif;
+            color: #333;
+        }
+
+        .footnote {
+            font-size: 0.82em;
+            color: #7f8c8d;
+            margin-top: 8px;
+            font-family: sans-serif;
+            background: #f1f5f9;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .answer-box {
+            background: var(--light-crimson);
+            padding: 18px;
+            border-radius: 6px;
+            color: #5c0011;
+            border: 1px solid #fbc4cd;
+            margin-top: 15px;
+        }
+
+        /* 右侧思维导图操作栏 */
+        .mindmap-sidebar {
+            width: 75px;
+            background: #1e1e24;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 30px;
+            gap: 20px;
+            z-index: 90;
+        }
+
+        .mm-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            border: none;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .mm-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+        }
+
+        .btn-unit { background: #5c3d2e; } 
+        .btn-course { background: #475569; } 
+        .btn-detail { background: var(--primary-crimson); } 
+
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.75);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: white;
+            width: 85%;
+            height: 85%;
+            border-radius: 12px;
+            position: relative;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 32px;
+            cursor: pointer;
+            color: #aaa;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .mm-container {
+            flex: 1;
+            overflow: auto;
+            background: #fafaf9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* 辅助按钮系统 */
+        .menu-trigger {
+            position: fixed;
+            top: 14px;
+            left: 20px;
+            z-index: 200;
+            background-color: var(--primary-crimson);
+            color: white;
+            border: 2px solid #fff;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease-in-out;
+        }
+        .menu-trigger:hover {
+            transform: scale(1.05);
+            background-color: #5c0011;
+        }
+
+        .font-controls {
+            position: fixed;
+            top: 14px;
+            right: 20px;
+            z-index: 200;
+            display: flex;
+            gap: 8px;
+        }
+        .font-btn {
+            background: white;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.2s ease-in-out;
+        }
+        .font-btn:hover {
+            background-color: var(--light-teal);
+            border-color: var(--primary-crimson);
+            transform: scale(1.08);
+            color: var(--primary-crimson);
+        }
+
+        body.panels-collapsed header {
+            margin-top: -65px;
+        }
+        body.panels-collapsed .timeline-sidebar {
+            margin-left: -250px;
+        }
+        body.panels-collapsed .mindmap-sidebar {
+            margin-right: -75px;
+        }
+
+        /* 随堂检测试题卡片 */
+        .question-card { 
+            margin-bottom: 35px; 
+            border: 1px solid var(--border-color); 
+            border-radius: 10px; 
+            padding: 24px; 
+            background-color: #fff; 
+            box-shadow: 0 4px 10px rgba(128, 0, 32, 0.01);
+            transition: all 0.3s;
+        }
+        .question-card:hover { box-shadow: 0 6px 18px rgba(128, 0, 32, 0.05); border-color: var(--primary-gold); }
+        
+        .inline-control-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0;
+            background-color: #faf7f5;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        @media (min-width: 900px) {
+            .inline-control-bar {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        .btn-deduct, .btn-analysis {
+            background-color: var(--primary-crimson);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-deduct:hover { background-color: #9c0c23; }
+        .btn-deduct.active { background-color: #27ae60; }
+        
+        .btn-analysis { background-color: #6e5c58; }
+        .btn-analysis:hover { background-color: #534541; }
+        .btn-analysis.active { background-color: #2980b9; }
+
+        .horizontal-options {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 8px;
+            flex-grow: 1;
+            justify-content: center;
+            margin: 5px 0;
+        }
+        .opt-btn {
+            flex: 1 1 20%;
+            min-width: 140px;
+            background-color: #fff;
+            border: 1.5px solid var(--border-color);
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            color: #534541;
+            line-height: 1.4;
+        }
+        .opt-btn:hover {
+            background-color: #fff5f5;
+            border-color: var(--primary-crimson);
+            color: var(--primary-crimson);
+        }
+        .opt-btn.correct-select {
+            background-color: #d4edda !important;
+            border-color: #28a745 !important;
+            color: #155724 !important;
+            font-weight: bold;
+        }
+        .opt-btn.incorrect-select {
+            background-color: #f8d7da !important;
+            border-color: #dc3545 !important;
+            color: #721c24 !important;
+        }
+
+        /* 题干高亮 */
+        .hl-question { border-bottom: 2px solid #e74c3c; color: #e74c3c; font-weight: bold; }
+        .hl-context { border-bottom: 2px dashed #2980b9; color: #2980b9; font-weight: bold; }
+        .hl-evidence { border-bottom: 2px solid #f39c12; color: #d35400; font-weight: bold; }
+
+        /* 思维沙盘 */
+        .thinking-sandbox {
+            margin-top: 15px;
+            border: 1px dashed #e2e8f0;
+            background-color: #fdfbf7;
+            border-radius: 6px;
+            padding: 18px;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .chain-title { font-weight: bold; color: var(--primary-crimson); border-left: 4px solid var(--primary-gold); padding-left: 8px; margin-bottom: 12px; font-size: 0.95rem; }
+        .flow-container { display: flex; flex-direction: column; gap: 8px; }
+        .flow-step { display: flex; gap: 12px; background: #fff; border: 1px solid #f3ebe1; padding: 10px 14px; border-radius: 4px; }
+        .step-badge { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: bold; }
+        .badge-1 { background-color: #e74c3c; }
+        .badge-2 { background-color: #2980b9; }
+        .badge-3 { background-color: #f39c12; }
+        .badge-4 { background-color: #27ae60; }
+        .flow-arrow { text-align: center; color: #ebd8d0; font-size: 1rem; margin: -2px 0; }
+        .step-content { font-size: 0.9rem; line-height: 1.6; color: #534541; }
+        .step-content strong { color: #322521; }
+
+        /* 考点剖析展示 */
+        .analysis-box {
+            margin-top: 15px;
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .analysis-content { padding: 20px; border-left: 4px solid #6e5c58; }
+        .analysis-tag { display: inline-block; padding: 3px 10px; border-radius: 3px; font-size: 0.8rem; margin-right: 10px; color: white; font-weight: bold; }
+        .tag-green { background-color: #2f855a; }
+        .tag-blue { background-color: #2b6cb0; }
+        .tag-red { background-color: var(--primary-crimson); }
+        .analysis-text { margin-top: 12px; color: #534541; font-size: 0.95rem; line-height: 1.8; }
+        .analysis-item { margin-bottom: 12px; border-bottom: 1px dashed #eee; padding-bottom: 10px; }
+        .analysis-item:last-child { border-bottom: none; }
+
+        .right-indicator { display: none; color: #2f855a; font-weight: bold; margin: 10px 0; font-size: 0.92rem; }
+
+        /* 思维导图投影高反差样式 */
+        .modal-content h2, .modal-content h3 {
+            color: #000000 !important;
+            font-size: 1.65em !important;
+            font-weight: 900 !important;
+            text-shadow: 1px 1px 0px #fff;
+            margin-bottom: 15px;
+        }
+        .modal-content p {
+            color: #000000 !important;
+            font-size: 1.15em !important;
+            font-weight: bold !important;
+        }
+        .map-svg text {
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif !important;
+            font-weight: 900 !important;
+        }
+        .map-svg rect {
+            stroke: #000000 !important;
+            stroke-width: 2.5px !important;
+        }
+        .text-on-dark {
+            fill: #ffffff !important;
+            font-size: 14px !important;
+        }
+        .text-on-light {
+            fill: #000000 !important;
+            font-size: 13px !important;
+        }
+        .text-title-on-light {
+            fill: #000000 !important;
+            font-size: 14px !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 控制中枢按钮 -->
+    <button class="menu-trigger" onclick="toggleAllPanels()">☰ 菜单 (已展开)</button>
+
+    <!-- 字号调控 -->
+    <div class="font-controls">
+        <button class="font-btn" onclick="adjustFont(1)" title="放大字体">➕A</button>
+        <button class="font-btn" onclick="adjustFont(-1)" title="缩小字体">➖A</button>
+    </div>
+
+    <!-- 顶部主导航 -->
+    <header>
+        <ul class="nav-tabs">
+            <li class="nav-item" onclick="switchTab('disaster')">天倾北方：靖康之变与南渡</li>
+            <li class="nav-item" onclick="switchTab('struggle')">血色御侮：岳家军与主战派</li>
+            <li class="nav-item active" onclick="switchTab('peace')">逐句课文精讲</li>
+            <li class="nav-item" onclick="switchTab('output')">随堂巩固检测</li>
+            <li class="nav-item" onclick="switchTab('literacy')">学科核心素养</li>
+            <li class="nav-item" onclick="switchTab('summary')">教学总结与反思</li>
+        </ul>
+    </header>
+
+    <!-- 主框架 -->
+    <div class="main-container">
+        
+        <!-- 左侧时间轴 -->
+        <aside class="timeline-sidebar">
+            <div class="timeline-title">南宋对金和战大事轴</div>
+            
+            <div class="tl-group">
+                <div class="tl-year">1127 (靖康二年)</div>
+                <div class="tl-event" onclick="scrollToId('q_nandu')">靖康之变：金兵攻灭北安，赵构登基重建南宋</div>
+            </div>
+
+            <div class="tl-group">
+                <div class="tl-year">1130s (绍兴年间)</div>
+                <div class="tl-event" onclick="scrollToId('q_yuefei')">岳飞整军：岳家军等抗金武装声威大震</div>
+            </div>
+
+            <div class="tl-group">
+                <div class="tl-year">1140 (绍兴十年)</div>
+                <div class="tl-event" onclick="scrollToId('q_yuefei')">郾城大捷：岳飞率军大破金主力骑兵</div>
+            </div>
+
+            <div class="tl-group">
+                <div class="tl-year">1141 (绍兴十一年)</div>
+                <div class="tl-event" onclick="scrollToId('q_heyi')">绍兴和议：宋金划界淮水，岳飞惨死于临安</div>
+            </div>
+
+            <div class="tl-group">
+                <div class="tl-year">1165 (隆兴元年)</div>
+                <div class="tl-event" onclick="scrollToId('q_longxing')">隆兴和议：改称臣为“世为侄国”，岁币减少</div>
+            </div>
+
+            <div class="tl-group">
+                <div class="tl-year">1208 (嘉定元年)</div>
+                <div class="tl-event" onclick="scrollToId('q_longxing')">嘉定和议：韩侂胄北伐失败，宋改称伯父</div>
+            </div>
+        </aside>
+
+        <!-- 中间：核心教学区 -->
+        <div class="content-area">
+
+            <!-- 1. 靖康之变与南渡 -->
+            <div id="disaster" class="tab-content">
+                <div class="sentence-wrapper" style="border-left-color: var(--primary-crimson);">
+                    <div class="textbook-sentence" style="background: var(--light-crimson);">
+                        <h3>🔗 铺垫：金朝南侵、中原瓦解与南宋重建</h3>
+                        <p>探讨“南宋的偏安”，必须首先让学生从大历史时空认识其政治危局的前提：</p>
+                        <ul>
+                            <li><strong>天倾北方（靖康之变）：</strong> 1127年，金朝女真铁骑南下，攻破东京汴梁，俘虏徽、钦二帝及大批宗室，北宋灭亡。中原文明核心区彻底瓦解。</li>
+                            <li><strong>正统重建（赵构南渡）：</strong> 徽宗第九子康王赵构因侥幸逃脱，在旧臣拥戴下于应天府即位。面对金军追击一路仓皇南逃，最终建都临安（杭州），在江南半壁建立起偏安一隅的统治。</li>
+                        </ul>
+                        <hr style="border: 0; border-top: 1px dashed var(--border-color); margin: 15px 0;">
+                        <p><strong>🤔 思考：</strong> 金兵铁骑何以在江南水网地带被迫止步？南宋政权如何在连年危局中化险为夷，又为何走向了压制武将的和平妥协？</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. 岳家军与主战派 -->
+            <div id="struggle" class="tab-content">
+                <div class="sentence-wrapper" style="border-left-color: var(--primary-teal);">
+                    <div class="textbook-sentence">
+                        <h3>⚔️ 主战血色：岳家军抗金、郾城大捷与军权张力</h3>
+                        <p>南宋初年的军事奇迹，来源于武将群体在血战中发展起来的极高战斗素养：</p>
+                        
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
+                            <div style="flex: 1; min-width: 210px; background: var(--light-teal); padding: 18px; border-radius: 8px;">
+                                <h4 style="color: var(--primary-teal); margin-top: 0; border-bottom: 1.5px solid #bdd7f5; padding-bottom: 5px;">① 义军蜂起</h4>
+                                <p style="font-size: 0.88em; margin: 8px 0 0 0;">河北、河东等大片沦陷区忠义民兵不甘受异族统治，开展自发反抗，牵制金朝主力。</p>
+                            </div>
+                            
+                            <div style="flex: 1; min-width: 210px; background: var(--light-crimson); padding: 18px; border-radius: 8px;">
+                                <h4 style="color: var(--primary-crimson); margin-top: 0; border-bottom: 1.5px solid #fbc4cd; padding-bottom: 5px;">② 岳军精锐</h4>
+                                <p style="font-size: 0.88em; margin: 8px 0 0 0;">岳家军军纪严明（<strong>“冻死不拆屋，饿死不掳掠”</strong>），克复失地，令金军发出<strong>“撼山易，撼岳家军难”</strong>的感叹。</p>
+                            </div>
+
+                            <div style="flex: 1; min-width: 210px; background: var(--light-gold); padding: 18px; border-radius: 8px;">
+                                <h4 style="color: var(--primary-gold); margin-top: 0; border-bottom: 1.5px solid #ebdcd5; padding-bottom: 5px;">③ 郾城血战</h4>
+                                <p style="font-size: 0.88em; margin: 8px 0 0 0;">1140年，岳飞率孤军在郾城、颍昌大败完颜兀术的精锐主力骑兵，直捣朱仙镇，中原光复在望。</p>
+                            </div>
+
+                            <div style="flex: 1; min-width: 210px; background: #faebf0; padding: 18px; border-radius: 8px;">
+                                <h4 style="color: var(--primary-crimson); margin-top: 0; border-bottom: 1.5px solid #f7d2db; padding-bottom: 5px;">④ 君臣戒备</h4>
+                                <p style="font-size: 0.88em; margin: 8px 0 0 0;">由于这些抗金精锐带有强烈的武将“私家军”色彩，导致患有“恐金症”和“防弊症”的宋高宗极度警惕，极力求和收权。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. 逐句课文精讲 -->
+            <div id="framework" class="tab-content active">
+                
+                <!-- 句段 1：南宋建立与靖康之变 -->
+                <div class="sentence-wrapper" id="q_nandu">
+                    <div class="textbook-sentence">
+                        1127年,北宋被东北女真族建立的金朝攻灭,两位皇帝徽宗、钦宗被俘虏北去,史称“靖康之变”。北宋康王赵构在应天府称皇帝,后定都临安,史称南宋。赵构就是宋高宗。
+                    </div>
+
+                    <div class="teaching-design">
+                        <span class="design-label">一轮复习重点剖析：正统大中转与南宋立国合法性</span>
+                        
+                        <div class="fold-card">
+                            <button class="fold-btn" onclick="toggleFold(this)">
+                                <span>🚀 深度解读一：宋高宗南渡与南宋“家法”制度的特殊延伸</span>
+                            </button>
+                            <div class="fold-content">
+                                <div class="question-box">
+                                    问题：结合以下张帆教授对赵构政治处境的深层分析，探讨为何南宋在立国之初，对恢复北方领土的态度充满虚伪和极度防范？
+                                </div>
+                                
+                                <div class="source-box">
+                                    <strong>【史料研读：高宗防范诸将与钦宗回銮的心理博弈】</strong><br>
+                                    “之所以要限制诸将，还有一个重要的现实原因，就是宋高宗对主战派将领们恢复中原、迎回徽、钦二帝的主张极其反感，他怕钦宗回来夺了他的帝位。……在抗击金兵的战争中，高宗更是对将帅严加控制，生怕他们‘张皇事势’‘却致引惹’，而甘愿放弃胜利成果，与金议和。”<br>
+                                    ——《中国历史·隋唐辽宋金卷》（白寿彝主编，引自教学设计1）
+                                </div>
+
+                                <div class="answer-box">
+                                    <strong>✅ 核心素养深层解析：</strong><br>
+                                    1. <strong>合法性焦虑：</strong> 
+                                    高宗非嫡长子承嗣，由于钦宗尚在金朝俘虏中，其登基带有临时战时机制性质。一旦主战派彻底收复中原、迎回被废的宋钦宗，高宗在法理上面临“太上皇”或“归还帝位”的极大尴尬。因此，对高宗而言，<strong>半壁江山的绝对主权，远比光复中原后的二帝共享更有诱惑。</strong><br><br>
+                                    2. <strong>极度恐兵“家法”回归：</strong><br>
+                                    五代武人篡夺、禁军逼宫的教训深植于宋皇室血液。南宋初年几支强悍的抗金精锐（岳飞、韩世忠、张俊等）由于连年在外作战，呈现兵将相知的独立化、私人化趋势（岳家军、韩家军等）。这引起了宋高宗对“藩镇割据”卷土重来的极度恐惧，因此，收回武将兵权、实行崇文抑武，成为了南宋压倒一切的头等政治底线。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 句段 2：岳家军御侮与郾城大捷 -->
+                <div class="sentence-wrapper" id="q_yuefei">
+                    <div class="textbook-sentence">
+                        南宋初年,宋军在与金军对抗中素质明显提高,形成几支较有战斗力的部队,尤以岳飞指挥的“岳家军”战绩卓著。然而,宋高宗和宰相秦桧却视岳飞等为心腹之患,主动向金朝求和。1141年,南宋与金订立绍兴和议。以东起淮水、西至大散关一线划界,南宋对金称臣,每年向金朝缴纳一笔财物,称为“岁贡”。岳飞也被南宋朝廷逮捕杀害。
+                    </div>
+
+                    <div class="teaching-design">
+                        <span class="design-label">主战派血战与十二道金牌之罪</span>
+                        
+                        <div class="fold-card">
+                            <button class="fold-btn" onclick="toggleFold(this)">
+                                <span>⚔️ 深度解读二：岳飞之死、收兵权与“莫须有”背后的政治角力</span>
+                            </button>
+                            <div class="fold-content">
+                                <div class="question-box">
+                                    问题：如何理解岳飞之死？是单纯的奸臣秦桧陷害，还是南宋文官高度极权体制和皇帝集权意志共同执行的体制性悲剧？
+                                </div>
+                                
+                                <div class="source-box">
+                                    <strong>史料一：【主战派将领的浩然正气——《满江红》】</strong><br>
+                                    “怒发冲冠，凭栏处、潇潇雨歇。抬望眼，仰天长啸，壮怀激烈。三十功名尘与土，八千里路云和月。……靖康耻，犹未雪；臣子恨，何时灭？驾长车，踏破贺兰山缺！壮志饥餐胡虏肉，笑谈渴饮匈奴血。待从头，收拾旧山河，朝天阙！”<br>
+                                    ——《满江红》（岳飞作）
+                                </div>
+
+                                <div class="source-box">
+                                    <strong>史料二：【西方史家对宋高宗与秦桧体制性杀将的务实解剖】</strong><br>
+                                    “聪明而务实的高宗可能把岳飞之死当作限制北方军阀们军权的一种方法。这些军阀的私人武装和高度独立的军队对政府的和谈来说是个极大的威胁。高宗可能希望重新建立崇文抑武的秩序，就像太祖皇帝在宋初所做的那样。……总的说来，皇帝的权力和地位只能通过与主和派站在一道才能得到加强。”<br>
+                                    ——[加]卜正民等《哈佛中国史——儒家统治的时代：宋的转型》
+                                </div>
+
+                                <div class="answer-box">
+                                    <strong>✅ 岳飞冤案的历史理性解释：</strong><br>
+                                    1. <strong>不是奸臣一人的偶发之举，而是皇权与文官集权的蓄意自残（史料二视角）：</strong><br>
+                                    宋高宗为实现“绍兴和议”，必须向金人交出“诚意”（即杀害金人最畏惧的岳飞，如金将完颜兀术信中指出：<strong>“必杀飞，始可和”</strong>）。<br>
+                                    2. <strong>兵将分离的“祖宗之法”重铸：</strong><br>
+                                    宋廷不容许任何将领拥有功高盖主、能独立抗衡朝廷的私人铁血威信。高宗和秦桧通过毒死岳飞、解除韩世忠、张俊等人的大权（“杯酒释兵权”的血腥复刻版），彻底铲除了武将可能威胁皇权的制度温床。这也是宋朝贯彻“崇文抑武、兵将分离”安全机制所付出的惨重文明代价。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 句段 3：绍兴和议与南北对峙格局 -->
+                <div class="sentence-wrapper" id="q_heyi">
+                    <div class="textbook-sentence">
+                        [补充绍兴和议原文] 1141年绍兴和议的达成，奠定了南宋与金朝对峙的法定边界和宗藩主从体制。南宋作为战胜国，在求和外交中向金朝呈上了极其屈辱的誓表。
+                    </div>
+
+                    <div class="teaching-design">
+                        <span class="design-label">宋金盟誓原文精读与领土固化</span>
+                        
+                        <div class="fold-card">
+                            <button class="fold-btn" onclick="toggleFold(this)">
+                                <span>⚖️ 制度精读：誓表解析与淮水——大散关边界的军事地理学</span>
+                            </button>
+                            <div class="fold-content">
+                                <div class="question-box">
+                                    问题：读下方南宋向金朝上呈的正式国书《誓表》，分析在绍兴和议中南宋是以何种卑微、依附的外交姿态向金朝俯首的？这与北宋与辽的“兄弟之盟”有什么断代降级？
+                                </div>
+                                
+                                <div class="source-box">
+                                    <strong>史料三：【绍兴和议宋高宗向金上呈的《誓表》】</strong><br>
+                                    “臣构言：今来画疆，合以淮水中流为界，西有唐、邓州，割属上国（指金朝）……蒙恩造（蒙受恩德），许备藩方（封在地方），世世子孙，谨守臣节。每年皇帝生辰并正旦，差使称贺不绝。岁贡银绢二十五万两、匹……有渝此盟，明神是殛（jí，诛杀），坠命亡氏，其国家。臣今既进誓表，伏望上国蚤（早）降誓诏，庶使敝邑永有凭焉！”<br>
+                                    ——《金史》卷77《宗弼传》
+                                    <div class="footnote"><strong>[注释]</strong> 
+                                    ① 构：即赵构，宋高宗的名字。自称“臣构”，表明南宋向金朝名义上的臣服地位。<br>
+                                    ② 般送（般通搬）：指运送钱粮。<br>
+                                    ③ 泗州：今江苏盱眙，当时为交割岁币的边境口岸。<br>
+                                    ④ 蚤：通“早”。
+                                    </div>
+                                </div>
+
+                                <div class="answer-box">
+                                    <strong>✅ 宋辽“澶渊之盟”与宋金“绍兴和议”的外交对比：</strong>
+                                    <ul>
+                                        <li><strong>外交层级降格：</strong> 宋辽约为<strong>“兄弟之国”</strong>（对等），宋给辽的属于“岁币”（平级贸易购买和平）。而宋金和议中，宋高宗自称“臣”，宋金为<strong>“君臣主从关系”</strong>。南宋给金的是<strong>“岁贡”</strong>（即下级臣子给宗主国的贡奉），在外交礼仪上极具屈辱性。</li>
+                                        <li><strong>淮水——大散关地缘格局：</strong> 这一边界线的确立，标志着南宋永远失去了黄河流域中原大片土地。淮河以北一平如洗，南宋失去了黄河等天然屏障，只能依靠淮河水网和险峻的秦岭大散关勉强拱卫江南，国防空间深度受挫，偏安偏弱大势已定。</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 句段 4：隆兴和议与侄国关系的发展 -->
+                <div class="sentence-wrapper" id="q_longxing">
+                    <div class="textbook-sentence">
+                        此后,宋金之间又发生几次战争,南宋地位稍有上升,不再向金称臣,而是“世为侄国”,继续维持南北对峙的局面。
+                    </div>
+
+                    <div class="teaching-design">
+                        <span class="design-label">宋金关系演变：隆兴和议与嘉定和议</span>
+                        
+                        <div class="fold-card">
+                            <button class="fold-btn" onclick="toggleFold(this)">
+                                <span>⚖️ 历史拓展：宋金关系的三次调整及其地缘均势</span>
+                            </button>
+                            <div class="fold-content">
+                                <div class="question-box">
+                                    问题：结合张帆《中国古代简史》的拓展记载，梳理隆兴和议与嘉定和议对宋金关系的微妙微调。为什么两宋政府在战败时总是习惯于“通过更改外交辈分与岁币数量”来换取表面的和平？
+                                </div>
+                                
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <thead>
+                                        <tr style="background: #f1f5f9;">
+                                            <th style="padding: 10px; border: 1px solid var(--border-color); width: 20%;">和议名称</th>
+                                            <th style="padding: 10px; border: 1px solid var(--border-color); width: 25%;">历史背景</th>
+                                            <th style="padding: 10px; border: 1px solid var(--border-color); width: 35%;">核心关系调整</th>
+                                            <th style="padding: 10px; border: 1px solid var(--border-color); width: 20%;">岁币与经济代价</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color); font-weight: bold;">绍兴和议<br>(1141年)</td>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color);">宋高宗、秦桧一意求和，杀岳飞，自废武功</td>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>君臣关系</strong>：宋帝向金帝<strong>“称臣”</strong>，金册封宋高宗</td>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color);">“岁贡”银25万两、绢25万匹</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color); font-weight: bold;">隆兴和议<br>(1165年)</td>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color);">金海陵王南侵失败，宋孝宗起兵北伐亦败，重新谈判</td>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>叔侄关系</strong>：不再称臣，改称<strong>“世为侄国”</strong>（宋帝称金帝为叔父）</td>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color);">岁贡改为“岁币”，降为银绢各20万</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color); font-weight: bold;">嘉定和议<br>(1208年)</td>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color);">南宋宰臣韩侂胄仓促北伐大败，旧党发动政变，献其首级求和</td>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>伯侄关系</strong>：宋改尊金帝为<strong>伯父</strong>（外交地位再度贬降）</td>
+                                            <td style="padding: 10px; border: 1px solid var(--border-color);">岁币增至银绢各30万，另付“犒军银”300万两</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="answer-box">
+                                    <strong>✅ “外交辈分”背后的政治实用主义：</strong><br>
+                                    在两宋的执政理性（“祖宗之法”）中，<strong>“经济账与尊严账”有明确的置换律。</strong><br>
+                                    如史料和课文多次指出：“较于用兵之费，不及百分之一。” 只要金兵不强行灭亡宋室社稷，在外交国书中自称“侄子”或“臣子”，每年付出一笔折合江南工商业收入极小比例的“岁币”，换来免于全面征兵和武将拥兵乱政的内保安全，在理性经济人考量下，是一种高度维稳实用的政治自保手段。这就是两宋文官政治高度成熟（抑武守内）而产生的特殊“偏安”活法。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- 逐句课文精讲结束 -->
+
+            <!-- 4. 随堂巩固检测 -->
+            <div id="output" class="tab-content">
+                <div class="section-title" style="margin-top:0px; font-size: 1.3em; font-weight: bold; color: var(--primary-crimson); border-left: 5px solid var(--primary-gold); padding-left: 10px; margin-bottom: 20px;">
+                    随堂检测：交互式一轮复习自测卷
+                </div>
+
+                <!-- Q1 -->
+                <div class="question-card" id="q_test1">
+                    <div class="q-header">1. (2026·湖南高三联合检演) 
+                        <span class="raw-text">绍兴和议订立后，宋高宗向金朝皇帝呈上的《誓表》中写道：“臣构言：……世世子孙，谨守臣节。每年皇帝生辰并正旦，差使称贺不绝。岁贡银绢二十五万两、匹”。这一誓表的政治签署在本质上折射出 ( )</span>
+                        <span class="highlight-text" style="display: none;">
+                            <span class="hl-context">绍兴和议订立后</span>，宋高宗向金朝皇帝呈上的《誓表》中写道：<span class="hl-evidence">“臣构言：……世世子孙，谨守臣节。每年皇帝生辰并正旦，差使称贺不绝。岁贡银绢二十五万两、匹”</span>。<span class="hl-question">这一誓表的政治签署在本质上折射出</span> ( )
+                        </span>
+                    </div>
+
+                    <!-- 核心三合一并列控制栏 -->
+                    <div class="inline-control-bar">
+                        <button class="btn-deduct" onclick="toggleDeduction('q_test1')">🧭 正向逻辑链</button>
+                        
+                        <div class="horizontal-options">
+                            <button class="opt-btn" onclick="checkOption(this, 'A', false, 'q_test1')">A. 南宋在战场上处于被动，面临彻底覆亡危机</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'B', true, 'q_test1')">B. 南宋通过放弃政治平等、向金俯首自保</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'C', false, 'q_test1')">C. 岁币和称臣消除了宋金之间的一切战争隐患</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'D', false, 'q_test1')">D. 宋廷成功收复了包括燕云十六州在内的土地</button>
+                        </div>
+
+                        <button class="btn-analysis" onclick="toggleAnalysis('q_test1')">🔍 考点透视与解析</button>
+                    </div>
+
+                    <div class="right-indicator"></div>
+
+                    <!-- Q1 正向逻辑推导沙盘 -->
+                    <div class="thinking-sandbox">
+                        <div class="chain-title">🧭 “正向逻辑推导”思维沙盘：</div>
+                        <div class="flow-container">
+                            <div class="flow-step">
+                                <div class="step-badge badge-1">1</div>
+                                <div class="step-content"><strong>定位求答项：</strong>“本质上折射出”，要求分析南宋高宗签署屈辱性《誓表》背后的政治实质。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-2">2</div>
+                                <div class="step-content"><strong>提取文本线索：</strong>“臣构”、“谨守臣节”、“岁贡银绢”——高宗自称“臣构”，确立了两国的君臣尊卑关系，南宋以此向金输纳贡赋。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-3">3</div>
+                                <div class="step-content"><strong>逻辑推导：</strong>当时南宋在岳家军等抗金武装的护卫下，已在江南站稳脚跟，郾城大捷证明其具备极高战力，并无覆亡危机。但高宗为巩固自身权力、防范武将拥兵做大（“削兵权”），不惜在政治礼仪上彻底放弃对等主权，向金称臣纳贡，购买半壁偏安的内部安全。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-4">4</div>
+                                <div class="step-content"><strong>锁定正确答案：</strong>对应 <strong>B项</strong>。</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q1 考点剖析展示区 -->
+                    <div class="analysis-box">
+                        <div class="analysis-content">
+                            <div class="analysis-item">
+                                <span class="analysis-tag tag-green">正确答案</span><strong>B</strong>
+                            </div>
+                            <div class="analysis-text">
+                                <strong>解析：</strong>历史探究应结合两宋独特的防制、抑武“家法”。根据誓表原文，“臣构”一词极其形象地表露了南宋向金称臣、沦为依附性“藩方”的屈辱处境。在南宋尚具备极强军事反击能力的前提下，高宗、秦桧主动斩杀主战将领岳飞，签署该国书，本质是为了斩断武臣势力发展壮大的根本，通过自损主权和外交平等来向金妥协，实现割裂偏安自保，故选B项。<br><br>
+                                <strong>错项分析：</strong><br>
+                                • A项：当时郾城大捷证明南宋军事防御能力大增，并非“面临彻底覆亡”，排除；<br>
+                                • C项：岁币和屈辱妥协并未消除战争隐患，此后金帝完颜亮再次毁盟南下及隆兴、嘉定年间的战和起伏即是明证，排除；<br>
+                                • D项：绍兴和议以淮河一线划界，南宋永久失去了北方大片中原领土，更无谈收复燕云十六州，排除。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-card" id="q_test2">
+                    <div class="q-header">2. (2026·福建高三质检) 
+                        <span class="raw-text">南宋绍兴十一年（1141年），宋廷连下金牌命令在前线大胜的岳飞班师，随即将岳飞等主战大将兵权罢免（“杯酒释兵权”的复刻），不久以“莫须有”罪名将岳飞毒死于风波亭。宋廷“自毁长城”这一悲剧性动作的核心政治意图是 ( )</span>
+                        <span class="highlight-text" style="display: none;">
+                            <span class="hl-context">南宋绍兴十一年（1141年）</span>，宋廷罢免前线立功大将兵权，并将岳飞杀害。<span class="hl-evidence">宋廷“自毁长城”这一悲剧性动作的核心政治意图是</span> ( )
+                        </span>
+                    </div>
+
+                    <!-- 核心三合一并列控制栏 -->
+                    <div class="inline-control-bar">
+                        <button class="btn-deduct" onclick="toggleDeduction('q_test2')">🧭 正向逻辑链</button>
+                        
+                        <div class="horizontal-options">
+                            <button class="opt-btn" onclick="checkOption(this, 'A', false, 'q_test2')">A. 大幅减轻禁军在江淮防线的后勤消耗</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'B', true, 'q_test2')">B. 重塑崇文抑武的传统“防制”秩序</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'C', false, 'q_test2')">C. 彻底改变自唐朝以来的募兵养兵政策</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'D', false, 'q_test2')">D. 为神宗元丰改制提供充分的财政准备</button>
+                        </div>
+
+                        <button class="btn-analysis" onclick="toggleAnalysis('q_test2')">🔍 考点透视与解析</button>
+                    </div>
+
+                    <div class="right-indicator"></div>
+
+                    <!-- Q2 正向逻辑推导沙盘 -->
+                    <div class="thinking-sandbox">
+                        <div class="chain-title">🧭 “正向逻辑推导”思维沙盘：</div>
+                        <div class="flow-container">
+                            <div class="flow-step">
+                                <div class="step-badge badge-1">1</div>
+                                <div class="step-content"><strong>定位求答项：</strong>“核心政治意图”，考查宋廷杀岳飞、收回武将兵权的政治原动力。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-2">2</div>
+                                <div class="step-content"><strong>提取文本线索：</strong>大将兵权罢免、杀死岳飞、自废抗金武装武力。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-3">3</div>
+                                <div class="step-content"><strong>逻辑推导：</strong>宋太祖建宋初，确立了极度防范武将拥兵乱政、兵将相知的防制秩序（“崇文抑武”）。在南宋连年战乱中，形成了以岳飞、韩世忠等武将为核心、凝聚力极强的“私家性质武装（岳家军）”。这让高宗和秦桧极度疑忌，视武将为“心腹之患”。通过“杀飞收权”，在战时动荡中恢复文官统治、消融兵权。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-4">4</div>
+                                <div class="step-content"><strong>锁定正确答案：</strong>对应 <strong>B项</strong>。</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q2 考点剖析展示区 -->
+                    <div class="analysis-box">
+                        <div class="analysis-content">
+                            <div class="analysis-item">
+                                <span class="analysis-tag tag-green">正确答案</span><strong>B</strong>
+                            </div>
+                            <div class="analysis-text">
+                                <strong>解析：</strong>西方史学及张帆《中国古代简史》指明，高宗和秦桧毒死岳飞、解散主战诸将兵权，是宋朝太祖以来“重文轻武”立国家法在战时特殊环境下的回归与自残。高宗宁可求和向金妥协，也不允许战时立了大功的军事将领拥有不容朝廷控制的私人兵权，最终实现了重新削夺军阀特权、重归士大夫文官治国的安全秩序，故选B项。<br><br>
+                                <strong>错项分析：</strong><br>
+                                • A项：杀死大将是为了求和与收权，非单纯后勤精减，排除；<br>
+                                • C项：募兵政策并没有因此被废除，宋朝始终维持职业募兵体制，排除；<br>
+                                • D项：元丰改制属于北宋神宗年间中枢改制，此时北宋早已灭亡，时序混乱错误，排除。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-card" id="q_test3">
+                    <div class="q-header">3. (2026·湖南师大附中质检) 
+                        <span class="raw-text">从绍兴和议中南宋向金“称臣”，到隆兴和议中改称“世为侄国”，再到嘉定和议中改称金帝为“伯父”。南宋对金外交称谓和辈分的这一系列变迁主要折射出两宋 ( )</span>
+                        <span class="highlight-text" style="display: none;">
+                            <span class="hl-context">南宋对金外交称谓和辈分变迁</span>（从称臣到称侄国，再到改称伯父），<span class="hl-evidence">这一系列外交称谓和辈分的微妙变迁主要折射出两宋</span> ( )
+                        </span>
+                    </div>
+
+                    <!-- 核心三合一并列控制栏 -->
+                    <div class="inline-control-bar">
+                        <button class="btn-deduct" onclick="toggleDeduction('q_test3')">🧭 正向逻辑链</button>
+                        
+                        <div class="horizontal-options">
+                            <button class="opt-btn" onclick="checkOption(this, 'A', false, 'q_test3')">A. 在北方辽金两代的不断蚕食下彻底走向亡国</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'B', true, 'q_test3')">B. 长期推行“以钱财及辈分折冲地缘平衡”的防卫弹性</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'C', false, 'q_test3')">C. 彻底改变了崇文抑武、兵将分离的基本家法</button>
+                            <button class="opt-btn" onclick="checkOption(this, 'D', false, 'q_test3')">D. 地方监司和知州拥有了极其强大的军事割据权</button>
+                        </div>
+
+                        <button class="btn-analysis" onclick="toggleAnalysis('q_test3')">🔍 考点透视与解析</button>
+                    </div>
+
+                    <div class="right-indicator"></div>
+
+                    <!-- Q3 正向逻辑推导沙盘 -->
+                    <div class="thinking-sandbox">
+                        <div class="chain-title">🧭 “正向逻辑推导”思维沙盘：</div>
+                        <div class="flow-container">
+                            <div class="flow-step">
+                                <div class="step-badge badge-1">1</div>
+                                <div class="step-content"><strong>定位求答项：</strong>“折射出两宋”，要求剖析多次和议、岁币与辈分调整背后的国家自卫特质。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-2">2</div>
+                                <div class="step-content"><strong>提取文本线索：</strong>称臣 ➡️ 侄国（隆兴） ➡️ 伯叔国（嘉定），伴随岁币的增减。战局僵持时辈分提高，战败北伐夭折时辈分降低。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-3">3</div>
+                                <div class="step-content"><strong>逻辑推导：</strong>宋代商品经济极度繁荣、国富兵不强。中枢和文官集团将“岁币和外交降级”视为理性的“国防买单支出”。在没有强悍骑兵收复北方的前提下，用江南充沛的赋税和极有弹性的外交辈分，与金进行政治对冲，以牺牲边疆主权尊严为代价换得长期的相对偏安和平。</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-step">
+                                <div class="step-badge badge-4">4</div>
+                                <div class="step-content"><strong>锁定正确答案：</strong>对应 <strong>B项</strong>。</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q3 考点剖析展示区 -->
+                    <div class="analysis-box">
+                        <div class="analysis-content">
+                            <div class="analysis-item">
+                                <span class="analysis-tag tag-green">正确答案</span><strong>B</strong>
+                            </div>
+                            <div class="analysis-text">
+                                <strong>解析：</strong>在宋金博弈长时段里，宋、金在淮水、大散关一线达成了长期的均势。宋廷根据战场局势的起伏和战和代价，频繁更改外交辈分（臣子、侄子、侄孙）和岁币纳量。两宋统治者将此视为在不打破内部崇文抑武体制的前提下、用最低经济和面子成本获取外部和平的最有效工具，具有典型的防卫防御弹性。故选B项。<br><br>
+                                <strong>错项分析：</strong><br>
+                                • A项：南宋最终亡于蒙古大军而非辽金二代（辽金彼时早已覆亡），排除；<br>
+                                • C项：宋廷始终将崇文抑武、兵无常帅视为立国根本，并在偏安中进一步深化该底线，并未“改变”，排除；<br>
+                                • D项：地方始终被文官知州和路级四司分权限制，并未获得“割据权”，排除。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. 核心素养提炼 -->
+            <div id="literacy" class="tab-content">
+                <div class="sentence-wrapper" style="border-left-color: #dc3545;">
+                    <div class="textbook-sentence">
+                        <h3>🌟 历史学科核心素养提炼</h3>
+                        
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: var(--primary-crimson); margin-bottom: 5px;">① 唯物史观 (Historical Materialism)</h4>
+                            <p style="margin: 0; font-size: 0.95em;">辩证解析<strong>家国安全代价与阶级利益博弈。</strong> 岳飞被杀与南宋妥协偏安，不单是皇帝与奸臣的个人投降行径，其深层体现了宋朝立国的“家法”体系与南宋统治阶层利益重心的彻底内卷化。为了防范内部藩镇武装重演五代逼宫夺权，赵宋统治集团宁可自毁长城、偏安半壁，甚至接受臣子降级的政治丧权，以此实现其维护封建君主专制集权体制“家门安全”的第一原则。这极大反映了<strong>上层建筑的制度防御本能往往优先于领土光复宏图</strong>的唯物史观铁律。</p>
+                        </div>
+
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: var(--primary-gold); margin-bottom: 5px;">② 史料实证 (Historical Evidence)</h4>
+                            <p style="margin: 0; font-size: 0.95em;">通过剖析高宗向金上呈的正式国书《誓表》（史料三），直观、极其生动地揭示出“绍兴和议”给南宋罩上的依附性君臣底色。誓表中“臣构言”、“许备藩方”、“谨守臣节”等核心誓词，是历史研究不容动摇、具有极强反差的制度性文字凭证。结合金史史料，可实证南宋求和的卑微外交常态，进而深化史论结合的历史学科论证能力。</p>
+                        </div>
+
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: var(--primary-teal); margin-bottom: 5px;">③ 历史解释 (Historical Interpretation)</h4>
+                            <p style="margin: 0; font-size: 0.95em;"><strong>如何看待南宋“世为侄国”与“买来的和平”：</strong></p>
+                            <ul>
+                                <li>南宋的偏安常被评定为屈辱苟安，但在文官士大夫治天下（文官政治）的高度理性下，这同样是一种<strong>极低成本的地缘国防对冲博弈</strong>。通过数额极微的岁贡岁币，南宋成功避免了长期大规模全国征兵带来的高昂社会军事动员危机，保障了江南经济和文化的繁荣、市井文明的发展，使理学和科技取得突破，这是地缘僵局下的历史特殊合理性体现。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. 教学总结与反思 -->
+            <div id="summary" class="tab-content">
+                <div class="sentence-wrapper" style="border-left-color: var(--primary-gold);">
+                    <div class="textbook-sentence" style="text-align: center; background: var(--light-gold);">
+                        <h3>🎓 课堂结语：江南一隅的文明华彩与宿命</h3>
+                        <p style="font-size: 1.1em; max-width: 800px; margin: 0 auto; line-height: 1.8; color: #5c3d2e;">
+                            南宋的偏安是一首血色与华彩并存的历史变奏曲。它在北方沦陷、天倾地覆的战乱中狼狈南渡，却凭借淮河水网和岳家军等抗金忠义大军的舍命厮杀得以奇迹般苟延存续。
+                            <br><br>
+                            然而，宋太祖以来的防弊政治和极度防范武将拥兵自重的“家法”，注定了岳飞等精武将帅最终不得不死于本朝刀刃之下的悲剧命运。
+                            “绍兴和议”买来了江南百年的升平岁月，使杭州西子湖畔成为市井文化与科技繁荣的巅峰热土，但这种<strong>以斩杀宿将、牺牲中原领土与国家外交主权对等换取而来的生存权，也彻底焊死了两宋防卫机制“积弱”的死穴</strong>，最终导致其无法抵抗来自大漠深处更为狂野的蒙古铁骑，最终走向崖山海战的文明落幕。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- 中间内容区结束 -->
+
+        <!-- 右侧思维导图 -->
+        <aside class="mindmap-sidebar">
+            <button class="mm-btn btn-unit" onclick="showMindMap('unit')">大单元<br>宏观</button>
+            <button class="mm-btn btn-course" onclick="showMindMap('course')">本课<br>框架</button>
+            <button class="mm-btn btn-detail" onclick="showMindMap('detail')">偏安<br>详解</button>
+        </aside>
+
+    </div> <!-- 主体容器结束 -->
+
+    <!-- 思维导图弹出窗 -->
+    <div id="mindMapModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            
+            <!-- 1. 大单元宏观导图 -->
+            <div id="mm-unit" class="mm-container" style="display: none;">
+                <h3 style="color: #3d3b30; text-align: center; margin-top: 0;">🌐 第三单元：辽宋夏金多民族政权并立与元朝统一</h3>
+                <p style="color: #666; text-align: center; font-size: 0.9em; margin-bottom: 25px;">大单元宏观视角：多边地缘对峙到少数民族一统的制度交融演进</p>
+                <svg class="map-svg" viewBox="0 0 900 450" style="width:100%; height:100%;">
+                    <path d="M 450 60 L 150 150 M 450 60 L 450 150 M 450 60 L 750 150" stroke="#cbd5e1" stroke-width="2" fill="none" />
+                    <path d="M 150 200 L 150 260 M 450 200 L 450 260 M 750 200 L 750 260" stroke="#cbd5e1" stroke-width="2" fill="none" />
+
+                    <!-- 根节点 -->
+                    <g transform="translate(325, 20)">
+                        <rect width="250" height="50" rx="8" fill="#3d3b30" />
+                        <text x="125" y="30" class="text-on-dark" font-weight="bold" text-anchor="middle">多边政权并立演进格局</text>
+                    </g>
+
+                    <!-- 分支 1 -->
+                    <g transform="translate(50, 140)" stroke="#800020" stroke-width="1.5">
+                        <rect width="200" height="55" rx="6" fill="#800020" />
+                        <text x="100" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">第9课：两宋的政治与军事</text>
+                        <text x="100" y="42" class="text-on-dark" text-anchor="middle">集权防制、岁币买单、南宋偏安</text>
+                    </g>
+                    <g transform="translate(50, 250)">
+                        <rect width="200" height="55" rx="4" fill="#fffdfa" stroke="#800020" stroke-width="1.5" />
+                        <text x="100" y="25" class="text-title-on-light" font-weight="bold" text-anchor="middle">本课教学核心立意</text>
+                        <text x="100" y="42" class="text-on-light" text-anchor="middle">观察汉文官制度与防弊代价牺牲</text>
+                    </g>
+
+                    <!-- 分支 2 -->
+                    <g transform="translate(350, 140)">
+                        <rect width="200" height="55" rx="6" fill="#1e3a8a" />
+                        <text x="100" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">第10课：辽夏金元的统治</text>
+                        <text x="100" y="42" class="text-on-dark" text-anchor="middle">行省制、二元南北官、版图奠定</text>
+                    </g>
+                    <g transform="translate(350, 250)">
+                        <rect width="200" height="55" rx="4" fill="#f8fafc" stroke="#1e3a8a" stroke-width="1.5" />
+                        <text x="100" y="25" class="text-title-on-light" font-weight="bold" text-anchor="middle">少数民族整合重塑</text>
+                        <text x="100" y="42" class="text-on-light" text-anchor="middle">认识异族兵制与中原行省的融合</text>
+                    </g>
+
+                    <!-- 分支 3 -->
+                    <g transform="translate(650, 140)">
+                        <rect width="200" height="55" rx="6" fill="#15803d" />
+                        <text x="100" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">第11课：经济、社会与文化</text>
+                        <text x="100" y="42" class="text-on-dark" text-anchor="middle">重心南移、平民理学、城市繁盛</text>
+                    </g>
+                    <g transform="translate(650, 250)">
+                        <rect width="200" height="55" rx="4" fill="#f8fafc" stroke="#15803d" stroke-width="1.5" />
+                        <text x="100" y="25" class="text-title-on-light" font-weight="bold" text-anchor="middle">偏安繁荣对冲</text>
+                        <text x="100" y="42" class="text-on-light" text-anchor="middle">感受国防积弱下的江南高度文明</text>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- 2. 本课大纲导图 -->
+            <div id="mm-course" class="mm-container" style="display: none;">
+                <h3 style="color: #475569; text-align: center; margin-top: 0;">📖 第9课 两宋的政治和军事（本课结构体系）</h3>
+                <p style="color: #666; text-align: center; font-size: 0.9em; margin-bottom: 25px;">政治逻辑闭环：宋初分权制衡 ➡️ 积贫积弱危机 ➡️ 新法救亡失败 ➡️ 南宋妥协偏安</p>
+                <svg class="map-svg" viewBox="0 0 900 450" style="width:100%; height:100%;">
+                    <path d="M 450 65 L 450 115 M 450 165 L 450 215 M 450 265 L 450 315 M 450 365 L 450 400" stroke="#cbd5e1" stroke-width="2.5" fill="none" />
+
+                    <!-- 子目 1 -->
+                    <g transform="translate(250, 15)">
+                        <rect width="400" height="50" rx="8" fill="#1d3557" />
+                        <text x="200" y="30" class="text-on-dark" font-weight="bold" text-anchor="middle">子目一：宋初专制集权的加强 (收地方权、分散相权、崇文抑武)</text>
+                    </g>
+
+                    <g transform="translate(350, 115)">
+                        <rect width="200" height="50" rx="6" fill="#f1f5f9" stroke="#d35400" stroke-width="1.5" />
+                        <text x="100" y="22" class="text-title-on-light" font-weight="bold" text-anchor="middle">集权防制后遗症爆发：</text>
+                        <text x="100" y="38" class="text-title-on-light" font-weight="bold" text-anchor="middle">官多兵疲，中原政权沦于财政枯竭</text>
+                    </g>
+
+                    <!-- 子目 2 -->
+                    <g transform="translate(250, 215)">
+                        <rect width="400" height="50" rx="8" fill="#d35400" />
+                        <text x="200" y="30" class="text-on-dark" font-weight="bold" text-anchor="middle">子目二与三：边防危机与王安石变法 (岁币常态、自救失败)</text>
+                    </g>
+
+                    <g transform="translate(350, 315)">
+                        <rect width="200" height="50" rx="6" fill="#f1f5f9" stroke="#800020" stroke-width="1.5" />
+                        <text x="100" y="22" class="text-title-on-light" font-weight="bold" text-anchor="middle">大变法失败亡国南渡：</text>
+                        <text x="100" y="38" class="text-title-on-light" font-weight="bold" text-anchor="middle">👑 靖康天倾，偏安防制格局重铸</text>
+                    </g>
+
+                    <!-- 子目 4 -->
+                    <g transform="translate(250, 395)" stroke="#800020" stroke-width="2">
+                        <rect width="400" height="50" rx="8" fill="#800020" />
+                        <text x="200" y="30" class="text-on-dark" font-weight="bold" text-anchor="middle">子目四：南宋的偏安（主战血战、绍兴和议、世为侄国）</text>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- 3. 南宋的偏安详解 -->
+            <div id="mm-detail" class="mm-container" style="display: none;">
+                <h3 style="color: var(--primary-crimson); text-align: center; margin-top: 0;">👑 南宋偏安格局的历史解释演变网</h3>
+                <p style="color: #666; text-align: center; font-size: 0.9em; margin-bottom: 25px;">深度逻辑：南渡正统建立 ➡️ 抗金血战 ➡️ 诛杀宿将收权 ➡️ 辈分外交妥协</p>
+                <svg class="map-svg" viewBox="0 0 1000 550" style="width:100%; height:100%;">
+                    <path d="M 500 50 L 500 100" stroke="#666" stroke-width="2" fill="none" />
+                    <path d="M 500 150 L 250 200" stroke="#cbd5e1" stroke-width="2.5" fill="none" />
+                    <path d="M 500 150 L 750 200" stroke="#cbd5e1" stroke-width="2.5" fill="none" />
+                    
+                    <path d="M 250 255 L 250 320" stroke="#1d3557" stroke-width="2" fill="none" />
+                    <path d="M 750 255 L 750 320" stroke="#800020" stroke-width="2" fill="none" />
+                    
+                    <path d="M 250 405 L 500 460" stroke="#666" stroke-width="2" fill="none" />
+                    <path d="M 750 405 L 500 460" stroke="#666" stroke-width="2" fill="none" />
+
+                    <!-- 根 -->
+                    <g transform="translate(375, 10)">
+                        <rect width="250" height="40" rx="6" fill="#2d3748" />
+                        <text x="125" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">1127年靖康之变，徽钦北狩，北宋亡</text>
+                    </g>
+
+                    <!-- 二级主轴 -->
+                    <g transform="translate(350, 95)">
+                        <rect width="300" height="55" rx="6" fill="#800020" />
+                        <text x="150" y="24" class="text-on-dark" font-weight="bold" text-anchor="middle">宋高宗赵构南渡，定都临安建南宋</text>
+                        <text x="150" y="42" class="text-on-dark" text-anchor="middle">(统治特征：极度重安内、防备主战派武将)</text>
+                    </g>
+
+                    <!-- 抗金血战 -->
+                    <g transform="translate(150, 195)">
+                        <rect width="200" height="60" rx="6" fill="#1d3557" />
+                        <text x="100" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">① 血战御侮 (主战武装)</text>
+                        <text x="100" y="45" class="text-on-dark" text-anchor="middle">中原义军四起，岳家军郾城大捷</text>
+                    </g>
+
+                    <!-- 和议妥协 -->
+                    <g transform="translate(650, 195)">
+                        <rect width="200" height="60" rx="6" fill="#800020" />
+                        <text x="100" y="25" class="text-on-dark" font-weight="bold" text-anchor="middle">② 绍兴求和 (体制防范)</text>
+                        <text x="100" y="45" class="text-on-dark" text-anchor="middle">宋高宗杀岳飞收权，自废抗金武装</text>
+                    </g>
+
+                    <!-- 抗金战术详情 -->
+                    <g transform="translate(100, 320)">
+                        <rect width="280" height="85" rx="4" fill="#f0f4f8" stroke="#1d3557" stroke-width="1.5" />
+                        <text x="140" y="22" class="text-title-on-light" font-weight="bold" text-anchor="middle">军事实力跃升与中原光复希望：</text>
+                        <text x="140" y="42" class="text-on-light" font-weight="bold" text-anchor="middle">① 岳家军：军纪空前严明，深受百姓拥护</text>
+                        <text x="140" y="60" class="text-on-light" font-weight="bold" text-anchor="middle">② 郾城大败完颜兀术，金主力骑兵丧失优势</text>
+                        <text x="140" y="78" class="text-on-light" font-weight="bold" text-anchor="middle">③ 阻碍：因武将拥兵做大，引起朝廷极度忌惮</text>
+                    </g>
+
+                    <!-- 和约条款详情 -->
+                    <g transform="translate(610, 320)">
+                        <rect width="280" height="85" rx="4" fill="#fff5f5" stroke="#800020" stroke-width="1.5" />
+                        <text x="140" y="22" class="text-title-on-light" font-weight="bold" text-anchor="middle">绍兴和议盟誓核心条款（史料三）：</text>
+                        <text x="140" y="42" class="text-on-light" font-weight="bold" text-anchor="middle">① 君臣关系：“臣构”称臣，谨守臣节</text>
+                        <text x="140" y="60" class="text-on-light" font-weight="bold" text-anchor="middle">② 划界分治：以淮水——大散关一线为界</text>
+                        <text x="140" y="78" class="text-on-light" font-weight="bold" text-anchor="middle">③ 岁贡买单：每年“岁贡”银绢二十五万匹</text>
+                    </g>
+
+                    <!-- 后期辈分交锋 -->
+                    <g transform="translate(325, 455)">
+                        <rect width="350" height="85" rx="6" fill="#fcf9f2" stroke="#b5945b" stroke-width="2" />
+                        <text x="175" y="22" class="text-title-on-light" font-weight="bold" text-anchor="middle">后期和战起伏与“更改外交辈分”：</text>
+                        <text x="175" y="42" class="text-on-light" font-weight="bold" text-anchor="middle">隆兴和议：由“臣子”升格为“侄国”（宋帝尊金帝为叔父）</text>
+                        <text x="175" y="58" class="text-on-light" font-weight="bold" text-anchor="middle">嘉定和议：韩侂胄北伐失败，宋被迫再度自降改尊为伯父</text>
+                        <text x="175" y="74" class="text-on-light" font-weight="bold" text-anchor="middle">本质：宋廷将“岁币和外交降级”视为地缘维稳合理代偿</text>
+                    </g>
+                </svg>
+            </div>
+
+        </div> <!-- 思维导图框结束 -->
+    </div> <!-- 模态框系统结束 -->
+
+    <!-- JS 控制核心 -->
+    <script>
+        // 随堂自测交互作答控制
+        function checkOption(btnElement, optionLetter, isCorrect, qId) {
+            const card = document.getElementById(qId);
+            const indicator = card.querySelector('.right-indicator');
+            const allOptBtns = card.querySelectorAll('.opt-btn');
+
+            allOptBtns.forEach(btn => {
+                btn.classList.remove('correct-select', 'incorrect-select');
+            });
+
+            if (isCorrect) {
+                btnElement.classList.add('correct-select');
+                indicator.style.display = 'block';
+                indicator.style.color = '#2f855a';
+                indicator.innerHTML = '✓ 选择正确！可点击右侧 “🔍 考点透视” 研读南宋偏安地缘国防深层解释。';
+            } else {
+                btnElement.classList.add('incorrect-select');
+                indicator.style.display = 'block';
+                indicator.style.color = '#800020';
+                indicator.innerHTML = '❌ 选项 ' + optionLetter + ' 并非最佳答案，请结合思维沙盘重读史料与祖宗家法！';
+                
+                // 正确答案高亮
+                allOptBtns.forEach(btn => {
+                    if (qId === 'q_test1' && btn.innerText.includes('B.')) btn.classList.add('correct-select');
+                    if (qId === 'q_test2' && btn.innerText.includes('B.')) btn.classList.add('correct-select');
+                    if (qId === 'q_test3' && btn.innerText.includes('B.')) btn.classList.add('correct-select');
+                });
+            }
+        }
+
+        // 切换正向思维沙盘
+        function toggleDeduction(qId) {
+            const card = document.getElementById(qId);
+            if (!card) return;
+
+            const rawText = card.querySelector('.raw-text');
+            const highlightText = card.querySelector('.highlight-text');
+            const sandbox = card.querySelector('.thinking-sandbox');
+            const btn = card.querySelector('.btn-deduct');
+
+            if (sandbox.style.display === 'none' || !sandbox.style.display) {
+                if (rawText) rawText.style.display = 'none';
+                if (highlightText) highlightText.style.display = 'inline';
+                sandbox.style.display = 'block';
+                if (btn) {
+                    btn.innerHTML = '🧭 收起思维链';
+                    btn.classList.add('active');
+                }
+            } else {
+                if (rawText) rawText.style.display = 'inline';
+                if (highlightText) highlightText.style.display = 'none';
+                sandbox.style.display = 'none';
+                if (btn) {
+                    btn.innerHTML = '🧭 正向逻辑链';
+                    btn.classList.remove('active');
+                }
+            }
+        }
+
+        // 切换解析盒子
+        function toggleAnalysis(qId) {
+            const card = document.getElementById(qId);
+            if (!card) return;
+
+            const analysisBox = card.querySelector('.analysis-box');
+            const btn = card.querySelector('.btn-analysis');
+
+            if (analysisBox.style.display === 'none' || !analysisBox.style.display) {
+                analysisBox.style.display = 'block';
+                if (btn) {
+                    btn.innerHTML = '🔍 收起考点透视';
+                    btn.classList.add('active');
+                }
+            } else {
+                analysisBox.style.display = 'none';
+                if (btn) {
+                    btn.innerHTML = '🔍 考点透视与解析';
+                    btn.classList.remove('active');
+                }
+            }
+        }
+
+        // 顶部导航板块切换
+        function switchTab(tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            
+            const targetNav = Array.from(navItems).find(item => item.getAttribute('onclick').includes(tabId));
+            if(targetNav) targetNav.classList.add('active');
+
+            document.querySelector('.content-area').scrollTop = 0;
+        }
+
+        // 时间轴定位平滑滚动
+        function scrollToId(elementId) {
+            switchTab('peace');
+            setTimeout(() => {
+                const targetElement = document.getElementById(elementId);
+                if(targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100);
+        }
+
+        // 折叠机制
+        function toggleFold(btn) {
+            const content = btn.nextElementSibling;
+            const isOpen = content.style.display === 'block';
+            content.style.display = isOpen ? 'none' : 'block';
+            btn.classList.toggle('active', !isOpen);
+        }
+
+        // 模态导图弹出控制
+        const modal = document.getElementById('mindMapModal');
+        const mapContainers = {
+            'unit': document.getElementById('mm-unit'),
+            'course': document.getElementById('mm-course'),
+            'detail': document.getElementById('mm-detail')
+        };
+
+        function showMindMap(type) {
+            modal.style.display = 'flex';
+            Object.values(mapContainers).forEach(el => el.style.display = 'none');
+            if(mapContainers[type]) {
+                mapContainers[type].style.display = 'block';
+            }
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // 一键折叠双侧边栏
+        function toggleAllPanels() {
+            document.body.classList.toggle('panels-collapsed');
+            const triggerBtn = document.querySelector('.menu-trigger');
+            if (document.body.classList.contains('panels-collapsed')) {
+                triggerBtn.innerHTML = '🍔 菜单 (已收起)';
+            } else {
+                triggerBtn.innerHTML = '☰ 菜单 (已展开)';
+            }
+        }
+
+        // 无级字号缩放
+        let currentFontSize = 1.0; 
+        function adjustFont(direction) {
+            currentFontSize += direction * 0.08;
+            if (currentFontSize < 0.8) currentFontSize = 0.8;
+            if (currentFontSize > 1.6) currentFontSize = 1.6;
+            
+            const contentArea = document.querySelector('.content-area');
+            contentArea.style.fontSize = currentFontSize + 'em';
+        }
+    </script>
+</body>
+</html>

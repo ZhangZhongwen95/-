@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课程展示导航 - 2025.12.24</title>
+    <style>
+        :root {
+            --bg-color: #f0f2f5;
+            --class13-color: #4a90e2;
+            --class14-color: #50c878;
+            --class15-color: #9b59b6;
+            --text-dark: #333;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --hover-shadow: 0 10px 15px rgba(0,0,0,0.2);
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+        }
+
+        .clock {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #e74c3c;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            gap: 40px;
+        }
+
+        .class-section {
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .class-header {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .class-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            color: white;
+            font-size: 1rem;
+            margin-left: 15px;
+            vertical-align: middle;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        /* 链接卡片样式 */
+        .link-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 120px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+            background: #fff;
+        }
+
+        .link-card:active {
+            transform: scale(0.98);
+        }
+
+        .link-card:visited .group-name {
+            color: #95a5a6; /* 访问过的链接变灰 */
+        }
+        
+        .link-card:visited::after {
+            content: "✅";
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 1.2rem;
+        }
+
+        .group-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .design-ver {
+            font-size: 0.9rem;
+            color: #666;
+            background: #e0e0e0;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* 班级特定颜色 */
+        /* 13班 */
+        .c13-theme .class-header { color: var(--class13-color); border-color: var(--class13-color); }
+        .c13-theme .class-badge { background-color: var(--class13-color); }
+        .c13-theme .link-card:hover { border-color: var(--class13-color); }
+
+        /* 14班 */
+        .c14-theme .class-header { color: var(--class14-color); border-color: var(--class14-color); }
+        .c14-theme .class-badge { background-color: var(--class14-color); }
+        .c14-theme .link-card:hover { border-color: var(--class14-color); }
+
+        /* 15班 */
+        .c15-theme .class-header { color: var(--class15-color); border-color: var(--class15-color); }
+        .c15-theme .class-badge { background-color: var(--class15-color); }
+        .c15-theme .link-card:hover { border-color: var(--class15-color); }
+
+        /* 14班第4组特别布局 */
+        .special-group-container {
+            grid-column: 1 / -1;
+            background: #f0fff4;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px dashed var(--class14-color);
+            margin-top: 10px;
+        }
+        .special-title {
+            font-size: 1.1rem;
+            color: var(--class14-color);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .special-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        footer {
+            margin-top: 50px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎓 课程设计展示导航</h1>
+        <div class="subtitle">2025年12月24日 · 历史选择性必修2 · 第10课</div>
+        <div class="clock" id="clock">00:00:00</div>
+    </header>
+
+    <div class="container">
+
+        <!-- 13班区域 -->
+        <section class="class-section c13-theme">
+            <div class="class-header">
+                13班 <span class="class-badge">4个小组</span>
+            </div>
+            <div class="grid-layout">
+                <a href="https://zhangzhongwen95.github.io/-/13班第1组设计1.html" target="_blank" class="link-card">
+                    <span class="group-name">第 1 组</span>
+                    <span class="design-ver">设计 1</span>
+                </a>
+                <a href="https://zhangzhongwen95.github.io/-/13班第2组设计1.html" target="_blank" class="link-card">
+                    <span class="group-name">第 2 组</span>
+                    <span class="design-ver">设计 1</span>
+                </a>
+                <a href="https://zhangzhongwen95.github.io/-/13班第3组设计1.html" target="_blank" class="link-card">
+                    <span class="group-name">第 3 组</span>
+                    <span class="design-ver">设计 1</span>
+                </a>
+                <a href="https://zhangzhongwen95.github.io/-/13班第4组设计1.html" target="_blank" class="link-card">
+                    <span class="group-name">第 4 组</span>
+                    <span class="design-ver">设计 1</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 14班区域 -->
+        <section class="class-section c14-theme">
+            <div class="class-header">
+                14班 <span class="class-badge">多方案展示</span>
+            </div>
+            <div class="grid-layout">
+                <a href="https://zhangzhongwen95.github.io/-/14班第1组设计1.html" target="_blank" class="link-card">
+                    <span class="group-name">第 1 组</span>
+                    <span class="design-ver">设计 1</span>
+                </a>
+                <a href="https://zhangzhongwen95.github.io/-/14班第2组设计1.html" target="_blank" class="link-card">
+                    <span class="group-name">第 2 组</span>
+                    <span class="design-ver">设计 1</span>
+                </a>
+                <a href="https://zhangzhongwen95.github.io/-/14班第3组设计1.html" target="_blank" class="link-card">
+                    <span class="group-name">第 3 组</span>
+                    <span class="design-ver">设计 1</span>
+                </a>
+
+                <!-- 14班第4组 特殊展示区 -->
+                <div class="special-group-container">
+                    <div class="special-title">★ 第 4 组 (多方案系列)</div>
+                    <div class="special-grid">
+                        <a href="https://zhangzhongwen95.github.io/-/14班第4组.html" target="_blank" class="link-card" style="height: 100px;">
+                            <span class="group-name" style="font-size:1.2rem">基础版</span>
+                        </a>
+                        <a href="https://zhangzhongwen95.github.io/-/14班第4组设计2.html" target="_blank" class="link-card" style="height: 100px;">
+                            <span class="group-name" style="font-size:1.2rem">设计 2</span>
+                        </a>
+                        <a href="https://zhangzhongwen95.github.io/-/14班第4组设计3.html" target="_blank" class="link-card" style="height: 100px;">
+                            <span class="group-name" style="font-size:1.2rem">设计 3</span>
+                        </a>
+                        <a href="https://zhangzhongwen95.github.io/-/14班第4组设计4.html" target="_blank" class="link-card" style="height: 100px;">
+                            <span class="group-name" style="font-size:1.2rem">设计 4</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 15班区域 -->
+        <section class="class-section c15-theme">
+            <div class="class-header">
+                15班 <span class="class-badge">压轴展示</span>
+            </div>
+            <div class="grid-layout">
+                <a href="https://zhangzhongwen95.github.io/-/15班第1组设计.html" target="_blank" class="link-card">
+                    <span class="group-name">第 1 组</span>
+                    <span class="design-ver">综合设计</span>
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        请同学们点击对应小组链接开始展示，展示完毕后请关闭标签页回到本页。
+    </footer>
+
+    <script>
+        // 实时时钟脚本
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>

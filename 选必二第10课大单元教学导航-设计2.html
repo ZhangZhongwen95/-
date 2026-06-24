@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第10课 知识结构与成果导航 - 2025.12.24</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --line-color: #cbd5e0;
+            --root-color: #4a90e2; /* 核心主题色 */
+            --branch1-color: #50c878; /* 村落 - 绿色 */
+            --branch2-color: #f39c12; /* 集镇 - 橙色 */
+            --branch3-color: #9b59b6; /* 城市 - 紫色 */
+            --branch4-color: #e74c3c; /* 民居 - 红色 */
+        }
+
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* 顶部区域 */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        h1 {
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .clock {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-family: monospace;
+            background: #2c3e50;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
+
+        /* 核心资源按钮区 */
+        .core-resources {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .resource-btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-guide {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-map {
+            background: linear-gradient(135deg, #2af598 0%, #009efd 100%);
+            color: white;
+        }
+
+        .resource-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            color: white;
+        }
+
+        /* 思维导图式布局容器 */
+        .mindmap-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* 根节点 */
+        .root-node {
+            background: var(--root-color);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        /* 连接线处理 */
+        .root-node::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            width: 2px;
+            height: 40px;
+            background: var(--line-color);
+        }
+
+        /* 分支容器 */
+        .branches {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            position: relative;
+            flex-wrap: wrap; /* 允许在小屏换行 */
+        }
+
+        /* 横向连接线 */
+        .branches::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background: var(--line-color);
+            z-index: 0;
+        }
+
+        /* 单个分支列 */
+        .branch-column {
+            flex: 1;
+            padding: 0 10px;
+            position: relative;
+            min-width: 280px; /* 防止过窄 */
+            margin-bottom: 30px;
+        }
+
+        /* 竖向连接线 */
+        .branch-column::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 30px;
+            background: var(--line-color);
+        }
+
+        /* 子目卡片头部 */
+        .topic-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 5px solid #ccc;
+            height: 100%;
+            transition: transform 0.3s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .topic-header {
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        /* 知识点关键词区域 */
+        .keywords-box {
+            padding: 10px;
+            background: #f8f9fa;
+            border-bottom: 1px dashed #eee;
+            text-align: center;
+        }
+
+        .badge-key {
+            font-size: 0.8rem;
+            margin: 2px;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+
+        /* 学生链接列表 */
+        .student-links {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .link-item {
+            display: block;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #555;
+            transition: all 0.2s;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .link-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            border-radius: 4px 0 0 4px;
+            background: #ccc;
+        }
+
+        .link-item:hover {
+            background: #f0f2f5;
+            color: #000;
+            padding-left: 20px;
+        }
+
+        .group-tag {
+            font-size: 0.8rem;
+            color: #999;
+            float: right;
+        }
+
+        /* 不同分支的配色 */
+        /* 村落 */
+        .branch-village .topic-header { background: var(--branch1-color); }
+        .branch-village .badge-key { background: #e8f8f5; color: #16a085; border: 1px solid #16a085; }
+        .branch-village .link-item::before { background: var(--branch1-color); }
+
+        /* 集镇 */
+        .branch-town .topic-header { background: var(--branch2-color); }
+        .branch-town .badge-key { background: #fef9e7; color: #d35400; border: 1px solid #d35400; }
+        .branch-town .link-item::before { background: var(--branch2-color); }
+
+        /* 城市 */
+        .branch-city .topic-header { background: var(--branch3-color); }
+        .branch-city .badge-key { background: #f4ecf7; color: #8e44ad; border: 1px solid #8e44ad; }
+        .branch-city .link-item::before { background: var(--branch3-color); }
+
+        /* 民居 */
+        .branch-dwelling .topic-header { background: var(--branch4-color); }
+        .branch-dwelling .badge-key { background: #fdedec; color: #c0392b; border: 1px solid #c0392b; }
+        .branch-dwelling .link-item::before { background: var(--branch4-color); }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            color: #aaa;
+            padding-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="clock" id="clock">00:00:00</div>
+        <h5 style="color: #666; letter-spacing: 2px;">高中历史选择性必修2 · 第四单元</h5>
+        <h1>第10课 古代的村落、集镇和城市</h1>
+        
+        <!-- 重点资源链接 -->
+        <div class="core-resources">
+            <a href="https://zhangzhongwen95.github.io/-/选必2第10课《古代的村落、集镇和城市》学习指南.html" target="_blank" class="resource-btn btn-guide">
+                <span>📖 学习指南 (复习测验)</span>
+            </a>
+            <a href="https://zhangzhongwen95.github.io/-/第10课思维导图.png" target="_blank" class="resource-btn btn-map">
+                <span>🗺️ 课程思维导图 (全览)</span>
+            </a>
+        </div>
+    </header>
+
+    <div class="mindmap-container">
+        
+        <!-- 根节点 -->
+        <div class="root-node">
+            人类居住形式的演变
+        </div>
+
+        <!-- 分支结构 -->
+        <div class="branches">
+            
+            <!-- 分支1：村落的产生 -->
+            <div class="branch-column branch-village">
+                <div class="topic-card">
+                    <div class="topic-header">I. 村落的产生</div>
+                    <div class="keywords-box">
+                        <span class="badge badge-key">穴居与巢居</span>
+                        <span class="badge badge-key">农业定居</span>
+                        <span class="badge badge-key">兴隆洼遗址</span>
+                        <span class="badge badge-key">耶莫遗址</span>
+                    </div>
+                    <div class="student-links">
+                        <a href="https://zhangzhongwen95.github.io/-/13班第1组设计1.html" target="_blank" class="link-item">
+                            13班 第1组 <span class="group-tag">设计1</span>
+                        </a>
+                        <!-- 假设13班第8组是村落主题（根据之前对话） -->
+                        <a href="#" class="link-item" style="opacity: 0.6; cursor: default;">
+                            13班 第8组 (未列出链接)
+                        </a>
+                        <a href="https://zhangzhongwen95.github.io/-/14班第1组设计1.html" target="_blank" class="link-item">
+                            14班 第1组 <span class="group-tag">设计1</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分支2：集镇的出现 -->
+            <div class="branch-column branch-town">
+                <div class="topic-card">
+                    <div class="topic-header">II. 集镇的出现</div>
+                    <div class="keywords-box">
+                        <span class="badge badge-key">手工业分离</span>
+                        <span class="badge badge-key">军事防御</span>
+                        <span class="badge badge-key">水路交通</span>
+                        <span class="badge badge-key">明清市镇</span>
+                    </div>
+                    <div class="student-links">
+                        <a href="https://zhangzhongwen95.github.io/-/13班第2组设计1.html" target="_blank" class="link-item">
+                            13班 第2组 <span class="group-tag">设计1</span>
+                        </a>
+                        <a href="https://zhangzhongwen95.github.io/-/14班第2组设计1.html" target="_blank" class="link-item">
+                            14班 第2组 <span class="group-tag">设计1</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分支3：城市的产生 -->
+            <div class="branch-column branch-city">
+                <div class="topic-card">
+                    <div class="topic-header">III. 城市的产生</div>
+                    <div class="keywords-box">
+                        <span class="badge badge-key">政治/军事/宗教</span>
+                        <span class="badge badge-key">匠人营国</span>
+                        <span class="badge badge-key">坊市制打破</span>
+                        <span class="badge badge-key">雅典/罗马</span>
+                    </div>
+                    <div class="student-links">
+                        <a href="https://zhangzhongwen95.github.io/-/13班第3组设计1.html" target="_blank" class="link-item">
+                            13班 第3组 <span class="group-tag">设计1</span>
+                        </a>
+                        <a href="https://zhangzhongwen95.github.io/-/14班第3组设计1.html" target="_blank" class="link-item">
+                            14班 第3组 <span class="group-tag">设计1</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分支4：世界各地的民居 -->
+            <div class="branch-column branch-dwelling">
+                <div class="topic-card">
+                    <div class="topic-header">IV. 世界各地的民居</div>
+                    <div class="keywords-box">
+                        <span class="badge badge-key">自然环境</span>
+                        <span class="badge badge-key">两河流域(土坯)</span>
+                        <span class="badge badge-key">古埃及(防晒)</span>
+                        <span class="badge badge-key">中国(南巢北穴)</span>
+                    </div>
+                    <div class="student-links">
+                        <a href="https://zhangzhongwen95.github.io/-/13班第4组设计1.html" target="_blank" class="link-item">
+                            13班 第4组 <span class="group-tag">设计1</span>
+                        </a>
+                        <!-- 14班第4组的多方案展示 -->
+                        <div style="background: #fff5f5; padding: 5px; border-radius: 5px; margin-top:5px;">
+                            <div style="font-size:0.8rem; color:#c0392b; margin-bottom:5px; font-weight:bold;">★ 14班 第4组 方案集:</div>
+                            <a href="https://zhangzhongwen95.github.io/-/14班第4组.html" target="_blank" class="link-item" style="font-size: 0.9rem; padding: 5px;">基础版</a>
+                            <a href="https://zhangzhongwen95.github.io/-/14班第4组设计2.html" target="_blank" class="link-item" style="font-size: 0.9rem; padding: 5px;">设计2</a>
+                            <a href="https://zhangzhongwen95.github.io/-/14班第4组设计3.html" target="_blank" class="link-item" style="font-size: 0.9rem; padding: 5px;">设计3</a>
+                            <a href="https://zhangzhongwen95.github.io/-/14班第4组设计4.html" target="_blank" class="link-item" style="font-size: 0.9rem; padding: 5px;">设计4</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 综合组 -->
+        <div style="margin-top: 40px; width: 100%; max-width: 600px;">
+            <div class="topic-card" style="border-top-color: #34495e;">
+                <div class="topic-header" style="background: #34495e;">V. 综合/其他设计</div>
+                <div class="student-links">
+                    <a href="https://zhangzhongwen95.github.io/-/15班第1组设计.html" target="_blank" class="link-item">
+                        15班 第1组 <span class="group-tag">综合展示</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>2025年12月24日 · 历史学科教学成果展示</p>
+        <p style="font-size: 0.8rem;">请点击各组链接进行汇报展示，重点参考页面顶部的学习指南与思维导图</p>
+    </footer>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            // 格式化时间为 HH:MM:SS
+            const timeString = now.toLocaleTimeString('zh-CN', { hour12: false });
+            document.getElementById('clock').textContent = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>

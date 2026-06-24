@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第8课 世界市场与商业贸易 - 近代商业贸易的变化</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e67e22;
+            --bg-color: #f5f6fa;
+            --card-bg: #ffffff;
+            --text-color: #2f3542;
+            --timeline-width: 120px;
+            --nav-height: 60px;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Top Navigation */
+        .navbar {
+            height: var(--nav-height);
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s;
+            font-weight: bold;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* Layout Container */
+        .container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Left Timeline */
+        .timeline-sidebar {
+            width: var(--timeline-width);
+            background-color: #dfe4ea;
+            overflow-y: auto;
+            border-right: 1px solid #ccc;
+            padding: 20px 0;
+            flex-shrink: 0;
+        }
+
+        .timeline-item {
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 1px solid #ced6e0;
+            font-weight: bold;
+            color: #57606f;
+            transition: all 0.2s;
+        }
+
+        .timeline-item:hover, .timeline-item.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+            scroll-behavior: smooth;
+        }
+
+        /* Textbook Sentence Styling */
+        .textbook-sentence {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: var(--primary-color);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Interactive Card Styling */
+        .teaching-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #e1e1e1;
+        }
+
+        .card-header {
+            background: #a4b0be;
+            color: white;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-section {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.5s ease;
+        }
+
+        .card-section.active {
+            display: block;
+        }
+
+        .section-label {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card-controls {
+            padding: 10px 20px;
+            background: #f1f2f6;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Right Floating Button */
+        .fab-map {
+            position: absolute;
+            right: 30px;
+            bottom: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 900;
+            transition: transform 0.2s;
+        }
+
+        .fab-map:hover {
+            transform: scale(1.1);
+        }
+
+        /* Modal for Mind Map */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            width: 80%;
+            max-height: 90%;
+            overflow-y: auto;
+            border-radius: 10px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* CSS Mind Map Tree */
+        .mindmap-tree ul {
+            padding-top: 20px; 
+            position: relative;
+            transition: all 0.5s;
+        }
+        .mindmap-tree li {
+            float: left; text-align: center;
+            list-style-type: none;
+            position: relative;
+            padding: 20px 5px 0 5px;
+            transition: all 0.5s;
+        }
+        .mindmap-tree li::before, .mindmap-tree li::after {
+            content: '';
+            position: absolute; top: 0; right: 50%;
+            border-top: 1px solid #ccc;
+            width: 50%; height: 20px;
+        }
+        .mindmap-tree li::after{
+            right: auto; left: 50%;
+            border-left: 1px solid #ccc;
+        }
+        .mindmap-tree li:only-child::after, .mindmap-tree li:only-child::before {
+            display: none;
+        }
+        .mindmap-tree li:only-child{ padding-top: 0;}
+        .mindmap-tree li:first-child::before, .mindmap-tree li:last-child::after{
+            border: 0 none;
+        }
+        .mindmap-tree li:last-child::before{
+            border-right: 1px solid #ccc;
+            border-radius: 0 5px 0 0;
+        }
+        .mindmap-tree li:first-child::after{
+            border-radius: 5px 0 0 0;
+        }
+        .mindmap-tree ul ul::before{
+            content: '';
+            position: absolute; top: 0; left: 50%;
+            border-left: 1px solid #ccc;
+            width: 0; height: 20px;
+        }
+        .node {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-decoration: none;
+            color: #666;
+            font-family: arial, verdana, tahoma;
+            font-size: 14px;
+            display: inline-block;
+            border-radius: 5px;
+            background: white;
+            transition: all 0.5s;
+        }
+        .node:hover {
+            background: #c8e4f8; border: 1px solid #94a0b4;
+        }
+
+        /* Text formatting */
+        .note-content {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .highlight { font-weight: bold; color: #d63031; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        img { max-width: 100%; height: auto; display: block; margin: 10px 0; }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航 -->
+    <nav class="navbar">
+        <div class="nav-item" onclick="openModal('review')">知识回顾</div>
+        <div class="nav-item" onclick="openModal('perception')">整体感知</div>
+        <div class="nav-item" onclick="openModal('framework')">框架解读</div>
+        <div class="nav-item" onclick="openModal('output')">知识输出</div>
+        <div class="nav-item" onclick="openModal('literacy')">核心素养</div>
+        <div class="nav-item" onclick="openModal('summary')">课堂小结</div>
+    </nav>
+
+    <div class="container">
+        <!-- 左侧年表 -->
+        <div class="timeline-sidebar">
+            <div class="timeline-item" onclick="scrollToId('y1500')">1500s<br>新航路开辟</div>
+            <div class="timeline-item" onclick="scrollToId('y1531')">1531<br>安特卫普交易所</div>
+            <div class="timeline-item" onclick="scrollToId('y1571')">1571<br>马尼拉大帆船</div>
+            <div class="timeline-item" onclick="scrollToId('y1600')">1600<br>英东印度公司</div>
+            <div class="timeline-item" onclick="scrollToId('y1602')">1602<br>荷东印度公司</div>
+            <div class="timeline-item" onclick="scrollToId('y1694')">1694<br>英格兰银行</div>
+            <div class="timeline-item" onclick="scrollToId('y1852')">1852<br>首家百货公司</div>
+            <div class="timeline-item" onclick="scrollToId('y1865')">1865<br>汇丰银行</div>
+            <div class="timeline-item" onclick="scrollToId('y1872')">1872<br>轮船招商局</div>
+            <div class="timeline-item" onclick="scrollToId('y1892')">1892<br>有限责任公司</div>
+            <div class="timeline-item" onclick="scrollToId('y1900')">1900<br>先施百货</div>
+        </div>
+
+        <!-- 主内容区 -->
+        <div class="main-content" id="mainScroll">
+            
+            <!-- 导入部分 -->
+            <div class="teaching-card">
+                <div class="card-header">课程导入 & 教材分析</div>
+                <div class="card-section active">
+                    <span class="section-label">教材分析与教学建议：</span>
+                    <p><strong>本课立意：</strong>揭示自大航海时代以来世界市场的逐步形成与商业贸易的发展变化，建立起世界市场与商业贸易之间的内在关联，从而认识近代以来资本主义世界市场的不断发展对商业贸易的影响。</p>
+                    <p><strong>重点：</strong>近代商业贸易的发展变化。<br><strong>难点：</strong>世界市场与商业贸易发展变化的关系。</p>
+                    <div class="note-content">
+                        <strong>子目间逻辑关系：</strong>近代世界市场的形成是商业贸易发展变化的背景，是促成近代商业贸易发生变化的条件。第一子目是因，第二子目是果。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 学习目标 -->
+            <div class="teaching-card">
+                <div class="card-header">学习目标</div>
+                <div class="card-section active">
+                    <ol>
+                        <li>通过学习世界市场的形成过程，理解新航路开辟、早期殖民扩张和工业革命是推动世界市场形成的重大事件，认识世界市场是资本主义全球扩张的必然结果。</li>
+                        <li>通过归纳相关历史材料，认识近代商业贸易发展变化的领域，包括国际贸易中心的变化、新的商业经营形式的出现和商品类型的丰富，主要指向史料实证素养。</li>
+                        <li>能够解释世界市场与商业贸易的关系，体会商业活动与人类生产、生活的进步之间的关联。</li>
+                    </ol>
+                </div>
+            </div>
+
+            <hr style="margin: 30px 0; border: 0; border-top: 2px dashed #ccc;">
+
+            <!-- 正文开始：逐句精讲 -->
+            <h2 id="y1500">一、近代商业贸易的变化：背景与中心转移</h2>
+
+            <!-- 句1 -->
+            <div class="textbook-sentence">
+                新航路的开辟及欧洲人的殖民扩张，促进了商业贸易的发展。
+            </div>
+            <div class="teaching-card" id="card1">
+                <div class="card-header">教学精讲 01</div>
+                
+                <!-- 1. 问题/学习聚焦 -->
+                <div class="card-section active">
+                    <span class="section-label">【学习聚焦】</span>
+                    <p>新航路开辟后，贸易中心转移，商业经营方式和国际贸易格局也发生了相应的变化。</p>
+                    <span class="section-label">【思考】</span>
+                    <p>为什么说新航路开辟引起了“商业革命”？它具体表现为哪些方面？</p>
+                </div>
+
+                <!-- 2. 史料/分析 -->
+                <div class="card-section">
+                    <span class="section-label">【教材分析与教学建议】</span>
+                    <p>近代商业贸易的变化：16世纪起，由新航路开辟引起的欧洲商业和世界市场的一系列新变化，被称为“商业革命”，表现为贸易流通中的商品种类与数量的增多、商路及商业中心的转移、商业经营方式的转变、世界市场的逐步形成和扩大，以及人类眼界的开阔。</p>
+                    <p>新航路开辟以后，世界上原来相互间相对隔绝的地区逐步沟通起来，这可以说是世界各个地区之间联系加强的第一步。于是，欧洲同非洲、美洲以及亚洲之间的贸易日益发展，世界市场的雏形开始出现。世界市场的逐步形成也意味着新的产品越来越多地出现在各国的市场上，特别是美洲的许多农产品传播到欧亚大陆。如玉米这一美洲的特产，在新航路开辟后很快传到中国、非洲和东南欧;马铃薯(土豆)、烟草、可可等也从美洲传到亚、欧、非各洲;非洲所产的咖啡传到欧美，成为人们的日常饮料。</p>
+                </div>
+
+                <!-- 3. 答案/笔记 -->
+                <div class="card-section">
+                    <span class="section-label">【教学笔记/答案】</span>
+                    <div class="note-content">
+                        <strong>核心概念：商业革命</strong><br>
+                        1. 商品种类增多（美洲作物、东方香料等）。<br>
+                        2. 贸易范围扩大（世界市场雏形）。<br>
+                        3. 贸易中心转移。<br>
+                        4. 经营方式变革。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <!-- 句2 -->
+            <div class="textbook-sentence">
+                从欧洲通往亚洲和美洲的新航路开辟后，欧洲贸易中心从地中海转移到大西洋沿岸。意大利的威尼斯、热那亚等商业城市在国际贸易中的地位下降。
+            </div>
+            <div class="teaching-card" id="card2">
+                <div class="card-header">教学精讲 02</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【教学过程与教学活动】</span>
+                    <p><strong>教师设问：</strong>阅读教材的内容并分析，国际贸易枢纽先后发生了什么变化？</p>
+                    <p><strong>教师活动：</strong>阅读地图，贸易中心从地中海转移到大西洋沿岸。16-17世纪，西班牙、葡萄牙殖民扩张，果阿、澳门、长崎、马尼拉成为新的亚洲贸易中心。19世纪工业革命完成后，伦敦成为世界贸易中心。19世纪末20世纪初，美、德等新工业资本主义国家兴起，世界形成了多中心的新格局。</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【资料与注释】材料三 贸易中心的变化</span>
+                    <p>自从地中海贸易衰落以后，首先是安特卫普成为各路商人的汇集点... 安特卫普成为16世纪中期繁荣的商业中心，被称为“世界商业之都”。后来，海上贸易逐渐占据了主导地位，横贯大陆的贸易解体了... 1585年安特卫普被帕尔马占领，荷兰人对斯海尔德河进行了封锁，至此陆路贸易削弱。</p>
+                    <span class="section-label">【教材分析与教学建议】</span>
+                    <p>关于国际贸易中心的变化。从空间分布看，分为欧洲和亚洲贸易中心的变化两部分:从时间先后看，首先是欧洲贸易中心由地中海沿岸转移到大西洋沿岸... 随后是随着欧洲殖民者的到来而兴起了果阿、澳门、长崎及马尼拉等亚洲贸易中心。</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【设计意图】</span>
+                    <div class="note-content">
+                        整合教材内容，把分散在不同之处的有关贸易中心的变化进行梳理，使学生掌握并整合知识，形成整体感知历史的方法。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <!-- 句3 -->
+            <div class="textbook-sentence">
+                里斯本、塞维尔、安特卫普、阿姆斯特丹、伦敦等城市先后成为国际贸易的中心。
+            </div>
+            <div class="teaching-card" id="card3">
+                <div class="card-header">教学精讲 03</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【问题】</span>
+                    <p>为何阿姆斯特丹能取代安特卫普成为贸易中心？</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【资料与注释】荷兰的崛起</span>
+                    <p>随后，荷兰成为世界贸易的中心。新航线的开辟对荷兰越来越有利，荷兰人开辟了从北海绕过丹麦的最北端... 15世纪90年代丹麦在松德海峡征收通行税的记录表明，通过松德海峡的大部分船只是荷兰人的... 在这条航线上荷兰人掌握了大宗和混合货物的运输，尤其是谷物和鱼类... ——高德步、王珏著：《世界经济史》</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【教学笔记】</span>
+                    <div class="note-content">
+                        重点城市演变链条：<br>
+                        地中海（威尼斯/热那亚）→ 大西洋沿岸（里斯本/塞维利亚）→ 安特卫普 → 阿姆斯特丹 → 伦敦
+                    </div>
+                </div>
+                
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <!-- 句4 -->
+            <div class="textbook-sentence">
+                16-17世纪，欧洲殖民者相继来到南亚、东南亚、东亚，建立殖民地或定居点，在东亚海域展开了激烈的商业竞争，形成新的亚洲贸易中心。
+            </div>
+            <div class="teaching-card" id="card4">
+                <div class="card-header">教学精讲 04</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【问题】</span>
+                    <p>新航路开辟对中国及东亚贸易有何具体影响？</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【资料与注释】材料四 新航路开辟与中国</span>
+                    <p>中国明清两朝积累的巨大财富，对奉行“重商主义”的欧洲商人有巨大的吸引力。在明朝，葡萄牙人、西班牙人、荷兰人... 用白银换取中国的生丝和瓷器。</p>
+                    <p>当时中国参与的国际海上贸易主要有三条航线：<br>
+                    1. 中国—东南亚—日本（长崎）；<br>
+                    2. 中国—马尼拉—美洲（大帆船贸易）；<br>
+                    3. 中国—果阿—欧洲（澳门中转）。</p>
+                    <p>在这几条海外贸易中，中国始终处于出超地位... 1572年到1821年，大约有2亿比索的西班牙银币流入中国。——武寅主编：《简明世界历史读本》</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【解析】</span>
+                    <div class="note-content">
+                        <strong>白银流入：</strong>明朝大规模白银输入的三条线路为：以马尼拉为中心的“海上丝绸之路”与美洲白银的流入；以长崎为中心的中日贸易与日本白银的流入；以澳门为中心的西洋贸易与欧洲白银的流入。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <!-- 句5 -->
+            <div class="textbook-sentence" id="y1571">
+                葡萄牙殖民者经营从印度经澳门至日本的三角贸易。西班牙殖民者开辟了从马尼拉至墨西哥阿卡普尔科的大帆船贸易航线。果阿、澳门、长崎、马尼拉等地成为国际贸易的枢纽。
+            </div>
+            <div class="teaching-card" id="card5">
+                <div class="card-header">教学精讲 05</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【深度探究】冲突与调适</span>
+                    <p>马尼拉大帆船贸易的具体运作模式是怎样的？它对西班牙本土经济产生了什么反向影响？</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【资料与注释】</span>
+                    <p><strong>石云艳《西属美洲丝银贸易的演变》：</strong>1571年，西班牙殖民者占领马尼拉后，建立了以马尼拉为中转站的中国与西属美洲的联系... 大量生丝及绸缎流入美洲，美洲白银也大量流入中国... 西班牙不得不从其他国家大量进口制造业产品。1640年，在秘鲁市场上，中国丝货价格仅是西班牙相同货物价格的1/3。</p>
+                    <p><strong>三角贩运贸易：</strong>严小青在《冲突与调适》中研究了欧洲一印度一中国的三角贩运贸易... 16-19世纪，东南亚的贸易形式:从印度进口棉布，从美洲和日本进口白银，从中国进口铜钱、丝绸、瓷器... 但中国商人不愿购买英国的毛织品和铅。</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【小结】</span>
+                    <div class="note-content">
+                        亚洲贸易中心的形成反映了近代国际商业贸易发展的重要特点：国际商业贸易中心的变化是由欧洲殖民扩张引发的，是形成中的资本主义世界市场的重要组成部分。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <h2 id="y1531">二、商业经营方式的变化</h2>
+
+            <!-- 句6 -->
+            <div class="textbook-sentence">
+                商业经营方式也发生了变化。
+            </div>
+            <div class="teaching-card" id="card6">
+                <div class="card-header">教学精讲 06</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【概述】</span>
+                    <p>近代商业经营方式发生了哪些主要变化？为什么会发生这些变化？</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【教材分析与教学建议】</span>
+                    <p>随着资本主义经济的兴起，在荷兰、英国、法国等国，出现了商品交易所、证券交易所、银行、百货公司、有限责任公司、股份制贸易公司等新型商业经营方式。</p>
+                    <p><strong>原因分析：</strong>来自世界各地的商品，价格总是很难保持稳定... 物价都会发生暴涨暴跌... 正常的商业经营就变成了有很大投机性的事业。另外，在市场扩大后，许多商品的交易都已经不再需要通过现货来进行，买卖双方只需订立一纸合同即可成交。</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【教师过渡】</span>
+                    <div class="note-content">
+                        交易需要货币。开始时，由于货币种类的繁多以及金属货币中含银量的不等... 使得早期的商业贸易活动交易成本较高。为了保护资产不受货币贬值的威胁，稳定的金币和大银币成为交易货币，进而催生了银行等金融机构。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <!-- 句7 -->
+            <div class="textbook-sentence">
+                1531年，最早的一家商品交易所在安特卫普开业。此后，阿姆斯特丹出现了粮食交易所，伦敦办起了综合交易所。
+            </div>
+            <div class="teaching-card" id="card7">
+                <div class="card-header">教学精讲 07</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【设问】</span>
+                    <p>阅读材料六，分析金融领域里出现什么变化，有何作用？</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【资料与注释】材料六</span>
+                    <p>1611年市议会在达姆广场旁边修建交易所... 这种重商的城市特色恰好突出了阿姆斯特丹作为新兴经济中心的自我认同。——薛金立：《阿姆斯特丹汇兑银行与荷兰联省共和国国家整合》</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【总结】</span>
+                    <div class="note-content">
+                        在市场扩大之后，商人在16世纪时，首先是在安特卫普产生了近代的商品和证券交易所，随后在西欧各国迅速地发展起来了。这标志着商品交易从现货交易向期货、证券化交易转变。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <!-- 句8 -->
+            <div class="textbook-sentence" id="y1694">
+                16世纪，威尼斯和热那亚的商人创立了银行，为从事国际贸易的商人提供资金和信用。1694年，经英国国王特许，英格兰银行创立。它在成立之初就在接受政府存款、向政府提供贷款，以及发行银行券等方面具有一定的特权，是最早全面发挥中央银行各项职能的银行。
+            </div>
+            <div class="teaching-card" id="card8">
+                <div class="card-header">教学精讲 08</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【设问】</span>
+                    <p>阅读材料七，分析银行的出现对国际贸易有何支持作用？</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【资料与注释】材料七</span>
+                    <p>通过国际支付的集中，阿姆斯特丹汇兑银行在17世纪发展成为世界性的重要票据交换中心... 1600年左右，伦敦的金融市场包含一个业已活跃的商业票据市场... 1694年英格兰银行建立。——萧国亮、隋福民编著：《世界经济史》</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【总结】</span>
+                    <div class="note-content">
+                        金融技术取得了进步，出现了银行等近代商业组织形式。伦敦金融市场的逐渐发展为后来英国的商业繁荣奠定了基础。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <!-- 句9 -->
+            <div class="textbook-sentence">
+                17世纪后，伦敦的证券交易所成为国际证券交易的中心。
+            </div>
+            <div class="teaching-card" id="card9">
+                <div class="card-header">教学精讲 09</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【拓展】</span>
+                    <p>伦敦证券交易所的起源与作用。</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【图片说明】3.伦敦证券交易所</span>
+                    <p>伦敦证券交易所起源于17世纪末的伦敦交易街的露天市场... 1773年正式更名... 1802年获得皇家特许。伦敦证券交易所的成立为英国工业革命提供了重要的融资渠道，为促进当时英国经济的繁荣发挥了重要作用。直至第一次世界大战之前，该交易所一直是世界第一大证券交易市场。</p>
+                    <p>（注：此处可展示伦敦证券交易所图片）</p>
+                </div>
+
+                <div class="card-section">
+                    <div class="note-content">
+                        证券交易所的出现，使得资本的流动性大大增强，社会闲散资金能够集中投入到工业生产和贸易中。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <!-- 句10 -->
+            <div class="textbook-sentence" id="y1852">
+                1852年，世界第一家百货公司在法国巴黎开业。1892年，德国出现有限责任公司。后来，这种企业组织形式相继为英国、法国、意大利、瑞士、卢森堡和比利时等国所采用。
+            </div>
+            <div class="teaching-card" id="card10">
+                <div class="card-header">教学精讲 10</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【设问】</span>
+                    <p>阅读材料九，分析有限责任公司制度的主要特征是什么？它有何优势？</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【资料与注释】材料九</span>
+                    <p>1892年德国首创了有限责任公司制度... 其主要特征有：股东人数有限；股东均负有限责任，即仅以其出资额为限... 不发股票... 股东资本的转让受到法律的限制... ——摘编自《经济与社会生活·教师教学用书》</p>
+                    <span class="section-label">【名词解释】有限责任公司</span>
+                    <p>它吸收了无限公司和股份有限公司的长处，在一定程度上克服了两种公司的缺陷，具有组织简单灵活、适应中小型企业经营发展需求等优点。</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【解析】</span>
+                    <div class="note-content">
+                        百货公司的出现改变了零售业的形态，标志着消费时代的到来。有限责任公司则降低了投资风险，鼓励了商业投资。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <!-- 句11 -->
+            <div class="textbook-sentence" id="y1600">
+                为了有效垄断对外贸易，英、法、荷等国建立起一种新型股份制贸易公司。英国和荷兰分别成立东印度公司，荷兰和法国分别成立西印度公司。
+            </div>
+            <div class="teaching-card" id="card11">
+                <div class="card-header">教学精讲 11</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【设问】</span>
+                    <p>阅读材料八，思考“股份制”是如何产生的？其经济意义是什么？</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【资料与注释】材料八</span>
+                    <p>新航路开辟后... 为了分散海运投资的风险，商人们采取了“入伙”制度... 后来演变为股份制度... 投资人承担的是有限责任... 这种负有有限责任的股份制，被认为是16世纪西欧公司制的一大创新。——厉以宁《厉以宁讲欧洲经济史》</p>
+                    <span class="section-label">【历史纵横】荷兰东印度公司</span>
+                    <p>1602年，荷兰的大商人集股组成海外贸易公司——东印度公司。公司从政府手里得到了... 贸易垄断权。公司有权代表国会对外宣战、签订条约、招募军队、在殖民地发行货币和任命官员等。</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【教师总结】</span>
+                    <div class="note-content">
+                        股份制公司以一种高效率的方式把海洋贸易风险分摊到众多投资者身上，达到“人均风险小，总体风险大”的经济效果。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <!-- 句12 -->
+            <div class="textbook-sentence">
+                这些贸易公司由国家给予种种特权，有的甚至可以自行铸币、拥有武器、对外宣战和缔结条约。这些贸易公司在世界各地经营垄断贸易，进行殖民掠夺，对西欧资本原始积累发挥了重要作用。
+            </div>
+            <div class="teaching-card" id="card12">
+                <div class="card-header">教学精讲 12</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【史料阅读】</span>
+                    <p>（东印度公司）是一个具有法人和政治地位的团体... 他们及其后继者在法律上都有权拥有、购买、接收和保留土地租金、特权... 享有完全独占东印度贸易的自由和特权... ——《伊丽莎白女王授予东印度公司的特许证》（1600年）</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【问题】</span>
+                    <p>英国东印度公司和荷兰东印度公司有什么共同特点？</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【教师总结】</span>
+                    <div class="note-content">
+                        从材料中可以看出，英国和荷兰政府为了帮助本国商业资本在世界贸易中取得优势地位，对东印度公司都予以积极的措施加以扶植。这一时期的垄断性贸易公司在殖民地有较大的权力（政商合一）。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <h2 id="y1865">三、近代中国商业经营方式的变迁</h2>
+
+            <!-- 句13 -->
+            <div class="textbook-sentence">
+                鸦片战争后，随着西方列强的入侵，新的商业经营形式被引入中国。1865年，英国在香港开办汇丰银行，并在上海设立分行，随后又在中国许多城市设立分支行。
+            </div>
+            <div class="teaching-card" id="card13">
+                <div class="card-header">教学精讲 13</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【教师讲述】</span>
+                    <p>鸦片战争后，新的经营形式引入中国，如银行、股份制企业等，这些新的商业经营形式促进了中国经济的近代化。</p>
+                </div>
+
+                <div class="card-section">
+                    <div class="note-content">
+                        <strong>背景：</strong>西方列强入侵，客观上带来了先进的经营方式。<br>
+                        <strong>汇丰银行：</strong>外资银行在华势力的扩张。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <!-- 句14 -->
+            <div class="textbook-sentence">
+                1897年盛宣怀在上海创办的中国通商银行，是中国人自办的第一家银行。该行先后在北京、天津、汉口、广州、香港、烟台、镇江、九江、汕头、福州和重庆等地设立分行。
+            </div>
+            <div class="teaching-card" id="card14">
+                <div class="card-header">教学精讲 14</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【图片说明】4.中国通商银行大楼</span>
+                    <p>中国通商银行在上海外滩6号建造的银行大楼... 为4层砖木结构，外观呈英国哥特式市政厅建筑风格... 该大楼不仅具有历史性与艺术性，而且在中国金融史上也谱写了开篇性的一页。</p>
+                </div>
+
+                <div class="card-section">
+                    <div class="note-content">
+                        <strong>历史意义：</strong>打破了外资银行对中国金融市场的垄断，标志着中国近代银行业的诞生。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <!-- 句15 -->
+            <div class="textbook-sentence" id="y1872">
+                19世纪70年代，随着官督商办与官商合办的民用股份制企业出现，股票也开始走向市场，其中较著名的有1872年开业的轮船招商局发行的股票和1876年开始筹办的开平矿务局发行的股票。
+            </div>
+            <div class="teaching-card" id="card15">
+                <div class="card-header">教学精讲 15</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【资料与注释】材料七 近代中国商业经营方式的变化</span>
+                    <p>1872年，李鸿章创办轮船招商局，在中国第一次引入股份制... 《申报》评论：“招商局开其端，不数年间，风气为之大开...” 招商局收购美资旗昌轮船公司。据李鸿章估计：“创办招商局10余年来，中国商民得减价之益而水脚(水路运费)少流入洋商之手者，奚止数千万。”</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【分析】</span>
+                    <div class="note-content">
+                        轮船招商局的创办，不仅是中国近代第一家股份制企业，也在一定程度上抵制了外国的经济侵略（“分洋商之利”）。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <!-- 句16 -->
+            <div class="textbook-sentence" id="y1900">
+                为了适应股票交易的需要，上海出现了最早专营股票的证券机构——上海平准股票公司。1900年，香港成立了第一家大型百货公司——先施百货公司。之后，广州、上海等地也出现了大型百货公司。
+            </div>
+            <div class="teaching-card" id="card16">
+                <div class="card-header">教学精讲 16</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【图片说明】5.上海先施百货公司</span>
+                    <p>先施百货是近代中国第一家民族资本主义性质的现代化大型百货公司... 建筑外貌具有文艺复兴风格，局部有巴洛克式装饰。</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【思考点】</span>
+                    <p>近代商业贸易发生了哪些变化？</p>
+                    <div class="note-content">
+                        <strong>答案提示：</strong>
+                        1. 商业活动的场所：证券交易所、百货公司。<br>
+                        2. 商业经营形式：股份制、有限责任公司、银行。<br>
+                        3. 贸易中心：从沿海到内地扩展。<br>
+                        4. 商业主体：从外资垄断到民族资本兴起。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <h2>四、商品种类的丰富与世界贸易格局</h2>
+
+            <!-- 句17 -->
+            <div class="textbook-sentence">
+                随着世界市场的初步建立，更多种类的商品出现在商贸领域。烟草、咖啡、可可和茶叶等纷纷进入欧洲市场。来自东方的产品——香料更是大量涌入欧洲等地，香料由供贵族富豪享用的高级奢侈品变为了供普通人消费的大众化商品。
+            </div>
+            <div class="teaching-card" id="card17">
+                <div class="card-header">教学精讲 17</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【设问】</span>
+                    <p>阅读材料，如果让你对新航路开辟以来的商品进行分类，你会怎么分？为什么？</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【资料与注释】</span>
+                    <p><strong>材料九 物种交流：</strong>美洲的烟草、可可，中国的茶叶、瓷器... 咖啡、大米、香料... 到1503年，里斯本的胡椒价格已降到威尼斯的1/5。</p>
+                    <p><strong>材料十 ②③④：</strong>马铃薯成为欧洲人主食；英式下午茶的兴起；“砂糖革命”与蔗糖平民化。</p>
+                </div>
+
+                <div class="card-section">
+                    <div class="note-content">
+                        <strong>分类维度：</strong><br>
+                        1. 生活必需品与奢侈品的变化（香料、糖的普及）。<br>
+                        2. 饮食结构的改变（马铃薯、茶叶）。<br>
+                        3. 工业原料（棉花、橡胶）。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <!-- 句18 -->
+            <div class="textbook-sentence">
+                新航路开辟后，非洲成为殖民者掳掠黑人奴隶的场所，奴隶也成为贸易商品。贩奴商船载着货物从欧洲出发，航行到西非海岸，换取大批奴隶；然后再从非洲起航，横渡大西洋到达美洲，用奴隶换取殖民地的原料和金银，运回欧洲。16世纪初，葡萄牙、西班牙和荷兰支配了早期的奴隶贸易。
+            </div>
+            <div class="teaching-card" id="card18">
+                <div class="card-header">教学精讲 18</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【资料与注释】黑奴贸易</span>
+                    <p><strong>三角贸易：</strong>出程（欧洲→非洲）、中程（非洲→美洲，最残酷）、归程（美洲→欧洲）。</p>
+                    <p><strong>材料十 ① & 材料八：</strong>“增肥室”、“惩罚室”、“不归门”。英国在18世纪从每一名奴隶身上每年可赚取15至20英镑。非洲损失了约一亿人口。</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【反思】</span>
+                    <div class="note-content">
+                        奴隶贸易是西欧资本主义原始积累的重要手段之一，无数奴隶的鲜血和生命变成了欧洲殖民者手中的巨额利润。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <!-- 句19 -->
+            <div class="textbook-sentence">
+                18世纪后期，英国为了扭转对华贸易逆差，开始向中国走私鸦片。在英国东印度公司的操纵下，英国商人将鸦片从印度运到中国销售。后来，美国等其他国家的商人也开始向中国贩运鸦片。
+            </div>
+            <div class="teaching-card" id="card19">
+                <div class="card-header">教学精讲 19</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【资料与注释】</span>
+                    <p><strong>材料⑤ 对话：</strong>“我认为如果没有鸦片的贸易，棉制品贸易也就不会发展... 继续棉制品贸易的费用是承担不起的。”</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【教师总结】</span>
+                    <div class="note-content">
+                        商品种类丰富了，改变了人们的生活习惯（茶、糖）；但另一类却是非正常的商品（黑奴、鸦片），是西方为中心的世界市场建立过程中对亚非拉不公正地掠夺的证据。此外，还伴随着<strong>疾病交流</strong>（材料十：天花、麻疹等）。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <!-- 句20 -->
+            <div class="textbook-sentence">
+                17世纪，英国通过各种手段打击荷兰，并夺取了荷兰在北美的殖民地，逐渐控制了海上贸易。19世纪中期，最发达的资本主义国家英国成为“世界工厂”和世界贸易中心。来自美洲、亚洲和非洲等地的原料在英国工厂里被加工成商品，销往世界各地。
+            </div>
+            <div class="teaching-card" id="card20">
+                <div class="card-header">教学精讲 20</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【解析】国际商贸格局的变化</span>
+                    <p>17世纪：荷兰“海上马车夫”。<br>
+                    18世纪中期：英国击败法国，成为最大殖民帝国。<br>
+                    19世纪中期：英国成为“世界工厂”，确立贸易垄断地位。</p>
+                </div>
+
+                <div class="card-section">
+                    <div class="note-content">
+                        资本主义的世界市场形成。西方国家向亚洲、非洲、拉丁美洲地区的扩张，给上述地区国家与民族带来了空前灾难，同时也迫使这些地区卷入世界市场。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <!-- 句21 -->
+            <div class="textbook-sentence">
+                19世纪末20世纪初，美、德等新兴工业国家兴起，英国的贸易垄断地位被打破，世界贸易形成了多中心的新格局。
+            </div>
+            <div class="teaching-card" id="card21">
+                <div class="card-header">教学精讲 21</div>
+                
+                <div class="card-section active">
+                    <span class="section-label">【学思之窗】</span>
+                    <p><strong>1870年、1913年主要资本主义国家在世界贸易中的占比：</strong><br>
+                    1870年：英国22%，美国8%，德国13%<br>
+                    1913年：英国15%，美国11%，德国13%</p>
+                    <p><strong>问题：</strong>表中数据反映了什么问题？</p>
+                </div>
+
+                <div class="card-section">
+                    <span class="section-label">【答案提示】</span>
+                    <div class="note-content">
+                        英国在世界贸易中所占比重大幅下降，显示出英国在世界贸易中的垄断地位被打破，而美国在世界贸易中的地位则有所提高，从而形成了世界贸易多中心的新格局。
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <hr style="margin: 30px 0; border: 0; border-top: 2px dashed #ccc;">
+
+            <!-- 问题探究与拓展 -->
+            <div class="teaching-card">
+                <div class="card-header">问题探究与拓展</div>
+                <div class="card-section active">
+                    <span class="section-label">【问题探究】</span>
+                    <p>试分析世界市场与商业贸易的关系。</p>
+                    <p><strong>大工业建立了由美洲的发现所准备好的世界市场... 资产阶级，由于开拓了世界市场，使一切国家的生产和消费都成为世界性的了。——《共产党宣言》</strong></p>
+                </div>
+                <div class="card-section">
+                    <span class="section-label">【思路引领】</span>
+                    <div class="note-content">
+                        1. 世界市场的形成是商业贸易发展的背景（市场扩大、商品丰富）。<br>
+                        2. 商业贸易的发展反过来又进一步推动了世界市场的发展、扩张。<br>
+                        3. 二者相互联系，彼此影响，形成了紧密的关联。
+                    </div>
+                </div>
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+             <div class="teaching-card">
+                <div class="card-header">学习拓展</div>
+                <div class="card-section active">
+                    <p>美第奇家族是意大利佛罗伦萨著名家族... 查找资料，了解该家族是如何从银行业起家，逐渐发达起来的。</p>
+                </div>
+                <div class="card-section">
+                    <div class="note-content">
+                        <strong>提示：</strong>14-15世纪，佛罗伦萨作为资本主义萌芽代表地区。美第奇家族通过银行业积累财富，进而控制政治，反映了资本主义早期发展的轨迹。
+                    </div>
+                </div>
+                <div class="card-controls">
+                    <button class="btn" onclick="nextStep(this)">下一步</button>
+                </div>
+            </div>
+
+            <div style="height: 100px;"></div> <!-- Bottom spacer -->
+        </div>
+
+        <!-- 右侧悬浮按钮 -->
+        <div class="fab-map" onclick="openModal('framework')" title="查看思维导图">
+            🧠
+        </div>
+    </div>
+
+    <!-- 模态框：知识回顾 -->
+    <div id="modal-review" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('review')">&times;</span>
+            <h2>📚 知识回顾：世界市场的形成</h2>
+            <div class="mindmap-tree">
+                <ul>
+                    <li>
+                        <a href="#" class="node">世界市场的形成</a>
+                        <ul>
+                            <li>
+                                <a href="#" class="node">初具雏形</a>
+                                <ul>
+                                    <li><a href="#" class="node">新航路开辟</a></li>
+                                    <li><a href="#" class="node">早期殖民扩张</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="node">初步形成</a>
+                                <ul>
+                                    <li><a href="#" class="node">第一次工业革命</a></li>
+                                    <li><a href="#" class="node">商品输出</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="node">最终形成</a>
+                                <ul>
+                                    <li><a href="#" class="node">第二次工业革命</a></li>
+                                    <li><a href="#" class="node">资本输出/瓜分世界</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <p style="margin-top:20px;">* 近代世界市场的形成是商业贸易发展变化的背景。</p>
+        </div>
+    </div>
+
+    <!-- 模态框：整体感知 -->
+    <div id="modal-perception" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('perception')">&times;</span>
+            <h2>🌍 整体感知：商业革命</h2>
+            <div class="teaching-card">
+                <div class="card-section active">
+                    <h3>核心变化领域</h3>
+                    <ol>
+                        <li><strong>贸易中心：</strong>地中海 → 大西洋沿岸 → 亚太兴起 → 19C中期伦敦 → 多中心。</li>
+                        <li><strong>经营方式：</strong>交易所、银行、百货公司、股份制公司、有限责任公司。</li>
+                        <li><strong>商品种类：</strong>美洲物种（烟草/可可）、东方商品（茶/瓷器/香料）、特殊商品（黑奴/鸦片）。</li>
+                        <li><strong>贸易格局：</strong>西葡双雄 → 荷兰马车夫 → 英国霸主 → 美德挑战。</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态框：框架解读（主思维导图） -->
+    <div id="modal-framework" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('framework')">&times;</span>
+            <h2>🧠 框架解读：近代商业贸易的变化</h2>
+            <div class="mindmap-tree">
+                <ul>
+                    <li>
+                        <a href="#" class="node">近代商业贸易的变化</a>
+                        <ul>
+                            <li>
+                                <a href="#" class="node">贸易中心转移</a>
+                                <ul>
+                                    <li><a href="#" class="node">欧洲：地中海→大西洋</a></li>
+                                    <li><a href="#" class="node">亚洲：果阿/澳门/马尼拉</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="node">经营方式变化</a>
+                                <ul>
+                                    <li><a href="#" class="node">商品/证券交易所</a></li>
+                                    <li><a href="#" class="node">银行（英格兰/汇丰）</a></li>
+                                    <li><a href="#" class="node">股份制/特许公司</a></li>
+                                    <li><a href="#" class="node">百货公司</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="node">商品种类丰富</a>
+                                <ul>
+                                    <li><a href="#" class="node">日常化：茶/糖/香料</a></li>
+                                    <li><a href="#" class="node">罪恶：黑奴/鸦片</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="node">国际格局演变</a>
+                                <ul>
+                                    <li><a href="#" class="node">17C荷兰→19C英国</a></li>
+                                    <li><a href="#" class="node">20C初多中心</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态框：知识输出 -->
+    <div id="modal-output" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('output')">&times;</span>
+            <h2>📤 知识输出：中国视角的近代化</h2>
+            <div class="mindmap-tree">
+                <ul>
+                    <li>
+                        <a href="#" class="node">近代中国商业变化</a>
+                        <ul>
+                            <li>
+                                <a href="#" class="node">被动卷入</a>
+                                <ul>
+                                    <li><a href="#" class="node">洋行/外资银行(汇丰)</a></li>
+                                    <li><a href="#" class="node">鸦片走私</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="node">主动适应</a>
+                                <ul>
+                                    <li><a href="#" class="node">第一家股份制：轮船招商局</a></li>
+                                    <li><a href="#" class="node">第一家自办银行：通商银行</a></li>
+                                    <li><a href="#" class="node">百货业：先施百货</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态框：核心素养 -->
+    <div id="modal-literacy" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('literacy')">&times;</span>
+            <h2>🌟 核心素养提升</h2>
+            <div class="teaching-card">
+                <div class="card-section active">
+                    <p><strong>唯物史观：</strong>理解世界市场与商业贸易的辩证关系——世界市场是商业贸易发展的前提，商业贸易反过来推动世界市场扩展。认识到资本主义扩张的掠夺性与进步性并存。</p>
+                    <p><strong>史料实证：</strong>通过分析《伊丽莎白女王特许证》、贸易数据表、马克斯·韦伯的论述等史料，还原历史真相。</p>
+                    <p><strong>历史解释：</strong>解释“商业革命”、“价格革命”、“三角贸易”等历史概念。</p>
+                    <p><strong>家国情怀：</strong>了解近代中国在屈辱中艰难探索商业近代化的历程（如轮船招商局“分洋商之利”）。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态框：课堂小结 -->
+    <div id="modal-summary" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('summary')">&times;</span>
+            <h2>📝 课堂小结</h2>
+            <div class="teaching-card">
+                <div class="card-section active">
+                    <p>本课学习近代世界市场的形成与商业贸易的变化。</p>
+                    <ul>
+                        <li><strong>新航路开辟后：</strong>贸易中心转移，商业经营方式和世界贸易格局发生变化。</li>
+                        <li><strong>工业革命后：</strong>资本主义向全球扩张，以欧美资本主义国家为主导的世界市场逐步形成。</li>
+                    </ul>
+                    <p>学习本课，首先需要明确新航路开辟后资本主义世界市场的形成过程及特点，两次工业革命带来交通运输和信息领域的革命性变化，世界市场最终形成，这使全球性的商业贸易成为可能。</p>
+                    <p>其次，需要认识近代以来世界商贸的变化。近代商业贸易在商品种类、商业规模、商路中心、商业经营方式等方面都发生了巨大变化。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 滚动到指定ID
+        function scrollToId(id) {
+            const element = document.getElementById(id);
+            if(element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Highlight active timeline item
+                document.querySelectorAll('.timeline-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                event.target.classList.add('active');
+            }
+        }
+
+        // 折叠卡片逻辑：问题 -> 史料 -> 答案
+        function nextStep(btn) {
+            const card = btn.closest('.teaching-card');
+            const sections = card.querySelectorAll('.card-section');
+            let foundActive = false;
+            
+            for (let i = 0; i < sections.length; i++) {
+                if (sections[i].style.display !== 'block' && !sections[i].classList.contains('active')) {
+                    sections[i].classList.add('active');
+                    sections[i].style.display = 'block';
+                    
+                    // If it's the last section, hide the button
+                    if (i === sections.length - 1) {
+                        btn.style.display = 'none';
+                    }
+                    return;
+                }
+            }
+        }
+
+        // 模态框控制
+        function openModal(id) {
+            document.getElementById('modal-' + id).style.display = 'flex';
+        }
+
+        function closeModal(id) {
+            document.getElementById('modal-' + id).style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        }
+
+        // Scroll Spy for timeline highlighting
+        const mainContent = document.getElementById('mainScroll');
+        mainContent.addEventListener('scroll', function() {
+            // Simple logic to highlight timeline based on headings position could be added here
+            // For simplicity, we stick to click-to-activate for now
+        });
+    </script>
+</body>
+</html>

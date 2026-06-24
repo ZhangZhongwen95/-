@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>走向共和—— 1792 年 8 月 10 日法国革命及其影响</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;   /* 皇家/国旗法兰西蓝 */
+            --accent-color: #b91c1c;    /* 革命激进红 */
+            --text-color: #1f2937;      /* 暗黛色 */
+            --bg-color: #fafaf9;        /* 暖白纸张色 */
+            --sidebar-bg: #f3f4f6;      /* 灰白色侧边栏 */
+            --border-color: #e5e7eb;    /* 边框浅灰 */
+            --font-serif: "Georgia", "STSong", "SimSun", "Songti SC", serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f1f3f5;
+            color: var(--text-color);
+            font-family: var(--font-serif);
+            line-height: 1.8;
+        }
+
+        /* 页面整体框架 */
+        .wrapper {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* 左侧固定目录导航栏 */
+        .sidebar {
+            width: 320px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 40px 25px;
+            overflow-y: auto;
+            font-family: var(--font-sans);
+            z-index: 100;
+        }
+
+        .sidebar h2 {
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .sidebar li.h1-link {
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .sidebar li.h2-link {
+            padding-left: 15px;
+            font-size: 13px;
+        }
+
+        .sidebar li.h3-link {
+            padding-left: 30px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #4a5568;
+            transition: color 0.2s ease;
+        }
+
+        .sidebar a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        /* 右侧正文主体区 */
+        .main-content {
+            margin-left: 320px;
+            width: calc(100% - 320px);
+            background-color: var(--bg-color);
+            padding: 60px 80px;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.03);
+            position: relative;
+        }
+
+        /* 学术格式头部 */
+        header {
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 40px;
+            margin-bottom: 45px;
+        }
+
+        .publish-tag {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        header h1 {
+            font-family: var(--font-sans);
+            font-size: 32px;
+            color: var(--primary-color);
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .author-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .author-meta {
+            font-size: 14px;
+            color: #718096;
+            font-family: var(--font-sans);
+        }
+
+        /* 摘要与关键词 */
+        .abstract-box {
+            background-color: #f8fafc;
+            border-left: 4px solid var(--primary-color);
+            padding: 25px 30px;
+            margin: 30px 0;
+            font-size: 15px;
+            color: #4a5568;
+        }
+
+        .abstract-box p {
+            text-indent: 0;
+            margin-bottom: 10px;
+        }
+
+        .abstract-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-family: var(--font-sans);
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        /* 正文排版 */
+        article p {
+            text-indent: 2em;
+            margin-bottom: 1.8em;
+            font-size: 17px;
+            text-align: justify;
+        }
+
+        /* 标题样式 */
+        article h2 {
+            font-family: var(--font-sans);
+            font-size: 22px;
+            color: var(--primary-color);
+            border-bottom: 1px solid #cbd5e1;
+            padding-bottom: 8px;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        article h3 {
+            font-family: var(--font-sans);
+            font-size: 18px;
+            color: #34495e;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* 引用角标样式 */
+        sup a.citation-trigger {
+            color: var(--accent-color);
+            font-weight: bold;
+            text-decoration: none;
+            padding: 0 3px;
+            font-family: var(--font-sans);
+            font-size: 13px;
+        }
+
+        sup a.citation-trigger:hover {
+            text-decoration: underline;
+            background-color: rgba(185, 28, 28, 0.1);
+            border-radius: 3px;
+        }
+
+        /* 页下注释面板 */
+        .footnotes-section {
+            margin-top: 80px;
+            border-top: 3px double var(--primary-color);
+            padding-top: 35px;
+            font-family: var(--font-serif);
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .footnotes-section h3 {
+            font-family: var(--font-sans);
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .footnotes-section ol {
+            padding-left: 20px;
+        }
+
+        .footnotes-section li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .back-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-left: 6px;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* 气泡弹窗样式 */
+        .footnote-popover {
+            position: absolute;
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            padding: 15px 35px 15px 15px;
+            width: 320px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #334155;
+            z-index: 1000;
+            display: none;
+            font-family: var(--font-serif);
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .footnote-popover .close-btn {
+            position: absolute;
+            top: 6px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #94a3b8;
+            font-weight: bold;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .footnote-popover .close-btn:hover {
+            color: #475569;
+        }
+
+        /* 块级引用 */
+        blockquote {
+            margin: 20px 40px;
+            padding: 15px 20px;
+            background-color: #f9fafb;
+            border-left: 4px solid var(--accent-color);
+            font-style: italic;
+            color: #374151;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 响应式排版 */
+        @media (max-width: 1024px) {
+            .wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 25px;
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- 左侧导航目录栏 -->
+    <aside class="sidebar">
+        <h2>目录 Navigation</h2>
+        <ul>
+            <li class="h1-link"><a href="#abstract-zh">中文摘要</a></li>
+            <li class="h1-link"><a href="#abstract-en">ABSTRACT</a></li>
+            <li class="h1-link"><a href="#intro">引言</a></li>
+            <li class="h2-link"><a href="#intro-1">（一）研究对象</a></li>
+            <li class="h2-link"><a href="#intro-2">（二）研究意义</a></li>
+            <li class="h2-link"><a href="#intro-3">（三）国内外研究状况</a></li>
+            
+            <li class="h1-link"><a href="#chapter1">一、8 月 10 日革命的背景</a></li>
+            <li class="h2-link"><a href="#ch1-s1">（一）1791 年 6 月以来政局的变化</a></li>
+            <li class="h2-link"><a href="#ch1-s2">（二）对外战争失利</a></li>
+            <li class="h2-link"><a href="#ch1-s3">（三）群众的不满及表现</a></li>
+            
+            <li class="h1-link"><a href="#chapter2">二、8 月 10 日革命</a></li>
+            <li class="h2-link"><a href="#ch2-s1">（一）革命过程</a></li>
+            <li class="h2-link"><a href="#ch2-s2">（二）革命者身份</a></li>
+            
+            <li class="h1-link"><a href="#chapter3">三、8 月 10 日革命的影响</a></li>
+            <li class="h2-link"><a href="#ch3-s1">（一）法兰西第一共和国的建立</a></li>
+            <li class="h2-link"><a href="#ch3-s2">（二）法国王权的终结</a></li>
+            
+            <li class="h1-link"><a href="#conclusion">结语</a></li>
+            <li class="h1-link"><a href="#bibliography">参考文献</a></li>
+            <li class="h1-link"><a href="#acknowledgements">后记</a></li>
+            <li class="h1-link"><a href="#translated-docs">外文资料译文</a></li>
+            <li class="h1-link"><a href="#original-docs">外文资料原文</a></li>
+        </ul>
+    </aside>
+
+    <!-- 右侧正文区 -->
+    <main class="main-content">
+        <header>
+            <div class="publish-tag">河南科技大学本科毕业设计（论文）</div>
+            <h1>走向共和——1792 年 8 月 10 日法国革命及其影响</h1>
+            <div class="author-name">张钟文</div>
+            <div class="author-meta">人文学院历史学专业 &nbsp;|&nbsp; 指导教师：毛利霞 &nbsp;|&nbsp; 2018 年 5 月 30 日</div>
+        </header>
+
+        <!-- 中文摘要 -->
+        <section id="abstract-zh" class="abstract-box">
+            <p><span class="abstract-title">摘要：</span></p>
+            <p>1792 年初，经济形势困难让巴黎群众忍受了长期的高昂物价；对外作战失利，凡尔登失守；宫廷和斐扬派消极抵抗，与法国的敌人密谋妥协。在这种情况下，1792 年 8 月 10 日，巴黎的“消极公民”武装了起来，自称“无套裤汉”，和联盟军攻打路易十六居住的杜伊勒里宫。路易十六被监禁在了唐普勒堡。1792 年 8 月 10 日革命是法国大革命走向共和革命的一个重大事件，让国王权威尽失，再一次展现出群众的力量。9 月 21 日国民公会废除王政，次日建立了法兰西第一共和国。巴黎的无套裤汉和外省联盟军主动出击，保卫了革命。当无套裤汉向杜伊勒里宫开火时，立宪君主制就已无以为继，因为群众的目标就是打倒国王，实行共和制度。在事件爆发当天，国王一家被囚禁起来，立法议会通过了暂停国王行使权力的法案和重新召开国民公会的法案。法国的王权于 8 月 10 日在实际上终结。</p>
+            <p style="margin-top:10px; font-weight: bold;">关键词：8 月 10 日事件；无套裤汉；联盟军；九月屠杀；吉伦特派</p>
+        </section>
+
+        <!-- 英文摘要 -->
+        <section id="abstract-en" class="abstract-box" style="font-family: var(--font-sans);">
+            <p><span class="abstract-title">Abstract:</span></p>
+            <p>In the early years of 1792, economic hardship caused the people of Paris to endure long periods of high prices. The French were defeated in the war and lost Verdun. The court and the Fiyanites resisted passively and plotted compromise with the French enemies. In this case, the armed "passive citizens" allied with the Federes, attacked the Tuileries, where King Louis XVI lived on 10 August 1792. Louis XVI was imprisoned in fort temple. The insurrection of August 10, 1792 was a major event to the republican revolution. On 21 September the National Assembly abolished the crown and the following day the first French republic was established. The Sans-Culottes and the Federes took the initiative to defend the revolution. When the Sans-Culottes opened fire on the Tuileries, the constitutional monarchy was no longer viable because the aim of the people was to bring down the king and establish a republic. On the day of the incident, the king's family was imprisoned, and the legislature passed a bill to suspend the king's powers and to reconvene the national assembly. The French monarchy effectively ended on August 10th.</p>
+            <p style="margin-top:10px; font-weight: bold;">Key words: Insurrection of 10 August 1792; Federes; Sans-culottes; September Massacres; Girondins</p>
+        </section>
+
+        <article>
+            <!-- 引言 -->
+            <h2 id="intro">引言</h2>
+            
+            <h3 id="intro-1">（一）研究对象</h3>
+            <p>大革命史是法国史研究的重要组成部分，并对现代世界产生重要影响。国内外的法国大革命史研究兴盛不衰，涉及革命的各个方面。其中，1792年8月10日革命是大革命的重要事件，对于法国从君主立宪制向共和制的转变、法国国内外局势的变化产生重要影响。</p>
+
+            <h3 id="intro-2">（二）研究意义</h3>
+            <p>1792年8月10日，巴黎民众攻打路易十六居住的杜伊勒里宫，并将路易十六监禁在唐普勒堡，形成“8月10日革命”。这一历史事件是在法国革命对外作战失利、内部矛盾重重、巴黎民众恐慌的情况下出现的。它不但展现出群众在革命中的推动作用，还使革命者不得不面对国王存废这个问题及随之而来的各种局面。阴谋和谣言加剧了社会恐慌，出现九月屠杀等过火现象。在打退外国干涉军的过程中，革命派废除了君主立宪制，建立了法兰西第一共和国，迈出了革命中举足轻重的一步，推动了革命的发展。从这个角度上说，8月10日革命是法国继续革命、走向共和制的一个催化剂，然而，革命的深入也必然引来欧洲君主国的恐慌和保王派的愤恨，加剧了国内外的敌对状况，无形中加剧了大革命斗争的艰巨性。</p>
+            <p>因而，探究1792年8月10日革命不但有助于了解群众在革命中的作用，还有助于分析该革命对法国大革命、对法国未来的政治走向的影响。</p>
+
+            <h3 id="intro-3">（三）国内外研究状况</h3>
+            <p>法国大革命是世界史上的重大事件，相关资料众多。《议会档案》是按照时间顺序编纂的法国大革命史资料集，涵盖 1789 年至 1794 年期间为法国立法三个议会机构所进行的辩论和讨论的日常记录。第 47、48 卷记载了 1792 年 8 月 10 日议会记录内容。它记载了革命时期议会审议的最终记录，还包括来自各种出版和档案来源的信件、报告、演讲和其他第一手资料。</p>
+            <p>国内外学术界在法国大革命研究史研究中往往论及 1792 年 8 月 10 日革命。米涅在《法国革命史》利用大革命见证者的活史料，生动地复活了八月十日革命的场面，赞扬革命和人民。20 世纪早期，法国革命史学派的一系列历史学家都基于左翼立场对革命诸多事件发表了一系列看法。其中，马迪厄、勒菲弗尔和索布尔都对八月十日革命表示肯定，同时对革命有不同的关注点。阿尔贝·马迪厄从意识形态出发，赞扬了八月十日革命，视其为大资产阶级与贵族的覆灭，民主的曙光。乔治·勒费弗尔从公民权角度，认为八月十日事件是一场带来了普选的真正革命。阿尔贝·索布尔在专著《无套裤汉》中认为，作为无产阶级的无套裤汉是八月十日革命的主力。英国马克思主义史学家乔治·鲁德在《法国大革命中的群众》中认为八月十日革命群众主体不是工人。</p>
+            <p>然而，弗朗索瓦·傅勒提出了修正观点，在《思考法国大革命》中认为1792年8月的行动是激进雅各宾党人扩充革命权力的一种手段，有利于揭露并迫害存在或潜在的政治对手。雅克·索雷在《拷问法国大革命》中认为8月10日之后，并未建立一个无套裤汉的民主共和国。威廉·多伊尔在《牛津大革命史》中评价8月10日是大革命流血最严重，也是最具决定性的一天。</p>
+            <p>国内的法国革命史研究开始很早，成果丰硕。高毅在专著《法兰西风格：大革命的政治文化》中认为八月十日革命后的屠杀是革命派通过利用谣言，煽动恐惧而导致的。张弛在其专著《法国革命恐怖统治的降临（1792年6月-9月）》中对八月革命及前后事件进行了专门论述，他认为8月10日革命是国家主权统一性的分裂，例外状态下主权的清洗异己导致屠杀。</p>
+            <p>综上，从国内外的研究现状来看，对8月10日的专题研究较少，对这一革命的起源、主体、意图、影响、评价等方面还存在诸多疑问和不确定之处。本文在前人研究基础上，以1792年8月10日革命的起源为切入点，探究这一革命的影响。</p>
+
+            <!-- 背景 -->
+            <h2 id="chapter1">一、8 月 10 日革命的背景</h2>
+            
+            <h3 id="ch1-s1">（一）1791 年 6 月以来政局的变化</h3>
+            <p>1791 年 6 月国王出逃瓦伦<sup><a href="#fn1" class="citation-trigger" id="ref1" data-fn="1">[1]</a></sup>后，立宪政体的声望随着路易十六的威信扫地而一落千丈。原本被压制的民主派力量做出回应：科德利埃俱乐部的成员从 6 月 21 日起要求国民制宪议会建立共和制，至少在决定路易命运之前征询各初级议会的意见。他们宣布：“我们终于摆脱了国王，获得了自由。”<sup><a href="#fn2" class="citation-trigger" id="ref2" data-fn="2">[2]</a></sup>但如果实行共和制，民众将会扮演越来越重要的角色，这是制宪议会的代表们非常警惕的。</p>
+            <p>议员们为了保持自己权力的稳定，决定与国王和解。他们无视国王叛逃这一众目睽睽之下的事实，坚持认定国王是被绑架的。<sup><a href="#fn3" class="citation-trigger" id="ref3" data-fn="3">[3]</a></sup>这样制宪议会就同时掌握了行政权和立法权。共和派表示不满，激进的社会俱乐部和科德利埃俱乐部成员加入了雅各宾俱乐部，双方成立了联合委员会。选举出的委员之一布里索，次日就在自己派别的报纸上发表请愿书，宣称国王已经退位了，这个举动并不能得到雅各宾俱乐部成员的一致认可。拉法耶特、拉梅特兄弟和俱乐部中不支持共和的成员，包括除了罗伯斯庇尔、佩蒂翁几个人之外的几乎全部议会议员 7 月 16 日在斐扬修道院成立了新的俱乐部。而这时雅各宾俱乐部里民主派（科德利埃派）就占了上风，开始为请愿者征集签名。</p>
+            <p>第二天，大约 5 万人聚集在战神广场，参加请愿签名活动。国民制宪议会以扰乱秩序为借口，命巴黎市长驱散集会，于是国民卫队向群众开了枪，致 50 人死亡。随后群众运动被镇压，科德利埃俱乐部被关闭。<sup><a href="#fn4" class="citation-trigger" id="ref4" data-fn="4">[4]</a></sup>从此支持立宪君主制的斐扬派在制宪议会掌握大权，和雅各宾派分裂。在 9 月 3 日，经过修改的宪法被提交给国王，十天后路易接受了宪法， 14 日路易向宪法宣誓效忠。</p>
+            <p>制宪议会解散了，新的立法议会在 10 月 1 日成立。议会右翼由 245 名斐扬派议员组成，左翼则由 136 名雅各宾俱乐部成员组成，其中记者布里索的派别被称为布里索派，他们倾向于政治民主并尊重财富，与波尔多、南特和马赛等地的银行家、船主和批发商等关系密切。由于左翼受一些在吉伦特省选举出的杰出演说家影响较大，又产生了“吉伦特派”这个称呼。<sup><a href="#fn5" class="citation-trigger" id="ref5" data-fn="5">[5]</a></sup></p>
+            <p>斐扬俱乐部由于自身活动的形式是一种私人集会，不接受旁观者，而且不愿被觉得太过公开地讨论政治，所以没有像雅各宾俱乐部那样公开演讲的机会。最关键的是，在大革命的政治环境中，公开性是非常重要的，任何派系政治、小集团密谋策划，都会被认为是见不得人的勾当，要实现自己的特殊利益而不是公共利益。<sup><a href="#fn6" class="citation-trigger" id="ref6" data-fn="6">[6]</a></sup>雅各宾俱乐部有活跃的环境，公共演讲和掌声，是革命公开性的展现。还有大量外省雅各宾俱乐部的组织和参与，越来越有名气。斐扬派的成员则在逐渐减少，力量也在削弱。</p>
+            <p>国民制宪议会留下了很多问题没能解决，其中有两个最严重的。一个是未宣誓教士问题。这些教士拒绝向 1790 年《教士公民组织法》和宪法宣誓。拒誓派教士在巴黎外的广大乡村地区一直得到众多的支持。另一个是流亡者问题。自从 1789 年 7 月 14 日巴士底狱被攻克后，许多贵族看到国内大势已去，纷纷流亡外国。在境外组织反对势力，瓦伦事件发生后，军队中效忠于国王的军官认为国王已经失去了自由，大量流亡。这造成了军队事实上的涣散。流亡者在德意志的邦国特雷弗、美因茨等地大量汇集，准备反攻的军事行动。</p>
+            <p>11 月 9 日立法议会发布了新的惩治流亡者的法令，要求流亡者必须在短期内归国，否则将被视为阴谋嫌疑者，他们的财产也将收为国有。 11 月 29 日，议会又规定所有未宣誓的教士都应该进行新一轮的公民宣誓，拒绝的人将会失去抚恤金。 11 月 29 日立法议会的另一个法令请求国王“要求收留法国逃亡者的特雷弗和美因茨的选侯及帝国其他诸王公，不要在边境聚集和招募军队。”<sup><a href="#fn7" class="citation-trigger" id="ref7" data-fn="7">[7]</a></sup>由于国王拥有否决权，12 月 19 日路易否决了关于未宣誓教士的议案。</p>
+
+            <h3 id="ch1-s2">（二）对外战争失利</h3>
+            <p>此时，普罗旺斯伯爵加入流亡者，流亡分子势力大增。孔代亲王下令将军队集结在特雷弗领地上的科布伦茨。不久前，皇帝利奥波德二世在“皮尔尼茨宣言”中表达了要干涉革命的态度。莱茵河诸邦在 1791 年 12 月 14 日收到了法国关于流亡者的警告，向神圣罗马帝国皇帝求援。而皇帝本来就是对流亡者既不同情，也不重视的。只同意流亡者在 12 月底前解除其军事集结的条件下予以保护，这样流亡者很快瓦解了。另一方面，法国在 1792 年 1 月 25 日对利奥波德二世下了最后通牒，要求其撤回“皮尔尼茨宣言”。结果皇帝重申了宣言，还声称将保护领地内的德意志王公。同时，利奥波德二世与普鲁士国王弗里德里希•威廉二世进行谈判，最后在 2 月 7 日以牺牲波兰为代价换取了和普鲁士的军事联盟。协议规定，普鲁士和奥地利任何一方遭到外敌进攻，另一方将派遣三万军队给予支援。 2 月 16 日，弗里德里希·威廉在波茨坦同预定担任联军主帅的布伦瑞克公爵会商，共同制定了军事计划。奥普两国先是警告法国把德意志王公和教皇的领地归还原主，保障王室安全和维护君主政体，然后计划各派五万军队进攻法国，六千人立即出发。皇帝在 3 月 1 日去世，新即位的弗朗茨二世对革命持强硬态度。对法国的警告不予理睬。</p>
+            <p>3 月 15 日吉伦特内阁执政，主战派完全占了上风。第二天，玛丽·安托瓦内特（Marie Antoinette）就通知皇帝法国内阁准备开战了。于是帝国将现有部队开往比利时，只派一万五千军队参与预定的进攻。普鲁士起初抗议，最后决定将进攻推迟，改为七月底进攻，这就为法国赢得了三个月的喘息时间。<sup><a href="#fn8" class="citation-trigger" id="ref8" data-fn="8">[8]</a></sup> 4 月 20 日，路易十六亲临立法议会，建议向“匈牙利和波西米亚的国王”宣战，这种称呼意在只与奥地利而不与其他的德意志邦国作战。</p>
+            <p>传统史学派如索布尔，一般把宣战的原因总结为“两面三刀”的宫廷阴谋和布里索要追求资产阶级的利益。布里索认为法国经济困难重重，需要一场战争来振兴经济，同时还可以打击阴谋分子，缓解矛盾。一旦开战，拒绝宣誓的教士就顺理成章地成了叛国者。国王和宫廷也希望爆发一场国际战争，因为法军由于军官大量流亡已经军纪涣散，如果能引发外国干涉击败议会，原来的权力就有可能恢复。刘大明认为，皮尔尼茨宣言并不构成对法国的威胁，流亡分子的确是心腹大患，而路易对战争的态度则有一个由反对到支持的转变，同时大革命的政治文化对最后的宣战决定影响很大。<sup><a href="#fn9" class="citation-trigger" id="ref9" data-fn="9">[9]</a></sup></p>
+            <p>战争一开始法军就遭遇了失败。法军野战部队缺额较多，但人们更愿意参加待遇更好的志愿军；志愿军缺乏装备和训练；国民卫队则不愿离开家乡，只有悬赏才能征到兵。在这样未完成准备的情况下，4 月 29 日，五万法军兵分四路，分别从福尔纳、利尔、瓦朗西安和吉万出发，进攻分散在从海边到洛林防线上的三万五千奥地利军队。但由于法军九千名军官中已经有至少一半流亡，组织非常涣散。5 月又有三团骑兵投了敌。<sup><a href="#fn10" class="citation-trigger" id="ref10" data-fn="10">[10]</a></sup> 4 月 29 日，刚刚与奥军接触，迪永和比隆就下令撤退，部队以为遭到了奸细暗算，纷纷溃败，迪永在利尔被溃军杀死。5 月 18 日，法军将领云集在瓦朗西安，不顾国防大臣的命令，公开宣布已不能进攻，并建议国王立即媾和。<sup><a href="#fn11" class="citation-trigger" id="ref11" data-fn="11">[11]</a></sup></p>
+
+            <h3 id="ch1-s3">（三）群众的不满及表现</h3>
+            <p>群众根本上关心的还是食品价格问题，1792 年的通货膨胀引起了群众骚动，而战争则加剧了这个过程。在战争开始之前，指券<sup><a href="#fn12" class="citation-trigger" id="ref12" data-fn="12">[12]</a></sup>的价值已经显著下落，法国里弗的外汇率在国外也开始猛跌。1 月，食糖价格几天内从每磅 22-25 苏涨到了 3 里弗和 3 里弗半。在圣安东、圣马瑟勒和圣德尼郊区，以及格拉维耶和博堡区发生了骚动。<sup><a href="#fn13" class="citation-trigger" id="ref13" data-fn="13">[13]</a></sup>另一次骚动爆发在 2 月 14 日早晨。 2 月 15 日发生了多次企图闯进货栈的行动。</p>
+            <p>吉伦特派在对外战争失利的情况下，迅速通过了一系列新法令：凡由本省 20 名以上公民告发的反抗派教士一律被驱逐（5 月 27 日）；在巴黎设置营地，供参加联盟节<sup><a href="#fn14" class="citation-trigger" id="ref14" data-fn="14">[14]</a></sup>的两万名联盟军（Fédérés）使用（6 月 8 日）。结果到了 6 月 11 日，路易拒绝批准关于驱逐反抗派教士和召集联盟军的法令。路易还将吉伦特派大臣革职，组建了斐扬派内阁。<sup><a href="#fn15" class="citation-trigger" id="ref15" data-fn="15">[15]</a></sup>在雅各宾派看来，这一切都表明，宫廷已经有了将领做后盾，要粉碎雅各宾派，必要时还可以解散议会，修改宪法，召回流亡者，与敌人交涉停止战争。6 月 14 日有谣言说新内阁要停止战斗行动。几天后，又有人说国王要在 7 月 14 日联盟节颁布大赦令，召回流亡者。</p>
+            <p>在这种情况下，吉伦特派决定在 6 月 20 日网球场宣誓纪念日，即瓦伦事件一周年组织群众活动。<sup><a href="#fn16" class="citation-trigger" id="ref16" data-fn="16">[16]</a></sup>巴黎的武装群众被动员起来，汇集在西郊，然后占领了杜伊勒里宫。他们自称是“无套裤汉<sup><a href="#fn17" class="citation-trigger" id="ref17" data-fn="17">[17]</a></sup>”，威胁国王两小时。路易十分镇定，戴着红色的自由帽，为法国干了一杯。但路易说：“我要做宪法及法律叫我做的事。”所以群众散去后，行动并未达到什么目的，反而使外省对国王充满了同情。王党反对雅各宾恐吓国王的请愿书和效忠国王的文件，不断从外省送到杜伊勒里宫和议会。许多郡责难 6 月 20 日事件，有些地方还发生了王党暴动。<sup><a href="#fn18" class="citation-trigger" id="ref18" data-fn="18">[18]</a></sup></p>
+            <p>1789 年三级会议中，巴黎被划分为 60 个选区，每个区选派一千公民组编成营，巴黎的国民卫队便由这 60 个营组成。1790 年市政法令按新的选举标准，以“积极公民（Citoyen actif）”人数为准，将巴黎重新划分为 48 个区，每区有 1700-1800 积极公民。但国民卫队编制还是 60 个，这样各区就无法调动各营了。1792 年，在全民武装救国的大潮下，4 月 30 日，卢森堡俱乐部向议会请愿，要求改组国民卫队，加强其和区上的联系。6 月 18 日巴黎市政府决定 27 日召集各区“协商关于向议会递交申请之请愿，将国民卫队由 60 营改为 48 营。”但此时的巴黎市政府和各区还是稳健的资产阶级和“积极公民”掌权，一些区对 6 月 20 日还心有余悸，表示反对。最终只是对国民卫队长官人选和联络问题上，达成了有利于加强联系的决定。这样，在 8 月 10 日革命的战斗中，守备杜伊勒里宫的国民卫队并未抵抗，而是倒戈加入了革命者。<sup><a href="#fn19" class="citation-trigger" id="ref19" data-fn="19">[19]</a></sup></p>
+            <p>联盟军是参加 1792 年 7 月 14 日联盟节的武装公民代表。按 6 月 14 日军事大臣塞尔旺提交的法案，这支两万人的联盟军由各省的选区派选。四天后，议会通过草案，规定每个选区选出五名联盟军士兵，总共组成两万联盟军拱卫首都。立法议会一些代表反对塞尔旺的议案：</p>
+            <blockquote>
+                1792 年 6 月 6 日代表若古发言：由民众来选那些保卫他们的人，……这和选举国家立法代表有什么区别？！……这还是一次直接选举……这样一支两万人的武装“国民代表团体”难道不会扮演政治角色？难道对此，议会一物也不担心吗？<sup><a href="#fn20" class="citation-trigger" id="ref20" data-fn="20">[20]</a></sup>
+            </blockquote>
+            <p>吉伦特内阁对联盟军法案的意见也不统一，因为塞尔旺并未将法案提交内阁讨论，国王则否决了联盟军法令，并解散了内阁。尽管联盟军法案迟迟未得到国王批准，但在外省，尤其是南部地区的联盟军选派活动已经开始。7 月 2 日议会不再征求国王意见，颁布了联盟军法令。而且还要求联盟军先到巴黎市政府领取入住证明，然后赶往苏瓦松兵营。</p>
+            <p>从 7 月 10 日起，联盟军、巴黎各区及送达首都的各地请愿书陆续送到立法议会，要求制裁拉法耶特，要求议会分发武器，要求惩治各地懈怠的政府官员，要求停止或干脆废除国王的否决权。<sup><a href="#fn21" class="citation-trigger" id="ref21" data-fn="21">[21]</a></sup> 7 月 17 日，联盟军提议废除国王。7 月 21 日，法兰西剧院区投票取消了积极公民和消极公民的区别。7 月 25 日，各区议会获准开始永久会期，并成立了巴黎公社(Commune de Paris)和联盟军合作。7 月 28 日，布伦瑞克公爵的宣言<sup><a href="#fn22" class="citation-trigger" id="ref22" data-fn="22">[22]</a></sup>传到巴黎，立法议会批准把所有武器分配给所有公民。8 月 3 日佩蒂翁代表巴黎 48 区要求国王马上退位。8 月 6 日，聚集在战神广场的所有人又签署了一份请愿书。</p>
+            <p>此时革命者已经做好了起义准备。7 月 30 日，马赛联盟军抵达巴黎后，就和歌声联盟军组建了秘密起义指挥部，共 15 人。此外，联盟军已经和各区群众融合在了一起，在 7 月中旬到 8 月初，这些外省人逐渐被巴黎的政治所同化。张弛认为，在 8 月 10 日革命以前，联盟军不再是一支独立的政治力量。他们已经和巴黎群众融合在一起，领导革命的就是这股融在一起的力量。<sup><a href="#fn23" class="citation-trigger" id="ref23" data-fn="23">[23]</a></sup></p>
+            <p>8 月 4 日，巴黎市长佩蒂翁劝说民众不要贸然行动。盲人收容院区回复说“在下周四(8 月 9 日)半夜十一点前，我们会一直耐心地等待议会的命令。”但是如果议会不能给巴黎公道，那么，那一天(8 月 9 日)“午夜，钟声就会响起，一场全面的战争就会爆发，所有人都会起来战斗。”8 月 5 日，莫孔赛尔区告知议会，在 8 月 9 日之前，他们会一直保持中立。<sup><a href="#fn24" class="citation-trigger" id="ref24" data-fn="24">[24]</a></sup></p>
+
+            <!-- 革命 -->
+            <h2 id="chapter2">二、8 月 10 日革命</h2>
+            
+            <h3 id="ch2-s1">（一） 革命过程</h3>
+            <p>8 月 9 日夜里 11 点半，盲人收容院区首先敲响了警钟。钟声一直持续到两点。钟声在蒙特娄区，法兰西剧院区也陆续响起。到达的核心组织包括 28 个区的 168 人。各区也派出自己的部队，有些区则按兵不动。塞纳河左岸各区率先做好了准备，与扎营于法兰西剧院区的马赛联盟军会合。右岸的军民准备集结在圣安托万郊区的孤儿院营地。两岸武装军民最后计划在市政府门口和巴士底狱废墟会合。<sup><a href="#fn25" class="citation-trigger" id="ref25" data-fn="25">[25]</a></sup></p>
+            <p>进攻由桑泰尔和亚历山大指挥。8 月 9 日半夜，亚历山大率领圣马瑟勒郊区的群众、马赛联盟军和布雷斯特联盟军，经由多菲内大街，向新桥进发。由于一些区武装部队对攻打杜伊勒里宫没有把握，桑泰尔率领的塞纳河右岸的队伍出发较晚。经过动员后，桑泰尔的军队向巴士底狱进发，沿圣安托万大街前进，抵达市政厅后，沿圣端诺雷街和夏特勒街，抵达卢浮宫，进入卡塞尔广场，与亚历山大会合。</p>
+            <p>杜伊勒里宫卫戍部队总指挥曼达侯爵作战经验丰富，他接替拉法耶特，任巴黎国民卫队指挥官。8 月 9 日深夜，曼达收到市政府传召，匆匆离开杜伊勒里宫，奔赴市政厅，中途遇害。张驰认为，曼达为革命群众所畏惧，他的遇刺，很可能是有预谋的。<sup><a href="#fn26" class="citation-trigger" id="ref26" data-fn="26">[26]</a></sup></p>
+            <p>路易十六在上午六点联盟军抵达杜伊勒里宫后，无意战斗，就匆匆离开前往立法议会所在的骑术大厅寻求保护。但战斗已经开始。杜伊勒里宫的国民卫队很快倒戈。瑞士兵和宪兵退进宫殿顽抗，由于指挥官逃跑，士气大跌。瑞士兵伤亡惨重，最后停火，一些投降的被立即杀死，另一些士兵撤到花园，也有人想到议会去求助。革命群众押着俘虏，在路易十五雕像前将他们处死。守军共死亡 800 多人，只有 300 多存活下来。<sup><a href="#fn27" class="citation-trigger" id="ref27" data-fn="27">[27]</a></sup></p>
+
+            <h3 id="ch2-s2">（二） 革命者的身份</h3>
+            <p>8 月 10 日革命者总体上是典型的“无套裤汉”，夹杂着少数富裕公民。鲁德参考了巴黎各区送来的死伤者名单和以后被国民公会认为有资格由本人或家属领取抚恤金的名单来进行对证。他的结论是联盟军的死伤在有记录可查的全部伤亡数字中大概不足四分之一。起义者伤亡 376 人，其中 83 人为联盟军，285 人是国民卫队和武装群众。在伤亡的三百多巴黎市民中，120 人注明了职业，其中 95 人来自首都 50 种小商业和小手工业。不是店主、小商贩、制造商、作坊老板和工匠，就是帮工。他们中间只有 2 名资产阶级和 3 名可称为专门职业的：1 名建筑师、1 名外科医生、1 名绘图师。其余的是小职员（2 人）、音乐师（2 人）、家庭仆役（9 人）、码头工人、体力劳动者和马车夫（7 人）、玻璃工（2 人）。一共有 33 个帮工和 18 个其他工人。<sup><a href="#fn28" class="citation-trigger" id="ref28" data-fn="28">[28]</a></sup></p>
+            <p>革命者来自几乎各个区，除了鲁列区、罗亚尔广场区、亨利四世区(新桥区)和圣路易岛区(友爱区)。圣安东郊区仅盲人收容院区就有不下 8 名死者和 50 名伤者，其次是蒙特娄区(伤亡 18 人)，菲尼斯泰勒区(伤亡 19 人)和天文台区(伤亡 18 人)——后两个区都属于圣马瑟勒郊区。圣安东和圣马瑟勒两个郊区合计占死伤总数的三分之一到二分之一。<sup><a href="#fn29" class="citation-trigger" id="ref29" data-fn="29">[29]</a></sup></p>
+
+            <!-- 影响 -->
+            <h2 id="chapter3">三、8 月 10 日革命的影响</h2>
+            
+            <h3 id="ch3-s1">（一） 法兰西第一共和国的建立</h3>
+            <p>8 月 10 日革命发生之后，立法议会将路易十六“停职”，之后起义公社将路易十六关入了唐普勒堡。各郡纷纷响应 8 月 10 日事件。军队由于从属于党派，都接受了事变，将军如迪穆里埃和比隆等人都拥护革命，但支持君主立宪的拉法耶特出逃了。<sup><a href="#fn30" class="citation-trigger" id="ref30" data-fn="30">[30]</a></sup></p>
+            <p>8 月 10 日后，战争形势继续恶化。8 月 16 日立法议会下令在巴黎和周边十六省紧急征发三万志愿军。第二天即 8 月 17 日下令设立革命法庭来审问 8 月 10 日革命前后被捕的涉嫌支持国王的人，但进度非常缓慢。8 月 23 日，隆维被普鲁士军占领。9 月 2 日，凡尔登失守的消息传来，巴黎已经岌岌可危，此时关于阴谋的谣言四起，联盟军联名要求议会马上处死“策划阴谋的人”<sup><a href="#fn31" class="citation-trigger" id="ref31" data-fn="31">[31]</a></sup>。市政府自行发布命令，官员在各区展开动员工作，号召健壮男子去战神广场参加志愿军。武装群众四处燃放警炮、擂响战鼓、敲响警钟、关闭栅栏。在这种气氛中，人们对叛变的担忧更加强烈了。志愿军正准备集结出发时，传闻说在他们走后，被捕的嫌犯将发动暴乱来接应敌人。马拉告诫志愿兵们：“在未审判人民的敌人之前，不要离开首都。”9 月 2 日下午，一些送往亚培监狱的拒誓派教士被押解他们的马赛和布列塔尼联盟军处死。后来的数天里，在其他监狱屠杀仍在继续，总共 1100 多犯人被群众处决。其中四分之三是普通法犯人（即普通的菜园窃贼、娼妓、指券伪造犯和流浪汉等<sup><a href="#fn32" class="citation-trigger" id="ref32" data-fn="32">[32]</a></sup>）。<sup><a href="#fn33" class="citation-trigger" id="ref33" data-fn="33">[33]</a></sup>在被害者中，神甫和其他政治犯有二百二十名，只占四分之一。<sup><a href="#fn34" class="citation-trigger" id="ref34" data-fn="34">[34]</a></sup></p>
+            <p>立法议会支持的革命法庭并未成为滥杀无辜的工具，但屠杀的发生让法庭失去了权威。8 月 17 日法庭的建立，本来是为了惩处侵害自由的人民公敌，但法官秉持公正的观念却让这个法庭办事缓慢，一个月才处理了 18 起案件，其中只有 7 起是死刑。法官始终坚守一种司法公正的信念，收集证据，审核材料，认证听取各方证词，如果证据不足就会随时停止庭审。在立法议会中，即使是激进派也表示认可这些理念：后来成为山岳派（La Montagne）的舒迪奥认为，革命法庭不能成为以人民之名，侵害日常生活的“宗教裁判所”。<sup><a href="#fn35" class="citation-trigger" id="ref35" data-fn="35">[35]</a></sup>屠杀发生后，吉伦特派“被吓得胆战心惊”。<sup><a href="#fn36" class="citation-trigger" id="ref36" data-fn="36">[36]</a></sup>立法议会和雅各宾派都没有人去称赞屠杀。布里索的一派和罗伯斯庇尔的一派后来很快用屠杀来相互指责，认为对方和屠杀有瓜葛。九月屠杀成了之后一年政治辱骂的标准语句。对屠杀的恐惧一直在政治生活里存在了很长时间。</p>
+            <p>巴黎公社和一些区认为屠杀必要且值得外省仿效。《一位人民妇女的回忆录》写道：“尽管被屠杀的景象吓得发抖，但人们还是把它看成一项正义的行动。”<sup><a href="#fn37" class="citation-trigger" id="ref37" data-fn="37">[37]</a></sup> 9 月 3 日，一个以巴黎公社为名义发给各省的通告中说：“全国人民……为了挽救国家，当然渴望采取此种必要的手段。”圣马瑟勒郊区的菲尼斯泰勒区议会，在 9 月 6 日也表达了看法：“兹特郑重声明，人民已经复了仇，对那些可能逃脱公正报复的阴谋家一定要给予法律制裁。”<sup><a href="#fn38" class="citation-trigger" id="ref38" data-fn="38">[38]</a></sup></p>
+            <p>阴谋和谣言是革命中的两个重要现象。要理解 9 月屠杀，必须看到，无论巴黎还是外省，都生活在贵族阴谋的恐惧中，而这种恐惧通常不是捏造出来的。<sup><a href="#fn39" class="citation-trigger" id="ref39" data-fn="39">[39]</a></sup>张弛认为，九月屠杀并不是漫无目的，而是群众通过屠杀，获得正义，压制心头的恐惧。议会和当局无法满足群众的需求，他们必须自己拿起法律制裁的武器。索布尔认为，应根据当时的形势来评价九月屠杀，外敌入侵使革命处于危险中，国内的反革命活动则激起了群众对内部敌人及其支持者的恐惧与仇恨。“这是一种社会性的仇恨，而不仅仅是一种无套裤汉的仇恨。”<sup><a href="#fn40" class="citation-trigger" id="ref40" data-fn="40">[40]</a></sup></p>
+            <p>屠杀让巴黎人安了心，无套裤汉成群结队地参加志愿军，迎战普鲁士军队。9 月的前几周就有两万人报名参军。<sup><a href="#fn41" class="citation-trigger" id="ref41" data-fn="41">[41]</a></sup>鲁德认为，这就是屠杀为革命带来的最现实的意义：“在志愿军 9 月 20 日瓦尔米战役击退普军几个星期以前，(屠杀)将内部的敌人消灭殆尽。共和国就是建立在这样一个消灭了内外敌人的坚实基础上的。”<sup><a href="#fn42" class="citation-trigger" id="ref42" data-fn="42">[42]</a></sup></p>
+            <p>普鲁士军队占领凡尔登后，普王命令布伦瑞克公爵加快进军，很快与迪穆里埃的法军相遇。9 月 19 日，急于求成的威廉认为法军不堪一击，不顾军事准则，下令向敌军展开正面进攻。20 日，普军向法军发动攻击，凯莱尔曼率部在瓦尔米和依弗隆的高地迎敌，双方展开了炮战，下午普军发动冲锋，但是法军岿然不动，反而高呼：“民族万岁！”布伦瑞克公爵看到计划受挫，就下令撤退。勒费弗尔认为，瓦尔米战役虽然在军事上不算大战 ，但在心理上却是革命对敌人的一次大胜。<sup><a href="#fn43" class="citation-trigger" id="ref43" data-fn="43">[43]</a></sup></p>
+            <p>8 月 10 日的起义让立法议会受到沉重的打击，它被迫承认非法领导起义的公社为巴黎市的新政权，被迫停止国王的职务。可见，立法议会已经无力维持原有的政治体制了。<sup><a href="#fn44" class="citation-trigger" id="ref44" data-fn="44">[44]</a></sup>瓦尔米战役的当天，国民公会取代了立法议会，改变了起义之后新旧权力机构摩擦、更迭带来的混乱局面。国民公会是全国最高的立法机关，控制着行政权。公民之间的区别已经取消，新的议会是全体纳税者选举出的。在 750 个议席中，吉伦特派占 160 席，是议会的右翼力量，山岳派拥有 80 席，组成左翼势力。其余 510 席为中间派，仍称平原派。全部代表中 600 多人有从政经验。一般山岳派认为吉伦特派倾向君主制，对反革命势力有好感；而在吉伦特派看来，对手正在组织大屠杀和起义，以便建立专政统治，并把巴黎凌驾在外省之上。<sup><a href="#fn45" class="citation-trigger" id="ref45" data-fn="45">[45]</a></sup>开始时，平原派多倾向于吉伦特派的主张，故国民公会的领导权一度由吉伦特派把持，同时吉伦特派也控制了中央行政机构。<sup><a href="#fn46" class="citation-trigger" id="ref46" data-fn="46">[46]</a></sup>不过就在国民公会正式开会第一天(9 月 21 日)，议会便通过决议废除了王政。9 月 22 日，宣布法国为共和国，史称法兰西第一共和国（Première République）。</p>
+
+            <h3 id="ch3-s2">（二） 法国王权的终结</h3>
+            <p>不论是革命派还是保王派，双方都认为君主是整个社会秩序的标志。下令处死国王的，是一个以主权在民为合法性基础的共和政体，共和国建立宣布了国王政治命运的终结。革命伴随着政治环境走向激进，共和派发动革命并取得了成功，证明了自己的正确，在这种情形下，激进革命者掌握着权力。</p>
+            <p>11 月 20 日，“铁柜”及其内藏文件的发现，证实了国王和敌人的交易。审判从 12 月 11 日持续进行到 12 月 16 日。1793 年 1 月 14 日审判国王的议案被交付议决，唱名投票从 1 月 16 日晚开始进行了 24 个小时，最终以 387 票对 334 票的多数判了国王死刑，缓刑的提议也被否决，1793 年 1 月 21 日，路易十六被处死。审判路易十六中体现了立法权的力量，国民公会的威信显著加强。虽然遭到停止职权，路易十六仍是宪法承认的、人身不可侵犯的国王，如何处置他是一件关系到国家制度的大事。路易十六之死使得君权神授的性质、国王人身不可侵犯的宪法条文皆遇到了新制度的“断头刀”。而且国民公会审判与处决国王超出了分权的概念，拥有立法权的议会同时兼有司法权，这是权力的扩张，显示出制度的激进性。<sup><a href="#fn47" class="citation-trigger" id="ref47" data-fn="47">[47]</a></sup></p>
+            <p>路易十六从高高在上到一路下跌，最终丧命，和大革命时期及之前，法国人民对国王及旧制度的情感和想象的变化，有着紧密的关系。</p>
+            <p>林·亨特认为，私人家庭中的情感关系和整个国家的政治文化密不可分，家庭中的父权和旧制度的政治专制在意识形态上，有着密不可分的纠缠。在旧制度的政治文化传统中，法国国王是一个带有父权社会中家长特性的国家元首。但是，大革命前的法国文化中出现了一种对家庭中父权地位的颠覆过程。这个过程体现在文化艺术作品中，比如 18 世纪法国小说具有反父权、反家长主义的潜质。儿童地位上升，父亲从引发危机的、压制反抗的高压权威形象，过渡到了文人笔下理想的“好父亲”形象。这种观念广为传布，使得国王“君父”的地位式微。再后来父亲面目逐渐模糊，人们开始想象父亲权力减弱或者没有父亲存在的新环境，对王权政体的专制基础造成了致命打击。<sup><a href="#fn48" class="citation-trigger" id="ref48" data-fn="48">[48]</a></sup>而受到这些艺术作品影响的人恰恰成为了革命时代的立法者，这批人在 1789 年之后开始采取措施在法律上限制父权的范围和行使。</p>
+            <p>国王地位的丧失，不是在 1789 年革命爆发时立即发生的。在革命爆发之后的一段时间，立法者仍然致力于塑造国王“好父亲”的形象。因为在他们看来，好父亲是维护社会秩序的重要角色。他们推动法令制定着眼于消除或者牵制“不良”的父亲，但并不打算将父亲的权力全部消除。同样地，在革命最初几年，他们也无意把国王的权力全部废除，他们希望法王能洗心革面，从此答应做一个好爸爸。<sup><a href="#fn49" class="citation-trigger" id="ref49" data-fn="49">[49]</a></sup></p>
+            <p>瓦伦事件后，旧制度的彻底摧毁变得不可挽回。<sup><a href="#fn50" class="citation-trigger" id="ref50" data-fn="50">[50]</a></sup>革命者最终判处国王死刑，具有一种弑父的特性。极端派只有透过将国王处死并接受人民全体的神圣性，才能拒斥国王本身的神圣性。仪式性地献上法王以为牺牲，并象征性食其肉，是达成这场神圣性质转移的主要手段。<sup><a href="#fn51" class="citation-trigger" id="ref51" data-fn="51">[51]</a></sup></p>
+
+            <!-- 结语 -->
+            <h2 id="conclusion">结语</h2>
+            <p>大革命从 1789 年一开始的斗争对象就是国王及他象征的专制制度。大革命前后的流言蜚语将国王去神圣化，1789 年 7 月 14 日的胜利似乎终结了革命，国王在 1790 年的联盟节宣誓效忠，成了“人民的国王”。瓦伦事件和战神广场屠杀的发生终结了这种可能，共和制在 1791 年 6 月后已经成为了革命的新目标。</p>
+            <p>民众对君主制的情感发生了迅速的转变。对外战争的失利使得国际环境恶化，使得国内团结起来，保卫革命和民族利益成了第一位的要求。这时，一个和阴谋与敌意联系起来的国王最终不再被群众所容忍。八月十日起义者占领杜伊勒里宫，国王寻求议会保护。旧制度下国王的天授君权在革命中土崩瓦解，民众对绝对权力的迷信也随之崩塌。<sup><a href="#fn52" class="citation-trigger" id="ref52" data-fn="52">[52]</a></sup></p>
+            <p>8 月 10 日革命发生了。</p>
+            <p>革命之后权力不是移交给了具有合法性的议会。九月屠杀体现出了新旧权力机构之间的摩擦，立法议会设立的审判法庭权威被天平践踏，政治程序被破坏。革命发起者巴黎公社携暴力革命之威，使得新建的国民议会一开始就处于巴黎群众恐怖的阴影下。公社和巴黎的代表组成了国民议会中山岳派的核心，他们作为巴黎群众代表对议会政治产生了极大影响。群众虽然本身并不行使政治权威，但通过对政治权威施加压力以谋取自身利益。巴黎群众就这样推动并保卫了革命，建立了共和国。应该看到国民公会发布法令，经常对巴黎群众俯首帖耳，而人数众多的外省农民的主张常常不在考虑之内。处决国王后，这种矛盾很快激化，1793 年初几乎全部外省城镇都陷入叛乱。</p>
+            <p>思想观念在法国大革命中起了重要作用。大革命是以启蒙运动为先导的，但事实上所有启蒙思想的幸存代表都对大革命感到惊骇，更不用说消灭国王。他们事实上主张通过思想启蒙，而不是通过暴力革命来实现合乎理性的进步；他们蔑视民众，寄希望于开明专制。他们信奉的合乎理性的秩序和合乎科学的方法，在革命时期遭到头脑发热的民众的践踏。“革命”这个词在启蒙哲学家的著作中几乎找不到踪影。而且他们不想废除君主制。<sup><a href="#fn53" class="citation-trigger" id="ref53" data-fn="53">[53]</a></sup></p>
+            <p>1789-1791 年的国民公会和国民制宪议会的议员同样不想废除君主制。但在 1791 年 6 月瓦伦事件后，主张共和的激进主义观念抬头。瓦伦事件是舆论发生变化的一个重要转折点——“共和革命开始于瓦伦事件，而从 8 月 10 日激进起来，最后的结果也是顺其自然的”。<sup><a href="#fn54" class="citation-trigger" id="ref54" data-fn="54">[54]</a></sup>人民想象中的君父在瓦伦事件后，失去了原来的地位，不再是堂皇威严、一般子民遥不可及的大家长形象。人们开始无所不用其极地抨击、抹黑国王。在具有神性和人性两个身体中，代表王权地位的不死之躯先已遭到了毁灭性的打击。<sup><a href="#fn55" class="citation-trigger" id="ref55" data-fn="55">[55]</a></sup>共和主义者都加入了雅各宾俱乐部，支持立宪君主制的大部分议员则成立了斐扬派。1791 年在路易向宪法宣誓效忠后，新的立法议会形成了左右对立，右派（斐扬派）掌权的局面。斐扬派在共和主义越来越强的情况下失势。1792 年初左翼代表吉伦特派上台，并导致了对外战争。战争最终失利，路易却以此为借口，重新起用斐扬派，国王已彻底成为众矢之的。此时参加 7 月 14 日各地的同盟军都是要推翻君主的共和派，来巴黎的唯一目的就是推翻君主。<sup><a href="#fn56" class="citation-trigger" id="ref56" data-fn="56">[56]</a></sup>8 月 10 日革命最终使国王废黜入狱，君主立宪派作为一个统治派别被推翻。此时共和主义已经得到大多数人支持并获胜。通过革命颠覆王权、力挽狂澜并获胜的巴黎代表及激进共和主义者组成山岳派，在共和国建立后的国民公会中地位越来越大，要求处死国王。而吉伦特派聚集了大部分理性的启蒙知识分子，虽然是他们极力支持反对“迷信”的《教士公民组织法》并发动了 1792 年的战争，但他们不同意山岳派的暴力行为，还注重个体权利和民主程序，并不想伤害国王。<sup><a href="#fn57" class="citation-trigger" id="ref57" data-fn="57">[57]</a></sup>吉伦特派最终在这一问题上败给了主张“革命高于一切原则”的山岳派和巴黎公社。<sup><a href="#fn58" class="citation-trigger" id="ref58" data-fn="58">[58]</a></sup>八月十日革命之后，走向共和、处死国王成为了法国大革命的高潮。</p>
+
+            <!-- 参考文献 -->
+            <h2 id="bibliography">参考文献</h2>
+            <h3>（一） 参考专著</h3>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[1][法]弗朗索瓦·傅勒著.孟明译.思考法国大革命[M].北京:生活·读书·新知三联书店,2005.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[2][美]林·亨特著.汪珍珠译.法国大革命中的政治、文化和阶级[M].上海:华东师范大学出版社,2011.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[3]端木正主编.法国大革命史词典[M].广州:中山大学出版社,1989.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[4][法]阿尔贝·索布尔著.马胜利等译.法国大革命史[M].北京:北京师范大学出版社,2015.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[5][英]多伊尔著.张弛译.牛津法国大革命史[M].北京:北京师范大学出版社,2015.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[6][法]乔治·勒菲弗尔著.顾良等译.法国革命史[M].北京:商务印书馆,2010.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[7][法]马迪厄著.杨人楩译.法国革命史[M].北京:商务印书馆,2011.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[8][英]乔治•鲁德著.何新译.法国大革命中的群众[M].北京:北京师范大学出版社,2016.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[9]张弛著.法国革命恐怖统治的降临：1792 年 6 月-9 月[M].杭州:浙江大学出版社,2014.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[10]吕一民著.法国通史[M].上海:上海社会科学院出版社,2007.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[11][法]米涅著.北京编译社译.法国革命史[M].北京:商务印书馆,1977.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[12][法]乔治·杜比主编.吕一民等译.法国史[M].北京:商务印书馆,2010.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[13][法]雅克·索雷著.黄晨译.拷问法国大革命[M].北京:商务印书馆,2015.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[14]高毅著.法兰西风格：大革命的政治文化[M].北京:北京师范大学出版社,2013.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[15]郭华榕著.法国政治制度史[M].北京:人民出版社,2015.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[16][美]林·亨特著.郑明萱、陈瑛译.法国大革命时期的家庭罗曼史[M].北京:商务印书馆,2008.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[17][法]古斯塔夫·勒庞著.倪复生译.法国大革命与革命心理学[M].北京：北京师范大学出版社,2015.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[18][美]罗兰·斯特龙伯格著.刘北成、赵国新译.西方现代思想史[M].北京:金城出版社,2012.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[19][法]路易·马德林著.伍光建译.法国大革命史[M].北京:时代文艺出版社,2014.</p>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[20][法]皮埃尔·米盖尔著.蔡鸿滨等译.法国史[M].北京:商务印书馆,1986.</p>
+
+            <h3>（二）参考论文</h3>
+            <p style="text-indent: 0; padding-left: 2em; text-align: left; margin-bottom: 0.5em;">[1]刘大明.法国大革命 1792 年宣战动因析论[J].世界历史.2008,2.</p>
+
+            <!-- 后记 -->
+            <h2 id="acknowledgements">后记</h2>
+            <p>感谢毛利霞老师的悉心指导，在她的帮助和鼓励下，我完成了这篇论文。两年前在毛老师精彩的世界通史课上，我第一次接触并喜欢上法国革命史，在三四年级，我有幸继续在她指导下思考法国革命的问题，并完成了阶段论文和毕业论文。我在学习中，常常偷懒，不能一以贯之，毛老师经常提出严厉的批评；对我学习中存在的问题，毛老师也会不厌其烦，耐心地给予指正。在以后的学习之路上，我会努力拼搏，力争上游。</p>
+            <p>大学时光匆匆流逝，在这四年中，历史系老师们耐心地传授知识，推荐书目，带我走进了历史的大门，我对老师们表示衷心的感谢。</p>
+            <p>大学四年，我最亲爱的父母一直支持着我。他们将我养育长大，又目送我走向远方。他们一天天地老去，我能做什么来报答他们的恩情呢？这也许是我要常常思考，一直思考下去的问题。</p>
+            <p>史学博大精深，喜欢看历史书很简单，但想学好历史学可不容易。我资质平平，只有加倍努力，愿在历史之路上无愧于心。</p>
+
+            <!-- 外文资料译文 -->
+            <h2 id="translated-docs">外文资料译文</h2>
+            
+            <h3>1. 国民公会：1792 年 9 月 21 日，辩论</h3>
+            <p style="font-style: italic;">J•H•罗宾逊编，《欧洲历史读物》第 2 卷，（波士顿：吉恩，1906 年），卷 2：第 446-450 页。汉诺威大学历史文本计划。布鲁克•哈里斯扫描，1996 年 10 月。安吉拉•鲁宾斯坦校对，1997 年 2 月。乔纳森•佩里校对和增加页码，2001 年 3 月。</p>
+            <p style="font-style: italic;">罗宾逊注：路易十六于 8 月 10 日因其行为激发的疑虑而被废黜。在会议开幕期间，即 1792 年 9 月 21 日举行的，进行了六个星期的辩论，很好地说明了新议会对旧制度下君主制的态度，并介绍了一些即将在恐怖统治。</p>
+            <p>法国人民选择的，组建国民公会的公民，已经聚集到三百七十一人，并审查了成员的证书，宣布组织国民公会……</p>
+            <p>曼努埃尔先生：主权人民的代表：赋予你的任务，需要神灵的力量和智慧。当齐纳斯进入罗马参议院时，他以为他看到了一群国王。这样的比较，对你来说是一种侮辱。在这里，我们看到一群哲人在为世界的幸福做准备。我动议法国总统在王宫里居住，法律和权力的象征总是站在他的旁边，而每次他开放议会时，所有的公民都会站起来。这种尊重人民主权的行为，将不断回顾我们的权利和义务。</p>
+            <p>米西蒙：我动议议会宣布，除非在人民面前，否则决不会审议。</p>
+            <p>议长：你的动议与先前的动议无关，在议会通过曼努埃尔先生的动议之前，我不能请那些希望支持或反对你的提议的人发言。</p>
+            <p>马修先生：我怀疑，曼努埃尔先生提出的讨论，是否应该在我们的审议中优先。我们的前辈，在确定前国王的椅子的确切尺寸上失去了很多时间。我们不希望犯同样的错误……</p>
+            <p>[页 447] 夏博先生：人民代表：我反对公民曼努埃尔所做的动议。我感到惊讶的是，公民曼努埃尔在驳斥了与国王比较的每一个想法之后，应该提议让我们的一个成员像国王一样。这个法国国家向公约发送了 200 名立法机构的成员，他们个人宣誓对抗国王和王室，对于它希望建立一个大众政府的愿望已经非常明确。这不仅是国王的名字，它将废除，但所有这一切都意味着卓越，这样就不会有法国总统。除了与构成国家大部分地区的无套裤汉团结一心之外，你无法寻找任何其他的尊严。只有让自己像你的同胞一样，你才能获得必要的尊严，使你的法令得到尊重……</p>
+            <p>塔林先生：听到关于礼仪的讨论，我感到非常惊讶……在这个大厅之外，公会的主席是一个平易近人的公民。如果你想和他说话，你可以去三楼或五楼找他。美德有其住宿的地方……</p>
+            <p>议会一致反对曼努埃尔先生的动议。</p>
+            <p>塔林先生：在议会之前，议会郑重承诺不解散，直到它给法国人民一个建立在自由和平等基础上的政府。我动议各位议员宣誓，不要违背这个标准的法律，这个誓言应不断引导人民的代表。那些人必须为人民的报复而感到不安……[掌声。]</p>
+            <p>梅林先生：我动议不要宣誓。让我们答应人们去拯救他们。让我们去工作吧。库东先生……我不担心在即将进行的讨论中，任何人都会敢于再次谈论王室，它是只适合奴隶，法国人会因噎废食，他们已经获得了应有的自由。[页 448] 他们梦寐以求保留由十四世纪的犯罪政府留下的政治形式。但是，我们的宪法中必须排除的并不是王室，而是各种倾向于限制人民权利和违反平等原则的个人权力……</p>
+            <p>菲利普斯先生：还有一个更紧迫的问题; 即为法律的机关提供维持公共安宁的必要权力。我谨动议你暂时掌握现有的所有 authorities……</p>
+            <p>加缪先生：最重要的是，要下令继续征收税款，因为你知道，他们必须在每一个新立法机构的开幕式上进行表决。</p>
+            <p>菲利普斯先生和加缪先生的动议获得一致通过……</p>
+            <p>科洛•德布瓦先生：你们刚刚采取了明智的决议，但有一项决定要到明天才能推迟，甚至直到今天晚上，或者实际上是一瞬间，而不是不忠于国家的愿望 - 这就是废除王室。[一致的掌声。]</p>
+            <p>奎内特先生：我们不是王室的评委; 我们属于人民。我们的业务是制定一个具体的政府，然后人民将在旧有的王室形式和我们将要提交给他们的旧形式之间进行选择……</p>
+            <p>格雷瓜尔先生：当然，我们中没有人会提出在法国保留致命的王室; 我们都知道，王朝从来就不是别的，而是贪婪的部落，他们一无所有，只是肉体凡胎。完全有必要让自由之友放心。我们必须摧毁这个护身符，这个护符的魔力仍然足以让许多人昏迷不醒。因此，我动议通过严肃的法律制裁，废除王室。</p>
+            <p>全体议会成员自发地站起，并以鼓掌通过格雷瓜尔先生的动议。</p>
+            <p>巴齐尔先生：我提出程序问题……这是一个可怕的例子，让人们看到一个委托其最亲爱利益而投票的议会，在一瞬间陷入狂热。我动议讨论这个问题。</p>
+            <p>[页 449] 格雷瓜尔先生：当然，没有必要讨论，每个人都同意。国王的道德秩序就是怪物。法院是犯罪据点，暴君的巢穴。王权的历史是国家的殉道史。既然我们都相信这个事实，为什么要讨论呢？我要求将我的动议付诸表决，并且随后提供一个值得该法令严肃的正式理由。</p>
+            <p>迪科先生：你的命令的形式，将只是路易十六罪行的历史，这已经是法国人民所熟知的历史了。我要求以最简单的方式拟定。在 8 月 10 日事件传播到国外后，没有必要再作解释。</p>
+            <p>讨论结束。片刻的沉默。格雷瓜尔先生的动议付诸表决，在最热烈的掌声中获得通过：</p>
+            <p><strong>国民公会规定法国废除王室。</strong></p>
+            
+            <h4 style="margin-top:25px;">1792 年 12 月宣布公约</h4>
+            <p style="font-style: italic;">编者注：该公约在消除了法国的君主制之后，提议将其军队作为在整个欧洲宣传自由和改革的工具。它因此准备了一份宣言，发布到那些已经或应该被法兰西共和国军队占领的国家。</p>
+            <p>法国人民的兄弟和朋友们：</p>
+            <p>我们已经夺取了我们的自由，我们将维护它。我们愿意为你带来这种不可估量的祝福，因为它一直都是我们的，而且只有压迫我们的人才会抢走。我们赶走了你的暴君。展示自己为自由人，我们会保护你免受他们的复仇、诡计或反动。</p>
+            <p>从这一刻起，法国国家宣布人民的主权。迄今支配你的，所有你承担的，无论何种形式的税务、民事和军事当局的镇压[页 450] ，封建主义、宗教权利和各种垄断带来的农奴制、个人狩猎和捕鱼特权、杂役、盐税、过路费和当地税收，以及所有你被僭主所强加的各种税收，全部废除; 它还宣布废除所有贵族和教会以及反对平等的所有特权和特权。从这一刻起，你就是兄弟和朋友，是公民，在权利上是平等的；所有人都被称为公民，服务和捍卫你的国家。<sup><a href="#fn59" class="citation-trigger" id="ref59" data-fn="59">[59]</a></sup></p>
+
+            <h3>2. 1792 年《不伦瑞克公爵宣言》</h3>
+            <p style="font-style: italic;">J•H•罗宾逊编，《欧洲历史读物》第 2 卷，（波士顿：吉恩，1906 年），卷 2：第 443-445 页。汉诺威大学历史文本计划。布鲁克•哈里斯扫描，1996 年 10 月。安吉拉•鲁宾斯坦校对，1997 年 2 月。乔纳森•佩里校对和增加页码，2001 年 3 月。</p>
+            <p style="font-style: italic;">罗宾逊注：1792 年夏天，被普遍认为与奥地利人和普鲁士人有叛逆往来关系的路易十六的要求很多，但它仍然是布伦瑞克公爵确保 7 月 28 日在巴黎知道的君主制的垮台，并且似乎为这些鼓动者提供了他们已经计划并携带的 8 月 10 日起义的完全辩护理由。</p>
+            <p>皇帝陛下和普鲁士国王，把我们在法国边界集结的联军的指挥权交给了我，我想向这个国家的居民宣布决定两个主权国家政策的动机和他们的目的。</p>
+            <p>在任意侵犯了在阿尔萨斯和洛林的德国王子的权利后，扰乱和推翻了国内内部的良好秩序和合法政府，对抗国王的神圣人物和他的八月家族的暴徒。这些每天都在篡夺政权的暴徒终于完成了他们的工作，宣布对皇帝陛下进行不公正的战争，并攻击位于低地的他的省份。日耳曼帝国的一些领土受到这种压迫的影响，而其他一些国家则因屈服于占统治地位的党派及其使者的威胁而逃脱了同样的命运。</p>
+            <p>普鲁士国王陛下与皇帝陛下为实现严密的防御而结盟，并且自己也是日耳曼机构的一个主要成员，因此拒绝向他的盟友和同胞成员的帮助进军是不可原谅的。帝国为了这些重要的利益，应该增加另一个同样重要和非常接近两个主权国家的目标，即结束法国内部的无政府状态，检查对王位和祭坛的攻击，以重新建立合法权力，将国王现在被剥夺的安全和自由恢复，并使他能够再次行使属于他的合法权力。</p>
+            <p>深信法国民族理智的那一部分，憎恶主宰它的派系的过火行为。而且大多数人不耐烦地期待着他们可以公开反对他们压迫者的恶劣团伙的时刻。皇帝陛下和普鲁士国王陛下呼吁他们，并请他们毫不拖延地回到理性、正义、秩序和和平的道路上来。根据这些意见，我，两军总司令，签署声明：</p>
+            <p>1. 这两个联盟的国家以不可抗拒的情况卷入这场战争，除了法国的福利之外别无其他目的，也无意通过征服来使自己获利。</p>
+            <p>2. 他们不打算干涉法国的内政，他们只是希望将他们的国王、王后和王室从他们的囚禁中解救出来，并为信仰基督教的陛下提供必要的保障。以使国王根据他的承诺，没有危险或障碍地进行他认为合适的交战，并为他的臣民的福利而工作。</p>
+            <p>3. 盟军将保护城镇和村民，以及那些应该向国王屈服的人员和物品，他们将配合立即恢复整个法国的秩序和警察权力。</p>
+            <p>4. 相反，国民卫队的成员如果与两国联军作战，并且手中拿着武器将被视为敌人，并被视为对他们的国王的反叛者和公众和平的干扰者……</p>
+            <p>7. 城镇和村庄的居民如果敢于在皇家陛下军队前以自卫辩护，并在野外或通过他们房屋的窗户，门和开口对他们进行阻碍，立即按照最严格的战争法则，他们的房屋将被烧毁或毁坏……</p>
+            <p>8. 巴黎市及其所有的居民不分等级，应被要求立即向国王提出充分和完全的自由，并向他和其他王室人士保证自然权利和国家对主权者要求的不可侵犯性和尊重。……他们说，陛下声明，作为皇帝和国王的荣誉，如果杜伊勒里宫被武力进入或遭到袭击，如果对国王、王后和王室的陛下提供的保护太少，并且如果他们的安全和自由不会立即得到保证，联军将会把巴黎市交付到军事执行，并彻底摧毁而造成难以想象的复仇，起义者对这些暴行将会承担了他们应得的惩罚……</p>
+            <p>最后，我以我个人的名义和我所说的能力保证自己能够服从我的命令的部队遵守严格的纪律，承诺善待和温和地对待所有表现出自己平静和顺从的善良个体，并仅对那些有抵触和恶意的人使用武力。</p>
+            <p>正是出于这些原因，我呼吁和叮嘱天国的所有居民不要反对我指挥的部队的行动，而是相反地，要给他们任何地方的自由通道，并根据情况所需要的一切，善意协助和帮助他们。</p>
+            <p style="text-align: right; font-weight: bold;">于 1792 年 7 月 25 日在科布伦茨的总部<br>查理•威廉•斐迪南<br>不伦瑞克和吕内堡公爵</p>
+
+            <h3>3. 战争部长塞尔旺提出辞职</h3>
+            <p style="font-style: italic;">资料来源：福特汉姆大学互联网历史资源计划<br>官方公报-国民公会-全国代表议会（1792 年至 1793 年），议会的正式记录。自 9 月 21 日国民公会召开至 1793 年 1 月 21 日路易十六死刑，真实的、未经修改的版本。巴黎 B.西门书店，未注明日期，第 37 至 38 页。</p>
+            <p style="font-style: italic;">1792 年 9 月 25 日星期二，读了战争部长的信，他要求辞职。这是约瑟夫•塞尔旺•德•戈尔贝（1741 年生于罗马 - 1808 年在巴黎逝世）。这位普通士兵在《百科全书》上发表了有关军事艺术的文章。他还于 1790 年撰写了《法国军队宪法草案》。塞尔旺•德•戈尔贝将在 1792 年 10 月 3 日停止履行其部长职责，由勒布伦取代。</p>
+            <p style="text-align: center; font-weight: bold;">（战争部长的信）</p>
+            <p style="text-align: right; font-style: italic;">巴黎，9 月 25 日，共和国元年。</p>
+            <p>在人们已经重获自由的时间，采取一切措施，以压倒敌人，因为他们已经在 7 月 14 日突破了防线。因此，8 月 15 日至 25 日敌人将进入巴黎已不再被怀疑。虽然因为他们鲁莽，推迟了一段时间。这样，我们一切都准备好，消除了困难，可以说，我们坚定了自己的道路。</p>
+            <p>事实上，卢克纳在梅斯只有 17000 名士兵，拉法耶特正在策动他 18000 人的前锋部队叛乱，组成庞大但中看不中用的阵势：他们被迫在桑布尔河桥村，莫伯日和莫尔德之间部署其军队。比龙在莱茵河畔; 虽然他热切希望服务于公众利益，但他看到的只是背叛的恐惧，以及狂热和阴谋; 徒然凯斯林把自己扔进了朗道; 费里耶尔在波伦特;在维桑堡的克勒曼，敌人到处都是; 同时普鲁士国王没有被巴黎阻碍他的行军，必然会通过莱茵河，奥地利人从北部进入，皮埃蒙特在南方，贵族公开募集在国内所有地区的叛徒。一个晚上，所有这些问题都消失了，8 月 10 日，我们的同胞们勇敢地反击了这些危害我们自由的敌人。</p>
+            <p>从此，先生们，战场发生了变化;敌人计划利用在隆维和凡尔登酝酿的背叛，从中获利的想法是徒劳的; 他们妄图将他们在莱茵河和荷兰的大部分力量团结在一起。</p>
+            <p>我们已经击退了在圣梅内霍尔德聚集的 6 万敌人; 他们已经在蒂永维尔之前被我们击败过几次：梅斯的防守状态令人尊敬; 法军已经整体处于优势，巴黎和沙龙之间的所有城镇，村庄和村庄每天都安排志愿者准备组建军队; 北方将再次看到野战军; 布拉本特不会白白地呼唤我们; 新的力量很快会被引导到敌人的后方，一场可怕的暴风雨破坏了劳特的战线，勇敢的屈斯蒂纳应该已经把我们的军队带到了科布伦茨; 我们不得不进入萨瓦，攻击尼斯县; 西班牙人穿越比利牛斯山脉的行动是徒劳无功的。</p>
+            <p>其他需要保密的军队将很快执行命令; 最后，在所有方面，法国人民正在采取行动以确保他们的自由，并且同意他们的代表奠定永久履行宪法的持久基础。</p>
+            <p>如果在这样惊人的事件中，公民是应该允许谈论的。处于快速行动中，我被允许祈祷，并祝贺自己的时间很少。最重要的是，我希望能够说出那些与我共同参与拯救国家的公民的名字。不过我确信，单凭他们自身的经历就已经足以让他们光荣、快乐了。</p>
+            <p>虽然我极度渴望回报同胞们对我的溺爱，但我已精疲力竭。在托付给我的地方，我精力已经不足; 我的想法与军队总是脱节; 我必须供给他们粮食，增加他们的人数，并及时把握他们的行动。</p>
+            <p>为了保持与共和国所有地区的确切联系，指挥官必须处于持续的行动中，这对我来说已经不再可能了。一个半月，无论是白天还是黑夜，无论是因为对变局的恐惧还是原本希望的行动，我都没有得到一点任何休息。所有这一切都涉及国家的拯救，但这些已经使我精力衰退到一种持续痛苦的状态，我几乎不能再签字了。</p>
+            <p>因此，主席先生，请国民公会接受，我为自己无法继续为家园幸福和荣誉努力而辞职……但是，虽然我在同胞们希望的地方，无法再坚持更长的时间，那可以给予所有人更多的希望而不是恐惧的; 所以我敢恭维自己，我的同胞们会感谢我所做的努力。我因为缺乏足够的力量，停止为公共事务服务一个多月; 我不能再支持他们，但我将继续值得他们的尊敬。</p>
+            <p style="text-align: right; font-weight: bold;">签名：塞尔旺。</p>
+            <p><strong>圣•鞠斯特</strong>：“我问，公民塞尔旺是否应该得到祖国的优待？”（我们鼓掌）</p>
+            <p><strong>格雷内特</strong>：“我要求他被邀请留在该部，并且他会得到一个助理”。（议会在晚上开始审议这些信件，并在 6 点休会）。</p>
+
+            <h3>4. 走向社会主义共和</h3>
+            <p style="font-style: italic;">资料来源：福特汉姆大学互联网历史资源计划<br>让•饶勒斯著，《社会主义史》第 12 卷，巴黎，罗夫，1901-1908 年，第 308 至 310 页。</p>
+            <p style="font-style: italic;">以下是让•饶勒斯（1859-1914）在他的《社会主义史》中自 1789 年以来几十年 的评价：</p>
+            <p>当然，现在远非实现了无产阶级提出的目标，不公正没有被废除。事实上的垄断依然存在，资产阶级的经济统治具有强大的影响力，并利用了困扰的当今社会和受压迫工人阶级，使他们在大革命以来，对法国发展进程的一般判断中，出现了一种快乐和满足的乐观主义。</p>
+            <p>事实上，法国大革命取得了成功。她最大胆，最慷慨激昂的胜利是什么？从 1789 年到 20 世纪初，法国的政治和社会运动具有两个特点。首先是全面政治民主的到来。所有和君主制的妥协都已被清除; 传统君主制和人民主权的所有组合都被排除; 所有剖腹产式的仿冒品都被拒绝了。1791 年的混合宪法陷入了愚蠢和叛逆。1815 年恢复的君主制揭示了法国资产阶级单独执政的能力，因为它既无法抵抗未来的势力，也不能抵御过去的残余势力。拿破仑式的民主曾带来两次席卷的灾难，现在以共和形式出现的是普选统治的人民。这取决于他征服的权力。或者说，他已经征服了它，因为没有任何力量可以击败他的合法表达的意志。但他不知道如何使用它。他不知道如何充分利用它来实现经济全面解放。数以百万计的工人，工人或农民不再是理论上的被动公民。他们过于频繁地退却到旧的奴役下，漠视将解放他们的新想法。但无产阶级教育的进步已足以使其正式主权成为实质主权。</p>
+            <p>按照教育的顺序，这一个世纪的进步也很大。全国所有的孩子都被召唤去上学：孔多塞的伟大理想已经实现或正在实现。教育不再是教会，社会暴政的共犯，教育塑造了人民。以前它只不过是一个私人协会; 现在是科学的，这就是推动公共教育的原因。这是百科全书的一大亮点，但更广泛和更热情，充满了未来的地平线。社会主义思想继承了十八世纪的巨大力量，开始渗透到国家的教师。</p>
+            <p>同样，从社会角度，以及尚未坚持明确的、社会主义的法国民主体制的这一部分来看，这是一种资产阶级的概念。虽然已经是社会主义性质的，它已经盛行。就第三者而言，它没有政治主权的条件：最穷的人在政治上最富有。它也不是一种无形的绝对。通过拷问资本，接受激进，将逐渐导致将资本主义转化为社会主义。政府激进主义的这种失败如果发生的话，不会阻止法国民主制度发展起来的观念的影响。在接受了由强有力的无产阶级管理方式，并适用于经济力量再次集中在寡头统治下的社会之后，并没有导致资本主义社会的普遍社会化。</p>
+            <p>社会主义本身将取代激进主义，以实施这种社会财产观念，并将其推向必要的结果。因此，它是法国大革命最极端，最合乎逻辑，最民主的公式，经过一个世纪的反复试验，第一次无能为力的梦想，和几乎错过的革命，终于终于结束了。进入了现实。革命天才在头脑发热和战斗的中所发现的，肯定和尝试的东西，变成了正常和坚实的现实。它看起来像是一个火山高峰期，经过一系列爆炸，沉降和复原后，最终达到了最高水平：现在它已经巩固并扩展到一个可以承载伟大基础的广阔的新的天地。不，所有奋斗、受苦、希望一个世纪的人都没有失去努力; 他们的苦难并不是徒劳的; 他们的希望并不总遭遇失望，如果无产阶级能够为革命民主的这一胜利而高兴，那不仅是因为，它能够希望并准备取得更具决定性的胜利，而且是因为他仍然微弱而不确定谁已经取得革命胜利。正是通过革命，迫使资产阶级结束了旧制度的主张。是否能从资产阶级手中抢走了他狭隘的特权，最终创造出一个将演变为社会民主的广阔的政治民主体系？在没有工人的情况下，共和派在整个世纪里又能做什么？在筹备或实现政治民主的斗争的每一刻，无产阶级的行动都是可见的; 我相信这是我写作这些历史著作的其中一个优点，那就是我已经写出了启发这些痕迹的最后几行。</p>
+
+            <h3>5. 王权的终结</h3>
+            <p style="font-style: italic;">资料来源：蒂莫西•塔克特著，《法国革命恐怖的来临》，剑桥、马萨诸塞和英国伦敦：哈佛大学出版社贝尔纳普出版社，2015 年，第 183-191 页。</p>
+            
+            <h4 style="margin-top:20px;">5.1 国王必须被废黜</h4>
+            <p>来自马赛和布雷斯特的年轻志愿者充满了活力和热情，两组人员很快就明确表示，他们无意在国王问题解决之前继续前行。几天之内，他们向议会递交了一份自己的请愿书，要求废除君主：“路易十六的名字现在对我们意味着'叛逆'。”</p>
+            <p>到 8 月初，来自全国各地的马赛人和其他联盟军，成为巴黎人、立法议会和宫廷不能忽视的因素。整个 7 月下旬和 8 月初，巴黎部分区的人与联盟军一起要求废黜国王。据说其他类似的请愿书，从各省“涌入议会”，主要来自当地雅各宾俱乐部，但有时也来自地区或市政管理人员。 8 月 3 日，佩蒂翁市长在巴黎四十八个地区的四十个地区的集体要求废黜国王的请愿中抵达。这种要求是合理的，因为路易在革命期间所谓的奸诈行为，以及他已经采取然后破裂的许多誓言都是完整的“历史”。尽管国家给予他的所有“好处”，但国王的行为只包括“对人民的伪证，叛国和阴谋”，他们赦免了他于 1791 年逃亡瓦伦，“但赦免不是忘记”。现在，他们认为，国王显然是导致革命破产的“反革命链条中的第一环节”。</p>
+            <p>正如佩蒂翁在议会面前发言时，巴黎人刚刚得知所谓的不伦瑞克宣言，几天前就送给了国王，现在才公开。该声明以入侵的普鲁士贵族指挥官的名义写成，试图威胁巴黎人，如果杜伊勒里宫遭到袭击，或者如果王室家庭受到最少的的侮辱或暴力，王室成员遭到袭击，就要“让巴黎城遭受模范的和令人难忘的复仇”。然而，这份文件似乎只是进一步激怒了巴黎激进分子。鲁纳咆哮着“傲慢无礼”，他认为“只会增加我们的勇气”。在圣马塞尔附近，一份宣言副本在一个广场上被烧毁。</p>
+            <p>8 月 6 日，巴黎人举行了一场伟大的示威游行，或者由联盟军中央委员会和各个公社组成游行队伍，在全城范围内进行游行和唱歌，直到他们前往战神广场。在一年前的国民卫队举行的请愿聚会仪式上的地点，成千上万的人在一份请愿书上填写了五十五页的签名。这一次，国民卫队人员支持这项请愿，即武装分子和无套裤汉的合并计划。共有十三项要求，包括废黜国王，召开新的宪制公约，男性普选权，严厉反对粮食囤积者和垄断者，爱国大臣回归，更换“嫌疑人”名录，即那些继续支持保王党和拉法耶特的起诉。随后，一个特别代表团向立法议会提交了一份巨大的请愿书。</p>
+            <p>然而，议会仍然如此分裂，无法采取立场。从 7 月下旬开始，各种请求国王被撤职的请愿书被送交委员会审议，代表们定期承诺处理这个问题。但拟议的辩论不断推迟。虽然蒙塔尼亚强烈支持废黜国王，斐扬派强烈反对，但吉伦特人和持选票的温和派却陷入了犹豫不决的境地。</p>
+            <p>鲁昂强烈反对议会的拖延策略，但他理解代表们的困境。即使国王被撤职，对接下来该做什么也存在很大的困惑。他们应该把他留在法国作为一个单纯的公民，还是将他护送到边境，或者监禁他？他们应该创建一个共和国还是将权力交给他的继承人？如果他们继续保持君主制，那么谁将成为摄政王，直到路易的年轻儿子获得大多数支持？在武装分子的压力越来越大的情况下，议会最终承诺在 8 月 9 日讨论国王罢免的问题。</p>
+            <p>但是，当这一天到来时，向立法委指导委员会报告的孔多塞特只提出了对“宪法”的学习分析以及仍然有待解决的困难问题。最后，问题被提交给委员会，决定再次推迟。与此同时，关于拉法耶特将军行为的辩论达到了顶峰。左派长期以来一直认为，他应该因为在战争中断送自己的部队而受到起诉，并且如果他们不遵从他的建议就威胁到了众议员。但 8 月 8 日，在斐扬派激情捍卫自己的英雄，和温和派担心在竞选期间将一名将军解职的情况下，议会给予拉法耶特 406 至 226 票的信任票。对于许多巴黎武装分子来说，代表们的决定绝不是辩论国王或起诉拉法耶特是最后一根稻草。 “我们对国民议会感到愤怒，”科尔森写道，“因为当公众明确地认为他是叛徒时，宣布拉法耶特是无辜的。”在对路易不断激动和攻击的过程中，君主制支持者绝不是无效的。拉法耶特和前拉罗什福科连德库尔公爵都提出了将国王转移到外省的详细计划。</p>
+            <p>但王后对于将她的家人交给国家或拉法耶特的观点感到厌恶，1789 年他们两人都支持革命。无论如何，路易最终都拒绝了所有这样的建议，争论 - 毫无疑问 - 他们会导致内战。</p>
+            <p>最终，君主制逐渐恢复了纯粹的防御战略，加强了杜伊勒里宫的防御工事，并引进了更多的军队来对付他们。这些准备工作更加困难，因为立法机构怀疑反革命的威胁，已经在很大程度上摧毁了直接向国王提供的武装力量。 5 月王家卫兵已解散，大部分曾在巴黎驻守的正规部队已被派往前线。作为替代，部长们召集了几百名宪兵警察和巴黎国民卫队，其中许多来自巴黎西部比较保守的区。国王还拥有近千名瑞士卫队，他们自十六世纪以来一直致力于保护君主制，还有两三百名志愿贵族，其中许多是王室保镖的前成员。总而言之，到八月初，大约有四千人集中在宫殿周围。正如事件所证明的那样，对立宪国王和卫兵的忠诚是完全不确定的。但国王的意图对巴黎人来说并不明显。 8 月 9 日晚，圣马塞尔国民卫队营长查尔斯•亚历山大秘密地游览了这座宫殿，他发现这里充满了活力。如果对抗转化为武装 de 的战斗，那么谁会占上风，还很难说。</p>
+            <p>面对这样的情况，许多激进分子都为国王的推翻如何完成而苦恼。他们一直希望，通过在请愿书中表达民意和通过立法议会的行动，可以和平地实现这种转变。即使是马赛人在向议会发表讲话时，也敦促采用非暴力手段。法国必须从“恶魔一样的国王”手中解救出来，他们写道：“不是通过暴力起义，而是通过和平示威实现国家意志。”</p>
+            <p>然而，他们也无可避免地听到了报纸推动下的街头流言，杜伊勒里宫正在策划对爱国者进行屠杀。国王是不是已经把他的宫殿变成了一个可以轻易发动这种攻击的武装营地？如果法国能够从法庭的阴谋中得到拯救，那么除了自杀之外，还有什么选择吗？罗萨莉•朱利恩显然得出这样一个结论：“国王的叛国对国家的成功和荣耀是如此灾难性的，以致我们面临着摧毁它，或者温顺地接受为我们准备的链条的残酷选择。”</p>
+
+            <h4 style="margin-top:20px;">5.2 攻打杜伊勒里宫</h4>
+            <p>整个 1792 年 7 月，巴黎各地正在发生重大转变，有时是通过法令，有时是由武装分子自己发起的。正是在这段时间内，公社获得了定期举行日常会议的权利 - 这是议会作为维持该市严密监视的战争规定，批准的一项措施。他们还根据周围环境获得了对国民卫队营的更大控制权。到本月底，他们建立了一个中央公社，协调所有区的政策。同样重要的是，许多公社主动消除了主动和被动公民之间的分工，邀请全体人民 - 有时包括妇女和青少年 - 出席并在邻里议会投票。巴黎的部分因此获得了越来越大的杠杆作用，要求路易十六离开王位。由于议会拖延辩论国王的命运和赦免拉法耶特，武装分子认为他们必须自己废黜君主。这可以通过各省的巴黎国民卫队和联盟军的联合力量来实现：希望通过强制和谈判，但必要时通过武力进行总体起义。 1792 年 8 月 9 日晚上，一场精心策划和广泛宣布的巴黎动员活动开始了。所有这些部分都会在整个晚上召开会议，其中大部分都会选出“委员”到市政厅协调决策。就在午夜之前，科德利埃教堂的钟声开始响起“警戒”钟，这是传统上表示，要进行危险的迅速而坚定的行动。很快，整个城市许多其他教堂的钟声也纷纷响起。到午夜时分，大家都醒了。罗萨莉•朱利恩在一封给她丈夫的深夜信中描述了这个情景：“警钟正在响起，枪炮声传来，恐惧正在整个巴黎蔓延。”街上满是公民，许多妇女在窗户上发抖。“大约有 80 万人受到痛苦和恐惧的困扰，这种痛苦和恐惧只会在黑色的夜幕中增加。”国民卫队冲入营地并准备采取行动。吕奥整夜守护着一座桥，尽管他在黎明时换下，不会参加当天的活动。早晨五点左右，就在这一天开始时，武装分子夺取了巴黎东部的王家武器库，更多的武器分发给了卫队和联盟军。</p>
+            <p>早晨七点钟，在市政厅开会的公社专员，就在合法建立的市议会隔壁，宣布他们将接管并创建一个新的“起义公社”。“法律”顾问进行抗议 - 其中大多数是斐扬派同情者 - 他们被告知：“当人民进入起义状态时，他们为自己夺回一切权力。”此后不久，一直在准备杜伊勒里宫防御的，巴黎国民卫队保王派指挥官被带到公社面前，并被逮捕。当他被押送到监狱时，他在市政厅的台阶上被一个不知名的人击中头部：这是一个暴力行为，并开启了暴力革命的一天。</p>
+            <p>尽管起义者正在夺取对议会和市政厅的控制权，激进的卫队士兵和骑兵以及外省的同盟军在各个街区的游行队伍中，聚集在杜伊勒里宫东侧的卡鲁塞尔广场上。</p>
+            <p>在起义者试图与阻止他们前进的各部队进行谈判时，他们等了三个多小时。如果我们能够相信领导圣马塞尔区卫队的亚历山大和布列塔尼的同盟军，没有人会谈到进攻。解除宫殿的武装，并确保国王和平解除权力。以此为目标，起初起义者似乎是成功的。大多数守卫庭院和宫殿入口的国民卫队和宪兵一点一点地说服了他们放弃他们的职位，然后走到“人民”一边。然后，一些瑞士人也获得了胜利并开始离开他们的队形。这些情形在杜伊勒里内引起极大的恐慌。虽然国王和王后考虑留在宫中，但巴黎政府的一位代表让路易相信毫无希望，更好的是，他把家人带到立法议会的安全地带。当天早晨八点半左右，王室和国王的部长们从宫殿西侧离开，走过花园一小段距离，到达议会，在那里他们避难。王室离开后不久，大多数瑞士卫队和王宫内的贵族志愿者开始向起义者开火。这个决定的部分原因是，瑞士军官看到自己的纪律败坏，可能打了“逃兵”第一枪。但此后，外部的庭院变成了一个杀戮场，几十名巴黎人和联盟军，一次就被从几个方向来到的士兵砍杀。</p>
+            <p>王家部队迅速席卷杜伊勒里的庭院和毗邻的卡鲁塞尔广场，杀死或击伤更多起义者并夺取他们的几门大炮。当幸存者逃离时，“伏击”一词在整个城市迅速蔓延。这个故事只证实了在宫殿内孵化反革命阴谋的普遍看法，武装分子和无套裤汉非常愤怒，并希望报复。起初瑞士人似乎赢得了胜利，但随后又有一个新的起义者率领队伍从巴黎东部到来，他最初被起义公社任命为国民卫队指挥。圣安东尼区的卫队组织起来较慢，但现在他们分三路在街道上行进。科尔森窥视着他的窗户，看到其中一列经过：“一群装备有长矛和其他武器的愤怒的群众”前往王宫。立即从三面进攻瑞士人，迅速迫使他们回到杜伊勒里宫。接下来是一场残酷的白刃战。</p>
+            <p>1792 年 8 月 10 日，杜伊勒里宫殿突然遭到攻击。来自马赛和布雷斯特的联盟军部队，以及巴黎国民卫队和其他公民，从杜卡鲁塞尔广场，用火枪和长矛进攻。瑞士士兵阻止他们冲入宫殿，窗口上的武装分子向其射击。因为巴黎人和联盟军试图强行进入宫殿和楼梯，许多袭击者和捍卫者死亡或受伤。相当数量的贵族志愿者被抓获并送入监狱。身着鲜艳的红色制服的瑞士士兵成为了针对的目标，因为人们要为被伏击杀害的同伴采取报复。一些瑞士人向西逃离杜伊勒里花园。其中一部分人冲入议会，受到议员的严密保护，直到他们可以被押送到监狱。但是另一支队伍逃到了今天的协和广场，在那里他们被巴黎人包围，所有人都被杀死了。卫队和联盟军跟踪整个城市剩下的瑞士散兵。</p>
+            <p>那些无法摆脱制服和躲藏的人也被杀害。巴黎市中心发生的可怕的内战持续了两个多小时。超过一千人死亡 - 这是自十六世纪以来该城市最大的一次屠杀。瑞士卫队人数最多，约有 600 人死亡。还有一百多名贵族志愿者也被杀，近 400 名起义者遇难或受伤。来自马赛 and 布列塔尼的年轻志愿者，是在院子的十字路口遭遇到最多伤亡的爱国者。其他受害者几乎来自巴黎的每个区以及许多不同的省份。随着枪声消逝，烟雾消散，巴黎平民开始冒险出门。他们发现宫殿坍塌，周围的街道上都是“乱糟糟的尸体”。到那时，在杜伊勒里区爆发了火灾，第二天早上三名巴黎消防员仍然在努力遏制住它。在没有踩过尸体的情况下，走路都困难。</p>
+            <p>在整个城市里，男女都冲过来看他们的亲人是否已经回来。罗莎莉•朱利恩与她的儿子冒险出门，看到女人“在街道中央寻找自己的丈夫”。亚历山大领着他的营回到圣马塞尔，描述了类似的“真正令人心痛的”场面，包括他父亲在到达家中时拥抱他。 “因为，”他写道，“我们回到了我们的家园，许多人认为可能再也见不到我们了，我们从那个可怕的一天的疲惫中解脱出来了。”</p>
+            <p>这确实是一件可怕残酷的事情，而在这些活着的巴黎精英阶层中，充斥着复杂的情绪，因为他们试图解释和证明暴力的正确性。大约四十年后，维纳尔·蒙纳德还记得，她在房间里颤抖着，当巴黎人抓俘虏时，透过窗户看着窗外的杜伊勒里卫兵逃离街道。然而，正如亚历山大解释的那样，起义者相信，如果他们输了，他们也不会得到对手更好的对待。而且每个人一再回忆当时对院内爱国者的奸诈袭击。玛莱区一位剧院老板的女儿阿德莱德•马雷克斯写了一封狂热的信件，叙述了她的愤怒，当时瑞士人突然向马赛人和其他卫队开火，传递了这样的消息：“每个人都对这些怪物感到愤怒。”皮内描述了“可憎背叛”的王家卫队引诱人民进入宫殿，然后开火。在此事后，“人民的愤怒被激起了。”</p>
+            <p>几乎所有激进分子都相信，杜伊勒里宫的战斗已经使巴黎避免了国王和法院策划的更糟糕的命运：“这个沉重的血腥法庭”。作为巴黎的公证人和未来的副手，班卡尔描述了它。班卡尔继续惋惜没有接受过任何战斗训练的年轻人，这些人，在杜伊勒里的职业军人面前，牺牲了生命，并被屠杀。对许多革命党人来说，真正遭受了大屠杀的，不是瑞士守卫，而是爱国者，即“圣劳伦斯日的大屠杀”。他们称之为 - 8 月 10 日的圣人。班卡尔颤抖着想着，他们失去了多么接近的即将到来一切。他得出结论：“一个令人钦佩的上帝正在监视法国人，确保维护自由和平等的胜利。”</p>
+
+            <!-- 外文资料原文 -->
+            <h2 id="original-docs">外文资料原文</h2>
+            
+            <h3>1. The National Convention: September 21, 1792, Debate</h3>
+            <p style="font-style: italic;">J.H. Robinson, ed., Readings in European History 2 vols. (Boston: Ginn, 1906), 2: 446-450. Hanover Historical Texts Project.</p>
+            <p>The citizens chosen by the French people to form the National Convention having assembled to the number of three hundred and seventy one, and having examined the credentials of the members, declare that the National Convention is organized . . .</p>
+            <p>M. Manuel. Representatives of the sovereign people: the task which devolves upon you demands the power and wisdom of gods themselves. When Cineas entered the Roman senate he thought he beheld an assembly of kings. Such a comparison would be an insult to you. Here we see an assembly of philosophers occupied in preparing the way for the happiness of the world. I move that the president of France have his residence in the national palace, that the symbols of law and power be always at his side, and that every time that he opens a session all the citizens shall rise. This act of homage to the sovereignty of the people will constantly recall to us our rights and duties.</p>
+            <p>M. Simon. I move that the Assembly declare that they will never deliberate except in the presence of the people.</p>
+            <p>The President. Your motion, having no relation to the previous motion, I cannot give the floor to those who wish to support or oppose your proposition until the Assembly has passed upon the motion of Monsieur Manuel.</p>
+            <p>M. Mathieu. I am doubtful whether the discussion suggested by Monsieur Manuel should take precedence in our deliberations. Our predecessors lost much time in determining the exact dimensions of the chair of the former king. We do not wish to commit the same error. . .</p>
+            <p>[Page 447] M. Chabot. Representatives of the people: I oppose the motion made by Citizen Manuel. I am astonished that Citizen Manuel, after having repudiated every idea of any comparison with kings, should propose to make one of our members like a king. The French nation, by sending to the Convention two hundred members of the legislative body who have individually taken an oath to combat both kings and royalty, has made itself quite clear as to its desire to establish a popular government. It is not only the name of king that it would abolish but everything which suggests preeminence, so that there will be no president of France. You cannot look for any other kind of dignity than associating with the sans-culottes who compose the majority of the nation. Only by making yourselves like your fellow-citizens will you acquire the necessary dignity to cause your decrees to be respected. . .</p>
+            <p>M. Tallien. I am much astonished to hear this discussion about ceremonials. . . . Outside of this hall the president of the Convention is a simple citizen. If you want to speak to him, you can go and look for him on the third or the fifth floor. There is where virtue has its lodging. . . .</p>
+            <p>The Assembly unanimously rejected the motion of Monsieur Manuel.</p>
+            <p>M. Tallien. I move that before everything else the Assembly take a solemn pledge not to separate till it has given the French people a government established on the foundations of liberty and equality. I move that the members take an oath to make no laws which depart from this standard, and that this oath shall constantly guide the representatives of the people in their work. Those who shall perjure themselves shall be immolated to the just vengeance of the people. . . [Applause.]</p>
+            <p>M. Merlin. I move that we do not take any oaths. Let us promise the people to save them. Let us go to work. M. Couthon. . . . I am not afraid that, in the discussion which is about to take place, any-one will dare to speak of royalty again; it is fit only for slaves, and the French would be unworthy of the liberty which they have acquired should [Page 448] they dream of retaining a form of government branded by fourteen centuries of crime. But it is not royalty alone that must be eliminated from our constitution, but every kind of individual power which tends to restrict the rights of the people and violate the principles of equality. . . .</p>
+            <p>M. Philippeaux. There is a still more pressing subject; that is, to furnish the organs of the law the necessary power to maintain public tranquillity. I move that you maintain provisionally in power all the authorities now in existence. . . M. Camus. The most essential thing is to order that the taxes continue to be collected, for you know that they have to be voted at the opening of every new legislature.</p>
+            <p>The motions of Messieurs Philippaux and Camus were unanimously passed. . . .</p>
+            <p>M. Collot d’Herbois. You have just taken a wise resolution, but there is one which you cannot postpone until the morrow, or even until this evening, or indeed for a single instant, without being faithless to the wish of the nation, - that is the abolition of royalty. [Unanimous applause.]</p>
+            <p>M. Quinette. We are not the judges of royalty; that belongs to the people. Our business is to make a concrete government, and the people will then choose between the old form where there was royalty and that which we shall submit to them. . . .</p>
+            <p>M. Gregoire. Assuredly no one of us would ever propose to retain in France the fatal race of kings; we all know but too well that dynasties have never been anything else than rapacious tribes who lived on nothing, but human flesh. It is necessary completely to reassure the friends of liberty. We must destroy this talisman, whose magic power is still sufficient to stupefy many a man. I move accordingly that you sanction by a solemn law the abolition of royalty.</p>
+            <p>The entire Assembly rose by a spontaneous movement and passed the motion of Monsieur Gregoire by acclamation.</p>
+            <p>M. Bazire. I rise to a point of order. . . . It would be a frightful example for the people to see an Assembly commissioned with its dearest interests voting in a moment of enthusiasm. I move that the question be discussed.</p>
+            <p>[Page 449] M. Gregoire. Surely it is quite unnecessary to discuss what everybody agrees on. Kings are in the moral order what monsters are in the physical. Courts are the workshops of crimes, the lair of tyrants. The history of kings is the martyrology of nations. Since we are all convinced of the truth of this, why discuss it? I demand that my motion be put to vote, and that later it be supplied with a formal justification worthy of the solemnity of the decree.</p>
+            <p>M. Ducos. The form of your decree would be only the history of the crimes of Louis XVI, a history already but too well known to the French people. I demand that it be drawn up in the simplest terms. There is no need of explanation after the knowledge which has been spread abroad by the events of August 10.</p>
+            <p>The discussion was closed. There was a profound silence. The motion of Monsieur Gregoire, put to vote, was adopted amidst the liveliest applause:</p>
+            <p><strong>The National Convention decrees that royalty is abolished in France.</strong></p>
+            
+            <h4 style="margin-top:20px;">Proclamation of the Convention to the Nations, December 1792</h4>
+            <p style="font-style: italic;">Editor's Note: The Convention, after ridding France of the institution of monarchy, proposed to make its armies a means of propagating liberty and reform throughout Europe. It accordingly prepared a proclamation to be published in those countries which already were, or should be, occupied by the armies of the new French republic.</p>
+            <p>The French people to the people of [any occupied territory]; brothers and friends:</p>
+            <p>We have conquered our liberty and we shall maintain it. We offer to bring this inestimable blessing to you, for it has always been rightly ours, and only by a crime have our oppressors robbed us of it. We have driven out your tyrants. Show yourselves free men and we will protect you from their vengeance, their machinations, or their return.</p>
+            <p>From this moment the French nation proclaims the sovereignty of the people, the suppression of all civil and military authorities which have hitherto governed you and of all which the taxes which you bear, under whatever form, the abolition [Page 450] of the tithe, of feudalism, of seigniorial rights and monopolies of every kind, of serfdom, whether real or personal, of hunting and fishing privileges, of the corvee, the salt tax, the tolls and local imposts, and, in general, of all the various kinds of taxes with which you have been loaded by your usurpers; it also proclaims the abolition among you of all noble and ecclesiastical corporations and of all prerogatives and privileges opposed to equality. You are, from this moment, brothers and friends ; all are citizens, equal in rights, and all are alike called to govern, to serve, and to defend your country.<sup><a href="#fn59" class="citation-trigger" id="refO-59" data-fn="59">[59]</a></sup></p>
+
+            <h3>2. The Proclamation of the Duke of Brunswick, 1792</h3>
+            <p style="font-style: italic;">J.H. Robinson, ed., Readings in European History 2 vols. (Boston: Ginn, 1906), 2: 443-445. Hanover Historical Texts Project.</p>
+            <p>Their Majesties the emperor and the king of Prussia having intrusted to me the command of the united armies which they have collected on the frontiers of France, I desire to announce to the inhabitants of that kingdom the motives which have determined the policy of the two sovereigns and the purposes which they have in view.</p>
+            <p>After arbitrarily violating the rights of the German princes in Alsace and Lorraine, disturbing and overthrowing good order and legitimate government in the interior of the realm, committing against the sacred person of the king and his august family outrages and brutalities which continue to be renewed daily, those who have usurped the reins of government have at last completed their work by declaring an unjust war on his Majesty the emperor and attacking his provinces situated in the Low Countries. Some of the territories of the Germanic empire have been affected by this oppression, and others have only escaped the same fate by yielding to the threats of the dominant party and its emissaries.</p>
+            <p>His Majesty the king of Prussia, united with his Imperial Majesty by the bonds of a strict defensive alliance and himself a preponderant member of the Germanic body, would have felt it inexcusable to refuse to march to the help of his ally and fellow-member of the empire. . . . To these important interests should be added another aim equally important and very close to the hearts of the two sovereigns, - namely, to put an end to the anarchy in the interior of France, to check the attacks upon the throne and the altar, to reestablish the legal power, to restore to the king the security and the liberty of which he is now deprived and to place him in a position to exercise once more the legitimate authority which belongs to him.</p>
+            <p>Convinced that the sane portion of the French nation abhors the excesses of the faction which dominates it, and that the majority of the people look forward with impatience to the time when they may declare themselves openly against the odious enterprises of their oppressors, his Majesty the emperor and his Majesty the king of Prussia call upon them and invite them to return without delay to the path of reason, justice, order, and peace. In accordance with these views, I, the undersigned, the commander in chief of the two armies, declare:</p>
+            <p>1. That, drawn into this war by irresistible circumstances, the two allied courts entertain no other aims than the welfare of France, and have no intention of enriching themselves by conquests.</p>
+            <p>2. That they do not propose to meddle in the internal government of France, and that they merely wish to deliver the king, the queen, and the royal family from their captivity, and procure for his Most Christian Majesty the necessary security to enable him, without danger or hindrance, to make such engagements as he shall see fit, and to work for the welfare of his subjects, according to his pledges.</p>
+            <p>3. That the allied armies will protect the towns and villages, and the persons and goods of those who shall submit to the king and who shall cooperate in the immediate reestablishment of order and the police power throughout France.</p>
+            <p>4. That, on the contrary, the members of the National Guard who shall fight against the troops of the two allied courts, and who shall be taken with arms in their hands, shall be treated as enemies and punished as rebels to their king and as disturbers of the public peace. . . .</p>
+            <p>7. That the inhabitants of the towns and villages who may dare to defend themselves against the troops of their Imperial and Royal Majesties and fire on them, either in the open country or through windows, doors, and openings in their houses, shall be punished immediately according to the most stringent laws of war, and their houses shall be burned or destroyed. . . .</p>
+            <p>8. The city of Paris and all its inhabitants without distinction shall be required to submit at once and without delay to the king, to place that prince in full and complete liberty, and to assure to him, as well as to the other royal personages, the inviolability and respect which the law of nature and of nations demands of subjects toward sovereigns. . .Their said Majesties declare, on their word of honor as emperor and king, that if the chateau of the Tuileries is entered by force or attacked, if the least violence be offered to their Majesties the king, queen, and royal family, and if their safety and their liberty be not immediately assured, they will inflict an ever memorable vengeance by delivering over the city of Paris to military execution and complete destruction, and the rebels guilty of the said outrages to the punishment that they merit. . . .</p>
+            <p>Finally, I pledge myself, in my own name and in my said capacity, to cause the troops intrusted to my command to observe good and strict discipline, promising to treat with kindness and moderation all well-intentioned subjects who show themselves peaceful and submissive, and to use force only against those who shall be guilty of resistance and ill will.</p>
+            <p>It is for these reasons that I call upon and exhort in the most urgent manner all the inhabitants of the kingdom not to oppose the movements and operations of the troops which I command, but rather, on the contrary, to grant them everywhere a free passage and to assist and aid them with all good will as circumstances shall demand.</p>
+            <p style="text-align: right; font-weight: bold;">Given at the headquarters at Coblenz, July 25, 1792.<br>CHARLES WILLIAM FERDINAND,<br>Duke of Brunswick-Luneburg.</p>
+
+            <h3>3. SERVAN, MINISTRE DE LA GUERRE, PROPOSE SA DEMISSION</h3>
+            <p style="font-style: italic;">Source : Internet History Sourcebooks Project of the Fordham University.</p>
+            <p style="font-style: italic;">Le Mardi 25 septembre 1792, est fait lecture de la lettre du Ministre de la Guerre, qui demande sa démission. Il s'agit de Joseph Servan de Gerbey (né à Romans en 1741 - mort à Paris en 1808). Ce militaire de carrière avait publié dans l'Encyclopédie des articles sur l'art militaire. Il avait été aussi l'auteur d'un "Projet de constitution pour l'armée française" en 1790. Servan de Gerbey cessera ses fonctions de ministre le 3 octobre 1792, pour être remplacé par Lebrun.</p>
+            <p style="text-align: center; font-weight: bold;">(Lettre du ministre de la guerre)</p>
+            <p style="text-align: right; font-style: italic;">"Paris, le 25 septembre, l'an Ier de la République.</p>
+            <p>Au moment où le peuple a reconquis la liberté, toutes les mesures étaient prises pour l'accabler de chaînes mille fois plus pesantes que celles qu'il avait commencé de briser le 14 juillet. Ainsi, il ne paraît plus possible de douter, que du 15 au 25 août, les ennemis seraient entrés dans Paris, comme leur imprudente présomption en laissait depuis quelque temps transpirer la nouvelle. Tout était préparé pour aplanir les difficultés, et l'on avait, pour ainsi dire, jalonné leur route.</p>
+            <p>En effet, Luckner n'avait à Metz que 17.000 soldats; Lafayette tramait dans son camp de Sedan des trahisons à la tête de 18.000 hommes, formait de vastes, mais inutiles projets: obligé de diviser ses forces entre Pont-sur- Sambre, Maubeuge et Maulde. Biron était sur les bords du Rhin; mais malgré son ardente envie de servir la chose publique, il ne voyait que des trahisons à craindre, et un peuple séduit par le fanatisme et la cabale; en vain Custine s'était jeté dans Landau; Ferrières était à Porentuy; Kellermann à Wissembourg; les ennemis étaient partout; et tandis que le roi de Prusse devait marcher tranquillement et sans obstacle sur Paris, les Hessois et les émigrés devaient passer le Rhin, les Autrichiens pénétrer dans les départements du Nord, les Piémontais dans ceux du Midi, et l'aristocratie lever ouvertement le masque dans toutes les parties de l'intérieur. Une seule nuit vit disparaître tous ces projets, et le courage de nos braves concitoyens fit évanouir, le 10 août, ces trames si perfidement ourdies contre notre liberté.</p>
+            <p>Depuis, Messieurs, la scène a changé; en vain les ennemis ont-ils profité des trahisons préparées à Longwy et à Verdun; en vain ont-ils réuni sur un même point la plus grande partie des forces qu'ils avaient sur le Rhin et dans les Pays-Bas.</p>
+            <p>Déjà nous leur avons opposé plus de 60.000 hommes réunis à Sainte-Menehould; déjà ils ont été repoussés plusieurs fois devant Thionville: Metz est dans un état respectable de défense; la France tout entière s'est levée, et toutes les villes, les bourgs, les villages entre Paris et Châlons, se garnissent journellement de volontaires prêts à se réunir en corps d'armées; le Nord va revoir incessamment une army en campagne; les Brabançons ne nous aurons pas appelés en vain; de nouvelles forces ne tarderont point à être dirigées sur les derrières de l'ennemi: sans un orage affreux qui a endommagé les lignes de la Lauter, le brave Custine aurait déjà porté nos armes à Coblentz; nous avons dû entrer en Savoie, et attaquer le comté de Nice; les Espagnols tenteraient en vain de traverser les Pyrénées.</p>
+            <p>D'autres entreprises qui exigent du secret ne tarderont pas à être mises à exécution; enfin, de tous les côtés, le peuple français est en mouvement pour assurer sa liberté, et concourir avec ses représentants à jeter les fondements durables d'une constitution qui l'honore à jamais.</p>
+            <p>Si, au milieu d'événements qui tiennent autant du prodige, il était permis à un citoyen de parler de lui, je prierais que l'on me permit de me féliciter de m'être trouvé au milieu des mouvements multipliés et rapides imprimés en si peu de temps à toute la machine. Je prierais surtout de pouvoir nommer les citoyens qui ont concouru et qui concourent encore avec moi au salut de la chose publique; mais les effets heureux dont ils sont la cause parlent assez pour eux; et dans un moment où il faut naturaliser l'égalité parmi nous, chaque Français ne peut plus être heureux que de la prospérité de la République.</p>
+            <p>Cependant, mes forces n'ont pas suffi à mon désir extrême de répondre aux bontés excessives de mes concitoyens pour moi. Dans la place qu'on m'a confiée, il ne suffit pas de la volonté; il ne suffit pas de méditer pour correspondre avec les armées; il faut s'occuper à les alimenter, les augmenter et suivre leurs mouvements。</p>
+            <p>Pour entretenir des relations exactes avec toutes les parties de la république, il faut que le ministre soit lui-même dans une action continuelle, et c'est ce qui ne m'est plus possible. Un mois et demi passé sans aucune espèce de repos ni le jour ni la nuit, toujours entre la crainte des événements et celle de ne pas faire, aussi bien que je l'aurais voulu, tout ce qui intéresse le salut de la chose publique, m'a réduit dans un état de douleur si continuel, qu'il ne m'est plus possible à peine de signer. Obligé pour tout le reste de m'en rapporter à d'autres, je ne peux plus conserver cette responsabilité morale dont tout homme honnête doit être si jaloux.</p>
+            <p>Veuillez donc, Monsieur le Président, prier la Convention nationale d'accepter ma démission d'une place que je ne peux plus occuper pour le bonheur de ma patrie et mon honneur... Ce qui tranquillise cependant un peu, en me voyant dans l'impossibilité de rester plus longtemps à la place où mes concitoyens m'avaient appelé, c'est de la quitter dans un moment où tout est préparé pour donner bien plus d'espérance que de crainte; aussi osé-je me flatter que mes concitoyens me sauront quelque gré des efforts que je n'ai cessé de faire depuis plus d'un mois pour le service de la chose publique; et que hors d'état de les soutenir, faute de forces physiques suffisantes, je ne continuerai pas moins de mériter toute leur estime.</p>
+            <p style="text-align: right; font-weight: bold;">Signé SERVAN".</p>
+            <p><strong>Saint-Just</strong> : "Je demande qu'il soit décrété que le citoyen Servan a bien mérité de la patrie". (On applaudit)</p>
+            <p><strong>Granet</strong> : "Je demande qu'il soit invité à rester dans le ministère et qu'on lui donne un adjoint". (L'assemblée ajourne la délibération sur ces lettres à la séance de la nuit. La séance est levée à 6 heures).</p>
+
+            <h3>4. VERS LA REPUBLIQUE SOCIALE</h3>
+            <p style="font-style: italic;">Source : "Histoire socialiste" de Jean Jaurès, Paris, Rouff, 1901-1908, Tome 12, pages 308 à 310.</p>
+            <p>Certes, le prolétariat est bien loin du but qu’il se propose. L’injustice essentielle n’est point abolie. Le monopole de fait de la propriété subsiste et la domination économique de la classe capitaliste a pour effet d’abaisser et d’exploiter l’immense multitude des hommes qui tourmentent la société d’aujourd’hui et accablent la classe ouvrière, il y aurait une sorte d’impudence à étaler, dans le jugement d’ensemble porté sur l’évolution française depuis la Révolution, une sorte d’optimisme béat et satisfait. Mais il y a un optimisme vaillant et âpre qui ne dissimule rien de l’effort qui reste à accomplir, mais qui trouve dans les premiers résultats péniblement et douloureusement conquis des nouvelles raisons d’agir, de combattre, de porter plus haut et plus loin la bataille.</p>
+            <p>En fait, la Révolution française a abouti. Ce qu’il y avait en elle de plus hardi et de plus généreux a triomphé. Deux traits caractérisent le mouvement politique et social de la France depuis 1789 jusqu’au commencement du XXe siècle. C’est d’abord l’avènement de la pleine démocratie politique. Tous les compromis monarchiques ont été balayés ; toutes les combinaisons de monarchie traditionnelle et de souveraineté populaire ont été écartées ; toutes les contrefaçons césariennes ont été rejetées. La Constitution mixte de 1791 a sombré dans l’imbécillité et dans al trahison royale. La monarchie restaurée de 1815 a révélé l’incapacité de la bourgeoisie française a gouverner seule, parce qu’elle ne peut se défendre contre les forces subsistantes du passé sans faire appel aux forces de l’avenir. Deux fois la démocratie napoléonienne a été engloutie dans le désastre, et maintenant sous la forme républicaine, c’est bien le peuple qui gouverne par le suffrage universel. Il dépend de lui de conquérir le pouvoir. Ou plutôt il l’a déjà conquis, puisqu’aucune force ne peut faire échec à sa volonté légalement exprimée. Mais il ne sait pas encore en faire usage. Il ne sait pas l’employer vigoureusement à sa pleine émancipation économique. Les millions de travailleurs, ouvriers ou paysans, ne sont plus théoriquement des citoyens passifs. Ils le sont restés trop souvent encore par la résignation aux vieilles servitudes, par l’indifférence à l’idée nouvelle qui les affranchira. Mais c’est déjà chose immense qu’il suffise d’un progrès d’éducation du prolétariat pour que sa souveraineté formelle devienne une souveraineté substantielle.</p>
+            <p>Aussi bien dans l’ordre de l’enseignement aussi, le progrès est grand depuis un siècle. Tous les enfants de la nation sont appelés à l’école : le grand idéal de Condorcet est réalisé ou en voie de réalisation. Et ce n’est plus l’Eglise, complice des tyrannies sociales qui domine l’éducation et façonne le peuple. Elle a été réduite à n’être plus qu’une association privée ; et c’est la science, c’est la raison qui anime l’enseignement public. C’est la grande lumière de l’Encyclopédie, mais plus large et plus ardente, qui emplit l’horizon. La pensée socialiste, héritière des audaces extrêmes du XVIIIe siècle, commence à pénétrer les instituteurs de la nation.</p>
+            <p>De même, au point de vue social et dans cette portion même de la démocratie française qui n’a pas encore adhéré au socialisme explicite, c’est une conception bourgeoise, encore mais déjà sociale, de la propriété qui a prévalu. Elle n’a pas, comme pour les Constituantes, la condition de la souveraineté politique : l’homme le plus pauvre, le plus dénué, est politiquement légal du plus riche. Elle n’est pas non plus un absolu intangible. En demandant au Capital, par un impôt progressif sur les successions, une part croissante des ressources publiques, en proclamant que l’Etat a le droit et le devoir d’imposer aux possédants des contributions pour assurer les non possédants contre les risques naturels et sociaux, le radicalisme français subordonne théoriquement le droit de propriété au droit supérieur de la nation : il reprend à son compte le mot de Robespierre définissant la propriété : la portion de ses biens garantie au citoyen par la loi. Et il se peut que le radicalisme, après avoir accepté cette formule, maniée par un prolétariat vigoureux et fort, et appliquée à une société où la puissance économique est concentrée à nouveau dans une oligarchie, ne conduise par degrés à la socialisation générale de la société capitaliste. Cette défaillance du radicalisme gouvernemental, si elle se produit, n'empêchera point l'effet de l'idée qui s’est développé dans la démocratie française.</p>
+            <p>C’est le socialisme lui-même qui se substituera alors au radicalisme dans la mise en oeuvre de cette idée sociale de la propriété et qui la poussera jusqu’à ses conséquences nécessaires. La brèche est ouverte par où il passera. C’est donc bien la formule la plus extrême, la plus logique, la plus démocratique de la Révolution française, qui, après un siècle de tâtonnements, de réactions, de rêves d’abord impuissants, de révolution à demi-manquées, est enfin entrée dans les faits. Ce que le génie révolutionnaire avait entrevu, affirmé, essayé, dans la fièvre et l’exaltation du combat est devenu la réalité normale et solide. On dirait une cime volcanique qui après une série d’explosions, d’affaissements, de redressements, s’est enfin fixée à son niveau le plus élevé :elle est consolidée maintenant et élargie en un vaste plateau qui peut porter les assises de la grande cité nouvelle. Non, tous ceux qui ont lutté, souffert, espéré depuis un siècle, n’ont pas perdu leur effort ; leur souffrance n’a pas été vaine ; leur espérance n’a pas été décevante, et si le prolétariat peu se réjouir de cette victoire de la démocratie révolutionnaire, ce n’est pas seulement parce qu’elle lui permet d’espérer et de préparer une victoire plus décisive, mais parce que c’est lui, débile encore pourtant et incertain, qui a assuré ce triomphe de la Révolution. C’est par lui qu’elle a été portée d’abord, comme en un jet de flammes à ce niveau de 1793, d’où elle ne tarda pas à retomber, mais où sans cesse elle tendait à revenir. C’est lui qui a aidé, qui a obligé la bourgeoisie à en finir avec les prétentions renaissantes de l’ancien régime. C’est lui qui a arraché à la bourgeoisie son privilège étroit pour créer enfin une vaste démocratie politique qui évoluera en démocratie sociale ? Qu’auraient fait durant tout le siècle les républicains sans les ouvriers ? A tous les moments de la lutte qui a préparé ou réalisé la démocratie politique, l'action du prolétariat est visible ; et ce sera, je crois, un des mérites de l’oeuvre historique dont j’écris en ce moment les dernières lignes d’avoir éclairé ces traces.</p>
+
+            <h3>5. Fall of the Monarchy</h3>
+            <p style="font-style: italic;">Source: Timothy Tackett, The coming of the terror in the French Revolution. Cambridge, Massachusetts, and London, England: The Belknap Press of Harvard University Press, 2015. p.183-p.191</p>
+            
+            <h4 style="margin-top:20px;">5.1 The King Must Be Removed</h4>
+            <p>The young volunteers from Marseille and Brest were full of energy and radical enthusiasm, and both groups soon made it amply clear that they had no intention of continuing on to the front until the problem of the king had been resolved. Within days, they had sent a petition of their own to the Assembly demanding the dethroning of the reigning monarch: “The very name of ‘Louis XVI’ now means ‘treason’ to us.”</p>
+            <p>By the beginning of August, the Marseillais and the other citizen soldiers arriving in the city from around the country had become a factor to be reckoned with by the Parisians, the Legislative Assembly, and the monarchy. Throughout late July and early August section after section in Paris joined with the Fédérés in demanding the deposition of the king. Other similar petitions were said to be “flooding into the Assembly” from the provinces, primarily from local Jacobin clubs but sometimes also from district or municipal administrators. On August 3 Mayor Pétion arrived with a collective petition from forty of the forty- eight sections of Paris calling for the king’s removal. The demand was justified with a complete “history” of Louis’ supposedly treacherous actions during the Revolution and of the many oaths he had taken and then broken. Despite all the “benefits” that the nation had granted him, the king’s conduct consisted only of “perjury, treason, and conspiracy against the people.” They had pardoned him for his flight to Varennes in 1791, “but to pardon is not to forget.” And now, in their view, it was clear that the king was “the first link in the chain of counterrevolution” that was leading the Revolution to ruin.</p>
+            <p>As Pétion spoke before the Assembly, the Parisians were just learning of the so-called Brunswick Manifesto, sent to the king several days earlier and now made public. Written in the name of the Prussian commander by one of the emigrant nobles, the statement sought to intimidate the Parisians with the threat of “delivering the city of Paris to an exemplary and ever memorable vengeance” if the Tuileries Palace were attacked or if the royal family received the least insult or violence. Yet this curious document seems only to have further info-riated the Parisian radicals. Ruault snarled at its “insolence,” which he maintained “only increases our courage.” In the Saint- Marcel neighborhood, a copy of the Manifesto was burned in a public square.</p>
+            <p>On August 6 a great demonstration of Parisians, organized by the central committee of the Fédérés and by various of the sections, marched in pro cession across the city, chanting and singing as they made their way to the Champ de Mars. Here thousands of people filled fifty-five pages with their signatures on a petition—a t the very spot where the national guard had fired on a petition gathering ceremony one year earlier. This time the only national guardsmen present supported the petition, the combined program of the militants and the sans-culottes. There were thirteen demands altogether, including the removal of the king, the calling of a new constitutional convention, universal male suffrage, severe measures against grain hoarders and monopolizers, a return of the patriot ministers, the replacement of the “suspect” departmental directories who continued to support royalism, and the indictment of Lafayette. A special delegation then delivered the gigantic petition to the Legislative Assembly.</p>
+            <p>The Assembly, however, remained as divided as ever and was unable to take a position. Beginning in late July the various petitions demanding the king’s removal were sent to a committee for consideration, and the deputies regularly promised to take up the issue. But the proposed debate was continually postponed. While the Montagnards strongly supported the removal of the king and the Feuillants strongly opposed it, the Girondins and the moderates who held the swing votes were mired in indecision.</p>
+            <p>Ruault, who strongly objected to the Assembly’s delay tactics, understood nevertheless the deputies’ predicament. Even if the king were removed, there was wide confusion as to what to do next. Should they leave him in France as a simple citizen, or escort him to the frontier, or imprison him? And should they then create a republic or turn over power to his heir? If they maintained the monarchy, who would serve as regent until Louis’ young son attained his majority? Under increasing pressure from the militants, the Assembly finally pledged to discuss the question of the king’s removal on August 9.</p>
+            <p>But when the day arrived, Condorcet, who reported for the Legislative’s steering committee, only presented a learned analysis of the Constitution and the difficult issues that remained to be answered. In the end the question was returned to the committee and the decision was put off once again. In the meantime, a debate on the behavior of General Lafayette had come to a head. The Left had long argued that he should be indicted for having abandoned his troops in the midst of the war and having threatened the deputies if they did not follow his recommendations. But on August 8, with the Feuillants passionately defending their hero and the moderates fearful of removing a general during a campaign, the Assembly gave Lafayette a vote of confidence, 406 to 226. For a great many Parisian militants, the deputies’ decision neither to debate the king nor to prosecute Lafayette was the last straw. “We are outraged against the National Assembly,” wrote Colson, “for having declared Lafayette innocent, when the public so firmly believes he is a traitor.” In the midst of the continual agitation and attacks against Louis, the supporters of the monarchy were by no means inactive. Both Lafayette and the former duke of La Rochefoucauld-Liancourt proposed detailed plans for moving the king into the provinces.</p>
+            <p>But the queen was revolted at the idea of placing her family in the hands of either Liancourt or Lafayette, both of whom had supported the Revolution in 1789. In any case, Louis ultimately rejected all such proposals, arguing— correctly no doubt— that they would lead to civil war.</p>
+            <p>In the end, the monarchy fell back on a purely defensive strategy, shoring up the fortifications of the Tuileries Palace and bringing in more troops to man them. Such preparations were all the more difficult in that the Legislative, suspicious of the threat of counterrevolution, had largely dismantled the armed forces directly available to the king. The royal bodyguard had been disbanded in May, and most of the regular troops once garrisoned in Paris been had sent to the front. As a replacement, the ministers summoned several hundred gendarmes police and Parisian national guardsmen, many of the latter from the more conservative sections of western Paris. The king also had at his disposal close to a thousand Swiss guards—attached to the protection of the monarchy since the sixteenth century— and some two or three hundred volunteer nobles, many of them former members of the royal bodyguard. In all, by early August some 4,000 men had been concentrated in and around the palace. As events would prove, the loyalty to the king of the gendarmes and the guardsmen was altogether uncertain. But the intentions of the king were by no means obvious to the Parisians. On the night of August 9, the leader of the Saint- Marcel national guard battalion, Charles Alexandre, made a clandestine tour of the palace, and he found it bristling with activity. If the confrontation were to turn into an armed combat, it was not at all clear to him who would have the upper hand.</p>
+            <p>Faced with such a situation, many of the militants agonized over how the king’s removal was to be accomplished. They had long been hopeful that such a transformation could be effected peacefully, through the expression of popular will in petitions and through the actions of the Legislative Assembly. Even the Marseillais, in their addresses to the Assembly, had urged the use of nonviolent means. France must be delivered from “the evil of kings,” they had written, “not by a violent insurrection, but through a peaceful demonstration of the national will.”</p>
+            <p>Yet how could they not listen to the rumors in the streets, fueled by newspaper accounts, that the Tuileries Palace was planning a massacre against the patriots? Was it not clear that the king had turned his palace into an armed camp from which such an attack might easily be launched? Was there any choice but to conspire themselves, if France were to be saved from the conspiracies of the court? Rosalie Jullien had clearly come to such a conclusion: “The king’s treason is so disastrous for the success and glory of the nation, that we are faced with the cruel necessity of either destroying it or of meekly accepting the chains that are prepared for us.”</p>
+
+            <h4 style="margin-top:20px;">5.2 Assault on the Tuileries Palace</h4>
+            <p>Throughout the month of July 1792 a significant transformation of the sections of Paris was taking place, sometimes through Legislative decree, sometimes through the initiative of the militants themselves. It was during this period that the sections acquired the right to meet in regular daily assemblies—a measure granted by the Assembly as a war provision for maintaining tight surveillance in the city. They also obtained ever-greater control over the national guard battalions based in their circumscriptions. By the end of the month they had established a centralized bureau to coordinate policy among all of the sections. Equally important, many sections were eliminating on their own initiative the division between active and passive citizens, inviting the whole population— sometimes including women and adolescents—to attend and vote in the neighborhood assemblies. The Parisian sections were thus acquiring ever-greater leverage in their demand that Louis XVI be removed from the throne. With the Assembly’s procrastination in debating the king’s fate and with its absolution of Lafayette, the militants concluded that they would have to remove the monarch themselves. This would be accomplished by the combined forces of the Paris national guards and the Fédérés from the provinces: hopefully through coercion and negotiation, but by force if necessary, in a general insurrection. On the evening of August 9, 1792, a carefully planned and widely announced mobilization of Paris began. All of the sections were convened and met throughout the night, and most of them sent elected “commissioners” to the city hall to coordinate decisions. Just before midnight the bells in the Cordeliers church began sounding the “tocsin,” the rapid, insistent tolling that traditionally indicated danger. Soon the bells in many other churches across the city followed suit and picked up the rhythm. By midnight everyone was awake. Rosalie Jullien described the scene in a breathless late- night letter to her husband: “The tocsin is ringing, the call to arms has sounded, and fear and apprehension are spreading through all Paris.” The streets were full of citizens, with many women trembling at their windows. “Some 800,000 people are given over to an anguish and terror that is only increased by the black veil of night.” National guard battalions rushed into formation and prepared for action. Ruault was up all night guarding a bridge with his detachment— although he was replaced at dawn and would not participate in the day’s events. Around five in the morning, just as the day was beginning to break, the militants captured the royal arsenal in eastern Paris, and more arms were distributed to the guardsmen and Fédérés.</p>
+            <p>Toward seven in the morning, the section commissioners who had been meeting in the city hall, just next door to the legally constituted municipal council, announced that they were taking over and creating a new “Insurrectional Commune.” When protests were raised by the “legal” counselors— most of whom were Feuillant sympathizers— they were told that “when the people enter into a state of insurrection, they take back all power for themselves.” Soon thereafter the royalist commander of the Paris national guard, who had been preparing the defense of the Tuileries Palace, was brought before the Commune and arrested. As he was being escorted to prison, he was shot through the head by an unknown individual on the steps of the city hall: a violent act that was to initiate a day of violent revolution.</p>
+            <p>Even as the insurgents were seizing control of the arsenal and the city hall, radical guardsmen and pikesmen and provincial Fédérés were on the march from their various neighborhoods, converging on the Place du Carrousel on the east side of the Tuileries Palace.</p>
+            <p>There they were to wait for over three hours as the insurgents attempted to negotiate with the various troops who barred their way. If we can believe Alexandre, who led the guardsmen of Saint-Marcel and the Fédérés troops from Brittany, no one talked of an attack. The goal was to disarm the palace and ensure that the king was peacefully removed from power. And at first the insurgents seemed to be successful. Little by little most of the national guardsmen and gendarmes guarding the courtyard and the entrance to the palace were convinced to abandon their posts and come over to the side of the “people.” Then some of the Swiss were also won over and began to leave their formations. Invariably, these developments caused great consternation inside the Tuileries. Although the king and the queen considered remaining in the palace, a representative from the department of Paris convinced Louis that the cause was hopeless and that he would do better to take his family to the safety of the Legislative Assembly. At about eight- thirty that morning, the royal family and the king’s ministers left by the west side of the palace and walked a short distance across the gardens to the Assembly, where they took refuge. Shortly after the royal family’s departure the bulk of the Swiss guards and the nobleman volunteers inside the palace opened fi re on the insurgents. The decision came in part as the Swiss officers saw discipline breaking down among their own men, and the “deserters” may have been among the first shot. But thereafter the outside courtyard became a killing field, with dozens of Parisians and Fédérés cut down in a withering cross fi re arriving from several directions at once.</p>
+            <p>The royal forces quickly swept clear the Tuileries courtyards and the adjoining Place du Carrousel, killing or wounding more of the insurgents and seizing several of their cannons. As the survivors fled, word of the “ambush” spread rapidly through the city. The story only confirmed the widespread belief of a counterrevolutionary conspiracy hatched in the palace, and the militants and sans-culottes were livid with anger and a desire for revenge. At first the Swiss seemed to be winning the day, but then a large new insurgent arrived from eastern Paris led by Santerre, newly named commander of the national guard by the Insurrectional Commune. The guardsmen from the Saint-Antoine district had been slower to organize, but now they advanced through the streets in three separate columns. Colson peeked out his window and saw one of the columns passing by: “a furious multitude armed with pikes and other weapons,” heading for the palace. Falling on the Swiss from three sides at once, they quickly forced them back into the Tuileries. There followed a brutal hand-to- hand combat.</p>
+            <p>Storming of the Tuileries Palace, August 10, 1792. The fédéré troops from Marseille and Brest, along with Paris national guardsmen and other citizens, are attacking the palace from the Place du Carrousel with muskets and pikes. Swiss guards can be seen in the background rushing into the palace while shots are fired at the insurgents from the windows with sabers and bayonets, as the Parisians and the Fédérés forced their way into the palace and up the stairs by sheer force of numbers, with numerous attackers and defenders killed or wounded. A substantial number of the noble volunteers were captured and sent to prison. But the Swiss guards in their bright red uniforms became the target of choice, as the people sought revenge for the ambush and killing of their comrades. Some of the Swiss were able to break out to the west and flee across the Tuileries Gardens. A portion of them burst into the Assembly hall and were protected by the deputies with great difficulty until they could be escorted to prison. But another contingent fled to what is today the Place de la Concorde, and there they were surrounded by the Parisians, and all were killed. Enraged with fury, the guardsmen and Fédérés tracked the remaining Swiss stragglers throughout the city.</p>
+            <p>Those who were unable to shed their uniforms and hide were also killed. The terrible civil war in the heart of Paris had lasted little more than two hours. Yet over a thousand people had died— the greatest hecatomb in the city since the sixteenth century. The largest toll was among the Swiss guards, of whom some 600 had been killed. But another hundred or so of the noble volunteers had also succumbed, and close to 400 insurgents were killed or wounded. The young volunteers from Marseille and Brittany caught in the cross fire of the courtyard represented the single largest number of patriot casualties. Other victims came from nearly every quarter of Paris as well as many different provinces of France. As the shots died away and the smoke cleared, Parisian civilians began venturing out. They found the palace in shambles and both it and the surrounding streets “littered with bodies.” By then fire had broken out within the Tuileries, and Parisian firemen would still be struggling to contain it at three the next morning. The medical student Edmond Géraud had difficulty walking in the area without stepping on corpses.</p>
+            <p>All over the city, women and men rushed to see if their loved ones had returned. Rosalie Jullien ventured out with her son and saw women who “threw themselves into the arms of their husbands in the middle of the street.” Alexandre, leading his battalion back to Saint- Marcel, described similar “truly heartrending” scenes, including his own father in tears embracing him as he reached their house. “Thus,” he wrote, “we returned to our homes, which many of us thought we might never see again, and we rested from the exhaustion of that leading day.”</p>
+            <p>It had indeed been a terrible, brutal affair, and the Parisian elites who lived through it were beset with a complex mixture of emotions as they sought to explain and justify the violence. Almost forty years later, Victoire Monnard still remembered trembling in her room, watching through the window as the Parisians captured and cut down one of the Tuileries defenders fleeing through the streets. Yet as Alexandre explained, the insurgents were convinced that if they had lost, they would not have been treated any better by their adversaries. And everyone returned again and again to the treacherous attack on the patriots in the courtyard. Adelaïde Mareux, daughter of a theater owner in the Marais, wrote a feverish letter recounting her personal outrage when the Swiss suddenly fired on the Marseillais and the other national guardsmen: “Everyone was overcome with rage against these monsters.” Pinet described the “abominable treachery” of the royal forces in luring the people into the palace and then opening fire. It was after this act that “the fury of the people was aroused.”</p>
+            <p>Almost all of the radicals were convinced that the battle of the Tuileries had saved Paris from a far worse fate being plotted by the king and the court: “this abominable court that was weighed down in blood,” as the Parisian notary and future deputy Bancal des Issarts described it. Bancal went on to lament the number of young men without any training in combat who had laid down their lives and were butchered by the professional soldiers in the Tuileries. For many Revolutionaries the real massacre was not that of the Swiss guard but of the patriots, the “Saint Lawrence’s Day Massacre,” they called it—referring to the calendar saint for August 10. Bancal shuddered to think how close they had come to losing everything. He could only conclude that “an admirable Providence is watching over the French, ensuring the preservation of liberty and the triumph of equality.”</p>
+        </article>
+
+        <!-- 页下注释数据源 (Notes) -->
+        <section id="notes-anchor" class="footnotes-section">
+            <h3>页下注释 (Notes)</h3>
+            <ol>
+                <li id="fn1">瓦伦潜逃（Varennes，fuite à）指 1791 年 6 月 20 日路易十六潜逃外国的事件，后被识破，第二天在瓦伦被拦截。6 月 24 日路易被押回巴黎。国王潜逃使法国国内群情激愤，要求废黜国王。参见端木正主编：《法国大革命史词典》，中山大学出版社，1989 年，第 37 页。<a href="#ref1" class="back-link">↩</a></li>
+                <li id="fn2">[法]阿尔贝·索布尔：《法国大革命史》，马胜利等译，北京师范大学出版社，2015 年，第 147 页。<a href="#ref2" class="back-link">↩</a></li>
+                <li id="fn3">[英]多伊尔：《牛津法国大革命史》，张弛译，北京师范大学出版社，2015 年，第 189 页。<a href="#ref3" class="back-link">↩</a></li>
+                <li id="fn4">[法]阿尔贝·索布尔：《法国大革命史》，马胜利等译，第 148 页。<a href="#ref4" class="back-link">↩</a></li>
+                <li id="fn5">[法]阿尔贝·索布尔：《法国大革命史》，马胜利等译，第 152 页。<a href="#ref5" class="back-link">↩</a></li>
+                <li id="fn6">[美]林·亨特著：《法国大革命中的政治、文化和阶级》，汪珍珠译，华东师范大学出版社，2011 年，第 59、60 页。<a href="#ref6" class="back-link">↩</a></li>
+                <li id="fn7">[法]阿尔贝·索布尔：《法国大革命史》，马胜利等译，第 155 页。<a href="#ref7" class="back-link">↩</a></li>
+                <li id="fn8">[法]乔治•勒费弗尔：《法国革命史》，顾良等译，商务印书馆，2010 年，第 233 页。<a href="#ref8" class="back-link">↩</a></li>
+                <li id="fn9">刘大明：《法国大革命 1792 年宣战动因析论》，《世界历史》，2008 年 4 月（第 2 期），第 59 页。<a href="#ref9" class="back-link">↩</a></li>
+                <li id="fn10">[法]马迪厄：《法国革命史》，杨人楩译，商务印书馆，2011 年，第 170 页。<a href="#ref10" class="back-link">↩</a></li>
+                <li id="fn11">[法]乔治•勒费弗尔：《法国革命史》，顾良等译，第 240 页。<a href="#ref11" class="back-link">↩</a></li>
+                <li id="fn12">指券（assignat）大革命时期发行的纸币。制宪议会在 1789 年 11 月没收教会财产，以缓解财政危机之急。12 月底以教会财产（称国有财产）为保证，发行 4 亿锂指券，利息 5%，可用于购买国有财产，但不能作为纸币在市场流通。随着财政困难，1790 年 9 月宣布为流通货币，流通量增至 12 亿锂。1791 年 5 月颁布指券强制流通的法令。指券发行之初效果显著，但因政局不稳，发行量过大超出保证金，造成通货膨胀。参见端木正主编：《法国大革命史词典》，第 192 页。<a href="#ref12" class="back-link">↩</a></li>
+                <li id="fn13">[英]乔治•鲁德：《法国大革命中的群众》，何新译，北京师范大学出版社，2016 年，第 101 页。<a href="#ref13" class="back-link">↩</a></li>
+                <li id="fn14">联盟节（Fête de la Fédération Nationale）即 7 月 14 日。为纪念攻克巴士底狱，表示全国团结共同打击自由的敌人而设立的节日。参见端木正主编：《法国大革命史词典》，第 203 页。<a href="#ref14" class="back-link">↩</a></li>
+                <li id="fn15">[法]阿尔贝·索布尔：《法国大革命史》，马胜利等译，第 162 页。<a href="#ref15" class="back-link">↩</a></li>
+                <li id="fn16">[法]马迪厄：《法国革命史》，杨人楩译，第 174 页。<a href="#ref16" class="back-link">↩</a></li>
+                <li id="fn17">无套裤汉（Sans-culottes）泛指大革命期间的法国下层群众，特别是城市平民群众。时俗：贵族和上层资产阶级通常着上衣，丝绒短裤齐膝，下着长袜，平民则是长裤，没有短裤。用于政治生活术语始于 1792 年初。开始系贵族和上层资产者对争取平等权利的“消极公民”的卑称，后来，特别是雅各宾专政时变为褒义词，在政治上指爱国者，按社会成分包括工资劳动者、学徒、帮工、作坊主、小商人、独立手工业者、流浪者、某些自由职业者。参见端木正主编：《法国大革命史词典》，第 33 页。<a href="#ref17" class="back-link">↩</a></li>
+                <li id="fn18">[英]多伊尔：《牛津法国大革命史》，张弛译，第 230 页。<a href="#ref18" class="back-link">↩</a></li>
+                <li id="fn19">张弛：《法国革命恐怖统治的降临：1792 年 6 月-9 月》，浙江大学出版社，2014 年，第 92 页。<a href="#ref19" class="back-link">↩</a></li>
+                <li id="fn20">张弛：《法国革命恐怖统治的降临：1792 年 6 月-9 月》，第 63 页。<a href="#ref20" class="back-link">↩</a></li>
+                <li id="fn21">张弛：《法国革命恐怖统治的降临：1792 年 6 月-9 月》，第 75 页。<a href="#ref21" class="back-link">↩</a></li>
+                <li id="fn22">布伦瑞克宣言（Brunswick, manifeste de）是 1792 年 7 月 25 日由法国流亡侯爵利蒙起草，布伦瑞克公爵署名，在科隆发表的反革命宣言，声称保护路易十六王室并威胁要毁灭巴黎，从而激怒巴黎革命群众。宣言的发表成为 8 月 10 日巴黎群众进攻王室所在地杜伊勒里宫的导火线。参见端木正主编：《法国大革命史词典》，第 36 页。<a href="#ref22" class="back-link">↩</a></li>
+                <li id="fn23">张弛：《法国革命恐怖统治的降临：1792 年 6 月-9 月》，第 93 页。<a href="#ref23" class="back-link">↩</a></li>
+                <li id="fn24">张弛：《法国革命恐怖统治的降临：1792 年 6 月-9 月》，第 94 页。<a href="#ref24" class="back-link">↩</a></li>
+                <li id="fn25">张弛：《法国革命恐怖统治的降临：1792 年 6 月-9 月》，第 97 页。<a href="#ref25" class="back-link">↩</a></li>
+                <li id="fn26">张弛：《法国革命恐怖统治的降临：1792 年 6 月-9 月》，第 97 页。<a href="#ref26" class="back-link">↩</a></li>
+                <li id="fn27">张弛：《法国革命恐怖统治的降临：1792 年 6 月-9 月》，第 99 页。<a href="#ref27" class="back-link">↩</a></li>
+                <li id="fn28">张弛：《法国革命恐怖统治的降临：1792 年 6 月-9 月》，第 244 页。<a href="#ref28" class="back-link">↩</a></li>
+                <li id="fn29">[英]乔治•鲁德：《法国大革命中的群众》，何新译，第 111 页。<a href="#ref29" class="back-link">↩</a></li>
+                <li id="fn30">[法]米涅：《法国革命史》，北京编译社译，商务印书馆，1977 年，第 143 页。<a href="#ref30" class="back-link">↩</a></li>
+                <li id="fn31">张弛：《法国革命恐怖统治的降临：1792 年 6 月-9 月》，第 119 页。<a href="#ref31" class="back-link">↩</a></li>
+                <li id="fn32">[英]乔治•鲁德：《法国大革命中的群众》，何新译，第 115 页。<a href="#ref32" class="back-link">↩</a></li>
+                <li id="fn33">[法]阿尔贝·索布尔：《法国大革命史》，马胜利等译，第 174 页。<a href="#ref33" class="back-link">↩</a></li>
+                <li id="fn34">[法]乔治•勒费弗尔：《法国革命史》，顾良等译，第 254 页。<a href="#ref34" class="back-link">↩</a></li>
+                <li id="fn35">张弛：《法国革命恐怖统治的降临：1792 年 6 月-9 月》，第 116 页。<a href="#ref35" class="back-link">↩</a></li>
+                <li id="fn36">吕一民：《法国通史》，上海社会科学院出版社，2007 年，第 118 页。<a href="#ref36" class="back-link">↩</a></li>
+                <li id="fn37">[法]阿尔贝·索布尔：《法国大革命史》，马胜利等译，第 174 页。<a href="#ref37" class="back-link">↩</a></li>
+                <li id="fn38">张弛：《法国革命恐怖统治的降临：1792 年 6 月-9 月》，第 124 页。<a href="#ref38" class="back-link">↩</a></li>
+                <li id="fn39">[法]乔治·杜比主编：《法国史》中卷，吕一民等译，商务印书馆，2010 年，第 821 页。<a href="#ref39" class="back-link">↩</a></li>
+                <li id="fn40">[法]阿尔贝·索布尔：《法国大革命史》，马胜利等译，第 175 页。<a href="#ref40" class="back-link">↩</a></li>
+                <li id="fn41">[英]多伊尔：《牛津法国大革命史》，张弛译，第 238 页。<a href="#ref41" class="back-link">↩</a></li>
+                <li id="fn42">[英]乔治•鲁德：《法国大革命中的群众》，何新译，第 117 页。<a href="#ref42" class="back-link">↩</a></li>
+                <li id="fn43">[法]乔治•勒费弗尔：《法国革命史》，顾良等译，第 270 页。<a href="#ref43" class="back-link">↩</a></li>
+                <li id="fn44">郭华榕：《法国政治制度史》，人民出版社，2015 年，第 93 页。<a href="#ref44" class="back-link">↩</a></li>
+                <li id="fn45">[法]雅克·索雷：《拷问法国大革命》，黄晨译，商务印书馆，2015 年，第 160 页。<a href="#ref45" class="back-link">↩</a></li>
+                <li id="fn46">吕一民：《法国通史》，第 119 页。<a href="#ref46" class="back-link">↩</a></li>
+                <li id="fn47">郭华榕：《法国政治制度史》，第 100、101 页。<a href="#ref47" class="back-link">↩</a></li>
+                <li id="fn48">[美]林·亨特：《法国大革命时期的家庭罗曼史》，郑明萱、陈瑛译，商务印书馆，2008 年，第 41 页。<a href="#ref48" class="back-link">↩</a></li>
+                <li id="fn49">[美]林·亨特：《法国大革命时期的家庭罗曼史》，郑明萱、陈瑛译，第 50 页。<a href="#ref49" class="back-link">↩</a></li>
+                <li id="fn50">[英]多伊尔：《牛津法国大革命史》，张弛译，第 243 页。<a href="#ref50" class="back-link">↩</a></li>
+                <li id="fn51">[美]林·亨特：《法国大革命时期的家庭罗曼史》，郑明萱、陈瑛译，第 69 页。<a href="#ref51" class="back-link">↩</a></li>
+                <li id="fn52">[法]古斯塔夫·勒庞：《法国大革命与革命心理学》，倪复生译，北京师范大学出版社，2015 年，第 89 页。<a href="#ref52" class="back-link">↩</a></li>
+                <li id="fn53">[美]罗兰·斯特龙伯格著：《西方现代思想史》，刘北成、赵国新译，金城出版社，2012 年，第 207 页。<a href="#ref53" class="back-link">↩</a></li>
+                <li id="fn54">[英]多伊尔：《牛津法国大革命史》，张弛译，第 243 页。<a href="#ref54" class="back-link">↩</a></li>
+                <li id="fn55">[美]林·亨特：《法国大革命时期的家庭罗曼史》，郑明萱、陈瑛译，第 58 页。<a href="#ref55" class="back-link">↩</a></li>
+                <li id="fn56">[法]路易·马德林著：《法国大革命史》，伍光建译，时代文艺出版社，2014 年，第 223 页。<a href="#ref56" class="back-link">↩</a></li>
+                <li id="fn57">[美]罗兰·斯特龙伯格著：《西方现代思想史》，刘北成、赵国新译，第 208 页。<a href="#ref57" class="back-link">↩</a></li>
+                <li id="fn58">[法]皮埃尔·米盖尔著：《法国史》，蔡鸿滨等译，商务印书馆，1986 年，第 280 页。<a href="#ref58" class="back-link">↩</a></li>
+                <li id="fn59">在附上上述公告的公约的法令中，我们发现（第二条）：法国宣布，将每个拒绝自由的人，希望维持、回顾或善待王子和特权阶层的人视为敌人; 另一方面，它决定，直到共和国部队进入的领土上的人民主权和独立建立，直到其人民采取了平等原则、建立了自由民主的政府，法国将不订立任何条约，也不放弃武力。<a href="#ref59" class="back-link">↩</a></li>
+            </ol>
+        </section>
+    </main>
+</div>
+
+<!-- 弹窗容器结构 -->
+<div class="footnote-popover" id="footnote-popover">
+    <button class="close-btn" aria-label="关闭">&times;</button>
+    <div class="popover-content"></div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const triggers = document.querySelectorAll('.citation-trigger');
+        const popover = document.getElementById('footnote-popover');
+        const popoverContent = popover.querySelector('.popover-content');
+        const closeBtn = popover.querySelector('.close-btn');
+
+        // 显示气泡弹窗
+        function showPopover(trigger, contentHtml) {
+            // 清理并剔除“返回正文(↩)”的链接，使阅读卡片更加纯粹、整洁
+            const cleanHtml = contentHtml.replace(/<a[^>]*class="back-link"[^>]*>.*?<\/a>/ig, '');
+            popoverContent.innerHTML = cleanHtml;
+            
+            popover.style.display = 'block';
+
+            // 动态定位计算
+            const triggerRect = trigger.getBoundingClientRect();
+            const popoverWidth = popover.offsetWidth;
+            const popoverHeight = popover.offsetHeight;
+
+            // 页面绝对坐标系统
+            const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+            // X 轴居中对齐逻辑
+            let popoverLeft = triggerRect.left + scrollX - (popoverWidth / 2) + (triggerRect.width / 2);
+            // Y 轴默认定位在角标上方 10px 处
+            let popoverTop = triggerRect.top + scrollY - popoverHeight - 12;
+
+            // 越界保护机制
+            if (popoverLeft < 10) {
+                popoverLeft = 10;
+            }
+            if (popoverLeft + popoverWidth > window.innerWidth) {
+                popoverLeft = window.innerWidth - popoverWidth - 10;
+            }
+            if (triggerRect.top - popoverHeight < 15) {
+                popoverTop = triggerRect.bottom + scrollY + 12;
+            }
+
+            popover.style.left = `${popoverLeft}px`;
+            popover.style.top = `${popoverTop}px`;
+        }
+
+        // 隐藏气泡弹窗
+        function hidePopover() {
+            popover.style.display = 'none';
+        }
+
+        // 绑定触发器事件
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault(); // 阻止默认的网页锚点跳转
+                e.stopPropagation(); // 阻止事件冒泡
+
+                const fnId = trigger.getAttribute('data-fn');
+                const targetNote = document.getElementById(`fn${fnId}`);
+                if (targetNote) {
+                    showPopover(trigger, targetNote.innerHTML);
+                }
+            });
+        });
+
+        // 绑定关闭按钮事件
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hidePopover();
+        });
+
+        // 点击页面其他任意空白处隐藏弹窗
+        document.addEventListener('click', (e) => {
+            if (!popover.contains(e.target)) {
+                hidePopover();
+            }
+        });
+
+        // 按下 Escape 键隐藏弹窗
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hidePopover();
+            }
+        });
+    });
+</script>
+</body>
+</html>

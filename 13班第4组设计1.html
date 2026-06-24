@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界各地的民居 - 第10课子目四</title>
+    <!-- 引入 Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* 全局复古风格定义 */
+        :root {
+            --paper-color: #f4e4bc; /* 浅棕色纸张色 */
+            --ink-color: #3e2723;   /* 墨褐色文字 */
+            --accent-color: #8d6e63; /* 辅助褐色 */
+            --border-color: #5d4037;
+        }
+
+        body {
+            font-family: "KaiTi", "STKaiti", "Georgia", serif; /* 楷体/衬线体增强历史感 */
+            background-color: var(--paper-color);
+            background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png'); /* 纸张纹理 */
+            color: var(--ink-color);
+            line-height: 1.8;
+        }
+
+        /* 标题样式 */
+        h1, h2, h3, h4 {
+            font-weight: bold;
+            color: #2c1e19;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* 导航栏古风化 */
+        .navbar-retro {
+            background-color: #4e342e;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .navbar-dark .navbar-nav .nav-link {
+            color: #d7ccc8;
+            font-size: 1.1rem;
+        }
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* 内容卡片 */
+        .retro-card {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid var(--border-color);
+            box-shadow: 5px 5px 15px rgba(62, 39, 35, 0.2);
+            padding: 25px;
+            margin-bottom: 40px;
+            border-radius: 2px;
+        }
+
+        /* 图片容器 */
+        .img-caption {
+            font-size: 0.9rem;
+            font-style: italic;
+            text-align: center;
+            margin-top: 8px;
+            color: #5d4037;
+        }
+        .img-frame {
+            border: 5px solid #fff;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        .img-frame:hover {
+            transform: scale(1.02);
+        }
+
+        /* 史料阅读框 */
+        .source-box {
+            background-color: #eefeeb; /* 浅青色背景，呼应设计要求 */
+            border-left: 5px solid #2e7d32;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: "FangSong", "STFangsong", serif;
+        }
+
+        /* 答案隐藏/显示按钮 */
+        .btn-toggle {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-toggle:hover {
+            background-color: var(--border-color);
+        }
+        .answer-box {
+            display: none;
+            background-color: #fff;
+            padding: 15px;
+            border: 1px dashed var(--border-color);
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-retro sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">🏠 世界的民居</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#intro">首页</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#mesopotamia">两河流域</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#egypt">古埃及</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#china">古代中国</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#rome">古希腊罗马</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#northamerica">北美大平原</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#inquiry">探究与拓展</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 封面区域 -->
+    <header id="intro" class="text-center py-5" style="background: linear-gradient(rgba(93, 64, 55, 0.7), rgba(93, 64, 55, 0.7)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Siheyuan_Beijing.jpg/1280px-Siheyuan_Beijing.jpg'); background-size: cover; background-position: center; color: #fff;">
+        <div class="container py-5">
+            <h5 class="text-uppercase letter-spacing-2" style="color: #d7ccc8;">高中历史选择性必修2 · 第四单元 第10课</h5>
+            <h1 class="display-3 my-4" style="color: #fff; text-shadow: 2px 2px 4px #000; border-bottom: none;">世界各地的民居</h1>
+            <div style="width: 150px; height: 3px; background-color: #d7ccc8; margin: 0 auto;"></div>
+            <p class="lead mt-4">探寻人类居住环境的变迁与智慧</p>
+            <p class="mt-5" style="font-size: 1.2rem;">设计团队：13班第4组（何晰月、温若琪）</p>
+        </div>
+    </header>
+<div class="container my-5">
+        <!-- 学习聚焦 -->
+        <div class="alert alert-warning text-center" role="alert" style="background-color: #fff3cd; border-color: #856404; color: #856404;">
+            <strong>🎯 学习聚焦：</strong> 世界各地民居的特点是由当地自然环境、经济发展水平、文化习俗等多方面因素决定的。
+        </div>
+
+        <!-- 1. 两河流域 -->
+        <section id="mesopotamia" class="retro-card">
+            <h2>一、 泥土的艺术：两河流域民居</h2>
+            <div class="row align-items-center">
+                <div class="col-md-7">
+                    <h4>🌍 自然环境</h4>
+                    <p>两河流域（美索不达米亚）<strong>雨水稀少，没有森林，缺乏木材</strong>。这种独特的自然环境决定了当地的建筑材料和形式。</p>
+                    
+                    <h4>🏠 房屋结构与样式</h4>
+                    <ul>
+                        <li><strong>材料：</strong> 人们用黏土和芦苇混合制成的<strong>土坯</strong>（sun-dried mud brick）建造房屋，用木材作支撑屋顶的栋梁。</li>
+                        <li><strong>布局：</strong> 几户人家的房屋墙壁贴着墙壁建在一起。</li>
+                        <li><strong>结构：</strong> 基本上每户建筑的结构都是相同的，由<strong>前庭、前室、主室</strong>构成。</li>
+                        <li><strong>优点：</strong> 节约土地和建材，聚集而居能抵御外来侵扰，厚墙适应干旱少雨气候。</li>
+                    </ul>
+                </div>
+                <div class="col-md-5">
+                    <div class="mb-3">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/%C3%87atalh%C3%B6y%C3%BCk_neolithic_city.jpg/640px-%C3%87atalh%C3%B6y%C3%BCk_neolithic_city.jpg" class="img-fluid img-frame" alt="两河流域密集民居复原图（恰塔尔休于示例）">
+                        <div class="img-caption">两河流域密集民居复原示意</div>
+                    </div>
+                    <div>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Mudbrick.jpg/640px-Mudbrick.jpg" class="img-fluid img-frame" alt="土坯砖">
+                        <div class="img-caption">建筑材料：晒干的土坯砖</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- 2. 古埃及 -->
+        <section id="egypt" class="retro-card">
+            <h2>二、 尼罗河畔的居所：古埃及民居</h2>
+            <div class="row">
+                <div class="col-md-6 order-md-2">
+                    <h4>🏛️ 结构与样式</h4>
+                    <p>古埃及大多数房屋用<strong>泥和木材</strong>修建，这与当地气候炎热干燥有关。</p>
+                    <ul>
+                        <li><strong>建造方式：</strong> 用木桩搭建框架，用树枝和混合麻纤维的黏土筑墙壁。</li>
+                        <li><strong>屋顶：</strong> 在上面搭上屋梁，再用<strong>椰子叶</strong>铺成屋顶。</li>
+                        <li><strong>功能设计：</strong> 具有<strong>防晒保温</strong>功能。有些房屋会留些小洞或栅栏似的小窗，以减少阳光直射。</li>
+                        <li><strong>庭院：</strong> 庭院是家庭活动的主要场所，院落的周围有柱廊。</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 order-md-1">
+                    <div class="text-center">
+                        <!-- 使用开源的古埃及房屋模型替代平面图，因平面图版权限制，此处用模型图示意结构 -->
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Model_of_an_Egyptian_House_MET_DP240683.jpg/640px-Model_of_an_Egyptian_House_MET_DP240683.jpg" class="img-fluid img-frame" alt="古埃及房屋模型">
+                        <div class="img-caption">古埃及民居复原模型（可见庭院与平顶结构）</div>
+                    </div>
+                    <div class="mt-3 p-3" style="background: rgba(0,0,0,0.05); border: 1px dashed #8d6e63;">
+                        <strong>📐 布局示意：</strong><br>
+                        入口 ➔ 前庭（家庭活动中心）➔ 起居室 ➔ 卧室/厨房（围绕中庭分布）。
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- 3. 古代中国 -->
+        <section id="china" class="retro-card">
+            <h2>三、 礼序乾坤：古代中国民居</h2>
+            
+            <!-- 远古时期 -->
+            <div class="mb-5">
+                <h4 style="color: #2e7d32;">1. 远古居住环境：巢居与穴居</h4>
+                <div class="source-box">
+                    <p><strong>📜 史料阅读：</strong></p>
+                    <p>“当尧之时，水逆行，泛滥于中国，蛇龙居之，民无所定，<strong>下者为巢，上者为营窟</strong>。”</p>
+                    <div class="text-end">——《孟子·滕文公下》</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 bg-transparent">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Hemudu_house.jpg/640px-Hemudu_house.jpg" class="img-fluid img-frame" alt="河姆渡干栏式建筑">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">南方：巢居 ➔ 干栏式</h5>
+                                <p class="card-text small">多营建于南方地势低洼潮湿的地方，通风防潮，防虫蛇。后世发展为干栏式民居（如湘西吊脚楼）。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 bg-transparent">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Banpo_reconstruction.jpg/640px-Banpo_reconstruction.jpg" class="img-fluid img-frame" alt="半坡半地穴式建筑">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">北方：穴居 ➔ 地上建筑</h5>
+                                <p class="card-text small">大多营建于北方地势高亢干燥的地方，防寒保暖。后来逐渐升至地面，形成地上建筑。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- 明清民居展示 -->
+            <div>
+                <h4 style="color: #c62828;">2. 明清民居代表</h4>
+                <p>自先秦以来，中国民居的设计遵循严格的等级观念和长幼有序的礼仪制度。住宅的布局讲求<strong>对称，主次分明，院落有序</strong>。明朝时，砖木结构的民居建筑开始普及。</p>
+                
+                <div class="row g-4">
+                    <!-- 窑洞 -->
+                    <div class="col-md-3 col-6">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Yaodong_in_Lijiashan.jpg/640px-Yaodong_in_Lijiashan.jpg" class="img-fluid img-frame" style="height: 150px; width: 100%; object-fit: cover;" alt="陕北窑洞">
+                        <div class="img-caption">北方：窑洞</div>
+                    </div>
+                    <!-- 四合院 -->
+                    <div class="col-md-3 col-6">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Siheyuan_Beijing.jpg/640px-Siheyuan_Beijing.jpg" class="img-fluid img-frame" style="height: 150px; width: 100%; object-fit: cover;" alt="北京四合院">
+                        <div class="img-caption">北方：四合院</div>
+                    </div>
+                    <!-- 徽派 -->
+                    <div class="col-md-3 col-6">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Hongcun_Moon_Pond_2011.jpg/640px-Hongcun_Moon_Pond_2011.jpg" class="img-fluid img-frame" style="height: 150px; width: 100%; object-fit: cover;" alt="徽派建筑">
+                        <div class="img-caption">南方：徽派民居</div>
+                    </div>
+                    <!-- 土楼 -->
+                    <div class="col-md-3 col-6">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Fujian_Tulou_-_Tianluokeng_Tulou_Cluster_-_2011.08.jpg/640px-Fujian_Tulou_-_Tianluokeng_Tulou_Cluster_-_2011.08.jpg" class="img-fluid img-frame" style="height: 150px; width: 100%; object-fit: cover;" alt="福建土楼">
+                        <div class="img-caption">南方：福建土楼</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- 4. 古希腊罗马 -->
+        <section id="rome" class="retro-card">
+            <h2>四、 石头与混凝土：古希腊罗马民居</h2>
+            <div class="row">
+                <div class="col-lg-7">
+                    <h4>🏛️ 建筑特征</h4>
+                    <ul>
+                        <li><strong>核心布局：</strong> 带有列柱围廊的<strong>中庭</strong>（Atrium）是民居的核心。中庭左右是小房间和陈放祖先塑像的凹室，与入口相对的是正屋。</li>
+                        <li><strong>材料演变：</strong> 古罗马住宅以木、石、砖为主要材料，后来<strong>混凝土</strong>逐渐得到普及。</li>
+                        <li><strong>三大特征：</strong> 混凝土、拱券（Arch）和希腊柱式相结合，成为古罗马建筑最主要的特征。</li>
+                        <li><strong>集体住宅：</strong> 3世纪，为了缓解人口剧增造成的住房紧缺，古罗马出现了由多层楼板叠加组合而成的集体住宅（Insula），专供百姓或外来人员租住。</li>
+                    </ul>
+                </div>
+                <div class="col-lg-5">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Insula_di_Diana_-_Ostia_Antica.JPG/640px-Insula_di_Diana_-_Ostia_Antica.JPG" class="img-fluid img-frame" alt="古罗马多层公寓遗址">
+                    <div class="img-caption">古罗马多层集体住宅（Insula）遗址</div>
+                </div>
+            </div>
+
+            <!-- P61 史料阅读与解析 -->
+            <div class="source-box mt-4">
+                <h5 class="text-success border-bottom pb-2">📜 史料阅读（教材P61）</h5>
+                <p>“阿里阿纳·波利阿纳住宅，属于格纳埃乌斯·阿雷乌斯·尼基迪乌斯·梅乌斯所有。从7月1日起，店铺及其附带的前廊、楼上的公寓和宽敞的居室将被出租。打算承租的人可与...奴隶普里姆斯商约。”</p>
+                <div class="text-end">——《拉丁铭文集》收录的罗马时代写在公寓墙上的广告</div>
+                
+                <hr style="border-style: dashed; border-color: #2e7d32;">
+                
+                <p><strong>【解析】：</strong></p>
+                <p>这则史料是罗马时代的一则<strong>房屋出租广告</strong>。</p>
+                <ul>
+                    <li>它反映了古罗马城市人口众多，住房紧缺，因此出现了出租房屋的现象。</li>
+                    <li>“楼上的公寓”说明当时已经出现了多层复合式建筑。</li>
+                    <li>“店铺及其附带的前廊”说明当时民居往往下层为商铺，上层为居住区，商住混合。</li>
+                    <li>这展示了古罗马高度发达的城市生活和商业经济。</li>
+                </ul>
+            </div>
+        </section>
+<!-- 5. 北美大平原 -->
+        <section id="northamerica" class="retro-card">
+            <h2>五、 游猎者的家园：北美大平原民居</h2>
+            <div class="row align-items-center">
+                <div class="col-md-5">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Plains_Indian_tipi%2C_North_America._Wellcome_V0038483.jpg/640px-Plains_Indian_tipi%2C_North_America._Wellcome_V0038483.jpg" class="img-fluid img-frame" alt="印第安人圆锥形帐篷">
+                    <div class="img-caption">印第安人居住的圆锥形帐篷（Tipi）</div>
+                </div>
+                <div class="col-md-7">
+                    <h4>🏹 生活方式与房屋样式</h4>
+                    <ul>
+                        <li><strong>生活方式：</strong> 北美大平原的印第安人过着<strong>游猎生活</strong>，主要捕猎野牛。野牛每年迁徙，印第安人也随之迁徙。</li>
+                        <li><strong>房屋样式：</strong> 住在<strong>圆锥形的帐篷</strong>（Tipi）中。</li>
+                        <li><strong>建造特点：</strong>
+                            <ul>
+                                <li><strong>易拆卸运输：</strong> 这种帐篷由木杆搭建框架，覆盖野牛皮，拆卸和搭建都非常方便，适合流动生活。</li>
+                                <li><strong>结构：</strong> 在圆形平面上架起原木，顶端绑在一起，覆盖兽皮，防风保暖。</li>
+                            </ul>
+                        </li>
+                        <li><strong>亚马孙雨林：</strong> 处于刀耕火种阶段的印第安人则住在圆形的公共居所中。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+<!-- 探究与拓展 -->
+        <section id="inquiry" class="retro-card" style="background-color: #e0f7fa; border: 2px solid #006064;">
+            <h2 style="color: #006064; border-bottom-color: #006064;">📚 探究与拓展</h2>
+
+            <!-- 学习拓展 -->
+            <div class="mb-5">
+                <h4>1. 学习拓展（教材P62）</h4>
+                <p>1986年4月—1991年4月，我国先后发行了21枚“民居”系列普通邮票，展示了我国各地具有代表性的民居。选择其中一枚邮票，说说该邮票中所绘的民居具有哪些特点。</p>
+                <div class="text-center mb-3">
+                    <span class="badge bg-secondary">提示：可思考陕北窑洞、云南傣族竹楼、山西大院等</span>
+                </div>
+                <button class="btn-toggle" onclick="toggleAnswer('expand-ans')">点击查看参考答案</button>
+                <div id="expand-ans" class="answer-box">
+                    <p><strong>参考答案：</strong></p>
+                    <p>以<strong>陕北窑洞</strong>为例：</p>
+                    <ul>
+                        <li><strong>特点：</strong> 建筑在黄土高原上，利用黄土层深厚、直立性强的特点，在山崖上挖洞居住。</li>
+                        <li><strong>优点：</strong> 冬暖夏凉，节省建筑材料，与当地自然环境完美融合。</li>
+                    </ul>
+                    <p>以<strong>云南傣族竹楼</strong>为例：</p>
+                    <ul>
+                        <li><strong>特点：</strong> 呈正方形，分上下两层，以木或竹支撑。上层住人，下层架空养畜。</li>
+                        <li><strong>原因：</strong> 适应热带雨林气候，防潮防水，防虫兽。</li>
+                    </ul>
+                    <p><strong>总结：</strong> 中国疆域辽阔，各地的民居在建筑材料、样式和风格上千差万别，都体现了对当地自然环境、气候条件的适应以及独特的地域文化。</p>
+                </div>
+            </div>
+
+            <!-- 问题探究 -->
+            <div>
+                <h4>2. 问题探究（教材P62）</h4>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Pfahlbauten_Unteruhldingen_BW_2.jpg/640px-Pfahlbauten_Unteruhldingen_BW_2.jpg" class="img-fluid img-frame" alt="湖畔村落复原示意图（类似艾希比尔村落）">
+                        <div class="img-caption">德国艾希比尔村落复原示意</div>
+                    </div>
+                    <div class="col-md-8">
+                        <p><strong>材料：</strong> 德国费德尔湖畔的艾希比尔村落是新石器时代的遗址。该村落由24户住家组成。住家面向湖泊排列，全部是悬山式屋顶。村子中央是公共广场。面对广场的房间可能是个集会场所，里面配备有炉子和面包窑。</p>
+                        <p><strong>问题：</strong> 观察图片，查阅相关资料，探究古代村落的选址特点。</p>
+                        <button class="btn-toggle" onclick="toggleAnswer('inquiry-ans')">点击查看探究结论</button>
+                        <div id="inquiry-ans" class="answer-box">
+                            <p><strong>探究结论：古代村落选址主要考虑以下特点：</strong></p>
+                            <ol>
+                                <li><strong>水源与食物获取：</strong> 村落一般选择更易于取得水和食物的地方（如艾希比尔村落临湖而建，便于取水和捕鱼；农业村落靠近肥沃土壤）。</li>
+                                <li><strong>防御安全：</strong> 选址往往考虑防御外敌或野兽（如利用河流、湖泊作为天然屏障，或建在高地）。</li>
+                                <li><strong>气候适应：</strong> 考虑御寒取暖、遮阳避雨、散热通风等因素（如向阳避风地带）。</li>
+                                <li><strong>集体生活：</strong> 村落内部往往会有公共空间（如广场、集会所），体现了社会组织的形成和集体生活的需要。</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+<!-- 页脚 -->
+    <footer class="text-center py-4" style="background-color: #4e342e; color: #d7ccc8; margin-top: 50px;">
+        <div class="container">
+            <p class="mb-1">&copy; 2025 高中历史教学网页设计</p>
+            <p class="small">设计制作：13班第4组（何晰月、温若琪）</p>
+            <p class="small text-muted">资料来源：人教版历史选择性必修2《经济与社会生活》教材及教师用书</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 交互脚本 -->
+    <script>
+        function toggleAnswer(id) {
+            var x = document.getElementById(id);
+            if (x.style.display === "none" || x.style.display === "") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

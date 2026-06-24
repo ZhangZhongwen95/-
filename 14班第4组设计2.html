@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界的民居 - 第四单元第10课 - 授课人：兰俊杰</title>
+    <!-- 引入Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* 字体与基础设置 */
+        body {
+            font-family: "Songti SC", "SimSun", "STSong", serif;
+            background-color: #f4f6f9;
+            color: #2c3e50;
+            padding-top: 70px; /* 为导航栏留出空间 */
+        }
+        
+        /* 导航栏样式 */
+        .navbar-custom {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-link {
+            color: #cd7f32 !important; /* 青铜色 */
+            font-weight: bold;
+        }
+        .nav-link:hover {
+            color: #8b4513 !important;
+        }
+
+        /* 标题样式 */
+        h1, h2, h3, h4 {
+            font-family: "LiSu", "KaiTi", cursive;
+            color: #333;
+        }
+        .text-bronze { color: #b08d55; }
+        
+        /* 图片容器优化 */
+        .img-box {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background-color: #eee;
+            position: relative;
+        }
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .img-box:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* 章节分割 */
+        section {
+            padding: 60px 0;
+            scroll-margin-top: 70px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        /* 烟雾背景特效（保留设计要求） */
+        .smoke-bg {
+            background: linear-gradient(to bottom, #ffffff, #f0f7fa);
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<!-- 顶部固定导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span style="font-family: 'LiSu'; font-size: 1.5rem;">🏰 世界的民居</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#header">首页</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#timeline">时间演变</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#subitem4">世界民居(重点)</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#china">中国特色</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#game">知识PK</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<!-- 封面区域 -->
+    <header id="header" class="d-flex align-items-center justify-content-center text-center position-relative" style="height: 100vh; background-color: #e6e6e6;">
+        <!-- 背景图：使用Unsplash的中国古建筑图 -->
+        <div style="position: absolute; top:0; left:0; width:100%; height:100%; z-index: 0;">
+            <img src="https://images.unsplash.com/photo-1599571343997-6a4572213fa4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="中国民居背景" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.2;">
+        </div>
+
+        <div class="container position-relative z-1">
+            <div class="bg-white p-5 shadow-lg rounded" style="display: inline-block; opacity: 0.95;">
+                <h5 class="text-uppercase text-secondary letter-spacing-2 mb-3">高二历史选择性必修2 · 第四单元第10课</h5>
+                <h1 class="display-2 fw-bold mb-4" style="font-family: 'LiSu'; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">世界的民居</h1>
+                <div style="width: 100px; height: 4px; background-color: #cd7f32; margin: 20px auto;"></div>
+                <h4 class="mt-4 text-dark">第一课时 · 第三子目</h4>
+                <div class="mt-5">
+                    <h3 style="font-family: 'KaiTi';">授课人：兰俊杰</h3>
+                    <p class="text-muted small">设计：第四小组 王心如 兰俊杰</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 向下箭头提示 -->
+        <div class="position-absolute bottom-0 mb-4 text-secondary animate-bounce">
+            Scroll Down ▼
+        </div>
+    </header>
+<!-- 目录与时间线 -->
+    <section id="timeline" class="smoke-bg">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="text-bronze mb-3">一、 栖息之变：从穴居到定居</h2>
+                <p class="text-muted">自然环境决定了我们最初住在哪里</p>
+            </div>
+
+            <!-- 目录概览卡片 -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-8">
+                    <div class="list-group list-group-horizontal-md text-center shadow-sm">
+                        <a href="#subitem4" class="list-group-item list-group-item-action border-0 py-3">
+                            <strong>世界各地</strong><br><small>泥土与木石</small>
+                        </a>
+                        <a href="#china" class="list-group-item list-group-item-action border-0 py-3">
+                            <strong>中国智慧</strong><br><small>礼制与风水</small>
+                        </a>
+                        <a href="#inquiry" class="list-group-item list-group-item-action border-0 py-3">
+                            <strong>问题探究</strong><br><small>村落选址</small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 时间线演变 -->
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title text-success">📜 史料阅读</h4>
+                            <blockquote class="blockquote mb-0 fs-6">
+                                <p>“上古穴居而野处。后世圣人，易之以宫室。上栋下宇，以待风雨…”</p>
+                                <footer class="blockquote-footer">《周易·系辞下》</footer>
+                            </blockquote>
+                            <hr>
+                            <p class="card-text">
+                                <strong>演变过程：</strong><br>
+                                1. 旧石器时代：<span class="badge bg-secondary">穴居</span> <span class="badge bg-secondary">巢居</span><br>
+                                2. 新石器时代：农业出现 -> 定居 -> 村落<br>
+                                3. 影响因素：<strong>自然环境、经济水平、文化习俗</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <!-- 示意图 -->
+                    <div class="img-box" style="height: 350px;">
+                        <img src="https://images.unsplash.com/photo-1518482684784-0a3777587c69?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="原始居住环境">
+                        <div class="position-absolute bottom-0 start-0 bg-dark text-white p-2 opacity-75 w-100">
+                            自然环境决定了早期民居的形式（图为模拟原始森林环境）
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 核心重点：世界各地的民居 -->
+    <section id="subitem4" class="bg-white">
+        <div class="container">
+            <h2 class="section-title text-center text-primary mb-5">二、 殊途同归：世界各地的民居（材料解析）</h2>
+            <div class="alert alert-info text-center">
+                <strong>学习聚焦：</strong>世界各地民居的特点是由当地<strong>自然环境</strong>、<strong>经济发展水平</strong>、<strong>文化习俗</strong>等多方面因素决定的。
+            </div>
+
+            <!-- 材料1：两河流域 -->
+            <div class="row mb-5 align-items-center">
+                <div class="col-md-6 order-md-2">
+                    <div class="img-box">
+                        <img src="https://images.unsplash.com/photo-1590052766343-7f781df3b9b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="土坯建筑">
+                    </div>
+                    <p class="text-center text-muted small mt-2">类似于两河流域的土坯建筑风格</p>
+                </div>
+                <div class="col-md-6 order-md-1">
+                    <h3 class="text-bronze">1. 两河流域：泥土的艺术</h3>
+                    <div class="card bg-light border-0">
+                        <div class="card-body">
+                            <h5 class="card-title">🔍 考古发现（材料一 & 教材）</h5>
+                            <ul>
+                                <li><strong>自然环境：</strong> 雨水稀少，无森林，缺乏木材/石料。</li>
+                                <li><strong>建筑材料：</strong> <strong>黏土 + 芦苇 = 土坯砖</strong>（混合制成）。</li>
+                                <li><strong>结构特点：</strong>
+                                    <ul>
+                                        <li>几户墙壁共用（省材、防御）。</li>
+                                        <li>平顶（用于社交、梯子出入）。</li>
+                                        <li>前庭、前室、主室结构。</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 古埃及 -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="card border-warning mb-3">
+                        <div class="card-header bg-warning text-dark fw-bold">2. 古埃及：尼罗河的馈赠</div>
+                        <div class="card-body d-flex flex-wrap">
+                            <div class="col-md-8 pe-3">
+                                <p><strong>材料与环境：</strong> 泥 + 木材 + 椰子叶。气候炎热干燥。</p>
+                                <p><strong>核心设计：</strong></p>
+                                <ul>
+                                    <li><strong>防晒保温：</strong> 厚墙、小窗（或栅栏窗）。</li>
+                                    <li><strong>庭院中心：</strong> 庭院是家庭活动中心，四周有柱廊（遮阳）。</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="img-box" style="height: 150px;">
+                                    <img src="https://images.unsplash.com/photo-1568724493630-36b3068e82a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="埃及风格建筑">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- 材料2 & 3：欧洲与日本 -->
+            <div class="row g-4 mb-5">
+                <!-- 欧洲（材料二） -->
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title text-success">3. 古代欧洲（法国）</h4>
+                            <p class="text-muted small">依据：材料二（新石器时代）</p>
+                            <hr>
+                            <ul>
+                                <li><strong>建筑形式：</strong> 柱洞遗迹，显示为<strong>木桩支撑的斜坡屋顶</strong>（排雨水）。</li>
+                                <li><strong>材料：</strong> 树枝编织+黏土涂抹（墙），石块做基础（取材便利）。</li>
+                                <li><strong>布局：</strong> 聚集为村庄，有时有栅栏（防御）。</li>
+                            </ul>
+                            <div class="img-box mt-3" style="height: 180px;">
+                                <img src="https://images.unsplash.com/photo-1516248981447-36ac59648939?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="木构建筑示意">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 日本（材料三） -->
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title text-danger">4. 古代日本（绳纹时代）</h4>
+                            <p class="text-muted small">依据：材料三</p>
+                            <hr>
+                            <ul>
+                                <li><strong>建筑形式：</strong> <strong>竖穴式房屋</strong>（地面下挖50cm）。</li>
+                                <li><strong>结构：</strong> 四周立柱支撑屋顶，室内有炉灶。</li>
+                                <li><strong>社会性：</strong> 几户构成居住区，中央有广场（祭祀、集会），反映了定居生活的开始。</li>
+                            </ul>
+                            <div class="img-box mt-3" style="height: 180px;">
+                                <img src="https://images.unsplash.com/photo-1528699633788-424224dc89b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="日本传统建筑示意">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- 材料4：中国古代民居的七大类型 -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card border-danger">
+                        <div class="card-header bg-danger text-white">
+                            <h4 class="mb-0">🇨🇳 重点：中国古代民居的类型（材料四详解）</h4>
+                        </div>
+                        <div class="card-body bg-light">
+                            <p class="lead">依据刘致平《中国居住建筑简史》，中国主要民居形式分布如下：</p>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered bg-white">
+                                    <thead class="table-secondary">
+                                        <tr>
+                                            <th>类型</th>
+                                            <th>渊源/特点</th>
+                                            <th>主要分布地区</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="fw-bold">1. 穴居 / 窑洞</td>
+                                            <td>最早为竖穴，后发展为横穴。</td>
+                                            <td>华北、西北（黄土高原）。</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">2. 干栏式建筑</td>
+                                            <td>原始建筑，架空防潮。</td>
+                                            <td>南方普遍（殷周后），现西南少数民族地区。</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">3. 宫室式 / 庭院式</td>
+                                            <td>“上为屋顶，中为柱墙，下为台基”。正统形式。</td>
+                                            <td>全国（四合院、厅堂）。</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">4. 碉房</td>
+                                            <td>石砌，坚固如碉堡。</td>
+                                            <td>青藏高原、内蒙古部分地区。</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">5. “阿以旺”</td>
+                                            <td>土木结构，平屋顶，带外廊。</td>
+                                            <td>新疆南部（维吾尔族）。</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">6. 蒙古包</td>
+                                            <td>最成功的游牧建筑，易拆装。</td>
+                                            <td>内蒙古、新疆（游牧民族）。</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">7. 井干壁体</td>
+                                            <td>用原木叠摞而成。</td>
+                                            <td>东北林区、云南林区。</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 西方古典与美洲 -->
+    <section class="bg-light">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">三、 石头史诗与游猎帐篷</h2>
+            
+            <div class="row align-items-center mb-5">
+                <div class="col-md-5">
+                    <div class="img-box" style="height: 300px;">
+                        <img src="https://images.unsplash.com/photo-1555662705-0b0404043f11?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="古罗马遗迹">
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <h3 class="text-primary">古希腊 & 古罗马</h3>
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body">
+                            <p><strong>核心布局：</strong> 带有<strong>列柱围廊的中庭</strong> (Atrium) 是核心，侧面是卧室/祭祀室。</p>
+                            <p><strong>技术革命（古罗马）：</strong>
+                                <span class="badge bg-dark">混凝土</span>
+                                <span class="badge bg-dark">拱券</span>
+                                <span class="badge bg-dark">希腊柱式</span>
+                            </p>
+                            <p><strong>社会生活：</strong> 出现了<strong>复合式公寓</strong>（Insula），高达数层，供百姓租住。供水排水系统完善。</p>
+                            <div class="alert alert-secondary py-2">
+                                📖 <strong>趣味故事：</strong> 古罗马墙上的广告写着“店铺及楼上公寓出租”，说明当时已有成熟的房屋租赁市场。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-md-7 order-md-2 order-lg-1">
+                    <h3 class="text-success">北美大平原（印第安人）</h3>
+                    <p><strong>居住形式：</strong> <strong>圆锥形帐篷 (Teepee)</strong>。</p>
+                    <p><strong>适应性：</strong> 
+                        <ul>
+                            <li>过着游猎生活（追随野牛群）。</li>
+                            <li>需要易于拆卸、运输。</li>
+                            <li>木杆框架 + 野牛皮覆盖 = 防风保暖。</li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="col-md-5 order-md-1 order-lg-2">
+                    <div class="img-box" style="height: 250px;">
+                        <img src="https://images.unsplash.com/photo-1533005869382-74d15668e169?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="帐篷示意图">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 中国特色与探究 -->
+    <section id="china" style="background-color: #e0f7fa;">
+        <div class="container position-relative">
+            <!-- 装饰元素：青烟 -->
+            <div style="position: absolute; top: -20px; right: 20px; opacity: 0.5;">
+                 <img src="https://images.unsplash.com/photo-1517488812061-68621455589e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" style="width: 150px; border-radius: 50%;" alt="茶具装饰">
+            </div>
+
+            <h2 class="section-title text-center text-dark mb-5">四、 礼序与匠心：中国民居</h2>
+            
+            <div class="row mb-5">
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow h-100">
+                        <div class="card-body">
+                            <h4 class="card-title">设计理念</h4>
+                            <p>遵循<strong>严格的等级观念</strong>和<strong>长幼有序</strong>的礼仪制度。</p>
+                            <ul>
+                                <li><strong>布局：</strong> 讲求对称，主次分明，院落有序（如四合院）。</li>
+                                <li><strong>结构：</strong> 木构抬梁结构最普遍。</li>
+                                <li><strong>限制：</strong> 唐朝《营缮令》严格规定不同等级的房屋间数、装饰（如庶人不得施重拱藻井）。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-2">
+                        <div class="col-6"><div class="img-box" style="height:120px;"><img src="https://images.unsplash.com/photo-1536618520264-585c5c165219?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="徽派建筑"><div class="text-center small">徽派建筑</div></div></div>
+                        <div class="col-6"><div class="img-box" style="height:120px;"><img src="https://images.unsplash.com/photo-1627572763363-255d6549298e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="福建土楼"><div class="text-center small">福建土楼</div></div></div>
+                        <div class="col-6"><div class="img-box" style="height:120px;"><img src="https://images.unsplash.com/photo-1543759905-3e117e923e35?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="四合院"><div class="text-center small">北京四合院</div></div></div>
+                        <div class="col-6"><div class="img-box" style="height:120px;"><img src="https://images.unsplash.com/photo-1490264988350-f86a7d558b9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="湘西吊脚楼"><div class="text-center small">湘西吊脚楼</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 问题探究 -->
+            <div id="inquiry" class="card bg-white border-primary">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">🤔 问题探究：古代村落的选址特点</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-5">
+                            <img src="https://images.unsplash.com/photo-1505567745926-ba89000d255a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="img-fluid rounded" alt="湖畔村落示意">
+                            <p class="small text-muted text-center">示意图：临水而居</p>
+                        </div>
+                        <div class="col-md-7">
+                            <p><strong>观察对象：</strong> 德国艾希比尔村落（新石器时代）、中国姜寨遗址。</p>
+                            <p><strong>探究任务：</strong> 结合课本图片和资料，分析古代村落选址有何共同点？</p>
+                            <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#answer">
+                                查看参考答案
+                            </button>
+                            <div class="collapse mt-3" id="answer">
+                                <div class="card card-body bg-light">
+                                    <ol>
+                                        <li><strong>临近水源：</strong> 便于生活、农业灌溉（湖泊/河流）。</li>
+                                        <li><strong>地形优势：</strong> 具有防御性（环壕、栅栏）或向阳避风。</li>
+                                        <li><strong>集体活动：</strong> 往往有公共广场或大房子（议事、祭祀）。</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 结尾互动：男女大PK -->
+    <section id="game" class="bg-dark text-white text-center py-5">
+        <div class="container">
+            <h2 class="text-warning mb-4 animate-pulse">🎮 知识大比拼</h2>
+            <p class="mb-5">规则：男生一组 vs 女生一组，回答问题，点击加分！</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <div class="card bg-primary text-white h-100">
+                        <div class="card-body">
+                            <h3>👦 男生组</h3>
+                            <h1 id="scoreBoy" class="display-1 fw-bold">0</h1>
+                            <button class="btn btn-light" onclick="addScore('Boy')">回答正确 +1</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-3 d-flex flex-column justify-content-center">
+                    <button class="btn btn-warning btn-lg mb-3 shadow" onclick="showQuestion()">🎲 随机出题</button>
+                    <div id="questionBox" class="alert alert-secondary d-none">
+                        <h5 class="alert-heading">请听题：</h5>
+                        <p id="qText" class="lead fw-bold">...</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <div class="card bg-danger text-white h-100">
+                        <div class="card-body">
+                            <h3>👧 女生组</h3>
+                            <h1 id="scoreGirl" class="display-1 fw-bold">0</h1>
+                            <button class="btn btn-light" onclick="addScore('Girl')">回答正确 +1</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-secondary text-white text-center py-4">
+        <div class="container">
+            <p class="mb-0">© 2025 高二14班 第四小组 | 设计者：王心如、兰俊杰</p>
+            <p class="small text-white-50">本网页基于《历史选择性必修2》第10课设计</p>
+        </div>
+    </footer>
+
+    <!-- JS脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 游戏逻辑
+        let scoreB = 0;
+        let scoreG = 0;
+        const questions = [
+            "两河流域民居的主要建筑材料是什么？（答：黏土/土坯）",
+            "中国南方古代民居的主要形式是什么？（答：干栏式）",
+            "古罗马建筑发明了哪种关键材料？（答：混凝土）",
+            "北美印第安人追随野牛群居住在什么里？（答：圆锥形帐篷/Teepee）",
+            "唐朝规定庶人的房屋不得超过几间？（答：三间四架）",
+            "日本绳纹时代的典型民居是什么？（答：竖穴式房屋）",
+            "中国新疆南部的特色民居叫什么？（答：阿以旺）"
+        ];
+
+        function addScore(team) {
+            if(team === 'Boy') { scoreB++; document.getElementById('scoreBoy').innerText = scoreB; }
+            else { scoreG++; document.getElementById('scoreGirl').innerText = scoreG; }
+        }
+
+        function showQuestion() {
+            const box = document.getElementById('questionBox');
+            const txt = document.getElementById('qText');
+            box.classList.remove('d-none');
+            const randomQ = questions[Math.floor(Math.random() * questions.length)];
+            txt.innerText = randomQ;
+        }
+
+        // 导航栏平滑滚动
+        document.querySelectorAll('a.nav-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

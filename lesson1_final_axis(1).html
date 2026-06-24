@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>第1课：农业革命 - 精细时间轴版</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #020205; font-family: "Microsoft YaHei", sans-serif; user-select: none; }
+        canvas { display: block; width: 100vw; height: 100vh; cursor: grab; touch-action: none; }
+        canvas:active { cursor: grabbing; }
+
+        /* UI Overlay */
+        .ui-layer { position: absolute; top: 20px; left: 20px; pointer-events: none; z-index: 10; color: #fff; }
+        h1 { margin: 0; font-size: 28px; text-shadow: 0 0 15px #00d2ff; font-weight: 900; letter-spacing: 2px; }
+        .subtitle { color: #88ccff; font-size: 14px; margin-top: 5px; opacity: 0.8; }
+        
+        .instructions {
+            margin-top: 15px; font-size: 12px; color: #aaa; 
+            background: rgba(255,255,255,0.1); padding: 8px 12px; 
+            border-radius: 6px; display: inline-block; line-height: 1.6;
+            backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.1);
+        }
+        .key { color: #ffd700; font-weight: bold; }
+
+        /* Controls */
+        .controls { 
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); 
+            pointer-events: auto; display: flex; gap: 15px; 
+            background: rgba(10, 15, 20, 0.8); padding: 10px 20px; 
+            border-radius: 30px; border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .legend-btn { 
+            display: flex; align-items: center; gap: 6px; color: #ccc; 
+            font-size: 12px; font-weight: bold; cursor: pointer; 
+            padding: 5px 10px; border-radius: 15px; transition: 0.2s;
+        }
+        .legend-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .legend-btn.active { background: rgba(255,255,255,0.2); color: #fff; text-shadow: 0 0 5px currentColor; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; box-shadow: 0 0 8px currentColor; }
+
+        /* Sidebar */
+        .sidebar {
+            position: absolute; top: 0; right: 0; bottom: 0; width: 420px;
+            background: rgba(12, 16, 23, 0.96); border-left: 1px solid rgba(255,255,255,0.1);
+            transform: translateX(100%); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 30px; box-sizing: border-box; color: #eee; z-index: 20;
+            box-shadow: -10px 0 50px rgba(0,0,0,0.9); display: flex; flex-direction: column;
+        }
+        .sidebar.active { transform: translateX(0); }
+        
+        .close-btn { position: absolute; top: 20px; right: 20px; font-size: 24px; cursor: pointer; opacity: 0.6; }
+        .close-btn:hover { opacity: 1; }
+
+        .sb-header { border-bottom: 2px solid; padding-bottom: 15px; margin-bottom: 20px; position: relative; }
+        .sb-year { font-size: 24px; font-weight: 900; color: rgba(255,255,255,0.1); position: absolute; right: 0; top: 0; pointer-events: none; font-family: monospace; }
+        .sb-title { font-size: 28px; font-weight: bold; margin-bottom: 5px; color: #fff; }
+        .sb-type { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
+        
+        .sb-body { flex: 1; overflow-y: auto; font-size: 16px; line-height: 1.8; color: #b0c4de; text-align: justify; }
+        
+        /* 关联关系列表 */
+        .rel-box { margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; }
+        .rel-title { font-size: 13px; color: #aaa; margin-bottom: 10px; font-weight: bold; }
+        .rel-tag { display: inline-block; background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 4px; font-size: 12px; margin: 0 5px 5px 0; border: 1px solid transparent; }
+        
+        /* 史料卡片 */
+        .source-box { background: #1e1b18; border-left: 4px solid #f39c12; padding: 15px; margin-top: 25px; border-radius: 4px; }
+        .source-text { font-family: "KaiTi", "STKaiti", serif; font-size: 20px; color: #f1c40f; margin-bottom: 8px; }
+        .source-ref { text-align: right; font-size: 12px; color: #888; }
+
+    </style>
+</head>
+<body>
+
+    <div class="ui-layer">
+        <h1>🌌 农业革命：文明刻度</h1>
+        <div class="subtitle">第1课：从采集到生产 (3D时空轴)</div>
+        <div class="instructions">
+            <span class="key">左键拖动</span> 旋转视角 (查看不同扇区)<br>
+            <span class="key">右键拖动</span> 左右平移 (穿越时间)<br>
+            <span class="key">滚轮滚动</span> 缩放远近<br>
+            <span class="key">点击节点</span> 查看史料与唯物史观逻辑
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="legend-btn" onclick="resetView()">🔄 复位视角</div>
+        <div class="legend-btn" onclick="filterType(0)"><div class="dot" style="background:#00d2ff"></div> 农业起源/区域</div>
+        <div class="legend-btn" onclick="filterType(1)"><div class="dot" style="background:#ff9800"></div> 生产与技术</div>
+        <div class="legend-btn" onclick="filterType(2)"><div class="dot" style="background:#00ff88"></div> 社会变革</div>
+    </div>
+
+    <canvas id="capsule"></canvas>
+
+    <div class="sidebar" id="sidebar">
+        <div class="close-btn" onclick="closeSidebar()">×</div>
+        <div class="sb-header" id="sb-header">
+            <div class="sb-year" id="sb-year"></div>
+            <div class="sb-title" id="sb-title"></div>
+            <div class="sb-type" id="sb-type"></div>
+        </div>
+        <div class="sb-body">
+            <div id="sb-desc"></div>
+            <div id="sb-source"></div>
+            <div id="sb-rel"></div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // 1. 全量知识数据库
+        // ==========================================
+        // 坐标映射: -20000 BP 到 0 AD
+        
+        const nodes = [
+            // --- 史前 (Before 10,000 BP) ---
+            { id: 'gather', time: -20000, label: '采集渔猎', type: 1, icon: '🏹', desc: '农业出现前，人类依靠自然界现成的动植物为生，过着迁徙生活。' },
+            { id: 'fire', time: -18000, label: '用火', type: 1, icon: '🔥', desc: '用火取暖、烧烤食物，改善了生存条件。' },
+            { id: 'women', time: -15000, label: '女性地位', type: 2, icon: '👩', desc: '原始社会女性负责采集，提供大部分食物，地位较高。' },
+
+            // --- 农业革命 (Around 10,000 BP) ---
+            { id: 'revolution', time: -10000, label: '农业革命', type: 0, icon: '✨', desc: '人类经济和社会生活的第一次革命。从食物采集者转变为食物生产者。', quote: '人类的生活比以前整整25万年的变化还大。', src: '麦克尼尔' },
+            { id: 'origin_cond', time: -10500, label: '起源条件', type: 0, icon: '🌦️', desc: '气候变暖、动植物驯化知识积累、人口压力。', quote: '古之人民...食禽兽肉。至于神农，人民众多，禽兽不足。', src: '班固《白虎通义》' },
+            
+            // --- 区域农业 (Blue) ---
+            { id: 'west_asia', time: -9000, label: '西亚农业', type: 0, icon: '🌾', desc: '小亚细亚半岛南部。大麦、小麦原产地。' },
+            { id: 'sheep', time: -9000, label: '绵羊/山羊', type: 0, icon: '🐑', desc: '西亚地区最早饲养。' },
+            { id: 'east_asia', time: -8500, label: '东亚农业', type: 0, icon: '🍚', desc: '黄河中上游（粟）、长江中下游（水稻）。' },
+            { id: 'jiahu', time: -8500, label: '贾湖遗址', type: 0, icon: '🦴', desc: '中国河南。出土了猪骨标本，证明已经饲养家猪。', quote: '贾湖遗址出土的猪骨标本。', src: '考古发现' },
+            { id: 'hemudu', time: -7000, label: '河姆渡', type: 0, icon: '🌱', desc: '长江下游。发现了大量人工栽培水稻的遗迹。', quote: '河姆渡遗址出土的稻谷和稻茎叶。', src: '教材插图' },
+            { id: 'america', time: -6000, label: '美洲农业', type: 0, icon: '🌽', desc: '中美洲。玉米、甘薯、马铃薯原产地。' },
+            { id: 'llama', time: -6000, label: '骆马', type: 0, icon: '🦙', desc: '南美印第安人驯化。' },
+            { id: 'greece', time: -3000, label: '古希腊农业', type: 0, icon: '🏺', desc: '谷物蔬菜轮作，种植葡萄、橄榄。商业性农业发达。' },
+            { id: 'rome', time: -2000, label: '古罗马农业', type: 0, icon: '🍇', desc: '谷物为主，种植橄榄葡萄。土地国有向大土地所有制转变。' },
+
+            // --- 生产与技术 (Orange) ---
+            { id: 'tool', time: -8000, label: '磨制石器', type: 1, icon: '🪨', desc: '新石器时代的标志。' },
+            { id: 'pottery', time: -7000, label: '制陶', type: 1, icon: '⚱️', desc: '手工业从农业中分离出来（第二次社会大分工）。' },
+            { id: 'astronomy', time: -5000, label: '天文历法', type: 1, icon: '⭐', desc: '农业生产需要定季节，推动了数学和天文学的发展。' },
+            { id: 'irrigation', time: -4000, label: '水利灌溉', type: 1, icon: '💧', desc: '大河文明的特征。埃及尼罗河、中国黄河长江流域。' },
+            { id: 'shaduf', time: -3000, label: '沙杜夫', type: 1, icon: '🏗️', desc: '古埃及汲水工具，利用杠杆原理灌溉高处农田。', quote: '利用河谷的自然坡度修建一系列渠道...变水害为水利。', src: '历史纵横' },
+            { id: 'dujiang', time: -256, label: '都江堰', type: 1, icon: '🌊', desc: '战国时期秦国修建。体现了国家对水利工程的重视。', quote: '水旱从人，不知饥馑...天下谓之天府也。', src: '《华阳国志》' },
+            { id: 'iron_plow', time: 0, label: '铁犁牛耕', type: 1, icon: '🐂', desc: '战国以后推广，汉代普及。精耕细作技术体系形成。', quote: '既用两牛，两人牵之，一人将耕，一人下种。', src: '崔寔《政论》' },
+
+            // --- 社会变革 (Green) ---
+            { id: 'settle', time: -9000, label: '定居生活', type: 2, icon: '🏠', desc: '农业生产使人类从迁徙过渡到定居，形成聚落。' },
+            { id: 'surplus', time: -6000, label: '剩余产品', type: 2, icon: '💰', desc: '生产力提高，产品有了剩余。这是私有制产生的前提。' },
+            { id: 'private', time: -5500, label: '私有制', type: 2, icon: '🔒', desc: '氏族首领把集体财物据为己有。氏族内部出现贫富分化。' },
+            { id: 'men', time: -5500, label: '男子主导', type: 2, icon: '👨', desc: '农业劳动强度大，男子开始占据主导地位，女子退居从属。' },
+            { id: 'class', time: -5000, label: '阶级产生', type: 2, icon: '⚖️', desc: '社会分化为自由民和奴隶、富人和穷人。' },
+            { id: 'state', time: -4000, label: '国家诞生', type: 2, icon: '🏛️', desc: '阶级矛盾不可调和的产物。强制机关应运而生。', quote: '国家是阶级矛盾不可调和的产物。', src: '教科书/列宁' },
+            { id: 'engels', time: -4500, label: '恩格斯论述', type: 2, icon: '📖', desc: '关于家庭、私有制和国家起源的经典论述。', quote: '各个家庭家长之间的财产差别，炸毁了各地迄今一直保存着的旧的共产制家庭公社。', src: '恩格斯《家庭、私有制和国家的起源》' },
+            { id: 'civilization', time: -3500, label: '文明出现', type: 2, icon: '📜', desc: '文字、金属工具、国家、城市是文明的标志。' }
+        ];
+
+        // 唯物史观逻辑链
+        const links = [
+            { s: 'revolution', t: 'settle', label: '生活方式改变' },
+            { s: 'revolution', t: 'surplus', label: '生产力提高' },
+            { s: 'surplus', t: 'private', label: '导致' },
+            { s: 'private', t: 'class', label: '导致' },
+            { s: 'class', t: 'state', label: '矛盾调节' },
+            { s: 'private', t: 'engels', label: '理论总结' },
+            { s: 'revolution', t: 'men', label: '性别地位改变' },
+            { s: 'revolution', t: 'astronomy', label: '生产需求' },
+            { s: 'revolution', t: 'pottery', label: '分工' },
+            { s: 'irrigation', t: 'dujiang', label: '中国案例' },
+            { s: 'irrigation', t: 'shaduf', label: '埃及案例' },
+            { s: 'west_asia', t: 'sheep', label: '驯化' },
+            { s: 'east_asia', t: 'hemudu', label: '水稻' },
+            { s: 'east_asia', t: 'jiahu', label: '家猪' },
+            { s: 'america', t: 'llama', label: '骆马' },
+            { s: 'iron_plow', t: 'surplus', label: '效率提升' }
+        ];
+
+        const COLORS = { 0: '#00d2ff', 1: '#ff9800', 2: '#00ff88' };
+
+        // ==========================================
+        // 2. 3D Engine (Optimized Axis)
+        // ==========================================
+        const canvas = document.getElementById('capsule');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height, dpr;
+        let rotX = 0.2, rotY = 0.5; // 旋转角度
+        let targetRotX = 0.2, targetRotY = 0.5;
+        let transX = 0; // 平移量 (时间轴平移)
+        let targetTransX = 0;
+        let zoom = 0.9;
+        
+        // Time Mapping
+        const TIME_START = -20000;
+        const TIME_END = 0;
+        const AXIS_LENGTH = 3000; // 时间轴总像素长度
+        const RADIUS = 250; // 星系半径
+        const FOV = 800;
+        
+        // Interaction State
+        let isDragging = false, isPanning = false;
+        let lastMouse = {x:0,y:0};
+        let activeNode = null;
+        let activeChain = new Set();
+
+        function resize() {
+            dpr = window.devicePixelRatio || 1;
+            width = canvas.width = window.innerWidth * dpr;
+            height = canvas.height = window.innerHeight * dpr;
+            ctx.scale(dpr, dpr);
+            width /= dpr; height /= dpr;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // 预计算节点坐标
+        nodes.forEach(node => {
+            // X轴：线性映射时间
+            const progress = (node.time - TIME_START) / (TIME_END - TIME_START);
+            node.wx = (progress - 0.5) * AXIS_LENGTH;
+            
+            // Y/Z轴：根据类型扇区分布
+            const angleBase = (node.type * 120) * Math.PI / 180;
+            const angleRand = (Math.random() * 80 - 40) * Math.PI / 180; 
+            const angle = angleBase + angleRand;
+            const r = RADIUS + (Math.random() - 0.5) * 80;
+            
+            node.wy = r * Math.cos(angle);
+            node.wz = r * Math.sin(angle);
+        });
+
+        // --- 交互控制 (修复手感) ---
+        canvas.addEventListener('mousedown', e => {
+            lastMouse = {x:e.clientX, y:e.clientY};
+            if(e.button === 2) { isPanning = true; } // 右键平移
+            else { isDragging = true; } // 左键旋转
+        });
+        
+        // 禁用右键菜单
+        canvas.addEventListener('contextmenu', e => e.preventDefault());
+
+        window.addEventListener('mouseup', () => { isDragging = false; isPanning = false; });
+        
+        window.addEventListener('mousemove', e => {
+            const dx = e.clientX - lastMouse.x;
+            const dy = e.clientY - lastMouse.y;
+            
+            if (isPanning) {
+                // 平移时间轴
+                targetTransX += dx * 1.5;
+            } else if (isDragging) {
+                // 旋转视角
+                targetRotY += dx * 0.005;
+                targetRotX += dy * 0.005;
+            }
+            
+            lastMouse = {x:e.clientX, y:e.clientY};
+        });
+
+        canvas.addEventListener('wheel', e => {
+            e.preventDefault();
+            zoom += e.deltaY * -0.001;
+            zoom = Math.min(Math.max(0.2, zoom), 3);
+        }, {passive:false});
+
+        canvas.addEventListener('click', handleClick);
+        
+        // 移动端支持
+        canvas.addEventListener('touchstart', e => {
+            lastMouse = {x:e.touches[0].clientX, y:e.touches[0].clientY};
+            isDragging = true;
+        });
+        canvas.addEventListener('touchmove', e => {
+            if(isDragging) {
+                const dx = e.touches[0].clientX - lastMouse.x;
+                // 移动端默认左右滑动是旋转
+                targetRotY += dx * 0.008;
+                lastMouse = {x:e.touches[0].clientX, y:e.touches[0].clientY};
+            }
+        });
+        canvas.addEventListener('touchend', () => isDragging = false);
+
+        function handleClick(e) {
+            // 防止拖动时触发点击
+            if (isDragging || isPanning) return;
+            
+            const mx = e.clientX;
+            const my = e.clientY;
+            
+            let hit = null;
+            renderList.sort((a,b) => b.depth - a.depth);
+            
+            for(let p of renderList) {
+                const dist = Math.hypot(p.x - mx, p.y - my);
+                if(dist < 25 * p.scale) {
+                    hit = p.data;
+                    break;
+                }
+            }
+
+            if(hit) {
+                selectNode(hit);
+                showSidebar(hit);
+            } else {
+                activeNode = null;
+                activeChain.clear();
+                closeSidebar();
+            }
+        }
+
+        function selectNode(node) {
+            activeNode = node.id;
+            activeChain.clear();
+            activeChain.add(node.id);
+            links.forEach(l => {
+                if(l.s === node.id) activeChain.add(l.t);
+                if(l.t === node.id) activeChain.add(l.s);
+            });
+        }
+
+        // --- 渲染引擎 ---
+        let renderList = [];
+
+        function loop() {
+            // 缓动
+            rotX += (targetRotX - rotX) * 0.1;
+            rotY += (targetRotY - rotY) * 0.1;
+            transX += (targetTransX - transX) * 0.1;
+
+            ctx.fillStyle = '#020205';
+            ctx.fillRect(0, 0, width, height);
+
+            const cx = width / 2;
+            const cy = height / 2;
+
+            // 1. 绘制核心时间轴 (带刻度)
+            drawAxis(cx, cy);
+
+            renderList = [];
+            const nodePos = {};
+
+            // 2. 投影节点
+            nodes.forEach(node => {
+                // 应用平移
+                let wx = node.wx + transX;
+                
+                // 3D 旋转
+                let x1 = wx * Math.cos(rotY) - node.wz * Math.sin(rotY);
+                let z1 = wx * Math.sin(rotY) + node.wz * Math.cos(rotY);
+                
+                let y2 = node.wy * Math.cos(rotX) - z1 * Math.sin(rotX);
+                let z2 = node.wy * Math.sin(rotX) + z1 * Math.cos(rotX);
+                
+                // 透视
+                const depth = z2 + 1500;
+                if (depth < 10) return; // 剪裁
+                
+                const scale = (FOV / depth) * zoom;
+                const sx = cx + x1 * scale;
+                const sy = cy + y2 * scale;
+
+                const item = { x: sx, y: sy, scale: scale, depth: z2, data: node };
+                renderList.push(item);
+                nodePos[node.id] = item;
+            });
+
+            // 3. 绘制连线
+            links.forEach(link => {
+                const p1 = nodePos[link.s];
+                const p2 = nodePos[link.t];
+                
+                if(p1 && p2) {
+                    const isRelated = activeNode && (link.s === activeNode || link.t === activeNode);
+                    const isDimmed = activeNode && !isRelated;
+
+                    if (isDimmed && !isRelated) return; // 没选中的时候淡化或不画
+
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    
+                    if (isRelated) {
+                        ctx.strokeStyle = '#ffff00';
+                        ctx.lineWidth = 2 * p1.scale;
+                        ctx.setLineDash([]);
+                        ctx.globalAlpha = 1;
+                        ctx.stroke();
+                        
+                        // 标签
+                        ctx.fillStyle = '#fff';
+                        ctx.font = `bold ${12 * p1.scale}px Arial`;
+                        ctx.fillText(link.label || '', (p1.x+p2.x)/2, (p1.y+p2.y)/2 - 5);
+                    } else if (!activeNode) {
+                        // 默认连线
+                        ctx.strokeStyle = '#444';
+                        ctx.lineWidth = 1 * p1.scale;
+                        ctx.setLineDash([2, 4]);
+                        ctx.globalAlpha = 0.4;
+                        ctx.stroke();
+                    }
+                    ctx.globalAlpha = 1;
+                }
+            });
+
+            // 4. 绘制节点
+            renderList.sort((a,b) => a.depth - b.depth);
+            
+            renderList.forEach(p => {
+                const isSelected = activeNode === p.data.id;
+                const isRelated = activeChain.has(p.data.id);
+                const isDimmed = activeNode && !isRelated && !isSelected;
+
+                const baseSize = isSelected ? 25 : (isRelated ? 20 : 15);
+                const size = baseSize * p.scale;
+                let color = COLORS[p.data.type];
+                
+                if (isDimmed) color = '#333';
+
+                // 投影线 (连向轴心)
+                if (!isDimmed) {
+                    // 计算轴心点位置 (wx + transX, 0, 0)
+                    let wx = p.data.wx + transX;
+                    let ax1 = wx * Math.cos(rotY);
+                    let az1 = wx * Math.sin(rotY);
+                    let ay2 = 0 - az1 * Math.sin(rotX);
+                    let az2 = 0 + az1 * Math.cos(rotX);
+                    
+                    const adepth = az2 + 1500;
+                    const ascale = (FOV / adepth) * zoom;
+                    const ax = cx + ax1 * ascale;
+                    const ay = cy + ay2 * ascale;
+
+                    ctx.beginPath();
+                    ctx.moveTo(ax, ay);
+                    ctx.lineTo(p.x, p.y);
+                    ctx.strokeStyle = color;
+                    ctx.globalAlpha = 0.2;
+                    ctx.stroke();
+                    ctx.globalAlpha = 1;
+                }
+
+                // 光晕
+                if (!isDimmed) {
+                    const grad = ctx.createRadialGradient(p.x, p.y, size*0.1, p.x, p.y, size*2.5);
+                    grad.addColorStop(0, color);
+                    grad.addColorStop(1, 'rgba(0,0,0,0)');
+                    ctx.fillStyle = grad;
+                    ctx.beginPath(); ctx.arc(p.x, p.y, size*2.5, 0, Math.PI*2); ctx.fill();
+                }
+
+                // 实体
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, size, 0, Math.PI*2);
+                ctx.fillStyle = isDimmed ? '#222' : '#000';
+                ctx.fill();
+                ctx.lineWidth = (isSelected ? 3 : 2) * p.scale;
+                ctx.strokeStyle = color;
+                ctx.stroke();
+
+                // 图标
+                ctx.globalAlpha = isDimmed ? 0.3 : 1;
+                ctx.fillStyle = '#fff';
+                ctx.font = `${16 * p.scale}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(p.data.icon, p.x, p.y);
+
+                // 文字
+                if (!isDimmed && p.scale > 0.4) {
+                    ctx.font = `bold ${12 * p.scale}px Microsoft YaHei`;
+                    ctx.fillStyle = '#fff';
+                    ctx.fillText(p.data.label, p.x, p.y + size + 10*p.scale);
+                }
+                ctx.globalAlpha = 1;
+            });
+
+            requestAnimationFrame(loop);
+        }
+
+        // 绘制时间轴核心与刻度 (Void Ticks)
+        function drawAxis(cx, cy) {
+            // 轴的起点和终点
+            const startX = -AXIS_LENGTH/2;
+            const endX = AXIS_LENGTH/2;
+            
+            // 投影轴线
+            const pStart = project3D(startX + transX, 0, 0, cx, cy);
+            const pEnd = project3D(endX + transX, 0, 0, cx, cy);
+            
+            ctx.beginPath();
+            ctx.moveTo(pStart.x, pStart.y);
+            ctx.lineTo(pEnd.x, pEnd.y);
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = 2;
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#00d2ff';
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+
+            // 绘制刻度
+            ctx.fillStyle = 'rgba(255,255,255,0.5)';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'center';
+            
+            // 每 1000 年一个大刻度
+            const step = 1000;
+            for(let t = Math.ceil(TIME_START/step)*step; t <= TIME_END; t += step) {
+                const progress = (t - TIME_START) / (TIME_END - TIME_START);
+                const wx = (progress - 0.5) * AXIS_LENGTH + transX;
+                
+                const p = project3D(wx, 0, 0, cx, cy);
+                if (p.depth > 10) {
+                    const h = 10 * p.scale; // 刻度高度
+                    // 简单的垂直刻度 (假设轴大致水平)
+                    ctx.fillRect(p.x - 1, p.y - h/2, 2, h);
+                    
+                    if (p.scale > 0.5) {
+                        let label = Math.abs(t);
+                        label += t < 0 ? ' BC' : ' AD';
+                        ctx.fillText(label, p.x, p.y + h + 10);
+                    }
+                }
+            }
+        }
+
+        function project3D(x, y, z, cx, cy) {
+            let x1 = x * Math.cos(rotY) - z * Math.sin(rotY);
+            let z1 = x * Math.sin(rotY) + z * Math.cos(rotY);
+            let y2 = y * Math.cos(rotX) - z1 * Math.sin(rotX);
+            let z2 = y * Math.sin(rotX) + z1 * Math.cos(rotX);
+            const depth = z2 + 1500;
+            const scale = (FOV / depth) * zoom;
+            return { x: cx + x1*scale, y: cy + y2*scale, scale: scale, depth: z2 };
+        }
+
+        // --- Sidebar ---
+        const sidebar = document.getElementById('sidebar');
+        function showSidebar(node) {
+            sidebar.classList.add('active');
+            const color = COLORS[node.type];
+            document.getElementById('sb-header').style.borderColor = color;
+            document.getElementById('sb-title').innerText = node.label;
+            document.getElementById('sb-title').style.color = color;
+            
+            const yearStr = node.time < 0 ? `${Math.abs(node.time)} BC` : `${node.time} AD`;
+            document.getElementById('sb-year').innerText = yearStr;
+            
+            let typeName = node.type === 0 ? "农业起源" : (node.type === 1 ? "生产技术" : "社会变革");
+            document.getElementById('sb-type').innerText = typeName;
+            document.getElementById('sb-type').style.color = color;
+
+            document.getElementById('sb-desc').innerText = node.desc;
+
+            const srcDiv = document.getElementById('sb-source');
+            if(node.quote) {
+                srcDiv.innerHTML = `<div class="source-box" style="border-left-color:${color}"><div class="source-text">“${node.quote}”</div><div class="source-ref">—— ${node.src}</div></div>`;
+            } else srcDiv.innerHTML = '';
+
+            const relDiv = document.getElementById('sb-rel');
+            let relHtml = '<div class="rel-box"><div class="rel-title">唯物史观逻辑链</div>';
+            links.forEach(l => {
+                if(l.s === node.id || l.t === node.id) {
+                    const otherId = l.s === node.id ? l.t : l.s;
+                    const otherNode = nodes.find(n => n.id === otherId);
+                    const relColor = COLORS[otherNode.type];
+                    const relation = l.label;
+                    const arrow = l.s === node.id ? '→' : '←';
+                    relHtml += `<span class="rel-tag" style="color:${relColor}; border-color:${relColor}"> ${arrow} ${relation}: ${otherNode.label}</span><br>`;
+                }
+            });
+            relHtml += '</div>';
+            relDiv.innerHTML = relHtml;
+        }
+
+        function closeSidebar() { sidebar.classList.remove('active'); activeNode = null; activeChain.clear(); }
+        function resetView() { targetRotX=0.2; targetRotY=0.5; zoom=0.9; targetTransX=0; }
+        function filterType(t) { /* Expandable filter logic */ }
+
+        loop();
+
+    </script>
+</body>
+</html>
